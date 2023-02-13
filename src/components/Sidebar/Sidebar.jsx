@@ -35,7 +35,7 @@ const UserContainer = styled.div`
 text-align: center;
 `;
 const IconContainer = styled.div`
-
+cursor: pointer;
 `;
 const UserDesc = styled.div`
 display: flex;
