@@ -17,10 +17,6 @@ const Topbar = () => {
     <Container>
       <Wrapper>
         <LogoContainer>
-          <Logo>
-            <LogoImg src="" alt="" />
-            <LogoTitle>MCD DASHBOARD</LogoTitle>
-          </Logo>
           <BarSearch>
             <Input type="text" placeholder="Search..." />
             <Search style={{ color: "white", fontSize: "20px" }} />

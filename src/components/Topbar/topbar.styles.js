@@ -7,6 +7,7 @@ position: sticky;
 top: 0;
 left: 0;
 background-color:#605daf;
+flex: 4;
 `;
 export const Wrapper = styled.div`
 display: flex;
