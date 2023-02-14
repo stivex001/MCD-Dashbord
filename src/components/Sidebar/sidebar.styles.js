@@ -12,7 +12,6 @@ postion: sticky;
 top: 0;
 left: 0;
 z-index: 999;
-background-color: blue;
 `;
 export const Logo = styled.div`
   display: flex;

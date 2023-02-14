@@ -2,20 +2,19 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin: 20px;
-  height: 70vh;
+  height: 100%;
   overflow-y: scroll;
   ::-webkit-scrollbar {
     width: 10px;
-    cursor: pointer;
   }
   ::-webkit-scrollbar-track {
-    background: gray;
+    background: white;
   }
   ::-webkit-scrollbar-thumb {
-    background: red;
+    cursor: pointer;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: white;
+    background: gray;
   }
   
 `;
