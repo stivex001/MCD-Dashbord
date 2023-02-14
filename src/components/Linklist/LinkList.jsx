@@ -11,7 +11,6 @@ import {
 } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import {
   reports,
   resellers,
@@ -21,42 +20,14 @@ import {
   verifications,
   wallets,
 } from "./data";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-const ListItemWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-const ListContent = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-const Span = styled.span`
-  color: #33404d;
-`;
-const AccordionList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 20px 40px;
-`;
-const UnListItem = styled.li`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #98a8b2;
-`;
+import {
+  AccordionList,
+  Container,
+  ListContent,
+  ListItemWrapper,
+  Span,
+  UnListItem,
+} from "./link.styles";
 
 const LinkList = ({ icon, to, desc }) => {
   const [showTransactions, setShowTransactions] = useState(false);
@@ -83,33 +54,33 @@ const LinkList = ({ icon, to, desc }) => {
 
   const handleUserClick = () => {
     if (showWallets) {
-        setShowWallets(!showWallets);
-      }
+      setShowWallets(!showWallets);
+    }
     setShowUsers(!showUsers);
   };
 
   const handleVerification = () => {
     if (showUsers) {
-        setShowUsers(!showUsers);
-      }
+      setShowUsers(!showUsers);
+    }
     setShowVerifications(!showVerifications);
   };
   const handleService = () => {
     if (showVerifications) {
-        setShowVerifications(!showVerifications);
-      }
+      setShowVerifications(!showVerifications);
+    }
     setShowServices(!showServices);
   };
   const handleReseller = () => {
     if (showServices) {
-        setShowServices(!showServices);
-      }
+      setShowServices(!showServices);
+    }
     setShowReseller(!showReseller);
   };
   const handleReport = () => {
     if (showReseller) {
-        setShowReseller(!showReseller);
-      }
+      setShowReseller(!showReseller);
+    }
     setShowReport(!showReport);
   };
 
