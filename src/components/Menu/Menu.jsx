@@ -1,4 +1,4 @@
-import { DashboardOutlined } from "@mui/icons-material";
+import { AccountBalanceWalletOutlined, ArrowForwardIosOutlined, AttachMoney, CreditCardOffOutlined, DashboardOutlined, EventAvailableOutlined, GroupOutlined, ReceiptOutlined, Report, Settings } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -6,10 +6,12 @@ const Container = styled.div`
 margin: 20px;
 `;
 const Wrapper = styled.div`
-// margin: 20px;
+margin: 20px 0;
 `;
 const LinkMenu = styled.ul`
-margin-bottom: 10px;
+display: flex;
+flex-direction: column;
+gap: 15px;
 `;
 const ListItem = styled.li`
 display: flex;
@@ -19,17 +21,22 @@ padding: 5px;
 cursor: pointer;
 border-radius: 10px;
 font-size: 15px;
+font-weight: 500;
+color: "#98a8b2"
 &:active {
   background-color: rgb(240, 240, 255);
 }
 
 &:hover {
-  color: #706db7;
+  background-color: #706db7;
 }
 `;
 const Heading = styled.span`
-margin-bottom: 20px ;
+// margin-bottom: 20px ;
 color: #555;
+`;
+const Span = styled.span`
+color: #33404d
 `;
 
 const Menu = () => {
@@ -40,62 +47,63 @@ const Menu = () => {
             <LinkMenu>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Dashboard</span>
+                <DashboardOutlined style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Dashboard</Span>
             </ListItem>
             </Link>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Transactions</span>
+                <ReceiptOutlined style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Transactions</Span>
+                <ArrowForwardIosOutlined />
             </ListItem>
             </Link>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Wallet</span>
+                <AccountBalanceWalletOutlined style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Wallet</Span>
             </ListItem>
             </Link>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Users</span>
+                <GroupOutlined style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Users</Span>
             </ListItem>
             </Link>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Verification</span>
+                <EventAvailableOutlined style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Verification</Span>
             </ListItem>
             </Link>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Virtual Accounts</span>
+                <AttachMoney style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Virtual Accounts</Span>
             </ListItem>
             </Link>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Payment Links</span>
+                <CreditCardOffOutlined  style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Payment Links</Span>
             </ListItem>
             </Link>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Services Control</span>
+                <Settings style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Services Control</Span>
             </ListItem>
             </Link>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Reseller Control</span>
+                <Settings style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Reseller Control</Span>
             </ListItem>
             </Link>
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
-                <DashboardOutlined />
-                <span>Reports</span>
+                <Report style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
+                <Span>Reports</Span>
             </ListItem>
             </Link>
             
