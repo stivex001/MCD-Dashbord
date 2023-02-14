@@ -2,13 +2,18 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   flex: 1.5;
-  position: sticky;
-  top: 50px;
+  height: calc(100vh - 50px);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 19px 5px 50px -3px rgba(235, 180, 180, 0.55);
 `;
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+postion: sticky;
+top: 0;
+left: 0;
+z-index: 999;
+background-color: blue;
+`;
 export const Logo = styled.div`
   display: flex;
   align-items: center;

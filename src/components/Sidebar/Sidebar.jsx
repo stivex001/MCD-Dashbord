@@ -4,9 +4,22 @@ import {
   Settings,
 } from "@mui/icons-material";
 import Menu from "../Menu/Menu";
-import online from '../../assets/online.png'
-import { Container, Icon, IconContainer, Logo, LogoImg, LogoTitle, Online, OnlineDesc, UserContainer, UserDesc, UserImage, Username, Wrapper } from "./sidebar.styles";
-
+import online from "../../assets/online.png";
+import {
+  Container,
+  Icon,
+  IconContainer,
+  Logo,
+  LogoImg,
+  LogoTitle,
+  Online,
+  OnlineDesc,
+  UserContainer,
+  UserDesc,
+  UserImage,
+  Username,
+  Wrapper,
+} from "./sidebar.styles";
 
 const Sidebar = () => {
   return (
@@ -18,7 +31,10 @@ const Sidebar = () => {
         </Logo>
         <UserContainer>
           <UserDesc>
-            <UserImage src="https://avatars.githubusercontent.com/u/87942124?v=4" alt="" />
+            <UserImage
+              src="https://avatars.githubusercontent.com/u/87942124?v=4"
+              alt=""
+            />
             <Username>Odejinmi Samuel</Username>
             <Online>
               <Icon src={online} alt="" />
@@ -26,14 +42,13 @@ const Sidebar = () => {
             </Online>
           </UserDesc>
           <IconContainer>
-            <PermIdentity style={{color: 'blue'}}/>
-            <Settings style={{margin: '0 10px', color: 'gray'}} />
-            <PowerSettingsNewOutlined style={{color: 'red'}} />
+            <PermIdentity style={{ color: "blue" }} />
+            <Settings style={{ margin: "0 10px", color: "gray" }} />
+            <PowerSettingsNewOutlined style={{ color: "red" }} />
           </IconContainer>
         </UserContainer>
-
-        <Menu />
       </Wrapper>
+      <Menu />
     </Container>
   );
 };

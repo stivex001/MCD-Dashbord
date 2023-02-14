@@ -2,6 +2,22 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin: 20px;
+  height: 70vh;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 10px;
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar-track {
+    background: gray;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: red;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: white;
+  }
+  
 `;
 export const Wrapper = styled.div`
   margin: 20px 0;
@@ -10,6 +26,7 @@ export const LinkMenu = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  
 `;
 export const UnListItem = styled.li`
   display: flex;
