@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin: 20px;
-  height: 100%;
+  height: calc(100vh - 150px);
   overflow-y: scroll;
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
   }
   ::-webkit-scrollbar-track {
     background: white;
