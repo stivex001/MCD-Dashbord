@@ -11,9 +11,9 @@ import {
   Report,
   Settings,
 } from "@mui/icons-material";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import LinkList from "../Linklist/LinkList";
 
 const Container = styled.div`
   margin: 20px;
@@ -78,12 +78,6 @@ const AccordionList = styled.div`
 `;
 
 const Menu = () => {
-  const [showLinks, setShowLinks] = useState(false);
-
-  const handleClick = () => {
-    setShowLinks(!showLinks)
-  }
-
   return (
     <Container>
       <Heading>Main</Heading>
@@ -101,83 +95,10 @@ const Menu = () => {
               <Span>Dashboard</Span>
             </UnListItem>
           </Link>
-          {/* <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'> */}
           <ListItem>
-            <ListItemWrapper>
-              <ListContent>
-                <ReceiptOutlined
-                  style={{
-                    marginRight: "5px",
-                    fontSize: "20px",
-                    color: "#98a8b2",
-                  }}
-                />
-                <Span>Transactions</Span>
-              </ListContent>
-
-                  {showLinks ? <KeyboardArrowDownOutlined onClick={handleClick} /> : <KeyboardArrowRightOutlined onClick={handleClick} />}
-              
-            </ListItemWrapper>
-            {showLinks && (
-              <AccordionList>
-                <Link
-                  style={{ textDecoration: "none", color: "#6d6a71" }}
-                  to="/"
-                >
-                  Transaction History
-                </Link>
-                <Link
-                  style={{ textDecoration: "none", color: "#6d6a71" }}
-                  to="/"
-                >
-                  Pending Transactions
-                </Link>
-                <Link
-                  style={{ textDecoration: "none", color: "#6d6a71" }}
-                  to="/"
-                >
-                  General Market
-                </Link>
-                <Link
-                  style={{ textDecoration: "none", color: "#6d6a71" }}
-                  to="/"
-                >
-                  Find Transaction
-                </Link>
-                <Link
-                  style={{ textDecoration: "none", color: "#6d6a71" }}
-                  to="/"
-                >
-                  Add Airtime Transaction
-                </Link>
-                <Link
-                  style={{ textDecoration: "none", color: "#6d6a71" }}
-                  to="/"
-                >
-                  Add Data Transaction
-                </Link>
-                <Link
-                  style={{ textDecoration: "none", color: "#6d6a71" }}
-                  to="/"
-                >
-                  Airtime Converter
-                </Link>
-                <Link
-                  style={{ textDecoration: "none", color: "#6d6a71" }}
-                  to="/"
-                >
-                  Reverse Transaction
-                </Link>
-                <Link
-                  style={{ textDecoration: "none", color: "#6d6a71" }}
-                  to="/"
-                >
-                  P Charges
-                </Link>
-              </AccordionList>
-            )}
+            <LinkList  />
           </ListItem>
-          {/* </Link> */}
+
           {/* <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>
             <ListItem>
                 <AccountBalanceWalletOutlined style={{ marginRight: "5px", fontSize: "20px", color: "#98a8b2" }} />
