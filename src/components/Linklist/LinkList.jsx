@@ -12,7 +12,15 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { reports, resellers, services, transactions, Users, verifications, wallets } from "./data";
+import {
+  reports,
+  resellers,
+  services,
+  transactions,
+  Users,
+  verifications,
+  wallets,
+} from "./data";
 
 const Container = styled.div`
   display: flex;
@@ -59,27 +67,49 @@ const LinkList = ({ icon, to, desc }) => {
   const [showReseller, setShowReseller] = useState(false);
   const [showReport, setShowReport] = useState(false);
 
-
   const handleTransClick = () => {
+    if (showWallets) {
+      setShowWallets(!showWallets);
+    }
     setShowTransactions(!showTransactions);
   };
 
   const handleWalletClick = () => {
+    if (showTransactions) {
+      setShowTransactions(!showTransactions);
+    }
     setShowWallets(!showWallets);
   };
+
   const handleUserClick = () => {
+    if (showWallets) {
+        setShowWallets(!showWallets);
+      }
     setShowUsers(!showUsers);
   };
+
   const handleVerification = () => {
+    if (showUsers) {
+        setShowUsers(!showUsers);
+      }
     setShowVerifications(!showVerifications);
   };
   const handleService = () => {
+    if (showVerifications) {
+        setShowVerifications(!showVerifications);
+      }
     setShowServices(!showServices);
   };
   const handleReseller = () => {
+    if (showServices) {
+        setShowServices(!showServices);
+      }
     setShowReseller(!showReseller);
   };
   const handleReport = () => {
+    if (showReseller) {
+        setShowReseller(!showReseller);
+      }
     setShowReport(!showReport);
   };
 
@@ -261,7 +291,7 @@ const LinkList = ({ icon, to, desc }) => {
         </AccordionList>
       )}
 
-<ListItemWrapper>
+      <ListItemWrapper>
         <ListContent>
           <Settings
             style={{
@@ -293,7 +323,7 @@ const LinkList = ({ icon, to, desc }) => {
         </AccordionList>
       )}
 
-<ListItemWrapper>
+      <ListItemWrapper>
         <ListContent>
           <Report
             style={{
