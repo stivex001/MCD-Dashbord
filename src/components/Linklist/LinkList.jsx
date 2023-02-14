@@ -1,14 +1,18 @@
 import {
   AccountBalanceWalletOutlined,
+  AttachMoney,
+  EventAvailableOutlined,
   GroupOutlined,
   KeyboardArrowDownOutlined,
   KeyboardArrowRightOutlined,
   ReceiptOutlined,
+  Report,
+  Settings,
 } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { transactions, Users, wallets } from "./data";
+import { reports, resellers, services, transactions, Users, verifications, wallets } from "./data";
 
 const Container = styled.div`
   display: flex;
@@ -34,11 +38,27 @@ const AccordionList = styled.div`
   gap: 20px;
   margin: 20px 40px;
 `;
+const UnListItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #98a8b2;
+`;
 
 const LinkList = ({ icon, to, desc }) => {
   const [showTransactions, setShowTransactions] = useState(false);
   const [showWallets, setShowWallets] = useState(false);
   const [showUsers, setShowUsers] = useState(false);
+  const [showVerifications, setShowVerifications] = useState(false);
+  const [showServices, setShowServices] = useState(false);
+  const [showReseller, setShowReseller] = useState(false);
+  const [showReport, setShowReport] = useState(false);
+
 
   const handleTransClick = () => {
     setShowTransactions(!showTransactions);
@@ -49,6 +69,18 @@ const LinkList = ({ icon, to, desc }) => {
   };
   const handleUserClick = () => {
     setShowUsers(!showUsers);
+  };
+  const handleVerification = () => {
+    setShowVerifications(!showVerifications);
+  };
+  const handleService = () => {
+    setShowServices(!showServices);
+  };
+  const handleReseller = () => {
+    setShowReseller(!showReseller);
+  };
+  const handleReport = () => {
+    setShowReport(!showReport);
   };
 
   return (
@@ -144,6 +176,150 @@ const LinkList = ({ icon, to, desc }) => {
               to={user.to}
             >
               {user.title}
+            </Link>
+          ))}
+        </AccordionList>
+      )}
+
+      <ListItemWrapper>
+        <ListContent>
+          <EventAvailableOutlined
+            style={{
+              marginRight: "5px",
+              fontSize: "20px",
+              color: "#98a8b2",
+            }}
+          />
+          <Span>Verification</Span>
+        </ListContent>
+        {showVerifications ? (
+          <KeyboardArrowDownOutlined onClick={handleVerification} />
+        ) : (
+          <KeyboardArrowRightOutlined onClick={handleVerification} />
+        )}
+      </ListItemWrapper>
+
+      {showVerifications && (
+        <AccordionList>
+          {verifications.map((verification) => (
+            <Link
+              key={verification.id}
+              style={{ textDecoration: "none", color: "#6d6a71" }}
+              to={verification.to}
+            >
+              {verification.title}
+            </Link>
+          ))}
+        </AccordionList>
+      )}
+
+      <Link
+        style={{ textDecoration: "none", color: "inherit" }}
+        to="/virtual-accounts"
+      >
+        <UnListItem>
+          <AttachMoney
+            style={{
+              marginRight: "5px",
+              fontSize: "20px",
+              color: "#98a8b2",
+            }}
+          />
+          <Span>Virtual Accounts</Span>
+        </UnListItem>
+      </Link>
+
+      <ListItemWrapper>
+        <ListContent>
+          <Settings
+            style={{
+              marginRight: "5px",
+              fontSize: "20px",
+              color: "#98a8b2",
+            }}
+          />
+          <Span>Services Control</Span>
+        </ListContent>
+        {showServices ? (
+          <KeyboardArrowDownOutlined onClick={handleService} />
+        ) : (
+          <KeyboardArrowRightOutlined onClick={handleService} />
+        )}
+      </ListItemWrapper>
+
+      {showServices && (
+        <AccordionList>
+          {services.map((service) => (
+            <Link
+              key={service.id}
+              style={{ textDecoration: "none", color: "#6d6a71" }}
+              to={service.to}
+            >
+              {service.title}
+            </Link>
+          ))}
+        </AccordionList>
+      )}
+
+<ListItemWrapper>
+        <ListContent>
+          <Settings
+            style={{
+              marginRight: "5px",
+              fontSize: "20px",
+              color: "#98a8b2",
+            }}
+          />
+          <Span>Reseller Control</Span>
+        </ListContent>
+        {showReseller ? (
+          <KeyboardArrowDownOutlined onClick={handleReseller} />
+        ) : (
+          <KeyboardArrowRightOutlined onClick={handleReseller} />
+        )}
+      </ListItemWrapper>
+
+      {showReseller && (
+        <AccordionList>
+          {resellers.map((reseller) => (
+            <Link
+              key={reseller.id}
+              style={{ textDecoration: "none", color: "#6d6a71" }}
+              to={reseller.to}
+            >
+              {reseller.title}
+            </Link>
+          ))}
+        </AccordionList>
+      )}
+
+<ListItemWrapper>
+        <ListContent>
+          <Report
+            style={{
+              marginRight: "5px",
+              fontSize: "20px",
+              color: "#98a8b2",
+            }}
+          />
+          <Span>Report</Span>
+        </ListContent>
+        {showReport ? (
+          <KeyboardArrowDownOutlined onClick={handleReport} />
+        ) : (
+          <KeyboardArrowRightOutlined onClick={handleReport} />
+        )}
+      </ListItemWrapper>
+
+      {showReport && (
+        <AccordionList>
+          {reports.map((report) => (
+            <Link
+              key={report.id}
+              style={{ textDecoration: "none", color: "#6d6a71" }}
+              to={report.to}
+            >
+              {report.title}
             </Link>
           ))}
         </AccordionList>
