@@ -8,8 +8,8 @@ export const Container = styled.div`
   -moz-box-shadow: 19px 5px 50px -3px rgba(235, 180, 180, 0.55);
 `;
 export const Wrapper = styled.div`
-postion: sticky;
-top: 0;
+// postion: sticky;
+top: -100px;
 left: 0;
 z-index: 999;
 `;

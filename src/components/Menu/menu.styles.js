@@ -14,7 +14,7 @@ export const Container = styled.div`
     cursor: pointer;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: gray;
+    background: #e7e7f3;
   }
   
 `;

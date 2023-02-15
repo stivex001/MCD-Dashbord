@@ -1,4 +1,5 @@
-import { Search } from "@mui/icons-material";
+import { Close, Dehaze, Search } from "@mui/icons-material";
+import { useState } from "react";
 import {
   BarSearch,
   Container,
@@ -8,15 +9,26 @@ import {
   LogoContainer,
   LogoImg,
   LogoTitle,
+  SidebarNav,
+  SidebarWrap,
   UserImg,
   Wrapper,
 } from "./topbar.styles";
 
 const Topbar = () => {
+  const [showSidebar, setShowSidebar] = useState()
+
+  const handleMenu = () => {
+    setShowSidebar(!showSidebar)
+  }
   return (
+    <>
     <Container>
       <Wrapper>
         <LogoContainer>
+        <Logo>
+          <Dehaze style={{color: 'white', fontSize: '30px'}} onClick={handleMenu}/>
+        </Logo>
           <BarSearch>
             <Input type="text" placeholder="Search..." />
             <Search style={{ color: "white", fontSize: "20px" }} />
@@ -30,6 +42,16 @@ const Topbar = () => {
         </ImgContainer>
       </Wrapper>
     </Container>
+    <SidebarNav>
+        <SidebarWrap>
+          <Logo>
+             <Close />
+          </Logo>
+         
+        </SidebarWrap>
+      </SidebarNav>
+    </>
+    
   );
 };
 

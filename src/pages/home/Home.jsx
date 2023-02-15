@@ -4,26 +4,27 @@ import Topbar from "../../components/Topbar/Topbar";
 import Widgets from "../../components/widgets/Widgets";
 
 const Container = styled.div`
-  display: flex;
+  // display: flex;
 `;
 const TopbarContainer = styled.div`
-  flex: 4;
+  display: flex;
 `;
 const WidgetContainer = styled.div`
-  
+  flex:4;
 `;
 
 
 const Home = () => {
   return (
     <Container>
+       <Topbar />
+      {/* <TopbarContainer>
       <Sidebar />
-      <TopbarContainer>
-        <Topbar />
         <WidgetContainer>
           <Widgets />
-        </WidgetContainer>
-      </TopbarContainer>
+        </WidgetContainer> 
+        
+      </TopbarContainer> */}
       
     </Container>
   );

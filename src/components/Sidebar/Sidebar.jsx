@@ -1,4 +1,6 @@
 import {
+  Close,
+  Dehaze,
   PermIdentity,
   PowerSettingsNewOutlined,
   Settings,
@@ -20,14 +22,22 @@ import {
   Username,
   Wrapper,
 } from "./sidebar.styles";
+import { useState } from "react";
 
 const Sidebar = () => {
+  const [showSidebar, setShowSidebar] = useState()
+
+  const handleMenu = () => {
+    setShowSidebar(!showSidebar)
+  }
+
   return (
     <Container>
       <Wrapper>
         <Logo>
           <LogoImg src="" alt="" />
           <LogoTitle>MCD DASHBOARD</LogoTitle>
+          <Close onClick={handleMenu}/>
         </Logo>
         <UserContainer>
           <UserDesc>
