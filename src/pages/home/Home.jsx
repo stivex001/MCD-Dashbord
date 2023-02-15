@@ -10,22 +10,15 @@ const TopbarContainer = styled.div`
   display: flex;
 `;
 const WidgetContainer = styled.div`
-  flex:4;
+  flex: 4;
 `;
-
 
 const Home = () => {
   return (
     <Container>
-       <Topbar />
-      {/* <TopbarContainer>
-      <Sidebar />
-        <WidgetContainer>
-          <Widgets />
-        </WidgetContainer> 
-        
-      </TopbarContainer> */}
-      
+      <Topbar />
+
+      <Widgets />
     </Container>
   );
 };
