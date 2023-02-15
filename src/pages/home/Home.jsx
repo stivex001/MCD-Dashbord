@@ -5,12 +5,19 @@ import Topbar from "../../components/Topbar/Topbar";
 const Container = styled.div`
   display: flex;
 `;
+const TopbarContainer = styled.div`
+  flex: 4;
+`;
+
 
 const Home = () => {
   return (
     <Container>
       <Sidebar />
-      <Topbar />
+      <TopbarContainer>
+        <Topbar />
+      </TopbarContainer>
+      
     </Container>
   );
 };

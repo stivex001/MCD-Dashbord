@@ -22,6 +22,8 @@ export const Wrapper = styled.div`
   margin: 20px 0;
 `;
 export const LinkMenu = styled.ul`
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 15px;
