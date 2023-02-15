@@ -2,16 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   flex: 1;
-  min-height: 100vh;
-  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 19px 5px 50px -3px rgba(235, 180, 180, 0.55);
 `;
 export const Wrapper = styled.div`
-// postion: sticky;
-top: -100px;
-left: 0;
-z-index: 999;
+
 `;
 export const Logo = styled.div`
   display: flex;

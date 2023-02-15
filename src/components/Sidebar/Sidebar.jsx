@@ -34,11 +34,11 @@ const Sidebar = () => {
   return (
     <Container>
       <Wrapper>
-        <Logo>
+        {/* <Logo>
           <LogoImg src="" alt="" />
           <LogoTitle>MCD DASHBOARD</LogoTitle>
           <Close onClick={handleMenu}/>
-        </Logo>
+        </Logo> */}
         <UserContainer>
           <UserDesc>
             <UserImage

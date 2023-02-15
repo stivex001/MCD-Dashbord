@@ -9,6 +9,7 @@ export const Container = styled.div`
 // background-color:#605daf;
 `;
 export const Wrapper = styled.div`
+width: 100%;
 height: 50px;
 display: flex;
 justify-content: space-between;
@@ -21,7 +22,7 @@ display: flex;
 align-items: center;
 `;
 export const Logo = styled.div`
-margin-right: 20px;
+margin-right: 80px;
 display: flex;
 justify-content: flex-start;
 heigth: 50px;
@@ -65,17 +66,27 @@ object-fit: cover;
 `;
 
 export const SidebarNav = styled.nav`
-background-color:#605daf;
+box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+-webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+-moz-box-shadow: 19px 5px 50px -3px rgba(235, 180, 180, 0.55);
 width: 250px;
 heigth: 100vh;
 display: flex;
 justify-content: center;
 position: fixed;
-top: 0;
+top: 10px;
 left: ${({sidebar}) => (sidebar ? '0' : '-100%')};
 transition: 350ms ease-in-out;
 z-index: 10;
 `;
 export const SidebarWrap = styled.div`
 width: 100%;
+`;
+export const SidebarLogo = styled.div`
+background-color:#605daf;
+margin-left: 20px;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+cursor: pointer;
 `;
