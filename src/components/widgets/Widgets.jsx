@@ -18,22 +18,35 @@ align-items: center;
 justify-content: space-between;
 margin-bottom: 20px;
 `;
+const H3 = styled.h3`
+ont-size: 18px;
+color: #4a4b4c;
+`;
+const DescP = styled.p`
+font-size: 14px;
+color: #8c9ea9;
+`;
+const DescSpan = styled.span`
+font-size: 14px;
+color: #6c757d;
+
+`;
 
 const Widgets = () => {
   return (
     <Container>
         <Wrapper>
             <Desc>
-                <h3>Home</h3>
-                <p>Dashboard / <span>Home</span></p>
+                <H3>Home</H3>
+                <DescP>Dashboard / <DescSpan>Home</DescSpan></DescP>
             </Desc>
             <CardContainer>
-              <Card />
-              <Card />
+              <Card type='successful' />
+              <Card type='pending' />
             </CardContainer>
             <CardContainer>
-              <Card />
-              <Card />
+              <Card type='today' />
+              <Card type='month' />
             </CardContainer>
         </Wrapper>
     </Container>
