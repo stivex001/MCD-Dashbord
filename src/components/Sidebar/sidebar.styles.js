@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  flex: 1.5;
+  flex: 1;
   height: calc(100vh - 50px);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
@@ -26,7 +26,7 @@ export const LogoImg = styled.img`
 `;
 export const LogoTitle = styled.span`
   color: white;
-  font-size: 700;
+  font-weight: 700;
 `;
 export const UserContainer = styled.div`
 text-align: center;
