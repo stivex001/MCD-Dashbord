@@ -19,11 +19,11 @@ const Desc = styled.div`
 const H3 = styled.h3`
   font-size: 18px;
   color: #4a4b4c;
-  ${mobile({ display: "none" })};
 `;
 const DescP = styled.p`
   font-size: 14px;
   color: #8c9ea9;
+  ${mobile({ display: "none" })};
 `;
 const DescSpan = styled.span`
   font-size: 14px;
