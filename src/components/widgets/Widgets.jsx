@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile, tablet } from "../../responsive";
 import Card from "../card/Card";
 
 const Container = styled.div`
@@ -11,6 +12,7 @@ justify-content: space-between;
 gap: 20px;
 flex-wrap: wrap;
 margin-bottom: 50px;
+${mobile({ flexDirection: "column" })};
 `;
 const Desc = styled.div`
 display: flex;

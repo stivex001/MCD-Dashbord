@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile, tablet } from "../../responsive";
 
 export const Container = styled.div`
 // width: 100%;
@@ -16,6 +17,7 @@ justify-content: space-between;
 align-items: center;
 padding: 5px 20px;
 background-color:#605daf;
+${tablet({ position: "fixed", top: '0', zIndex: '999' })};
 `;
 export const LogoContainer = styled.div`
 display: flex;
@@ -28,6 +30,8 @@ justify-content: flex-start;
 heigth: 50px;
 align-items: center;
 cursor: pointer;
+${mobile({ marginRight: "20px" })};
+${tablet({ marginRight: "15px" })};
 `;
 export const LogoImg = styled.img`
 width: 20px;
@@ -46,6 +50,7 @@ border-radius: 50px;
 border: 1px solid #605daf;
 padding: 5px 20px;
 cursor: pointer;
+${tablet({ padding: "5px" })};
 `;
 export const Input = styled.input`
 border: none;
