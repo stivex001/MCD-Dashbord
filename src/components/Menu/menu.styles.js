@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin: 20px;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 100px);
   overflow-y: scroll;
   ::-webkit-scrollbar {
     width: 5px;

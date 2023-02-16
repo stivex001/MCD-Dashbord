@@ -66,7 +66,8 @@ object-fit: cover;
 `;
 
 export const SidebarNav = styled.nav`
-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+background-color: #ffffff;
+box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.5);
 -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 -moz-box-shadow: 19px 5px 50px -3px rgba(235, 180, 180, 0.55);
 width: 250px;
@@ -84,7 +85,7 @@ width: 100%;
 `;
 export const SidebarLogo = styled.div`
 background-color:#605daf;
-margin-left: 20px;
+padding-left: 20px;
 display: flex;
 justify-content: flex-start;
 align-items: center;

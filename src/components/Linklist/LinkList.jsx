@@ -86,7 +86,7 @@ const LinkList = ({ icon, to, desc }) => {
 
   return (
     <Container>
-      <ListItemWrapper>
+      <ListItemWrapper onClick={handleTransClick}>
         <ListContent>
           <ReceiptOutlined
             style={{
@@ -98,9 +98,9 @@ const LinkList = ({ icon, to, desc }) => {
           <Span>Transactions</Span>
         </ListContent>
         {showTransactions ? (
-          <KeyboardArrowDownOutlined onClick={handleTransClick} />
+          <KeyboardArrowDownOutlined  />
         ) : (
-          <KeyboardArrowRightOutlined onClick={handleTransClick} />
+          <KeyboardArrowRightOutlined  />
         )}
       </ListItemWrapper>
 
