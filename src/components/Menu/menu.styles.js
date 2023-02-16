@@ -9,6 +9,7 @@ export const Container = styled.div`
   }
   ::-webkit-scrollbar-track {
     background: white;
+    border-radius: 40px;
   }
   ::-webkit-scrollbar-thumb {
     cursor: pointer;
