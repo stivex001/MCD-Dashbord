@@ -65,6 +65,40 @@ const Card = ({ type }) => {
         total: "3,289",
       };
       break;
+
+      case "totalTransactions":
+      data = {
+        icon: <BusinessCenter style={{ fontSize: "50px", color: "#5dd099" }} />,
+        title: "Total Transactions",
+        total: "1,459,566",
+      };
+      break;
+
+      case "transactionToday":
+      data = {
+        icon: <BusinessCenter style={{ fontSize: "50px", color: "#f73c6f" }} />,
+        title: "Transactions Today",
+        total: "1,746",
+      };
+      break;
+
+      case "transactionYesterday":
+      data = {
+        icon: <BusinessCenter style={{ fontSize: "50px", color: "#f9af5d" }} />,
+        title: "Transactions Yesterday",
+        total: "6,286",
+      };
+      break;
+
+
+      case "transactionAgo":
+      data = {
+        icon: <BusinessCenter style={{ fontSize: "50px", color: "#327ba4" }} />,
+        title: "Transactions 2Days Ago",
+        total: "6,232",
+      };
+      break;
+
     default:
       break;
   }
