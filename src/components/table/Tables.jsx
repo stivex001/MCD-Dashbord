@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { rows } from "./tableData";
 import { DataGrid } from "@mui/x-data-grid";
-import { Bookmark } from "@mui/icons-material";
+import { Bookmark, NoteAlt } from "@mui/icons-material";
 
 const Container = styled.div``
 const Span = styled.span`
@@ -77,7 +77,7 @@ const columns = [
     renderCell: () => {
       return(
         <>
-        <Bookmark />
+        <NoteAlt style={{backgroundColor: '5dd099' ,color: 'white', padding: '4px 8px', fontSize: '30px', cursor: 'pointer'}} />
         </>
       )
     }
