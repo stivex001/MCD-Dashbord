@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import Card from '../../components/card/Card';
 import Topbar from '../../components/Topbar/Topbar'
+import TransactionTables from '../../components/Transactiontables/TransactionTables';
 import { mobile, tablet } from '../../responsive';
 
 const Container = styled.div``;
@@ -51,6 +52,9 @@ const TransHistory = () => {
               <Card type='transactionYesterday' />
               <Card type='transactionAgo' />
               </CardContainer>
+
+              {/* TABLES */}
+              <TransactionTables />
         </Wrapper>
     </Container>
   )
