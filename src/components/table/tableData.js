@@ -198,3 +198,30 @@ export const rows= [
     },
 ]
 
+export const pendingTransactions = [
+    {
+        id: 1,
+        username: 'Tibbyyoung',
+        ref: 'MCD_SAM5552378728892666928632',
+        amount: 240,
+        desc: 'purchase MTN 1.5GB on 08162174754 using wallet',
+        status: 'pending',
+        date: '2023-02-17 08:52:48',
+        ip: '102.89.32.158',
+        server: 'server10',
+        serverRes: 'Available epin is not up to what you want to buy'
+    },
+    {
+        id: 2,
+        username: 'baistevoo',
+        ref: 'MCD_SAM5552378728892666928632',
+        amount: 240,
+        desc: 'purchase MTN 1.5GB on 08162174754 using wallet',
+        status: 'pending',
+        date: '2023-02-17 08:52:48',
+        ip: '102.89.32.158',
+        server: 'server10',
+        serverRes: 'Available epin is not up to what you want to buy'
+    },
+]
+
