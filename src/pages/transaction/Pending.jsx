@@ -1,8 +1,9 @@
+import Footer from "../../components/footer/Footer";
 import PendingTables from "../../components/Pendingtable/PendingTables";
 import Topbar from "../../components/Topbar/Topbar";
 import Button from "../../components/UI/Button";
 import {
-    BtnConatiner,
+  BtnConatiner,
   Container,
   Desc,
   DescP,
@@ -29,18 +30,20 @@ const Pending = () => {
 
         <TransList>
           <Title>Transactions Table</Title>
-          <P>Click on <Span>Re-process</Span> to reprocess in background.</P>
+          <P>
+            Click on <Span>Re-process</Span> to reprocess in background.
+          </P>
           <BtnConatiner>
-            <Button title='Re-process Selected'/>
-            <Button title='Mark Delivered Selected' />
-            <Button title='Reverse Transaction Selected' />
+            <Button title="Re-process Selected" />
+            <Button title="Mark Delivered Selected" />
+            <Button title="Reverse Transaction Selected" />
           </BtnConatiner>
-          <div style={{marginTop: '10px'}}>
+          <div style={{ marginTop: "10px" }}>
             <PendingTables />
           </div>
-          
         </TransList>
       </Wrapper>
+      <Footer />
     </Container>
   );
 };
