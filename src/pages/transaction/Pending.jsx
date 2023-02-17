@@ -29,7 +29,7 @@ const Pending = () => {
         </Desc>
 
         <TransList>
-          <Title>Transactions Table</Title>
+          <Title>Pending Transaction List</Title>
           <P>
             Click on <Span>Re-process</Span> to reprocess in background.
           </P>
