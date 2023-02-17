@@ -17,7 +17,7 @@ export const transactions = [
   {
     id: 4,
     title: "Find Transaction",
-    to: "/find",
+    to: "/findtransaction",
   },
   {
     id: 5,
