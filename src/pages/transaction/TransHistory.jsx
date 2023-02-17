@@ -1,41 +1,17 @@
 import React from "react";
-import styled from "styled-components";
 import Card from "../../components/card/Card";
 import Footer from "../../components/footer/Footer";
 import Topbar from "../../components/Topbar/Topbar";
 import TransactionTables from "../../components/Transactiontables/TransactionTables";
-import { mobile, tablet } from "../../responsive";
-
-const Container = styled.div``;
-const Wrapper = styled.div`
-  padding: 20px;
-`;
-const Desc = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
-const H3 = styled.h3`
-  font-size: 18px;
-  color: #4a4b4c;
-`;
-const DescP = styled.p`
-  font-size: 14px;
-  color: #8c9ea9;
-  ${mobile({ display: "none" })};
-`;
-const DescSpan = styled.span`
-  font-size: 14px;
-  color: #6c757d;
-`;
-const CardContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 50px;
-  ${tablet({ flexDirection: "column" })};
-`;
+import {
+  CardContainer,
+  Container,
+  Desc,
+  DescP,
+  DescSpan,
+  H3,
+  Wrapper,
+} from "./transHistory.styles";
 
 const TransHistory = () => {
   return (
