@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
+import Pending from "./pages/transaction/Pending";
 import TransHistory from "./pages/transaction/TransHistory";
 
 // const Container = styled.div`
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/history" element={<TransHistory />} />
+        <Route path="/transactions-pending" element={<Pending />} />
       </Routes>
     </div>
   );

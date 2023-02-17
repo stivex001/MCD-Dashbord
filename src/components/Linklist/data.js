@@ -7,7 +7,7 @@ export const transactions = [
   {
     id: 2,
     title: "Pending Transactions",
-    to: "/pending",
+    to: "/transactions-pending",
   },
   {
     id: 3,
