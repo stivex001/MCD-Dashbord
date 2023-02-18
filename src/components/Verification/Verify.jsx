@@ -57,7 +57,7 @@ const Verify = () => {
           <p style={{ padding: "5px", fontSize: "20px", color: "#495057" }}>
             REF
           </p>
-          <Input type="text" placeholder="Enter Username" />
+          <Input type="text" placeholder="Enter Server reference" />
         </InputContainer>
         <Btn>
           <Search />
