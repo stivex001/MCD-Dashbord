@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import FindTransaction from "./pages/transaction/FindTransaction";
 import Pending from "./pages/transaction/Pending";
 import TransHistory from "./pages/transaction/TransHistory";
+import FindUser from "./pages/Users/FindUser";
 import Credit from "./pages/Wallet/Credit";
 
 // const Container = styled.div`
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/transactions-pending" element={<Pending />} />
         <Route path="/findtransaction" element={<FindTransaction />} />
         <Route path="/addfund" element={<Credit />} />
+        <Route path="/find-users" element={<FindUser />} />
       </Routes>
     </div>
   );
