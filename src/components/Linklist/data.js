@@ -50,7 +50,7 @@ export const wallets = [
   {
     id: 1,
     title: "Credit User",
-    to: "/credit-user",
+    to: "/addfund",
   },
   {
     id: 2,

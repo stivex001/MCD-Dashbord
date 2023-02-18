@@ -118,7 +118,7 @@ const LinkList = ({ icon, to, desc }) => {
         </AccordionList>
       )}
 
-      <ListItemWrapper>
+      <ListItemWrapper onClick={handleWalletClick}>
         <ListContent>
           <AccountBalanceWalletOutlined
             style={{
@@ -130,9 +130,9 @@ const LinkList = ({ icon, to, desc }) => {
           <Span>Wallet</Span>
         </ListContent>
         {showWallets ? (
-          <KeyboardArrowDownOutlined onClick={handleWalletClick} />
+          <KeyboardArrowDownOutlined  />
         ) : (
-          <KeyboardArrowRightOutlined onClick={handleWalletClick} />
+          <KeyboardArrowRightOutlined  />
         )}
       </ListItemWrapper>
 
@@ -150,7 +150,7 @@ const LinkList = ({ icon, to, desc }) => {
         </AccordionList>
       )}
 
-      <ListItemWrapper>
+      <ListItemWrapper onClick={handleUserClick} >
         <ListContent>
           <GroupOutlined
             style={{
@@ -162,9 +162,9 @@ const LinkList = ({ icon, to, desc }) => {
           <Span>Users</Span>
         </ListContent>
         {showUsers ? (
-          <KeyboardArrowDownOutlined onClick={handleUserClick} />
+          <KeyboardArrowDownOutlined />
         ) : (
-          <KeyboardArrowRightOutlined onClick={handleUserClick} />
+          <KeyboardArrowRightOutlined />
         )}
       </ListItemWrapper>
 
@@ -182,7 +182,7 @@ const LinkList = ({ icon, to, desc }) => {
         </AccordionList>
       )}
 
-      <ListItemWrapper>
+      <ListItemWrapper onClick={handleVerification}>
         <ListContent>
           <EventAvailableOutlined
             style={{
@@ -194,9 +194,9 @@ const LinkList = ({ icon, to, desc }) => {
           <Span>Verification</Span>
         </ListContent>
         {showVerifications ? (
-          <KeyboardArrowDownOutlined onClick={handleVerification} />
+          <KeyboardArrowDownOutlined  />
         ) : (
-          <KeyboardArrowRightOutlined onClick={handleVerification} />
+          <KeyboardArrowRightOutlined />
         )}
       </ListItemWrapper>
 
@@ -230,7 +230,7 @@ const LinkList = ({ icon, to, desc }) => {
         </UnListItem>
       </Link>
 
-      <ListItemWrapper>
+      <ListItemWrapper onClick={handleService}>
         <ListContent>
           <Settings
             style={{
@@ -242,9 +242,9 @@ const LinkList = ({ icon, to, desc }) => {
           <Span>Services Control</Span>
         </ListContent>
         {showServices ? (
-          <KeyboardArrowDownOutlined onClick={handleService} />
+          <KeyboardArrowDownOutlined  />
         ) : (
-          <KeyboardArrowRightOutlined onClick={handleService} />
+          <KeyboardArrowRightOutlined  />
         )}
       </ListItemWrapper>
 
@@ -262,7 +262,7 @@ const LinkList = ({ icon, to, desc }) => {
         </AccordionList>
       )}
 
-      <ListItemWrapper>
+      <ListItemWrapper onClick={handleReseller}>
         <ListContent>
           <Settings
             style={{
@@ -274,9 +274,9 @@ const LinkList = ({ icon, to, desc }) => {
           <Span>Reseller Control</Span>
         </ListContent>
         {showReseller ? (
-          <KeyboardArrowDownOutlined onClick={handleReseller} />
+          <KeyboardArrowDownOutlined  />
         ) : (
-          <KeyboardArrowRightOutlined onClick={handleReseller} />
+          <KeyboardArrowRightOutlined  />
         )}
       </ListItemWrapper>
 
@@ -294,7 +294,7 @@ const LinkList = ({ icon, to, desc }) => {
         </AccordionList>
       )}
 
-      <ListItemWrapper>
+      <ListItemWrapper onClick={handleReport} >
         <ListContent>
           <Report
             style={{
@@ -306,9 +306,9 @@ const LinkList = ({ icon, to, desc }) => {
           <Span>Report</Span>
         </ListContent>
         {showReport ? (
-          <KeyboardArrowDownOutlined onClick={handleReport} />
+          <KeyboardArrowDownOutlined />
         ) : (
-          <KeyboardArrowRightOutlined onClick={handleReport} />
+          <KeyboardArrowRightOutlined />
         )}
       </ListItemWrapper>
 

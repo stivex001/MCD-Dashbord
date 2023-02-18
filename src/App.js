@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import FindTransaction from "./pages/transaction/FindTransaction";
 import Pending from "./pages/transaction/Pending";
 import TransHistory from "./pages/transaction/TransHistory";
+import Credit from "./pages/Wallet/Credit";
 
 // const Container = styled.div`
 //   display: flex;
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/history" element={<TransHistory />} />
         <Route path="/transactions-pending" element={<Pending />} />
         <Route path="/findtransaction" element={<FindTransaction />} />
+        <Route path="/addfund" element={<Credit />} />
       </Routes>
     </div>
   );
