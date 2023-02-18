@@ -1,5 +1,6 @@
 import { AccountBalanceWallet, BusinessCenter, Class, EventNote, PermIdentity, Search, SimCardDownload } from "@mui/icons-material";
 import styled from "styled-components";
+import Footer from "../../components/footer/Footer";
 import Topbar from "../../components/Topbar/Topbar";
 import { mobile } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "./transHistory.styles";
@@ -99,6 +100,9 @@ const FindTransaction = () => {
           
         </FormWrapper>
       </Wrapper>
+     
+        <Footer />
+    
     </Container>
   );
 };
