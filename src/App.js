@@ -8,10 +8,15 @@ import TransHistory from "./pages/transaction/TransHistory";
 import FindUser from "./pages/Users/FindUser";
 import ReferalUpgrade from "./pages/Users/ReferalUpgrade";
 import Server1 from "./pages/Verifications/Server1";
+import Server10 from "./pages/Verifications/Server10";
 import Server1b from "./pages/Verifications/Server1b";
 import Server1Data from "./pages/Verifications/Server1Data";
 import Server2 from "./pages/Verifications/Server2";
 import Server3 from "./pages/Verifications/Server3";
+import Server4 from "./pages/Verifications/Server4";
+import Server5 from "./pages/Verifications/Server5";
+import Server6 from "./pages/Verifications/Server6";
+import Server8 from "./pages/Verifications/Server8";
 import Credit from "./pages/Wallet/Credit";
 
 // const Container = styled.div`
@@ -35,6 +40,11 @@ const App = () => {
         <Route path="/serverdt" element={<Server1Data />} />
         <Route path="/server2" element={<Server2 />} />
         <Route path="/server3" element={<Server3 />} />
+        <Route path="/server4" element={<Server4 />} />
+        <Route path="/server5" element={<Server5 />} />
+        <Route path="/server6" element={<Server6 />} />
+        <Route path="/server8" element={<Server8 />} />
+        <Route path="/server10" element={<Server10 />} />
       </Routes>
     </div>
   );
