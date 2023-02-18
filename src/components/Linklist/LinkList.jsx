@@ -229,6 +229,18 @@ const LinkList = ({ icon, to, desc }) => {
           <Span>Virtual Accounts</Span>
         </UnListItem>
       </Link>
+      <Link style={{ textDecoration: "none", color: "inherit" }} to="/payment">
+            <UnListItem>
+              <AttachMoney
+                style={{
+                  marginRight: "5px",
+                  fontSize: "20px",
+                  color: "#98a8b2",
+                }}
+              />
+              <Span>Payment Links</Span>
+            </UnListItem>
+          </Link>
 
       <ListItemWrapper onClick={handleService}>
         <ListContent>
