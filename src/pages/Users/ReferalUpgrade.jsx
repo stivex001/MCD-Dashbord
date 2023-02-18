@@ -37,9 +37,9 @@ const Btn = styled.div`
   display: flex;
   align-items: center;
   background-color: #4e74ab;
-  padding: 10px 12px;
+  padding: 10px;
   margin: 20px 0;
-  width: 120px;
+  width: 150px;
   gap: 2px;
   color: white;
   cursor: pointer;
@@ -97,7 +97,7 @@ const ReferalUpgrade = () => {
           </Form>
           <Btn>
             <PersonAddAlt />
-            <Button>Credit User</Button>
+            <Button>Upgrade User</Button>
           </Btn>
         </FormWrapper>
       </Wrapper>
