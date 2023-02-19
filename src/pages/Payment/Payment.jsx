@@ -41,7 +41,9 @@ background-color: #aaaece;
 color: #fff;
 outline: none;
 `;
-const Option = styled.option``;
+const Option = styled.option`
+font-size: 20px;
+`;
 const BarSearch = styled.div`
 display: flex;
 align-items: center;
