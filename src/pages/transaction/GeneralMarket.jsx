@@ -1,7 +1,12 @@
-import { Paper, Table, TableContainer } from "@mui/material";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from "@mui/material";
 import styled from "styled-components";
-import Tablebody from "../../components/DataPlansTable/Tablebody";
-import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
 import Topbar from "../../components/Topbar/Topbar";
 import { marketData } from "../../components/Transactiontables/transactions";
@@ -21,6 +26,12 @@ const TableWrapper = styled.div`
 const Details = styled.div`
   margin: 30px 0;
 `;
+const Span = styled.span`
+  color: #fff;
+  padding: 2.6px 4.2px;
+  font-size: 10.5px;
+  border-radius: 5px;
+`;
 
 const GeneralMarket = () => {
   return (
@@ -38,32 +49,58 @@ const GeneralMarket = () => {
         <Details>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <Tablehead
-                id="id"
-                network="Username"
-                price="Amount"
-                type="Type"
-                transId="Trans ID"
-                discount="O.Balance"
-                balance="N.Balance"
-                version="Version"
-                status="Status"
-                date="Date"
-                
-              />
+              <TableBody>
+                <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                  <TableCell style={{ color: "#8887a9" }}>id</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>Username</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>Amount</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>Type</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>Trans ID</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>O.Balance</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>N.Balance</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>Version</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>Date</TableCell>
+                </TableRow>
+              </TableBody>
               {marketData.map((row) => (
-                <Tablebody
-                  id={row.id}
-                  network={row.username}
-                  price={row.amount}
-                  type={row.type}
-                  transId={row.transId}
-                  discount={row.oBalance}
-                  balance={row.nBalance}
-                  version={row.version}
-                  status={row.status}
-                  date={row.date}
-                />
+                <TableBody>
+                  <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
+                    <TableCell style={{ color: "#8887a9" }}>{row.id}</TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.username}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.amount}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      <Span
+                        style={{
+                          backgroundColor: `${
+                            row.type === "Credit" ? "#5dd099" : "#f8c955"
+                          }`,
+                        }}
+                      >
+                        {row.type}
+                      </Span>
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.transId}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.oBalance}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.nBalance}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.version}
+                    </TableCell>
+
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.date}
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
               ))}
             </Table>
           </TableContainer>
