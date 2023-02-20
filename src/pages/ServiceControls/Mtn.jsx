@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import DataPlans from "../../components/DataPlansTable/DataPlans";
 import Footer from "../../components/footer/Footer";
 import Topbar from "../../components/Topbar/Topbar";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
@@ -33,6 +34,17 @@ const Mtn = () => {
       </Wrapper>
       <TableWrapper>
         <P>Data Plans</P>
+        <DataPlans
+          id="id"
+          network="Network"
+          product="Product Name"
+          price="Provider Price"
+          yourPrice="Your Price"
+          server="Server"
+          status="Status"
+          date="Date Modified"
+          action="Action"
+        />
       </TableWrapper>
 
       <Footer />
