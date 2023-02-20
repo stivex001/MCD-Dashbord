@@ -222,7 +222,7 @@ export const resellers = [
   {
     id: 3,
     title: "TV Plans",
-    to: "/tv-control",
+    to: "/tvcontrol",
   },
 ];
 
