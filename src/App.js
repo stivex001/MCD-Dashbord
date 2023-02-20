@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import Payment from "./pages/Payment/Payment";
 import Airtel from "./pages/ServiceControls/Airtel";
 import Mtn from "./pages/ServiceControls/Mtn";
+import Glo from "./pages/ServiceControls/Glo";
 import FindTransaction from "./pages/transaction/FindTransaction";
 import Pending from "./pages/transaction/Pending";
 import TransHistory from "./pages/transaction/TransHistory";
@@ -21,6 +22,7 @@ import Server5 from "./pages/Verifications/Server5";
 import Server6 from "./pages/Verifications/Server6";
 import Server8 from "./pages/Verifications/Server8";
 import Credit from "./pages/Wallet/Credit";
+import Nmobile from "./pages/ServiceControls/Nmobile";
 
 // const Container = styled.div`
 //   display: flex;
@@ -51,6 +53,8 @@ const App = () => {
         <Route path="/payment" element={<Payment />} />
         <Route path="/mtn" element={<Mtn />} />
         <Route path="/airtel" element={<Airtel />} />
+        <Route path="/glo" element={<Glo />} />
+        <Route path="/9mobile" element={<Nmobile />} />
       </Routes>
     </div>
   );

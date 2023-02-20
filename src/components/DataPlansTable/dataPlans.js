@@ -226,3 +226,231 @@ export const airtelData = [
     },
 
 ]
+
+export const gloData = [
+    {
+        id: 1,
+        network: 'GLO',
+        name: 'GLO 500MB - Monthly',
+        price: 130,
+        yourprice: 120,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 2,
+        network: 'GLO',
+        name: 'GLO 1GB CG - 3 Monthly',
+        price: 225,
+        yourprice: 216,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 3,
+        network: 'GLO',
+        name: 'GLO 2GB CG - 3 Monthly',
+        price: 450,
+        yourprice: 432,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 4,
+        network: 'GLO',
+        name: 'GLO 3GB CG - 3 Monthly',
+        price: 1250,
+        yourprice: 638,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 5,
+        network: 'GLO',
+        name: 'GLO 5GB CG - 3 Monthly',
+        price: 1250,
+        yourprice: 1080,
+        status: 'Inactive',
+        date: '2023-02-17 08:52:48',
+        server: 2,
+        action: 'Modify'
+    },
+    {
+        id: 6,
+        network: 'GLO',
+        name: 'GLO 10GB CG - 3 Monthly',
+        price: 1250,
+        yourprice: 2160,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 7,
+        network: 'GLO',
+        name: 'GLO 100MB  - DAILY',
+        price: 96,
+        yourprice: 98,
+        status: 'Inactive',
+        date: '2023-02-17 08:52:48',
+        server: 8,
+        action: 'Modify'
+    },
+    {
+        id: 8,
+        network: 'GLO',
+        name: 'GLO 200MB CG - 3 DAYS',
+        price: 192,
+        yourprice: 196,
+        status: 'Inactive',
+        date: '2023-02-17 08:52:48',
+        server: 2,
+        action: 'Modify'
+    },
+    {
+        id: 9,
+        network: 'GLO',
+        name: 'GLO 350MB CG - 7 DAYS',
+        price: 192,
+        yourprice: 290,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 2,
+        action: 'Modify'
+    },
+    {
+        id: 10,
+        network: 'GLO',
+        name: 'GLO 750MB CG - 14 DAYS',
+        price: 130,
+        yourprice: 120,
+        status: 'Inactive',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+
+]
+
+export const nmobileData = [
+    {
+        id: 1,
+        network: '9MOBILE',
+        name: '9MOBILE 500MB - Monthly',
+        price: 130,
+        yourprice: 120,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 2,
+        network: '9MOBILE',
+        name: '9MOBILE 1GB CG - 3 Monthly',
+        price: 225,
+        yourprice: 216,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 3,
+        network: '9MOBILE',
+        name: '9MOBILE 2GB CG - 3 Monthly',
+        price: 450,
+        yourprice: 432,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 4,
+        network: '9MOBILE',
+        name: '9MOBILE 3GB CG - 3 Monthly',
+        price: 1250,
+        yourprice: 638,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 5,
+        network: '9MOBILE',
+        name: '9MOBILE 5GB CG - 3 Monthly',
+        price: 1250,
+        yourprice: 1080,
+        status: 'Inactive',
+        date: '2023-02-17 08:52:48',
+        server: 2,
+        action: 'Modify'
+    },
+    {
+        id: 6,
+        network: '9MOBILE',
+        name: '9MOBILE 10GB CG - 3 Monthly',
+        price: 1250,
+        yourprice: 2160,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+    {
+        id: 7,
+        network: '9MOBILE',
+        name: '9MOBILE 100MB  - DAILY',
+        price: 96,
+        yourprice: 98,
+        status: 'Inactive',
+        date: '2023-02-17 08:52:48',
+        server: 8,
+        action: 'Modify'
+    },
+    {
+        id: 8,
+        network: '9MOBILE',
+        name: '9MOBILE 200MB CG - 3 DAYS',
+        price: 192,
+        yourprice: 196,
+        status: 'Inactive',
+        date: '2023-02-17 08:52:48',
+        server: 2,
+        action: 'Modify'
+    },
+    {
+        id: 9,
+        network: '9MOBILE',
+        name: '9MOBILE 350MB CG - 7 DAYS',
+        price: 192,
+        yourprice: 290,
+        status: 'Active',
+        date: '2023-02-17 08:52:48',
+        server: 2,
+        action: 'Modify'
+    },
+    {
+        id: 10,
+        network: '9MOBILE',
+        name: '9MOBILE 750MB CG - 14 DAYS',
+        price: 130,
+        yourprice: 120,
+        status: 'Inactive',
+        date: '2023-02-17 08:52:48',
+        server: 10,
+        action: 'Modify'
+    },
+
+]
