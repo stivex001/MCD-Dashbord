@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Payment from "./pages/Payment/Payment";
+import Mtn from "./pages/ServiceControls/Mtn";
 import FindTransaction from "./pages/transaction/FindTransaction";
 import Pending from "./pages/transaction/Pending";
 import TransHistory from "./pages/transaction/TransHistory";
@@ -47,6 +48,7 @@ const App = () => {
         <Route path="/server8" element={<Server8 />} />
         <Route path="/server10" element={<Server10 />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/mtn" element={<Mtn />} />
       </Routes>
     </div>
   );
