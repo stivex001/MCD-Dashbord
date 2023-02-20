@@ -57,6 +57,7 @@ const Mtn = () => {
               {airtelData.map((row) => (
                 <Tablebody
                   id={row.id}
+                  network={row.network}
                   name={row.name}
                   price={row.price}
                   yourprice={row.yourprice}

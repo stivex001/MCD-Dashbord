@@ -19,6 +19,7 @@ const BtnConatiner = styled.div`
 
 const Tablebody = ({
   id,
+  network,
   name,
   price,
   yourprice,
@@ -31,7 +32,7 @@ const Tablebody = ({
     <TableBody>
       <TableRow key={id} style={{ backgroundColor: "#f3f2f7" }}>
         <TableCell style={{ color: "#8887a9" }}>{id}</TableCell>
-        <TableCell style={{ color: "#8887a9" }}>{name}</TableCell>
+        <TableCell style={{ color: "#8887a9" }}>{network}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{name}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{price}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{yourprice}</TableCell>

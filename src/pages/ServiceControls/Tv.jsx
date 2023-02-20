@@ -1,6 +1,6 @@
 import { Paper, Table, TableContainer } from "@mui/material";
 import styled from "styled-components";
-import { mtnData } from "../../components/DataPlansTable/dataPlans";
+import {gloData} from "../../components/DataPlansTable/dataPlans";
 import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
@@ -26,7 +26,7 @@ const Details = styled.div`
   margin: 30px 0;
 `;
 
-const Mtn = () => {
+const Tv = () => {
   return (
     <Container>
       <Topbar />
@@ -54,10 +54,9 @@ const Mtn = () => {
                 date="Date Modified"
                 action="Action"
               />
-              {mtnData.map((row) => (
+              {gloData.map((row) => (
                 <Tablebody
                   id={row.id}
-                  network={row.network}
                   name={row.name}
                   price={row.price}
                   yourprice={row.yourprice}
@@ -77,4 +76,4 @@ const Mtn = () => {
   );
 };
 
-export default Mtn;
+export default Tv;
