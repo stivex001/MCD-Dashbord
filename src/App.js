@@ -31,6 +31,7 @@ import GeneralMarket from "./pages/transaction/GeneralMarket";
 import AddData from "./pages/transaction/AddData";
 import AirtimeConverter from "./pages/transaction/AirtimeConverter";
 import Reversal from "./pages/transaction/Reversal";
+import PCharges from "./pages/transaction/PCharges";
 
 // const Container = styled.div`
 //   display: flex;
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/airtime-converter" element={<AirtimeConverter />} />
         <Route path="/market" element={<GeneralMarket/>} />
         <Route path="/reverse-transaction" element={<Reversal/>} />
+        <Route path="/charges" element={<PCharges/>} />
         <Route path="/addfund" element={<Credit />} />
         <Route path="/find-users" element={<FindUser />} />
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
