@@ -1,7 +1,6 @@
 import {
     AccountBalanceWallet,
     AddShoppingCart,
-    CreditCard,
     DataSaverOn,
     PermIdentity,
     SimCardDownload,
