@@ -26,6 +26,7 @@ import Nmobile from "./pages/ServiceControls/Nmobile";
 import Tv from "./pages/ServiceControls/Tv";
 import Electricity from "./pages/ServiceControls/Electricity";
 import AirtimeControl from "./pages/ResellerControl/AirtimeControl";
+import DataControl from "./pages/ResellerControl/DataControl";
 
 // const Container = styled.div`
 //   display: flex;
@@ -61,6 +62,7 @@ const App = () => {
         <Route path="/tvcontrol" element={<Tv />} />
         <Route path="/electricitycontrol" element={<Electricity />} />
         <Route path="/airtime" element={<AirtimeControl />} />
+        <Route path="/data" element={<DataControl />} />
       </Routes>
     </div>
   );
