@@ -72,7 +72,7 @@ const Reversal = () => {
       <Form>
         <InputContainer>
           <p style={{ padding: "5px", fontSize: "20px", color: "#495057" }}>
-            REF
+            #
           </p>
           <Input type="text" placeholder="Enter transaction id or reference" />
         </InputContainer>
