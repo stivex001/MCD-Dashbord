@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
-import PaymentTable from "../../components/PaymentTable/PaymentTable";
+import PaymentLinksTable from "../../components/paymentLinksTable/PaymentLinksTable";
 import Topbar from "../../components/Topbar/Topbar";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
@@ -31,31 +31,31 @@ const BtnList = styled.ul`
   gap: 1px;
 `;
 const BtnItem = styled.li`
-list-style: none;
-background-color: #aaaece;
+  list-style: none;
+  background-color: #aaaece;
   padding: 6px 12px;
   color: #fff;
 `;
 const Select = styled.select`
-background-color: #aaaece;
-color: #fff;
-outline: none;
+  background-color: #aaaece;
+  color: #fff;
+  outline: none;
 `;
 const Option = styled.option`
-font-size: 20px;
+  font-size: 20px;
 `;
 const BarSearch = styled.div`
-display: flex;
-align-items: center;
-gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
 const Span = styled.span`
-color: #636466;
-font-size: 14px;
+  color: #636466;
+  font-size: 14px;
 `;
 const Input = styled.input`
-padding: 4px 8px;
-outline: none;
+  padding: 4px 8px;
+  outline: none;
 `;
 
 const Payment = () => {
@@ -108,9 +108,9 @@ const Payment = () => {
             <Input type="text" />
           </BarSearch>
         </BtnWrapper>
+        <PaymentLinksTable />
       </TableWrapper>
 
-      {/* <PaymentTable /> */}
       <Footer />
     </Container>
   );
