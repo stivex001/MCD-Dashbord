@@ -25,6 +25,7 @@ import Credit from "./pages/Wallet/Credit";
 import Nmobile from "./pages/ServiceControls/Nmobile";
 import Tv from "./pages/ServiceControls/Tv";
 import Electricity from "./pages/ServiceControls/Electricity";
+import AirtimeControl from "./pages/ResellerControl/AirtimeControl";
 
 // const Container = styled.div`
 //   display: flex;
@@ -59,6 +60,7 @@ const App = () => {
         <Route path="/9mobile" element={<Nmobile />} />
         <Route path="/tvcontrol" element={<Tv />} />
         <Route path="/electricitycontrol" element={<Electricity />} />
+        <Route path="/airtime" element={<AirtimeControl />} />
       </Routes>
     </div>
   );

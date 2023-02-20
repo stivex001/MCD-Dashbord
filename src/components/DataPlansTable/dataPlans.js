@@ -638,3 +638,43 @@ export const electricityData = [
     },
   ];
   
+  export const airtimeData = [
+    {
+      id: 1,
+      network: "MTN",
+      status: "Active",
+      date: "2023-02-17 08:52:48",
+      server: 6,
+      discount: "2%",
+      action: "Modify",
+    },
+    {
+      id: 2,
+      network: "AIRTEL",
+      status: "Active",
+      date: "2023-02-17 08:52:48",
+      server: 6,
+      discount: "3%",
+      action: "Modify",
+    },
+    {
+      id: 3,
+      network: "9MOBILE",
+      status: "Active",
+      date: "2023-02-17 08:52:48",
+      server: 6,
+      discount: "3%",
+      action: "Modify",
+    },
+    {
+      id: 4,
+      network: "GLO",
+      status: "Active",
+      date: "2023-02-17 08:52:48",
+      server: 6,
+      discount: "3%",
+      action: "Modify",
+    },
+    
+  ];
+  
