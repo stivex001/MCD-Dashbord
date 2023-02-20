@@ -1,6 +1,6 @@
 import { Paper, Table, TableContainer } from "@mui/material";
 import styled from "styled-components";
-import {tvData} from "../../components/DataPlansTable/dataPlans";
+import {electricityData} from "../../components/DataPlansTable/dataPlans";
 import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
@@ -26,7 +26,7 @@ const Details = styled.div`
   margin: 30px 0;
 `;
 
-const Tv = () => {
+const Electricity = () => {
   return (
     <Container>
       <Topbar />
@@ -45,16 +45,14 @@ const Tv = () => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <Tablehead
                 id="id"
-                network="Type"
-                product="Name"
-                price="Price"
+                network="Company"
                 yourPrice="Discount"
                 server="Server"
                 status="Status"
                 date="Date Modified"
                 action="Action"
               />
-              {tvData.map((row) => (
+              {electricityData.map((row) => (
                 <Tablebody
                   id={row.id}
                   name={row.name}
@@ -77,4 +75,4 @@ const Tv = () => {
   );
 };
 
-export default Tv;
+export default Electricity;

@@ -23,6 +23,8 @@ import Server6 from "./pages/Verifications/Server6";
 import Server8 from "./pages/Verifications/Server8";
 import Credit from "./pages/Wallet/Credit";
 import Nmobile from "./pages/ServiceControls/Nmobile";
+import Tv from "./pages/ServiceControls/Tv";
+import Electricity from "./pages/ServiceControls/Electricity";
 
 // const Container = styled.div`
 //   display: flex;
@@ -55,6 +57,8 @@ const App = () => {
         <Route path="/airtel" element={<Airtel />} />
         <Route path="/glo" element={<Glo />} />
         <Route path="/9mobile" element={<Nmobile />} />
+        <Route path="/tvcontrol" element={<Tv />} />
+        <Route path="/electricitycontrol" element={<Electricity />} />
       </Routes>
     </div>
   );

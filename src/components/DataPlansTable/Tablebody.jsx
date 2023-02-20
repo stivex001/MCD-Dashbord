@@ -27,6 +27,7 @@ const Tablebody = ({
   action,
   status,
   date,
+  discount
 }) => {
   return (
     <TableBody>
@@ -36,6 +37,7 @@ const Tablebody = ({
         <TableCell style={{ color: "#8887a9" }}>{name}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{price}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{yourprice}</TableCell>
+        <TableCell style={{ color: "#8887a9" }}>{discount}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{server}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>
           <Span

@@ -199,12 +199,12 @@ export const services = [
   {
     id: 5,
     title: "TV Plans",
-    to: "/tv-plans",
+    to: "/tvcontrol",
   },
   {
     id: 6,
     title: "Electricity Control",
-    to: "/electricity",
+    to: "/electricitycontrol",
   },
 ];
 
