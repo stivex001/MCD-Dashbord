@@ -27,7 +27,8 @@ const Tablebody = ({
   action,
   status,
   date,
-  discount
+  discount,
+  type
 }) => {
   return (
     <TableBody>
@@ -48,6 +49,7 @@ const Tablebody = ({
             {status}
           </Span>
         </TableCell>
+        
         <TableCell style={{ color: "#8887a9" }}>{date}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>
           <BtnConatiner>{action}</BtnConatiner>

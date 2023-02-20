@@ -27,6 +27,7 @@ import Tv from "./pages/ServiceControls/Tv";
 import Electricity from "./pages/ServiceControls/Electricity";
 import AirtimeControl from "./pages/ResellerControl/AirtimeControl";
 import DataControl from "./pages/ResellerControl/DataControl";
+import GeneralMarket from "./pages/transaction/GeneralMarket";
 
 // const Container = styled.div`
 //   display: flex;
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/history" element={<TransHistory />} />
         <Route path="/transactions-pending" element={<Pending />} />
         <Route path="/findtransaction" element={<FindTransaction />} />
+        <Route path="/market" element={<GeneralMarket/>} />
         <Route path="/addfund" element={<Credit />} />
         <Route path="/find-users" element={<FindUser />} />
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
