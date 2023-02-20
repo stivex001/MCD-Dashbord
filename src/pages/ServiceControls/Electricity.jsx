@@ -32,9 +32,9 @@ const Electricity = () => {
       <Topbar />
       <Wrapper>
         <Desc>
-          <H3>Data Plans</H3>
+          <H3>Electricity Control</H3>
           <DescP>
-            Services / <DescSpan>Data Plans</DescSpan>
+            Services / <DescSpan>Electricity Control</DescSpan>
           </DescP>
         </Desc>
       </Wrapper>
