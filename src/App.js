@@ -29,6 +29,7 @@ import AirtimeControl from "./pages/ResellerControl/AirtimeControl";
 import DataControl from "./pages/ResellerControl/DataControl";
 import GeneralMarket from "./pages/transaction/GeneralMarket";
 import AddData from "./pages/transaction/AddData";
+import AirtimeConverter from "./pages/transaction/AirtimeConverter";
 
 // const Container = styled.div`
 //   display: flex;
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/transactions-pending" element={<Pending />} />
         <Route path="/findtransaction" element={<FindTransaction />} />
         <Route path="/add-data" element={<AddData />} />
+        <Route path="/airtime-converter" element={<AirtimeConverter />} />
         <Route path="/market" element={<GeneralMarket/>} />
         <Route path="/addfund" element={<Credit />} />
         <Route path="/find-users" element={<FindUser />} />
