@@ -1,6 +1,6 @@
 import { Paper, Table, TableContainer } from "@mui/material";
 import styled from "styled-components";
-import { mtnData } from "../../components/DataPlansTable/dataPlans";
+import { airtelData} from "../../components/DataPlansTable/dataPlans";
 import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
@@ -54,7 +54,7 @@ const Mtn = () => {
                 date="Date Modified"
                 action="Action"
               />
-              {mtnData.map((row) => (
+              {airtelData.map((row) => (
                 <Tablebody
                   id={row.id}
                   name={row.name}
