@@ -40,7 +40,6 @@ const Btn = styled.div`
   background-color: #4e74ab;
   padding: 10px;
   margin: 20px 0;
-  width: 25%;
   gap: 2px;
   color: white;
   cursor: pointer;
@@ -98,7 +97,7 @@ const AirtimeConverter = () => {
         </InputContainer>
         <Btn>
           <CreditCard />
-          <Button>Credit Wallet</Button>
+          <Button>Credit</Button>
         </Btn>
       </Form>
     </FormWrapper>
