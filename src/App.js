@@ -30,6 +30,7 @@ import DataControl from "./pages/ResellerControl/DataControl";
 import GeneralMarket from "./pages/transaction/GeneralMarket";
 import AddData from "./pages/transaction/AddData";
 import AirtimeConverter from "./pages/transaction/AirtimeConverter";
+import Reversal from "./pages/transaction/Reversal";
 
 // const Container = styled.div`
 //   display: flex;
@@ -47,6 +48,7 @@ const App = () => {
         <Route path="/add-data" element={<AddData />} />
         <Route path="/airtime-converter" element={<AirtimeConverter />} />
         <Route path="/market" element={<GeneralMarket/>} />
+        <Route path="/reverse-transaction" element={<Reversal/>} />
         <Route path="/addfund" element={<Credit />} />
         <Route path="/find-users" element={<FindUser />} />
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
