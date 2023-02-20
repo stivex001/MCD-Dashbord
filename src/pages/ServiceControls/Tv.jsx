@@ -32,9 +32,9 @@ const Tv = () => {
       <Topbar />
       <Wrapper>
         <Desc>
-          <H3>Data Plans</H3>
+          <H3>TV Plans</H3>
           <DescP>
-            Services / <DescSpan>Data Plans</DescSpan>
+            Services / <DescSpan>TV Plans</DescSpan>
           </DescP>
         </Desc>
       </Wrapper>
