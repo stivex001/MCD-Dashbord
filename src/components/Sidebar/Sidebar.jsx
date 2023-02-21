@@ -1,6 +1,4 @@
 import {
-  Close,
-  Dehaze,
   PermIdentity,
   PowerSettingsNewOutlined,
   Settings,
@@ -11,9 +9,6 @@ import {
   Container,
   Icon,
   IconContainer,
-  Logo,
-  LogoImg,
-  LogoTitle,
   Online,
   OnlineDesc,
   UserContainer,
@@ -22,15 +17,9 @@ import {
   Username,
   Wrapper,
 } from "./sidebar.styles";
-import { useState } from "react";
+import { Tooltip } from "@mui/material";
 
 const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState()
-
-  const handleMenu = () => {
-    setShowSidebar(!showSidebar)
-  }
-
   return (
     <Container>
       <Wrapper>
@@ -46,10 +35,17 @@ const Sidebar = () => {
               <OnlineDesc>online</OnlineDesc>
             </Online>
           </UserDesc>
+
           <IconContainer>
-            <PermIdentity style={{ color: "blue" }} />
-            <Settings style={{ margin: "0 10px", color: "gray" }} />
-            <PowerSettingsNewOutlined style={{ color: "red" }} />
+            <Tooltip title="Profile">
+              <PermIdentity style={{ color: "blue" }} />
+            </Tooltip>
+            <Tooltip title="Settings">
+              <Settings style={{ margin: "0 10px", color: "gray" }} />
+            </Tooltip>
+            <Tooltip title="Log Out">
+              <PowerSettingsNewOutlined style={{ color: "red" }} />
+            </Tooltip>
           </IconContainer>
         </UserContainer>
       </Wrapper>
