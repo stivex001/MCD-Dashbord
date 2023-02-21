@@ -83,17 +83,17 @@ export const Users = [
   {
     id: 4,
     title: "Login Attempts",
-    to: "/login-attempts",
+    to: "/",
   },
   {
     id: 5,
     title: "Agents",
-    to: "/agents",
+    to: "/",
   },
   {
     id: 6,
     title: "Resellers",
-    to: "/resellers",
+    to: "/",
   },
   {
     id: 7,
