@@ -68,7 +68,7 @@ export const Users = [
   {
     id: 1,
     title: "Users",
-    to: "/users",
+    to: "/",
   },
   {
     id: 2,
