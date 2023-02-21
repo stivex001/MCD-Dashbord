@@ -98,7 +98,7 @@ export const Users = [
   {
     id: 7,
     title: "Pending Request",
-    to: "/pending-request",
+    to: "/",
   },
   {
     id: 8,
