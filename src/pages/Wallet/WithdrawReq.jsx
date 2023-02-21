@@ -9,7 +9,7 @@ import {
 import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import Topbar from "../../components/Topbar/Topbar";
-import { walletsData } from "../../components/Wallet/wallet";
+import { withdrawalData } from "../../components/Wallet/wallet";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div``;
@@ -39,20 +39,20 @@ const Title = styled.span`
   font-weight: bold;
 `;
 
-const WalletList = () => {
+const WithdrawReq = () => {
   return (
     <Container>
       <Topbar />
       <Wrapper>
         <Desc>
-          <H3>Wallet List</H3>
+          <H3>Withdrawal List</H3>
           <DescP>
-            Wallet / <DescSpan>Wallet List</DescSpan>
+            Wallet / <DescSpan>Withdrawal List</DescSpan>
           </DescP>
         </Desc>
       </Wrapper>
       <TableWrapper>
-        <Title>Wallet Table</Title>
+        <Title>Withdrawal Requests</Title>
         <Details>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -60,21 +60,27 @@ const WalletList = () => {
                 <TableRow style={{ backgroundColor: "#f3f2f7" }}>
                   <TableCell style={{ color: "#827fc0" }}>id</TableCell>
                   <TableCell style={{ color: "#827fc0" }}>Username</TableCell>
+                  <TableCell style={{ color: "#827fc0" }}>
+                    Account Number
+                  </TableCell>
                   <TableCell style={{ color: "#827fc0" }}>Amount</TableCell>
                   <TableCell style={{ color: "#827fc0" }}>Status</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>Medium</TableCell>
+                  <TableCell style={{ color: "#827fc0" }}>Wallet</TableCell>
                   <TableCell style={{ color: "#827fc0" }}>Reference</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>O.Wallet</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>N.Wallet</TableCell>
+                  <TableCell style={{ color: "#827fc0" }}>Bank Name</TableCell>
                   <TableCell style={{ color: "#827fc0" }}>Version</TableCell>
+                  <TableCell style={{ color: "#827fc0" }}>Date</TableCell>
                 </TableRow>
               </TableBody>
-              {walletsData.map((row) => (
+              {withdrawalData.map((row) => (
                 <TableBody>
                   <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
                     <TableCell style={{ color: "#8887a9" }}>{row.id}</TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
                       {row.username}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.account}
                     </TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
                       {row.amount}
@@ -91,19 +97,19 @@ const WalletList = () => {
                       </Span>
                     </TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
-                      {row.medium}
+                      {row.wallet}
                     </TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
                       {row.ref}
                     </TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
-                      {row.oWallet}
-                    </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.nWallet}
+                      {row.bank}
                     </TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
                       {row.version}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.date}
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -118,4 +124,4 @@ const WalletList = () => {
   );
 };
 
-export default WalletList;
+export default WithdrawReq;

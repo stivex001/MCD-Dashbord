@@ -110,3 +110,127 @@ export const walletsData = [
     version: 2,
   },
 ];
+
+export const withdrawalData = [
+    {
+      id: 1,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "completed",
+      wallet: "Wallet",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+    {
+      id: 2,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "completed",
+      wallet: "Wallet",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+    {
+      id: 3,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "completed",
+      wallet: "Wallet",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+    {
+      id: 4,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "completed",
+      wallet: "Commission",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+    {
+      id: 5,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "completed",
+      wallet: "Commission",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+    {
+      id: 6,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "completed",
+      wallet: "Wallet",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+    {
+      id: 7,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "completed",
+      wallet: "Wallet",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+    {
+      id: 8,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "completed",
+      wallet: "Wallet",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+    {
+      id: 9,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "completed",
+      wallet: "Wallet",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+    {
+      id: 10,
+      username: "Izormor2019",
+      account: 736339219,
+      ref: "MCD_withdraw_Izormor201916769006345282387237637235",
+      amount: "#8000",
+      status: "Processing",
+      wallet: "Wallet",
+      bank: "Wema Bank",
+      version: 2.0,
+      date: "2023-02-21 09:57:18"
+    },
+  ];
+  

@@ -33,6 +33,7 @@ import AirtimeConverter from "./pages/transaction/AirtimeConverter";
 import Reversal from "./pages/transaction/Reversal";
 import PCharges from "./pages/transaction/PCharges";
 import WalletList from "./pages/Wallet/WalletList";
+import WithdrawReq from "./pages/Wallet/WithdrawReq";
 
 // const Container = styled.div`
 //   display: flex;
@@ -58,6 +59,7 @@ const App = () => {
         {/* Wallet Page */}
         <Route path="/addfund" element={<Credit />} />
         <Route path="/wallet" element={<WalletList />} />
+        <Route path="/withdrawal" element={<WithdrawReq />} />
 
 
         <Route path="/find-users" element={<FindUser />} />
