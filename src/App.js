@@ -32,6 +32,7 @@ import AddData from "./pages/transaction/AddData";
 import AirtimeConverter from "./pages/transaction/AirtimeConverter";
 import Reversal from "./pages/transaction/Reversal";
 import PCharges from "./pages/transaction/PCharges";
+import WalletList from "./pages/Wallet/WalletList";
 
 // const Container = styled.div`
 //   display: flex;
@@ -43,6 +44,8 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
+
+        {/* Transaction Page */}
         <Route path="/history" element={<TransHistory />} />
         <Route path="/transactions-pending" element={<Pending />} />
         <Route path="/findtransaction" element={<FindTransaction />} />
@@ -51,7 +54,12 @@ const App = () => {
         <Route path="/market" element={<GeneralMarket/>} />
         <Route path="/reverse-transaction" element={<Reversal/>} />
         <Route path="/charges" element={<PCharges/>} />
+
+        {/* Wallet Page */}
         <Route path="/addfund" element={<Credit />} />
+        <Route path="/wallet" element={<WalletList />} />
+
+
         <Route path="/find-users" element={<FindUser />} />
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
         <Route path="/server1" element={<Server1 />} />
