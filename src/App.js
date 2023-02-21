@@ -34,6 +34,7 @@ import Reversal from "./pages/transaction/Reversal";
 import PCharges from "./pages/transaction/PCharges";
 import WalletList from "./pages/Wallet/WalletList";
 import WithdrawReq from "./pages/Wallet/WithdrawReq";
+import AgentPayment from "./pages/Users/AgentPayment";
 
 // const Container = styled.div`
 //   display: flex;
@@ -52,18 +53,21 @@ const App = () => {
         <Route path="/findtransaction" element={<FindTransaction />} />
         <Route path="/add-data" element={<AddData />} />
         <Route path="/airtime-converter" element={<AirtimeConverter />} />
-        <Route path="/market" element={<GeneralMarket/>} />
-        <Route path="/reverse-transaction" element={<Reversal/>} />
-        <Route path="/charges" element={<PCharges/>} />
+        <Route path="/market" element={<GeneralMarket />} />
+        <Route path="/reverse-transaction" element={<Reversal />} />
+        <Route path="/charges" element={<PCharges />} />
 
         {/* Wallet Page */}
         <Route path="/addfund" element={<Credit />} />
         <Route path="/wallet" element={<WalletList />} />
         <Route path="/withdrawal" element={<WithdrawReq />} />
 
-
+        {/* User Page */}
         <Route path="/find-users" element={<FindUser />} />
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
+        <Route path="/agent-payment" element={<AgentPayment />} />
+
+
         <Route path="/server1" element={<Server1 />} />
         <Route path="/server1b" element={<Server1b />} />
         <Route path="/serverdt" element={<Server1Data />} />
