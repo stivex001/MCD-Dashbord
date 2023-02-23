@@ -51,6 +51,7 @@ border: 1px solid #605daf;
 padding: 5px 20px;
 cursor: pointer;
 ${tablet({ padding: "5px" })};
+${mobile({ display: "none" })};
 `;
 export const Input = styled.input`
 border: none;
