@@ -4,6 +4,8 @@ import Card from "../card/Card";
 
 const Container = styled.div`
 padding: 20px;
+flex: 5;
+${tablet({ flex: "3.8" })};
 `;
 const Wrapper = styled.div``;
 const CardContainer = styled.div`
