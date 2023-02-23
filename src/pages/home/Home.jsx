@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import Topbar from "../../components/Topbar/Topbar";
+import Newside from "../../components/Sidebar/Newside";
+// import Topbar from "../../components/Topbar/Topbar";
 import Widgets from "../../components/widgets/Widgets";
 
 const Container = styled.div`
@@ -10,7 +11,8 @@ const Container = styled.div`
 const Home = () => {
   return (
     <Container>
-      <Topbar />
+      <Newside />
+      {/* <Topbar /> */}
       <Widgets />
     </Container>
   );
