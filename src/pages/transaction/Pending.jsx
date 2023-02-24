@@ -1,6 +1,6 @@
+import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import PendingTables from "../../components/Pendingtable/PendingTables";
-import Topbar from "../../components/Topbar/Topbar";
 import Button from "../../components/UI/Button";
 import {
   BtnConatiner,
@@ -19,7 +19,7 @@ import {
 const Pending = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Pending Transactions</H3>

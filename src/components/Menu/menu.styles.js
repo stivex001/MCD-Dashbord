@@ -1,26 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 20px;
-  height: calc(100vh - 100px);
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-track {
-    background: white;
-    border-radius: 40px;
-  }
-  ::-webkit-scrollbar-thumb {
-    cursor: pointer;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #e7e7f3;
-  }
+  margin: 30px 20px;
   
 `;
 export const Wrapper = styled.div`
-  margin: 20px 0;
+  margin: 30px 0;
 `;
 export const LinkMenu = styled.ul`
   margin: 0;
@@ -33,13 +18,15 @@ export const LinkMenu = styled.ul`
 export const UnListItem = styled.li`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   padding: 5px;
   cursor: pointer;
-  border-radius: 10px;
-  font-size: 15px;
+  border-radius: 5px;
+  font-size: 14px;
   font-weight: 500;
-  color: #98a8b2;
+  &:hover {
+    background-color:#605daf26;
+  }
 `;
 export const ListItem = styled.li`
   list-style: none;
@@ -68,11 +55,15 @@ export const ListContent = styled.div`
   gap: 20px;
 `;
 export const Heading = styled.span`
-  // margin-bottom: 20px ;
-  color: #555;
+  color: #333265;
+  font-size: 14px
 `;
 export const Span = styled.span`
-  color: #33404d;
+color: #2d3b48;
+font-size: 14px;
+&:hover {
+  color: #605daf;
+}
 `;
 export const AccordionList = styled.div`
   display: flex;

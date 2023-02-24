@@ -1,7 +1,7 @@
 import React from "react";
+import Navbar from "../../components/Bar/Navbar";
 import Card from "../../components/card/Card";
 import Footer from "../../components/footer/Footer";
-import Topbar from "../../components/Topbar/Topbar";
 import TransactionTables from "../../components/Transactiontables/TransactionTables";
 import {
   CardContainer,
@@ -16,7 +16,7 @@ import {
 const TransHistory = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Transaction List</H3>

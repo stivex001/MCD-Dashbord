@@ -1,10 +1,10 @@
 import { Paper, Table, TableContainer } from "@mui/material";
 import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
 import { airtelData} from "../../components/DataPlansTable/dataPlans";
 import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
-import Topbar from "../../components/Topbar/Topbar";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div``;
@@ -29,7 +29,7 @@ const Details = styled.div`
 const Mtn = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Data Plans</H3>

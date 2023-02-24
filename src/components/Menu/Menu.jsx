@@ -1,4 +1,4 @@
-import { DashboardOutlined } from "@mui/icons-material";
+import {  Tv } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import LinkList from "../Linklist/LinkList";
 import {
@@ -19,11 +19,11 @@ const Menu = () => {
         <LinkMenu>
           <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
             <UnListItem>
-              <DashboardOutlined
+              <Tv
                 style={{
                   marginRight: "5px",
                   fontSize: "20px",
-                  color: "#98a8b2",
+                  color: '#2d3b48',
                 }}
               />
               <Span>Dashboard</Span>

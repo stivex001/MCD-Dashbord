@@ -7,8 +7,8 @@ import {
   TableRow,
 } from "@mui/material";
 import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import Topbar from "../../components/Topbar/Topbar";
 import { marketData } from "../../components/Transactiontables/transactions";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
@@ -36,7 +36,7 @@ const Span = styled.span`
 const GeneralMarket = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar/>
       <Wrapper>
         <Desc>
           <H3>General Market History</H3>

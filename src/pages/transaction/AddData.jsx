@@ -6,8 +6,8 @@ import {
     SimCardDownload,
   } from "@mui/icons-material";
   import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
   import Footer from "../../components/footer/Footer";
-  import Topbar from "../../components/Topbar/Topbar";
   import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
   
   const Container = styled.div``;
@@ -75,7 +75,7 @@ import {
   const AddData = () => {
     return (
       <Container>
-        <Topbar />
+        <Navbar />
         <Wrapper>
           <Desc>
             <H3>Add Data Transaction</H3>

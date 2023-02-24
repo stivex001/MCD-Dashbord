@@ -1,8 +1,8 @@
 import { CreditCard } from "@mui/icons-material";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import Topbar from "../../components/Topbar/Topbar";
 import { airtimeData } from "../../components/Transactiontables/transactions";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
@@ -79,7 +79,7 @@ const Span = styled.span`
 const AirtimeConverter = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Airtime Converter</H3>

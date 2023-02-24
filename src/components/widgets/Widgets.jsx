@@ -3,9 +3,10 @@ import { mobile, tablet } from "../../responsive";
 import Card from "../card/Card";
 
 const Container = styled.div`
+margin: 70px 0;
 padding: 20px;
 flex: 5;
-${tablet({ flex: "3.8" })};
+${tablet({ flex: "3" })};
 `;
 const Wrapper = styled.div``;
 const CardContainer = styled.div`

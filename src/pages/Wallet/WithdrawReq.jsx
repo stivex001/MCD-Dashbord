@@ -7,8 +7,8 @@ import {
   TableRow,
 } from "@mui/material";
 import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import Topbar from "../../components/Topbar/Topbar";
 import { withdrawalData } from "../../components/Wallet/wallet";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
@@ -42,7 +42,7 @@ const Title = styled.span`
 const WithdrawReq = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Withdrawal List</H3>

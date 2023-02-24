@@ -1,7 +1,7 @@
 import { AccountBalanceWallet, BusinessCenter, Class, EventNote, PermIdentity, Search, SimCardDownload } from "@mui/icons-material";
 import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import Topbar from "../../components/Topbar/Topbar";
 import { mobile } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "./transHistory.styles";
 
@@ -58,7 +58,7 @@ font-size: 14px;
 const FindTransaction = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Search Transaction</H3>

@@ -7,8 +7,8 @@ import {
   TableRow,
 } from "@mui/material";
 import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import Topbar from "../../components/Topbar/Topbar";
 import {
   chargesData,
 } from "../../components/Transactiontables/transactions";
@@ -38,7 +38,7 @@ const Span = styled.span`
 const PCharges = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Charges History</H3>

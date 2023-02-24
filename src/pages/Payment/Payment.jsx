@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import PaymentLinksTable from "../../components/paymentLinksTable/PaymentLinksTable";
-import Topbar from "../../components/Topbar/Topbar";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div``;
@@ -61,7 +61,7 @@ const Input = styled.input`
 const Payment = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Payment Links</H3>

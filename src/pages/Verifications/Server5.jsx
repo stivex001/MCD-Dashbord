@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import Topbar from "../../components/Topbar/Topbar";
 import Verify from "../../components/Verification/Verify";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const Server5 = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Verification &gt; Server5</H3>

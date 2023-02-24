@@ -4,8 +4,8 @@ import {
   PermIdentity,
 } from "@mui/icons-material";
 import styled from "styled-components";
+import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import Topbar from "../../components/Topbar/Topbar";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div``;
@@ -73,7 +73,7 @@ const Option = styled.option``;
 const Credit = () => {
   return (
     <Container>
-      <Topbar />
+      <Navbar />
       <Wrapper>
         <Desc>
           <H3>Credit User</H3>

@@ -33,11 +33,11 @@ const LogoTitle = styled.span`
   font-size: 20px;
   cursor: pointer;
 `;
-const IconImg = styled.img`
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-`;
+// const IconImg = styled.img`
+//   width: 20px;
+//   height: 20px;
+//   margin-right: 5px;
+// `;
 const Wrapper = styled.div`
   height: calc(100vh - 70px);
   background-color: #fff;
