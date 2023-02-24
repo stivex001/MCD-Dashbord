@@ -90,9 +90,9 @@ const App = () => {
         <Route path="/tvcontrol" element={<Tv />} />
         <Route path="/electricitycontrol" element={<Electricity />} />
 
-
-        <Route path="/airtime" element={<AirtimeControl />} />
-        <Route path="/data" element={<DataControl />} />
+        {/* Reseller Page */}
+        <Route path="/airtime-control" element={<AirtimeControl />} />
+        <Route path="/data-control" element={<DataControl />} />
       </Routes>
     </div>
   );
