@@ -8,7 +8,9 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
-const Container = styled.div``;
+const Container = styled.div`
+margin: 70px 0;
+`;
 const Wrapper = styled.div`
   padding: 20px;
 `;
@@ -43,7 +45,7 @@ const Btn = styled.div`
   background-color: #4e74ab;
   padding: 10px 12px;
   margin: 20px 0;
-  width: 120px;
+  width: 150px;
   gap: 2px;
   color: white;
   cursor: pointer;
