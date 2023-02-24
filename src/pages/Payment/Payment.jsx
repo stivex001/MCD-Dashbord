@@ -5,7 +5,9 @@ import Footer from "../../components/footer/Footer";
 import PaymentLinksTable from "../../components/paymentLinksTable/PaymentLinksTable";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
-const Container = styled.div``;
+const Container = styled.div`
+margin: 70px 0;
+`;
 const Wrapper = styled.div`
   padding: 20px;
 `;
