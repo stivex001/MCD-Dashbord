@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
-// import Topbar from "../../components/Topbar/Topbar";
+import Footer from "../../components/footer/Footer";
 import Widgets from "../../components/widgets/Widgets";
 
 const Container = styled.div`
@@ -18,7 +18,7 @@ const Home = () => {
         <Widgets />
       </Wrapper>
       
-      {/* <Topbar /> */}
+      <Footer />
     </Container>
   );
 };
