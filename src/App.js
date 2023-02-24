@@ -67,7 +67,7 @@ const App = () => {
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
         <Route path="/agent-payment" element={<AgentPayment />} />
 
-
+        {/* Verification Page */}
         <Route path="/server1" element={<Server1 />} />
         <Route path="/server1b" element={<Server1b />} />
         <Route path="/serverdt" element={<Server1Data />} />
@@ -78,13 +78,19 @@ const App = () => {
         <Route path="/server6" element={<Server6 />} />
         <Route path="/server8" element={<Server8 />} />
         <Route path="/server10" element={<Server10 />} />
+
+        {/* Payment Page */}
         <Route path="/payment" element={<Payment />} />
+
+        {/* Sercice Controller Page */}
         <Route path="/mtn" element={<Mtn />} />
         <Route path="/airtel" element={<Airtel />} />
         <Route path="/glo" element={<Glo />} />
         <Route path="/9mobile" element={<Nmobile />} />
         <Route path="/tvcontrol" element={<Tv />} />
         <Route path="/electricitycontrol" element={<Electricity />} />
+
+
         <Route path="/airtime" element={<AirtimeControl />} />
         <Route path="/data" element={<DataControl />} />
       </Routes>
