@@ -378,17 +378,17 @@ export const sidebarData = [
       {
         id: 1,
         title: "Yearly Report",
-        to: "/yearly-report",
+        to: "/",
       },
       {
         id: 2,
         title: "Montly Report",
-        to: "/monthly-report",
+        to: "/",
       },
       {
         id: 3,
         title: "Daily Report",
-        to: "/daily-report",
+        to: "/",
       },
     ],
   },
