@@ -7,7 +7,7 @@ import {
   Settings,
 } from "@mui/icons-material";
 import { Tooltip } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { sidebarData } from "../Linklist/data";
 import Submenu from "../Linklist/Submenu";
 import online from "../../assets/online.png";
@@ -36,6 +36,28 @@ import {
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
+  const [screenSize, setScreenSize] = useState();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(()=> {
+    if(screenSize <= 1024) {
+      setSidebar(false)
+    }
+    else {
+      setSidebar(true)
+    }
+  },[screenSize])
 
   const showSidebar = () => {
     setSidebar(!sidebar);
