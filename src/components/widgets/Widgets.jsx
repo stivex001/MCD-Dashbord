@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile, tablet } from "../../responsive";
+import { laptop, mobile, tablet } from "../../responsive";
 import Card from "../card/Card";
 
 const Container = styled.div`
@@ -7,6 +7,7 @@ margin: 70px 0;
 padding: 20px;
 flex: 5;
 ${tablet({ flex: "3" })};
+${laptop({ marginLeft: "250px" })};
 `;
 const Wrapper = styled.div``;
 const CardContainer = styled.div`

@@ -70,10 +70,13 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <NavIcon>
-          <Dehaze
+          <IconWrapper>
+            <Dehaze
             style={{ color: "white", fontSize: "32px" }}
             onClick={showSidebar}
           />
+          </IconWrapper>
+          
           <BarSearch>
             <Input type="text" placeholder="Search..." />
             <Search style={{ color: "white", fontSize: "20px" }} />

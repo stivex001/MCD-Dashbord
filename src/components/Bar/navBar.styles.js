@@ -24,6 +24,7 @@ export const BarSearch = styled.div`
   cursor: pointer;
   ${tablet({ padding: "5px" })};
   ${mobile({ display: "none" })};
+  ${laptop({ marginLeft: "250px",})};
 `;
 export const Input = styled.input`
   border: none;
