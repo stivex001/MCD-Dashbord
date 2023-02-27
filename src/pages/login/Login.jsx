@@ -10,6 +10,13 @@ const Login = () => {
 
   const handleClick =(e) => {
     e.preventDefault()
+    if (username.trim() === '' && password === '')                       {
+      return;
+    }
+    console.log(username, password);
+
+    setUsername("")
+    setPassword("")
     // login(dispatch, {username, password})
     // navigate('/home')
   }
@@ -21,14 +28,14 @@ const Login = () => {
           <Img src={logo} alt="logo" />
           <H3>Welcome to Mega Cheap Data</H3>
         </Desc>
-        <Form action="">
-          <Input type="email" placeholder="admin..@abc.com" onChange={(e) => setUsername(e.target.value)} />
-          <Input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+        <Form onSubmit={handleClick}>
+          <Input type="email" placeholder="admin..@abc.com" onChange={(e) => setUsername(e.target.value)} value={username}/>
+          <Input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} value={password} required/>
           <Remember>
             <RemInput type="checkbox" name="check" id="check" />
             <Span>Remember Me</Span>
           </Remember>
-          <Button onClick={handleClick}>Login</Button>
+          <Button>Login</Button>
         </Form>
         <Fotter>Powered by 5Star Company &copy; 2023</Fotter>
       </Wrapper>
