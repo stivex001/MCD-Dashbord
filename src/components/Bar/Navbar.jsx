@@ -33,6 +33,7 @@ import {
   Username,
   Wrapper,
 } from "./navBar.styles";
+import { laptop } from "../../responsive";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
