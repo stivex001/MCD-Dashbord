@@ -16,6 +16,7 @@ import {
   Container,
   Icon,
   IconContainer,
+  IconWrapper,
   Input,
   LogoTitle,
   MenuWrapper,
@@ -33,12 +34,13 @@ import {
   Username,
   Wrapper,
 } from "./navBar.styles";
-import { laptop } from "../../responsive";
+
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
   const [screenSize, setScreenSize] = useState();
 
+  
   useEffect(() => {
     const handleResize = () => {
       setScreenSize(window.innerWidth);
@@ -51,18 +53,19 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(()=> {
-    if(screenSize <= 1024) {
-      setSidebar(false)
+  useEffect(() => {
+    if (screenSize <= 1024) {
+      setSidebar(false);
+    } else {
+      setSidebar(true);
     }
-    else {
-      setSidebar(true)
-    }
-  },[screenSize])
+  }, [screenSize]);
 
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
+
+
   return (
     <Container>
       <Wrapper>
@@ -88,10 +91,13 @@ const Navbar = () => {
           <SidebarLogo>
             {/* <LogoImg src="" alt="" /> */}
             <LogoTitle>MCD DASHBOARD</LogoTitle>
-            <Close
+            <IconWrapper>
+               <Close
               style={{ color: "white", fontSize: "30px", marginLeft: "30px" }}
               onClick={showSidebar}
             />
+            </IconWrapper>
+           
           </SidebarLogo>
 
           <UserContainer>

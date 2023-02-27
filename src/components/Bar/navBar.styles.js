@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile, tablet } from "../../responsive";
+import { laptop, mobile, tablet } from "../../responsive";
 
 export const Container = styled.div`
   flex: 1;
@@ -147,4 +147,8 @@ export const MenuWrapper = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background: #e7e7f3;
   }
+`;
+
+export const IconWrapper = styled.div`
+${laptop({ display: "none" })};
 `;

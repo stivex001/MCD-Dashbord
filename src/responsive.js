@@ -18,7 +18,7 @@ export const tablet = (props) => {
 
 export const laptop = (props) => {
   return css`
-    @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: 1025px) {
       ${props}
     }
   `;
