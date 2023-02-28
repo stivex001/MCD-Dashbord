@@ -78,5 +78,19 @@ export const Span = styled.span`
 export const Fotter = styled.footer`
   font-size: 10.4px;
   color: #333265;
-  margin: 50px 0;
+  margin: 30px 0;
+`;
+export const ErrorWrapper = styled.div`
+background-color: #fedbd6;
+margin-bottom: 16px;
+padding: 12px 20px;
+`;
+export const ErrTitle = styled.p`
+font-size: 14px;
+color: #f96e5b;
+font-weight: bold;
+`;
+export const ErrSpan = styled.span`
+font-size: 14px;
+color: #f96e5b;
 `;
