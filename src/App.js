@@ -47,57 +47,60 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+        {user && <>
+          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
 
-        {/* Transaction Page */}
-        <Route
-          path="/history"
-          element={user ? <TransHistory /> : <Navigate to="/login" />}
-        />
-        <Route path="/transactions-pending" element={<Pending />} />
-        <Route path="/findtransaction" element={<FindTransaction />} />
-        <Route path="/add-data" element={<AddData />} />
-        <Route path="/airtime-converter" element={<AirtimeConverter />} />
-        <Route path="/market" element={<GeneralMarket />} />
-        <Route path="/reverse-transaction" element={<Reversal />} />
-        <Route path="/charges" element={<PCharges />} />
+{/* Transaction Page */}
+<Route
+  path="/history"
+  element={user ? <TransHistory /> : <Navigate to="/login" />}
+/>
+<Route path="/transactions-pending" element={<Pending />} />
+<Route path="/findtransaction" element={<FindTransaction />} />
+<Route path="/add-data" element={<AddData />} />
+<Route path="/airtime-converter" element={<AirtimeConverter />} />
+<Route path="/market" element={<GeneralMarket />} />
+<Route path="/reverse-transaction" element={<Reversal />} />
+<Route path="/charges" element={<PCharges />} />
 
-        {/* Wallet Page */}
-        <Route path="/addfund" element={<Credit />} />
-        <Route path="/wallet" element={<WalletList />} />
-        <Route path="/withdrawal" element={<WithdrawReq />} />
+{/* Wallet Page */}
+<Route path="/addfund" element={<Credit />} />
+<Route path="/wallet" element={<WalletList />} />
+<Route path="/withdrawal" element={<WithdrawReq />} />
 
-        {/* User Page */}
-        <Route path="/find-users" element={<FindUser />} />
-        <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
-        <Route path="/agent-payment" element={<AgentPayment />} />
+{/* User Page */}
+<Route path="/find-users" element={<FindUser />} />
+<Route path="/referral-upgrade" element={<ReferalUpgrade />} />
+<Route path="/agent-payment" element={<AgentPayment />} />
 
-        {/* Verification Page */}
-        <Route path="/server1" element={<Server1 />} />
-        <Route path="/server1b" element={<Server1b />} />
-        <Route path="/serverdt" element={<Server1Data />} />
-        <Route path="/server2" element={<Server2 />} />
-        <Route path="/server3" element={<Server3 />} />
-        <Route path="/server4" element={<Server4 />} />
-        <Route path="/server5" element={<Server5 />} />
-        <Route path="/server6" element={<Server6 />} />
-        <Route path="/server8" element={<Server8 />} />
-        <Route path="/server10" element={<Server10 />} />
+{/* Verification Page */}
+<Route path="/server1" element={<Server1 />} />
+<Route path="/server1b" element={<Server1b />} />
+<Route path="/serverdt" element={<Server1Data />} />
+<Route path="/server2" element={<Server2 />} />
+<Route path="/server3" element={<Server3 />} />
+<Route path="/server4" element={<Server4 />} />
+<Route path="/server5" element={<Server5 />} />
+<Route path="/server6" element={<Server6 />} />
+<Route path="/server8" element={<Server8 />} />
+<Route path="/server10" element={<Server10 />} />
 
-        {/* Payment Page */}
-        <Route path="/payment" element={<Payment />} />
+{/* Payment Page */}
+<Route path="/payment" element={<Payment />} />
 
-        {/* Sercice Controller Page */}
-        <Route path="/mtn" element={<Mtn />} />
-        <Route path="/airtel" element={<Airtel />} />
-        <Route path="/glo" element={<Glo />} />
-        <Route path="/9mobile" element={<Nmobile />} />
-        <Route path="/tvcontrol" element={<Tv />} />
-        <Route path="/electricitycontrol" element={<Electricity />} />
+{/* Sercice Controller Page */}
+<Route path="/mtn" element={<Mtn />} />
+<Route path="/airtel" element={<Airtel />} />
+<Route path="/glo" element={<Glo />} />
+<Route path="/9mobile" element={<Nmobile />} />
+<Route path="/tvcontrol" element={<Tv />} />
+<Route path="/electricitycontrol" element={<Electricity />} />
 
-        {/* Reseller Page */}
-        <Route path="/airtime-control" element={<AirtimeControl />} />
-        <Route path="/data-control" element={<DataControl />} />
+{/* Reseller Page */}
+<Route path="/airtime-control" element={<AirtimeControl />} />
+<Route path="/data-control" element={<DataControl />} />
+        </> }
+        
       </Routes>
     </div>
   );

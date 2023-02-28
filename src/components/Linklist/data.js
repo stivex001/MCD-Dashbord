@@ -87,7 +87,7 @@ export const sidebarData = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "Wallet",
     icon: (
       <AccountBalanceWalletOutlined
@@ -118,7 +118,7 @@ export const sidebarData = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "Users",
     icon: (
       <GroupOutlined
@@ -184,7 +184,7 @@ export const sidebarData = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: "Verification",
     icon: (
       <EventAvailableOutlined
@@ -255,7 +255,7 @@ export const sidebarData = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     title: "Virtual Accounts",
     to: "/",
     icon: (
@@ -270,7 +270,7 @@ export const sidebarData = [
     iconOpen: <KeyboardArrowDownOutlined />,
   },
   {
-    id: 6,
+    id: 7,
     title: "Payment Links",
     to: "/payment",
     icon: (
@@ -285,7 +285,7 @@ export const sidebarData = [
     iconOpen: <KeyboardArrowDownOutlined />,
   },
   {
-    id: 7,
+    id: 8,
     title: "Service Control",
     icon: (
       <Settings
@@ -331,7 +331,7 @@ export const sidebarData = [
     ],
   },
   {
-    id: 8,
+    id: 9,
     title: "Reseller Control",
     icon: (
       <Settings
@@ -362,7 +362,7 @@ export const sidebarData = [
     ],
   },
   {
-    id: 9,
+    id: 10,
     title: "Reports",
     icon: (
       <Report

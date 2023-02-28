@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 import logo from "../../assets/mcd_logo.png";
 import { login } from "../../Redux/apiCalls";
 import {
@@ -25,6 +26,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
+  // const navigate = useNavigate()
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -33,7 +35,6 @@ const Login = () => {
     }
 
     login(dispatch, { username, password });
-    // navigate('/home')
   };
 
   return (
