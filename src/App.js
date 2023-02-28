@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 // import styled from "styled-components";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
@@ -35,20 +35,25 @@ import PCharges from "./pages/transaction/PCharges";
 import WalletList from "./pages/Wallet/WalletList";
 import WithdrawReq from "./pages/Wallet/WithdrawReq";
 import AgentPayment from "./pages/Users/AgentPayment";
+import { useSelector } from "react-redux";
 
 // const Container = styled.div`
 //   display: flex;
 // `;
 
 const App = () => {
+  const user = useSelector((state) => state.user.currentUser);
   return (
     <div>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
 
         {/* Transaction Page */}
-        <Route path="/history" element={<TransHistory />} />
+        <Route
+          path="/history"
+          element={user ? <TransHistory /> : <Navigate to="/login" />}
+        />
         <Route path="/transactions-pending" element={<Pending />} />
         <Route path="/findtransaction" element={<FindTransaction />} />
         <Route path="/add-data" element={<AddData />} />
