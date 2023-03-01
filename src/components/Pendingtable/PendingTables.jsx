@@ -8,6 +8,8 @@ import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import { pendingTransactions } from "../table/tableData";
 import Button from "../UI/Button";
+import { useEffect, useState } from "react";
+import { userRequest } from "../../requestMethods";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -24,6 +26,23 @@ gap: 10px;
 `;
 
 const PendingTables = () => {
+
+  const [pendingTrans, setPendingTrans] = useState([])
+
+  useEffect(() => {
+    const getPendingTransactions = async () => {
+      try {
+        const res = await userRequest.get('/transactions/pending')
+      setPendingTrans(res.data)
+      } catch (error) {
+        console.log(error.message);
+      }
+      
+    }
+    getPendingTransactions()
+    console.log(pendingTrans);
+  },[pendingTrans])
+
   return (
     <Container>
       <TableContainer component={Paper}>

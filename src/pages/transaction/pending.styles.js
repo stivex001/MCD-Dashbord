@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { mobile } from "../../responsive";
+import { laptop, mobile } from "../../responsive";
 
 export const Container = styled.div`
 margin: 70px 0;
+${laptop({ marginLeft: "250px" })};
 `;
 export const Wrapper = styled.div`
 padding: 20px;

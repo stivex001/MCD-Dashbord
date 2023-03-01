@@ -42,7 +42,7 @@ import { useSelector } from "react-redux";
 // `;
 
 const App = () => {
-  const user = useSelector((state) => state.user.currentUser);
+  const user = JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user).currentUser.token
   return (
     <div>
       <Routes>
@@ -54,7 +54,7 @@ const App = () => {
           path="/history"
           element={user ? <TransHistory /> : <Navigate to="/login" />}
         />
-        <Route path="/transactions-pending" element={<Pending />} />
+        <Route path="/transactions-pending" element={user ? <Pending /> : <Navigate to="/login" />} />
         <Route path="/findtransaction" element={<FindTransaction />} />
         <Route path="/add-data" element={<AddData />} />
         <Route path="/airtime-converter" element={<AirtimeConverter />} />

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile, tablet } from "../../responsive";
+import { mobile } from "../../responsive";
 
 export const Container = styled.div`
 margin: 70px 0;
@@ -31,5 +31,5 @@ export const CardContainer = styled.div`
   justify-content: space-between;
   gap: 20px;
   margin-bottom: 50px;
-  ${tablet({ flexDirection: "column" })};
+  ${mobile({ flexDirection: "column" })};
 `;
