@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import logo from "../../assets/mcd_logo.png";
 import { login } from "../../Redux/apiCalls";
@@ -22,19 +23,21 @@ import {
 } from "./login.styles";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (username.trim() === "" && password === "") {
+    if (email.trim() === "" && password === "") {
       return;
     }
 
-    login(dispatch, { username, password });
+    login(dispatch, { email, password });
+    navigate('/')
+
   };
 
   return (
@@ -57,7 +60,7 @@ const Login = () => {
             type="email"
             placeholder="admin..@abc.com"
             required
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             name="password"
@@ -70,7 +73,7 @@ const Login = () => {
             <RemInput type="checkbox" name="check" id="check" />
             <Span>Remember Me</Span>
           </Remember>
-          <Button type="submit" disabled={isFetching}>Login</Button>
+          <Button type="submit">{isFetching ? 'Loading....' : "Login"}</Button>
         </Form>
         <Fotter>Powered by 5Star Company &copy; 2023</Fotter>
       </Wrapper>
