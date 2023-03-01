@@ -53,11 +53,14 @@ const Login = () => {
           )}
 
           <Input
+            name="email"
             type="email"
             placeholder="admin..@abc.com"
+            required
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
+            name="password"
             type="password"
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
@@ -67,7 +70,7 @@ const Login = () => {
             <RemInput type="checkbox" name="check" id="check" />
             <Span>Remember Me</Span>
           </Remember>
-          <Button disabled={isFetching}>Login</Button>
+          <Button type="submit" disabled={isFetching}>Login</Button>
         </Form>
         <Fotter>Powered by 5Star Company &copy; 2023</Fotter>
       </Wrapper>
