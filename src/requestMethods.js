@@ -1,9 +1,8 @@
 import axios from 'axios'
 
 const BASE_URL = "https://adminapi.mcd.5starcompany.com.ng/api/v1"
-const TOKEN= "1387889|3a5sg56RsqZd6myOQ0IUh4RsU8ehCYHpLuTtObWo"
+const TOKEN= JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user).currentUser.token
 
-console.log(localStorage.getItem("persist:root"));
 
 
 export const publicRequest = axios.create({

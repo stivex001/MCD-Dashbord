@@ -31,10 +31,6 @@ const Login = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (email.trim() === "" && password === "") {
-      return;
-    }
-
     login(dispatch, { email, password });
     navigate('/')
 
