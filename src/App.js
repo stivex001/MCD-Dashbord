@@ -37,12 +37,8 @@ import WithdrawReq from "./pages/Wallet/WithdrawReq";
 import AgentPayment from "./pages/Users/AgentPayment";
 import { useSelector } from "react-redux";
 
-// const Container = styled.div`
-//   display: flex;
-// `;
-
 const App = () => {
-  const user = JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user).currentUser.token
+  const user = useSelector((state) => state.user.currentUser);
   return (
     <div>
       <Routes>
@@ -54,7 +50,10 @@ const App = () => {
           path="/history"
           element={user ? <TransHistory /> : <Navigate to="/login" />}
         />
-        <Route path="/transactions-pending" element={user ? <Pending /> : <Navigate to="/login" />} />
+        <Route
+          path="/transactions-pending"
+          element={user ? <Pending /> : <Navigate to="/login" />}
+        />
         <Route path="/findtransaction" element={<FindTransaction />} />
         <Route path="/add-data" element={<AddData />} />
         <Route path="/airtime-converter" element={<AirtimeConverter />} />

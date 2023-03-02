@@ -19,29 +19,26 @@ const Span = styled.span`
   border-radius: 5px;
 `;
 const BtnConatiner = styled.div`
-display: flex;
-flex-direction: column;
-gap: 10px;
-
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const PendingTables = () => {
-
-  const [pendingTrans, setPendingTrans] = useState([])
+  const [pendingTrans, setPendingTrans] = useState([]);
 
   useEffect(() => {
     const getPendingTransactions = async () => {
       try {
-        const res = await userRequest.get('/transactions/pending')
-      setPendingTrans(res.data)
+        const res = await userRequest.get("/transactions/pending");
+        console.log(res.data);
+        setPendingTrans(res.data);
       } catch (error) {
         console.log(error.message);
       }
-      
-    }
-    getPendingTransactions()
-    console.log(pendingTrans);
-  },[pendingTrans])
+    };
+    getPendingTransactions();
+  }, [pendingTrans]);
 
   return (
     <Container>
