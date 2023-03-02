@@ -36,7 +36,7 @@ const Card = ({ type }) => {
   switch (type) {
     case "successful":
       data = {
-        icon: <BusinessCenter style={{ fontSize: "50px", color: "#5dd099" }} />,
+        icon: <BusinessCenter style={{ fontSize: "40px", color: "#5dd099" }} />,
         title: "Successful Transactions",
         total: "298,746",
       };
@@ -44,7 +44,7 @@ const Card = ({ type }) => {
 
     case "pending":
       data = {
-        icon: <BusinessCenter style={{ fontSize: "50px", color: "#f8c955" }} />,
+        icon: <BusinessCenter style={{ fontSize: "40px", color: "#f8c955" }} />,
         title: "Pending Transactions",
         total: "1,631",
       };
@@ -52,7 +52,7 @@ const Card = ({ type }) => {
 
     case "today":
       data = {
-        icon: <Groups3 style={{ fontSize: "50px", color: "#5dd099" }} />,
+        icon: <Groups3 style={{ fontSize: "40px", color: "#5dd099" }} />,
         title: "Users Today",
         total: "67",
       };
@@ -60,7 +60,7 @@ const Card = ({ type }) => {
 
     case "month":
       data = {
-        icon: <Groups3 style={{ fontSize: "50px", color: "#5dd099" }} />,
+        icon: <Groups3 style={{ fontSize: "40px", color: "#5dd099" }} />,
         title: "Users this Month",
         total: "3,289",
       };
@@ -68,7 +68,7 @@ const Card = ({ type }) => {
 
       case "totalTransactions":
       data = {
-        icon: <BusinessCenter style={{ fontSize: "50px", color: "#5dd099" }} />,
+        icon: <BusinessCenter style={{ fontSize: "40px", color: "#5dd099" }} />,
         title: "Total Transactions",
         total: "1,459,566",
       };
@@ -76,7 +76,7 @@ const Card = ({ type }) => {
 
       case "transactionToday":
       data = {
-        icon: <BusinessCenter style={{ fontSize: "50px", color: "#f73c6f" }} />,
+        icon: <BusinessCenter style={{ fontSize: "40px", color: "#f73c6f" }} />,
         title: "Transactions Today",
         total: "1,746",
       };
@@ -84,7 +84,7 @@ const Card = ({ type }) => {
 
       case "transactionYesterday":
       data = {
-        icon: <BusinessCenter style={{ fontSize: "50px", color: "#f9af5d" }} />,
+        icon: <BusinessCenter style={{ fontSize: "40px", color: "#f9af5d" }} />,
         title: "Transactions Yesterday",
         total: "6,286",
       };
@@ -93,7 +93,7 @@ const Card = ({ type }) => {
 
       case "transactionAgo":
       data = {
-        icon: <BusinessCenter style={{ fontSize: "50px", color: "#327ba4" }} />,
+        icon: <BusinessCenter style={{ fontSize: "40px", color: "#327ba4" }} />,
         title: "Transactions 2Days Ago",
         total: "6,232",
       };
