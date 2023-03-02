@@ -34,12 +34,13 @@ import {
   Username,
   Wrapper,
 } from "./navBar.styles";
+import { redirect } from "react-router-dom";
 
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
   const [screenSize, setScreenSize] = useState();
-
+  
   
   useEffect(() => {
     const handleResize = () => {
@@ -65,6 +66,11 @@ const Navbar = () => {
     setSidebar(!sidebar);
   };
 
+  const handleLogout = () => {
+    JSON.parse(localStorage.removeItem("persist:root").user)
+    redirect('/login')
+    console.log('logout');
+  }
 
   return (
     <Container>
@@ -140,6 +146,7 @@ const Navbar = () => {
               </Tooltip>
               <Tooltip title="Log Out">
                 <PowerSettingsNewOutlined
+                  onClick={handleLogout}
                   style={{
                     color: "red",
                     boxShadow: "1px 2px 5px 1px rgba(0, 0, 0, 0.2)",
