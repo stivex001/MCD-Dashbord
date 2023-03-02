@@ -90,7 +90,7 @@ const Navbar = () => {
         </NavIcon>
         <Right>
           <UserImg
-            src="https://avatars.githubusercontent.com/u/87942124?v=4"
+            src="https://mcd.5starcompany.com.ng/app/avatar/samji.jpg"
             alt=""
           />
         </Right>
@@ -112,7 +112,7 @@ const Navbar = () => {
           <UserContainer>
             <UserDesc>
               <UserImage
-                src="https://avatars.githubusercontent.com/u/87942124?v=4"
+                src="https://mcd.5starcompany.com.ng/app/avatar/samji.jpg"
                 alt=""
               />
               <Username>Odejinmi Samuel</Username>

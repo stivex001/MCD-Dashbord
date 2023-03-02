@@ -38,6 +38,7 @@ export const Input = styled.input`
 `;
 export const Right = styled.div`
   margin: 20px;
+  cursor: pointer;
 `;
 export const UserImg = styled.img`
   width: 40px;

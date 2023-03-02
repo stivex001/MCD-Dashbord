@@ -13,7 +13,7 @@ const Wrapper = styled.span`
 const Footer = () => {
   return (
     <Container>
-      <Wrapper>&copy; 2020 Mega Cheap Data <b>by</b>  5Star Inn Company.</Wrapper>
+      <Wrapper>&copy; 2023 Mega Cheap Data <b>by</b>  5Star Inn Company.</Wrapper>
     </Container>
   );
 };
