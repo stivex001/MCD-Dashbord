@@ -6,7 +6,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "styled-components";
-import { pendingTransactions } from "../table/tableData";
 import Button from "../UI/Button";
 import { useEffect, useState } from "react";
 import { userRequest } from "../../requestMethods";
@@ -31,8 +30,7 @@ const PendingTables = () => {
     const getPendingTransactions = async () => {
       try {
         const res = await userRequest.get("/transactions/pending");
-        console.log(res.data);
-        setPendingTrans(res.data);
+        setPendingTrans(res.data.data.data);
       } catch (error) {
         console.log(error.message);
       }
@@ -61,7 +59,7 @@ const PendingTables = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {pendingTransactions.map((row) => (
+            {pendingTrans.map((row) => (
               <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
                 <TableCell style={{ color: "#8887a9" }}>{row.id}</TableCell>
                 <TableCell style={{ color: "#8887a9" }}>{row.ref}</TableCell>
@@ -69,7 +67,7 @@ const PendingTables = () => {
                   #{row.amount}
                 </TableCell>
                 <TableCell style={{ color: "#8887a9" }}>
-                  {row.username} {row.desc}
+                   {row.description}
                 </TableCell>
                 <TableCell style={{ color: "#8887a9" }}>
                   <Span
@@ -83,10 +81,10 @@ const PendingTables = () => {
                   </Span>
                 </TableCell>
                 <TableCell style={{ color: "#8887a9" }}>{row.date}</TableCell>
-                <TableCell style={{ color: "#8887a9" }}>{row.ip}</TableCell>
+                <TableCell style={{ color: "#8887a9" }}>{row.ip_address}</TableCell>
                 <TableCell style={{ color: "#8887a9" }}>{row.server}</TableCell>
                 <TableCell style={{ color: "#8887a9" }}>
-                  {row.serverRes}
+                  {row.server_response}
                 </TableCell>
                 <TableCell style={{ color: "#8887a9" }}>
                   <BtnConatiner>
