@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Button from "../UI/Button";
 import { useEffect, useState } from "react";
 import { userRequest } from "../../requestMethods";
+import { TablePagination } from "@mui/material";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -25,6 +26,8 @@ const BtnConatiner = styled.div`
 
 const PendingTables = () => {
   const [pendingTrans, setPendingTrans] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
     const getPendingTransactions = async () => {
@@ -37,6 +40,15 @@ const PendingTables = () => {
     };
     getPendingTransactions();
   }, [pendingTrans]);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   return (
     <Container>
@@ -59,43 +71,59 @@ const PendingTables = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {pendingTrans.map((row) => (
-              <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
-                <TableCell style={{ color: "#8887a9" }}>{row.id}</TableCell>
-                <TableCell style={{ color: "#8887a9" }}>{row.ref}</TableCell>
-                <TableCell style={{ color: "#8887a9" }}>
-                  #{row.amount}
-                </TableCell>
-                <TableCell style={{ color: "#8887a9" }}>
-                   {row.description}
-                </TableCell>
-                <TableCell style={{ color: "#8887a9" }}>
-                  <Span
-                    style={{
-                      backgroundColor: `${
-                        row.status === "successful" ? "#33cdff" : "#f96e5b"
-                      }`,
-                    }}
-                  >
-                    {row.status}
-                  </Span>
-                </TableCell>
-                <TableCell style={{ color: "#8887a9" }}>{row.date}</TableCell>
-                <TableCell style={{ color: "#8887a9" }}>{row.ip_address}</TableCell>
-                <TableCell style={{ color: "#8887a9" }}>{row.server}</TableCell>
-                <TableCell style={{ color: "#8887a9" }}>
-                  {row.server_response}
-                </TableCell>
-                <TableCell style={{ color: "#8887a9" }}>
-                  <BtnConatiner>
-                    <Button title="Re-process" />
-                    <Button title="Mark Delivered" />
-                    <Button title="Reverse Transaction" />
-                  </BtnConatiner>
-                </TableCell>
-              </TableRow>
-            ))}
+            {pendingTrans
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
+                  <TableCell style={{ color: "#8887a9" }}>{row.id}</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>{row.ref}</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    #{row.amount}
+                  </TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    {row.description}
+                  </TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    <Span
+                      style={{
+                        backgroundColor: `${
+                          row.status === "successful" ? "#33cdff" : "#f96e5b"
+                        }`,
+                      }}
+                    >
+                      {row.status}
+                    </Span>
+                  </TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>{row.date}</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    {row.ip_address}
+                  </TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    {row.server}
+                  </TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    {row.server_response}
+                  </TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    <BtnConatiner>
+                      <Button title="Re-process" />
+                      <Button title="Mark Delivered" />
+                      <Button title="Reverse Transaction" />
+                    </BtnConatiner>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
+
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={pendingTrans.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
         </Table>
       </TableContainer>
     </Container>
