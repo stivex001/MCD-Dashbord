@@ -2,7 +2,6 @@ import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 import logo from "../../assets/mcd_logo.png";
 import { login } from "../../Redux/apiCalls";
 import {
@@ -27,7 +26,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { currentUser, isFetching, error, message } = useSelector((state) => state.user);
+  const { currentUser, isFetching, error, message } = useSelector(
+    (state) => state.user
+  );
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -56,7 +57,7 @@ const Login = () => {
             </ErrorWrapper>
           )}
 
-          {message && (<ErrTitle>You have successfully logout</ErrTitle>)}
+          {message && <ErrTitle>You have successfully logout</ErrTitle>}
 
           <Input
             name="email"
