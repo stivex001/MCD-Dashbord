@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -26,14 +27,18 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isFetching, error } = useSelector((state) => state.user);
-  const navigate = useNavigate()
+  const { currentUser, isFetching, error } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { email, password });
-    navigate('/')
 
+    if (currentUser === "null") {
+      navigate("/login");
+    } else {
+      navigate("/");
+    }
   };
 
   return (
@@ -69,7 +74,13 @@ const Login = () => {
             <RemInput type="checkbox" name="check" id="check" />
             <Span>Remember Me</Span>
           </Remember>
-          <Button type="submit">{isFetching ? 'Loading....' : "Login"}</Button>
+          <Button type="submit">
+            {isFetching ? (
+              <CircularProgress style={{ color: "white" }} />
+            ) : (
+              "Login"
+            )}
+          </Button>
         </Form>
         <Fotter>Powered by 5Star Company &copy; 2023</Fotter>
       </Wrapper>

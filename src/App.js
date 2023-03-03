@@ -1,5 +1,4 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-// import styled from "styled-components";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Payment from "./pages/Payment/Payment";
@@ -39,11 +38,12 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
+  console.log(user);
   return (
     <div>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/" element={user ? <Home /> : <Login />} />
 
         {/* Transaction Page */}
         <Route

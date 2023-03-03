@@ -1,14 +1,23 @@
 import axios from "axios";
 
+
 const BASE_URL = "https://adminapi.mcd.5starcompany.com.ng/api/v1";
-const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user)
-  .currentUser.token;
-// const TOKEN = ''
+
+const TOKEN = () => {
+  if (
+    JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user)
+      .currentUser.token
+  ) {
+    return JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user)
+      .currentUser.token;
+  } else { return '' }
+};
+
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
 });
 
 export const userRequest = axios.create({
   baseURL: BASE_URL,
-  headers: { Authorization: `Bearer ${TOKEN}` },
+  headers: { Authorization: `Bearer ${ TOKEN}` },
 });

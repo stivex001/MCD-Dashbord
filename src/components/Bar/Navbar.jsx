@@ -34,14 +34,18 @@ import {
   Username,
   Wrapper,
 } from "./navBar.styles";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserModal from "../modal/UserModal";
+import { useDispatch } from "react-redux";
+import { logout } from "../../Redux/apiCalls";
 
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
   const [screenSize, setScreenSize] = useState();
   const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   
   
   useEffect(() => {
@@ -69,9 +73,8 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    JSON.parse(localStorage.removeItem("persist:root").user)
-    redirect('/login')
-    console.log('logout');
+    logout(dispatch);
+    navigate('/login')
   }
 
   const openProfileHandler = () => {
