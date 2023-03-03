@@ -12,10 +12,18 @@ const UserModal = () => {
     <Container>
       <Wrapper>
         <h2>Welcome</h2>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>
+          <span>Profile</span>
+        </div>
+        <div>
+          <span>Settings</span>
+        </div>
+        <div>
+          <span>Lock Screen</span>
+        </div>
+        <div>
+          <span>Logout</span>
+        </div>
       </Wrapper>
     </Container>
   )
