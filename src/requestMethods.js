@@ -13,11 +13,14 @@ const TOKEN = () => {
   } else { return '' }
 };
 
+const token = TOKEN()
+
+
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
 });
 
 export const userRequest = axios.create({
   baseURL: BASE_URL,
-  headers: { Authorization: `Bearer ${ TOKEN}` },
+  headers: { Authorization: `Bearer ${token}` },
 });

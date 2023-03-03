@@ -127,9 +127,10 @@ const Tables = () => {
                   </TableCell>
                 </TableRow>
               ))}
+              
           </TableBody>
-
-          <TablePagination
+        </Table>
+        <TablePagination
             rowsPerPageOptions={[10, 15, 100]}
             component="div"
             count={transHistory.length}
@@ -138,7 +139,6 @@ const Tables = () => {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
-        </Table>
       </TableContainer>
     </Container>
   );

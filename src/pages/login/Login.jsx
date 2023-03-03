@@ -49,12 +49,12 @@ const Login = () => {
           <H3>Welcome to Mega Cheap Data</H3>
         </Desc>
         <Form onSubmit={handleClick}>
-          {error & (
+          {error && (
             <ErrorWrapper>
               <ErrTitle>These credentails do not match our records!</ErrTitle>
               <ErrSpan>Change a few things up and try submitting again</ErrSpan>
             </ErrorWrapper>
-          ) }
+          )}
 
           {message && (<ErrTitle>You have successfully logout</ErrTitle>)}
 
