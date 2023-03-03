@@ -10,7 +10,13 @@ const Wrapper = styled.div``;
 const UserModal = () => {
   return (
     <Container>
-      <Wrapper></Wrapper>
+      <Wrapper>
+        <h2>Welcome</h2>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </Wrapper>
     </Container>
   )
 }
