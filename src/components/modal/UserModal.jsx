@@ -4,12 +4,14 @@ const Container = styled.div`
 position: absolute;
 top: 60px;
 right: 50px;
-
-`
+`;
+const Wrapper = styled.div``;
 
 const UserModal = () => {
   return (
-    <Container>UserModal</Container>
+    <Container>
+      <Wrapper></Wrapper>
+    </Container>
   )
 }
 
