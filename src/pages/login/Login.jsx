@@ -27,7 +27,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { currentUser, isFetching, error } = useSelector((state) => state.user);
+  const { currentUser, isFetching, error, message } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -49,12 +49,14 @@ const Login = () => {
           <H3>Welcome to Mega Cheap Data</H3>
         </Desc>
         <Form onSubmit={handleClick}>
-          {error && (
+          {error & (
             <ErrorWrapper>
               <ErrTitle>These credentails do not match our records!</ErrTitle>
               <ErrSpan>Change a few things up and try submitting again</ErrSpan>
             </ErrorWrapper>
-          )}
+          ) }
+
+          {message && (<ErrTitle>You have successfully logout</ErrTitle>)}
 
           <Input
             name="email"
