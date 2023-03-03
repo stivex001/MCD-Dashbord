@@ -35,11 +35,13 @@ import {
   Wrapper,
 } from "./navBar.styles";
 import { redirect } from "react-router-dom";
+import UserModal from "../modal/UserModal";
 
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
   const [screenSize, setScreenSize] = useState();
+  const [openModal, setOpenModal] = useState(false);
   
   
   useEffect(() => {
@@ -72,6 +74,10 @@ const Navbar = () => {
     console.log('logout');
   }
 
+  const openProfileHandler = () => {
+    setOpenModal(!openModal)
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -88,11 +94,12 @@ const Navbar = () => {
             <Search style={{ color: "white", fontSize: "20px" }} />
           </BarSearch>
         </NavIcon>
-        <Right>
+        <Right onClick={openProfileHandler}>
           <UserImg
             src="https://mcd.5starcompany.com.ng/app/avatar/samji.jpg"
             alt=""
           />
+         {openModal && <UserModal /> }
         </Right>
       </Wrapper>
       <SidebrNav sidebar={sidebar}>
@@ -111,7 +118,7 @@ const Navbar = () => {
 
           <UserContainer>
             <UserDesc>
-              <UserImage
+              <UserImage  
                 src="https://mcd.5starcompany.com.ng/app/avatar/samji.jpg"
                 alt=""
               />
