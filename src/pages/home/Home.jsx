@@ -3,8 +3,12 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import Widgets from "../../components/widgets/Widgets";
 
-const Container = styled.div``;
-const Wrapper = styled.div``;
+const Container = styled.div`
+height: 100%;
+`;
+const Wrapper = styled.div`
+min-height: 70vh;
+`;
 
 const Home = () => {
   return (

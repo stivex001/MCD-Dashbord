@@ -4,6 +4,7 @@ const Container = styled.footer`
   background-color: #605daf05;
   padding: 20px 30px;
   text-align: center;
+  flex-shrink: 0;
 `;
 const Wrapper = styled.span`
   color: #2d3b48;
