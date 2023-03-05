@@ -120,8 +120,8 @@ const PendingTables = () => {
                 </TableRow>
               ))}
           </TableBody>
-
-          <TablePagination
+        </Table>
+        <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
             count={pendingTrans.length}
@@ -130,7 +130,6 @@ const PendingTables = () => {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
-        </Table>
       </TableContainer>
     </Container>
   );
