@@ -23,6 +23,9 @@ const BtnConatiner = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
+const Input = styled.input`
+margin-right: 20px;
+`;
 
 const PendingTables = () => {
   const [pendingTrans, setPendingTrans] = useState([]);
@@ -75,7 +78,10 @@ const PendingTables = () => {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
                 <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
-                  <TableCell style={{ color: "#8887a9" }}>{row.id}</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    <Input type="checkbox" name="" id="" />
+                    {row.id}
+                  </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>{row.ref}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
                     #{row.amount}
