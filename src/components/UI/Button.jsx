@@ -23,9 +23,22 @@ const UiButton = styled.button`
 `;
 
 const Button = ({ title }) => {
+
+  const handleSelect = () => {
+    if (title === 'Re-process Selected') {
+      console.log('Re-process Selected');
+    }
+    if (title === 'Mark Delivered Selected') {
+      console.log('Mark Delivered Selected');
+    }
+    if (title === 'Reverse Transaction Selected') {
+      console.log('Reverse Transaction Selected');
+    }
+  }
+
   return (
     <Container type={title}>
-      <UiButton>{title}</UiButton>
+      <UiButton onClick={handleSelect}>{title}</UiButton>
     </Container>
   );
 };
