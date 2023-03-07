@@ -22,12 +22,19 @@ const UiButton = styled.button`
   color: #fff;
 `;
 
-const Button = ({ title }) => {
+const Button = ({ title, pendingTrans, setPendingTrans }) => {
 
   const handleSelect = () => {
     if (title === 'Re-process Selected') {
-      console.log('Re-process Selected');
+      let checkedInputValue = [];
+      for(let i=0; i < pendingTrans.length; i++) {
+        if (pendingTrans[i].isChecked===true) {
+          checkedInputValue.push(pendingTrans[i].id)
+        }
+      }
+      console.log(JSON.stringify(checkedInputValue));
     }
+    
     if (title === 'Mark Delivered Selected') {
       console.log('Mark Delivered Selected');
     }

@@ -31,6 +31,7 @@ const PendingTables = () => {
   const [pendingTrans, setPendingTrans] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const [id, setId] = useState([])
 
   useEffect(() => {
     const getPendingTransactions = async () => {
@@ -52,6 +53,15 @@ const PendingTables = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const handleChange = (e) => {
+    const {name, checked} = e.target
+    const checkedValue = pendingTrans.map((row) => row.id === name? {
+       isChecked:checked
+    }:row)
+    console.log(checkedValue);
+    setPendingTrans(checkedValue)
+  }
 
   return (
     <Container>
@@ -79,7 +89,7 @@ const PendingTables = () => {
               .map((row) => (
                 <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
                   <TableCell style={{ color: "#8887a9" }}>
-                    <Input type="checkbox" name="" id="" />
+                    <Input  type="checkbox" name={row.id} id="" onChange={handleChange}  />
                     {row.id}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>{row.ref}</TableCell>
@@ -112,7 +122,7 @@ const PendingTables = () => {
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
                     <BtnConatiner>
-                      <Button title="Re-process" />
+                      <Button title="Re-process" pendingTrans={pendingTrans} />
                       <Button title="Mark Delivered" />
                       <Button title="Reverse Transaction" />
                     </BtnConatiner>
