@@ -7,8 +7,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import Button from "../UI/Button";
-import { useEffect, useState } from "react";
-import { userRequest } from "../../requestMethods";
 import { TablePagination } from "@mui/material";
 
 const Container = styled.div``;
@@ -27,43 +25,43 @@ const Input = styled.input`
   margin-right: 20px;
 `;
 
-const PendingTables = () => {
-  const [pendingTrans, setPendingTrans] = useState([]);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [checkId, setCheckId] = useState([]);
+const PendingTables = ({pendingTrans, page, rowsPerPage, checkId, handleChangePage, handleChange, handleChangeRowsPerPage}) => {
+  // const [pendingTrans, setPendingTrans] = useState([]);
+  // const [page, setPage] = useState(0);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const [checkId, setCheckId] = useState([]);
 
-  useEffect(() => {
-    const getPendingTransactions = async () => {
-      try {
-        const res = await userRequest.get("/transactions/pending");
-        setPendingTrans(res.data.data.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getPendingTransactions();
-  }, [pendingTrans]);
+  // useEffect(() => {
+  //   const getPendingTransactions = async () => {
+  //     try {
+  //       const res = await userRequest.get("/transactions/pending");
+  //       setPendingTrans(res.data.data.data);
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   };
+  //   getPendingTransactions();
+  // }, [pendingTrans]);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (event, newPage) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setRowsPerPage(+event.target.value);
+  //   setPage(0);
+  // };
 
-  const handleChange = (e) => {
-    const id = e.target.value;
-    if (e.target.checked) {
-      setCheckId([...checkId, id]);
-    } else {
-      setCheckId(checkId.filter((checkedId) => checkedId !== id));
-    }
+  // const handleChange = (e) => {
+  //   const id = e.target.value;
+  //   if (e.target.checked) {
+  //     setCheckId([...checkId, id]);
+  //   } else {
+  //     setCheckId(checkId.filter((checkedId) => checkedId !== id));
+  //   }
     
-  };
-  console.log(checkId);
+  // };
+  // console.log(checkId);
   return (
     <Container>
       <TableContainer component={Paper}>
@@ -92,7 +90,6 @@ const PendingTables = () => {
                   <TableCell style={{ color: "#8887a9" }}>
                     <Input
                       type="checkbox"
-                      // checked={checkId.includes(row.id.toString())}
                       value={row.id}
                       onChange={handleChange}
                     />
@@ -129,7 +126,7 @@ const PendingTables = () => {
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
                     <BtnConatiner>
-                      <Button title="Re-process" pendingTrans={pendingTrans} />
+                      <Button title="Re-process" />
                       <Button title="Mark Delivered" />
                       <Button title="Reverse Transaction" />
                     </BtnConatiner>
