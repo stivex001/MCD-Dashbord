@@ -24,14 +24,14 @@ const BtnConatiner = styled.div`
   gap: 10px;
 `;
 const Input = styled.input`
-margin-right: 20px;
+  margin-right: 20px;
 `;
 
 const PendingTables = () => {
   const [pendingTrans, setPendingTrans] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  // const [id, setId] = useState([])
+  const [checkId, setCheckId] = useState([]);
 
   useEffect(() => {
     const getPendingTransactions = async () => {
@@ -55,14 +55,15 @@ const PendingTables = () => {
   };
 
   const handleChange = (e) => {
-    const {name, checked} = e.target
-    const checkedValue = pendingTrans.map((row) => row.id === name? {
-       isChecked:checked
-    }:row)
-    console.log(checkedValue);
-    setPendingTrans(checkedValue)
-  }
-
+    const id = e.target.value;
+    if (e.target.checked) {
+      setCheckId([...checkId, id]);
+    } else {
+      setCheckId(checkId.filter((checkedId) => checkedId !== id));
+    }
+    
+  };
+  console.log(checkId);
   return (
     <Container>
       <TableContainer component={Paper}>
@@ -89,8 +90,14 @@ const PendingTables = () => {
               .map((row) => (
                 <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
                   <TableCell style={{ color: "#8887a9" }}>
-                    <Input  type="checkbox" name={row.id} id="" onChange={handleChange}  />
+                    <Input
+                      type="checkbox"
+                      // checked={checkId.includes(row.id.toString())}
+                      value={row.id}
+                      onChange={handleChange}
+                    />
                     {row.id}
+                    
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>{row.ref}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
@@ -132,14 +139,14 @@ const PendingTables = () => {
           </TableBody>
         </Table>
         <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={pendingTrans.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={pendingTrans.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
       </TableContainer>
     </Container>
   );
