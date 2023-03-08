@@ -40,7 +40,7 @@ const UserDataTable = () => {
       }
     };
     getAllUsers();
-  }, [allUsers]);
+  }, []);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

@@ -24,14 +24,14 @@ const Right = styled.div``;
 const P = styled.p`
   font-size: 20px;
   color: #4a4b4c;
-  margin-left: 50px;
 `;
 const Span = styled.span`
   font-size: 12px;
   color: #8c9ea9;
+  margin-top: 50px;
 `;
 
-const Card = ({ type }) => {
+const Card = ({ type, userOverview }) => {
   let data;
 
   switch (type) {
@@ -104,7 +104,7 @@ const Card = ({ type }) => {
         data = {
           icon: <Groups2 style={{ fontSize: "40px", color: "#5dd099" }} />,
           title: "Total Users",
-          total: "72,750",
+          total: userOverview.total_users
         };
         break;
   
@@ -112,7 +112,7 @@ const Card = ({ type }) => {
         data = {
           icon: <ArrowCircleRight style={{ fontSize: "40px", color: "#f73c6f" }} />,
           title: "Total Referred",
-          total: "1,623",
+          total: userOverview.referred_users
         };
         break;
   
@@ -120,7 +120,7 @@ const Card = ({ type }) => {
         data = {
           icon: <List style={{ fontSize: "40px", color: "#f9af5d" }} />,
           title: "Total Agent",
-          total: "83",
+          total: userOverview.all_agents
         };
         break;
   
@@ -129,7 +129,7 @@ const Card = ({ type }) => {
         data = {
           icon: <TableChart style={{ fontSize: "40px", color: "#327ba4" }} />,
           title: "Total Wallet",
-          total: "4,379,386",
+          total: userOverview.users_wallet
         };
         break;
   
