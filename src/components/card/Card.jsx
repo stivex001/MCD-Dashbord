@@ -92,7 +92,6 @@ const Card = ({ type, userOverview }) => {
       };
       break;
 
-
       case "transactionAgo":
       data = {
         icon: <BusinessCenter style={{ fontSize: "40px", color: "#327ba4" }} />,
