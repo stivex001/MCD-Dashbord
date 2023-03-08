@@ -1,4 +1,4 @@
-import { BusinessCenter, Groups3 } from "@mui/icons-material";
+import { ArrowCircleRight, BusinessCenter, Groups2, Groups3, List, TableChart } from "@mui/icons-material";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -95,9 +95,43 @@ const Card = ({ type }) => {
       data = {
         icon: <BusinessCenter style={{ fontSize: "40px", color: "#327ba4" }} />,
         title: "Transactions 2Days Ago",
-        total: "6,232",
+        total: "72,750",
       };
       break;
+
+      case "totalUsers":
+        data = {
+          icon: <Groups2 style={{ fontSize: "50px", color: "#5dd099" }} />,
+          title: "Total Users",
+          total: "72,750",
+        };
+        break;
+  
+        case "totalReferred":
+        data = {
+          icon: <ArrowCircleRight style={{ fontSize: "40px", color: "#f73c6f" }} />,
+          title: "Total Referred",
+          total: "1,623",
+        };
+        break;
+  
+        case "totalAgent":
+        data = {
+          icon: <List style={{ fontSize: "40px", color: "#f9af5d" }} />,
+          title: "Total Agent",
+          total: "83",
+        };
+        break;
+  
+  
+        case "totalWallet":
+        data = {
+          icon: <TableChart style={{ fontSize: "40px", color: "#327ba4" }} />,
+          title: "Total Wallet",
+          total: "4,379,386",
+        };
+        break;
+  
 
     default:
       break;

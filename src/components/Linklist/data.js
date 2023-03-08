@@ -134,7 +134,7 @@ export const sidebarData = [
       {
         id: 1,
         title: "Users",
-        to: "/",
+        to: "/users",
       },
       {
         id: 2,
