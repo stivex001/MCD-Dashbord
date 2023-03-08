@@ -3,28 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 const pendingTransactionSlice = createSlice({
   name: "pendingTransaction",
   initialState: {
-    btnSelected: false,
     isProcessing: false,
     error: false,
-    checkId: []
+    checkId: [],
+    message: null
   },
   reducers: {
-    reProcessStart: (state) => {
-      state.btnSelected = true;
+    reProcessAllStart: (state) => {
       state.isProcessing = true;
     },
-    reProcessSucess: (state) => {
+    reProcessAllSucess: (state, action) => {
       state.isProcessing = false;
-      state.btnSelected = false;
+      state.checkId = action.payload;
+      state.message = action.payload
     },
-    reProcessFailure: (state) => {
+    reProcessAllFailure: (state) => {
       state.isProcessing = false;
-      state.btnSelected = false;
       state.error = true;
     },
   },
 });
 
-export const { reProcessStart, reProcessSucess, reProcessFailure } =
+export const { reProcessAllStart, reProcessAllSucess, reProcessAllFailure } =
   pendingTransactionSlice.actions;
 export default pendingTransactionSlice.reducer;

@@ -26,6 +26,7 @@ const Pending = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [checkId, setCheckId] = useState([]);
+  const [showErr, setShowErr] = useState('');
 
   useEffect(() => {
     const getPendingTransactions = async () => {
@@ -73,12 +74,15 @@ const Pending = () => {
           <P>
             Click on <Span>Re-process</Span> to reprocess in background.
           </P>
-          <MsgContainer>
+          {showErr && (
+            <MsgContainer>
             <H2>Kindly select some box!</H2>
-            <Close style={{ fontSize: '24px', cursor: 'pointer'}} />
+            <Close style={{ color: '#806e6b', cursor: 'pointer'}} />
           </MsgContainer>
+          )}
+          
           <BtnConatiner>
-            <Button title="Re-process Selected" checkId={checkId} />
+            <Button title="Re-process Selected" checkId={checkId} showErr={showErr} />
             <Button title="Mark Delivered Selected" />
             <Button title="Reverse Transaction Selected" />
           </BtnConatiner>
