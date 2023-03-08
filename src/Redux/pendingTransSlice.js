@@ -6,6 +6,7 @@ const pendingTransactionSlice = createSlice({
     btnSelected: false,
     isProcessing: false,
     error: false,
+    checkId: []
   },
   reducers: {
     reProcessStart: (state) => {

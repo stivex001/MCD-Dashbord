@@ -1,3 +1,4 @@
+import axios from "axios";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -24,8 +25,14 @@ const UiButton = styled.button`
 
 const Button = ({ title, checkId }) => {
 
-  const handleSelect = () => {
+  const handleSelect = async () => {
     if (title === 'Re-process Selected') {
+      try {
+        const BASE_URL = "https://adminapi.mcd.5starcompany.com.ng/api/v1";
+        const res = await axios.post(`${BASE_URL}/transactions/resubmit-multiple`)
+      } catch (error) {
+        
+      }
       console.log(checkId);
       
     }
@@ -40,7 +47,7 @@ const Button = ({ title, checkId }) => {
 
   return (
     <Container type={title}>
-      <UiButton onClick={handleSelect}>{title}</UiButton>
+      <UiButton type="submit" onClick={handleSelect}>{title}</UiButton>
     </Container>
   );
 };

@@ -23,3 +23,7 @@ export const login = async (dispatch, user) => {
 export const logout = async (dispatch) => {
   dispatch(logoutSuccess());
 };
+
+export const reProcessAll = async (dispatch, id) => {
+  dispatch()
+}
