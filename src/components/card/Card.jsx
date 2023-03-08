@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   flex: 1;
   padding: 20px;
 `;
+
 const Left = styled.div``;
 const Right = styled.div``;
 const P = styled.p`
