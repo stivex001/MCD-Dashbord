@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../components/Bar/Navbar";
 import Card from "../../components/card/Card";
 import Footer from "../../components/footer/Footer";
-import TransactionTables from "../../components/Transactiontables/TransactionTables";
+import UserTable from "../../components/User/UserTable";
 import {
   CardContainer,
   Container,
@@ -32,7 +32,7 @@ const Users = () => {
         </CardContainer>
 
         {/* TABLES */}
-        <TransactionTables />
+        <UserTable />
       </Wrapper>
       <Footer />
     </Container>
