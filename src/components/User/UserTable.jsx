@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Tables from "../table/Tables";
+import UserDataTable from "./UserDataTable";
 
 const Container = styled.div`
 background-color: #fff;
@@ -28,7 +28,7 @@ const UserTable = () => {
     <Container>
         <Title>Users Table</Title>
         <P>Use <Span>pencil icon</Span> to view user profile</P>
-        <Tables />
+        <UserDataTable />
     </Container>
   )
 }
