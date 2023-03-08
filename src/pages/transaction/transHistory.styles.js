@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { laptop, mobile, tablet } from "../../responsive";
 
 export const Container = styled.div`
+background-color: #f5f5f5;
 margin: 70px 0;
 ${laptop({ marginLeft: "250px" })};
 `;
