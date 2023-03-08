@@ -1,3 +1,4 @@
+import { Close } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -10,7 +11,9 @@ import {
   Desc,
   DescP,
   DescSpan,
+  H2,
   H3,
+  MsgContainer,
   P,
   Span,
   Title,
@@ -70,6 +73,10 @@ const Pending = () => {
           <P>
             Click on <Span>Re-process</Span> to reprocess in background.
           </P>
+          <MsgContainer>
+            <H2>Kindly select some box!</H2>
+            <Close style={{ fontSize: '24px', cursor: 'pointer'}} />
+          </MsgContainer>
           <BtnConatiner>
             <Button title="Re-process Selected" checkId={checkId} />
             <Button title="Mark Delivered Selected" />

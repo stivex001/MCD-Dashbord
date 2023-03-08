@@ -56,3 +56,15 @@ export const Span = styled.span`
 font-size: 11.375px;
 color: #33cdff;
 `;
+export const MsgContainer = styled.div`
+background-color: #fedbd6;
+padding: 12px 20px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 16px;
+`;
+export const H2 = styled.h2`
+color: #f96e5b;
+font-size: 14px;
+`;
