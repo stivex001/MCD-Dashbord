@@ -54,18 +54,15 @@ export const List = styled.div`
   display: flex;
   gap: 20px;
 `;
-export const Btn = styled(NavLink)`
+export const Btn = styled.button`
   font-size: 14px;
-  background-color: #fff;
   padding: 8px 16px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   text-decoration: none;
-  color: inherit;
+  background-color: ${({ active }) => active ? '#605daf' : 'white'};
+  color: ${({ active }) => active ? 'white' : 'black'};
 
-  &.active {
-    background-color: #605daf;
-    color: #fff;
-  }
+
 `;

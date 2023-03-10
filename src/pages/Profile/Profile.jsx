@@ -3,6 +3,7 @@ import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
 import General from "../../components/General/General";
+import SamjiTrans from "../../components/samjiTrans/SamjiTrans";
 import UserProfile from "../../components/userProfile/UserProfile";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
 
@@ -17,11 +18,13 @@ import {
 
 const Profile = () => {
 
-  const [showGeneral, setShowGeneral] = useState(false);
+  const [currentPage, setCurrentPage] = useState(null);
 
-  const handleShowGeneral = () => {
-    setShowGeneral(true)
+
+  const handleButtonClick = (page) => {
+    setCurrentPage(page);
   }
+
 
   return (
     <Container>
@@ -33,17 +36,18 @@ const Profile = () => {
             User / <DescSpan>Profile</DescSpan>
           </DescP>
         </Desc>
-        <div>
+        
         <UserProfile />
+        <div>
         <List>
-        <Btn onClick={handleShowGeneral}>General</Btn>
-        <Btn to="/">Transactions</Btn>
+        <Btn active={currentPage === <General /> } onClick={() => handleButtonClick(<General />)}>General</Btn>
+        <Btn to='#activity_detail' onClick={() => handleButtonClick(<SamjiTrans />)}>Transactions</Btn>
         <Btn to="/">Wallet</Btn>
         <Btn to="#">Push Notification</Btn>
         <Btn to="#">Information</Btn>
       </List>
+      {currentPage}
         </div>
-        {showGeneral && <General />}
         
       </Wrapper>
       
