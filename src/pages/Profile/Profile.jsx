@@ -25,6 +25,7 @@ const Profile = () => {
         </Desc>
         <UserProfile />
       </Wrapper>
+      
       <Footer />
     </Container>
   );
