@@ -101,7 +101,7 @@ const UserDataTable = () => {
                     {row.account_number}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    <Link to={`/profile/${row.user_name}`}>
+                    <Link to={'/profile/' + encodeURIComponent(row.user_name)}>
                       <NoteAlt
                         style={{
                           backgroundColor: "5dd099",

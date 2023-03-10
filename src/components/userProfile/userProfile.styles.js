@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { tablet } from "../../responsive";
+import { mobile } from "../../responsive";
 
 export const Container = styled.div`
 background-color: #fff;
@@ -16,7 +16,7 @@ align-items: center;
 justify-content: space-between;
 padding: 20px 50px;
 color: white;
-${tablet({ flexDirection: "column", alignItems: 'flex-start', gap: '40px'})};
+${mobile({ flexDirection: "column", alignItems: 'flex-start', gap: '40px'})};
 `;
 export const Left = styled.div``;
 export const UserImg = styled.img``;

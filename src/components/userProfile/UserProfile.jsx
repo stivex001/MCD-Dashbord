@@ -8,12 +8,15 @@ import {
   Phone,
   PhoneIphone,
 } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { userRequest } from "../../requestMethods";
 import {
   Brandname,
   Btn,
   Container,
   Desc,
-  Fullname,
+//   Fullname,
   Left,
   List,
   Right,
@@ -25,75 +28,103 @@ import {
 } from "./userProfile.styles";
 
 const UserProfile = () => {
+
+    const [user, setUser] = useState([]);
+    const location = useLocation()
+    const userId = location.pathname.split('/')[2];
+
+    useEffect(() => {
+        const getUser = async () => {
+          try {
+            const res = await userRequest.get(`/profile/${userId}`);
+            setUser(res.data.data.data);
+          } catch (error) {
+            console.log(error.message);
+          }
+        };
+        getUser();
+      }, [userId]);
+      console.log(user);
+
+      if (!user) {
+        return <div>Loading....</div>
+      }
+
+      
+
+    //   const registeredUser = user.length > 0 ? user.find((reg) => reg.user_name === userId) : null;
+
+// console.log(registeredUser);
   return (
     <Container>
-      <Wrapper>
+        
+            <Wrapper>
         <Left>
-          <UserImg src="" alt="" />
+          <UserImg src={user.photo} alt="" />
           <CameraAlt />
-          <Username>Samji</Username>
-          <Fullname>Odejinmi Samuel</Fullname>
-          <Brandname>Samji Ventures (superadmin)</Brandname>
+          <Username>{user.user_name}</Username>
+          {/* <Fullname>Odejinmi Samuel</Fullname> */}
+          <Brandname> ({user.status})</Brandname>
         </Left>
         <Right>
           <Desc>
             <Phone style={{ color: "#26abf2" }} />
             <UserDesc>
-              Phone: <Span>08166939205</Span>
+              Phone: <Span>{user.phoneno}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <MailOutline style={{ color: "#26abf2" }} />
             <UserDesc>
-              Email: <Span>08166939205</Span>
+              Email: <Span>{user.email}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <LocationOn style={{ color: "#26abf2" }} />
             <UserDesc>
-              Location: <Span>08166939205</Span>
+              Location: <Span>{user.address}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <CalendarToday style={{ color: "#26abf2" }} />
             <UserDesc>
-              DOB: <Span>08166939205</Span>
+              DOB: <Span>{user.dob}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <CalendarToday style={{ color: "#26abf2" }} />
             <UserDesc>
-              Reg.Date: <Span>08166939205</Span>
+              Reg.Date: <Span>{user.reg_date}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <CalendarToday style={{ color: "#26abf2" }} />
             <UserDesc>
-              Last Login: <Span>08166939205</Span>
+              Last Login: <Span>{user.last_login}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <AccountBalanceWallet style={{ color: "#26abf2" }} />
             <UserDesc>
-              Virtual Account: <Span>08166939205</Span>
+              Virtual Account: <Span>{user.account_number}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <PhoneIphone style={{ color: "#26abf2" }} />
             <UserDesc>
-              Installed Version: <Span>08166939205</Span>
+              Installed Version: <Span>v-</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <Brush style={{ color: "#26abf2" }} />
             <UserDesc>
-              Referral Plan: <Span>08166939205</Span>
+              Referral Plan: <Span>{user.referral_plan}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <Brush style={{ color: "#26abf2" }} />
             <UserDesc>
-              Level: <Span>08166939205</Span>
+              Level: <Span>{user.level}</Span>
             </UserDesc>
           </Desc>
         </Right>
