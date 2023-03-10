@@ -1,6 +1,7 @@
 import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
+import UserProfile from "../../components/userProfile/UserProfile";
 
 import {
   Container,
@@ -22,6 +23,7 @@ const Profile = () => {
             User / <DescSpan>Profile</DescSpan>
           </DescP>
         </Desc>
+        <UserProfile />
       </Wrapper>
       <Footer />
     </Container>
