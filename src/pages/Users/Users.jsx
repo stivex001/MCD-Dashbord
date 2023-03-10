@@ -15,20 +15,7 @@ import {
 } from "../transaction/transHistory.styles";
 
 const Users = () => {
-  const [allUsers, setAllUsers] = useState([]);
-  const [userOverview, setUserOverview] = useState('');
-
-  useEffect(() => {
-    const getAllUsers = async () => {
-      try {
-        const res = await userRequest.get("/allUsers");
-        setAllUsers(res.data.data.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getAllUsers();
-  }, []);
+  const [userOverview, setUserOverview] = useState("");
 
   useEffect(() => {
     const getUserOverview = async () => {
@@ -41,19 +28,6 @@ const Users = () => {
     };
     getUserOverview();
   }, []);
-
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
- 
 
   return (
     <Container>
@@ -73,13 +47,7 @@ const Users = () => {
         </CardContainer>
 
         {/* TABLES */}
-        <UserTable
-          allUsers={allUsers}
-          page={page}
-          handleChangePage={handleChangePage}
-          handleChangeRowsPerPage={handleChangeRowsPerPage}
-          rowsPerPage={rowsPerPage}
-        />
+        <UserTable />
       </Wrapper>
       <Footer />
     </Container>
