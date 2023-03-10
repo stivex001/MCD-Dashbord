@@ -9,10 +9,10 @@ background-color: #fff;
   margin: 50px 0;
 `;
 
-const SamjiTrans = () => {
+const SamjiWallet = () => {
   return (
-    <Container>SamjiTrans</Container>
+    <Container>SamjiWallet</Container>
   )
 }
 
-export default SamjiTrans
+export default SamjiWallet

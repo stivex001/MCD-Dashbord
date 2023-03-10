@@ -9,10 +9,10 @@ background-color: #fff;
   margin: 50px 0;
 `;
 
-const SamjiTrans = () => {
+const Nofication = () => {
   return (
-    <Container>SamjiTrans</Container>
+    <Container>Nofication</Container>
   )
 }
 
-export default SamjiTrans
+export default Nofication

@@ -3,7 +3,10 @@ import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
 import General from "../../components/General/General";
+import Information from "../../components/Information/Information";
+import Nofication from "../../components/Notification/Notification";
 import SamjiTrans from "../../components/samjiTrans/SamjiTrans";
+import SamjiWallet from "../../components/samjiWallet/SamjiWallet";
 import UserProfile from "../../components/userProfile/UserProfile";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
 
@@ -41,10 +44,10 @@ const Profile = () => {
         <div>
         <List>
         <Btn active={currentPage === <General /> } onClick={() => handleButtonClick(<General />)}>General</Btn>
-        <Btn to='#activity_detail' onClick={() => handleButtonClick(<SamjiTrans />)}>Transactions</Btn>
-        <Btn to="/">Wallet</Btn>
-        <Btn to="#">Push Notification</Btn>
-        <Btn to="#">Information</Btn>
+        <Btn  onClick={() => handleButtonClick(<SamjiTrans />)}>Transactions</Btn>
+        <Btn onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
+        <Btn onClick={() => handleButtonClick(<Nofication />)}>Push Notification</Btn>
+        <Btn onClick={() => handleButtonClick(<Information />)}>Information</Btn>
       </List>
       {currentPage}
         </div>
