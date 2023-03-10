@@ -1,5 +1,6 @@
-import { CameraAlt, Phone } from "@mui/icons-material";
+import { AccountBalanceWallet, Brush, CalendarToday, CameraAlt, LocationOn, MailOutline, Phone, PhoneIphone } from "@mui/icons-material";
 import styled from "styled-components";
+import { tablet } from "../../responsive";
 
 const Container = styled.div`
 background-color: #fff;
@@ -15,21 +16,35 @@ align-items: center;
 justify-content: space-between;
 padding: 20px 50px;
 color: white;
+${tablet({ flexDirection: "column", alignItems: 'flex-start', gap: '40px'})};
 `;
 const Left = styled.div``;
 const UserImg = styled.img``;
-const Username = styled.p``;
+const Username = styled.p`
+font-size: 24px;
+`;
 const Fullname = styled.p``;
-const Brandname = styled.span``;
+const Brandname = styled.span`
+font-size: 13px;
+color: #8c9ea9;
+`;
 const Right = styled.div`
+display: flex;
+flex-direction: column;
+gap: 20px;
 `;
 const Desc = styled.div`
 display: flex;
 align-items: center;
 gap: 10px;
 `;
-const UserDesc = styled.p``;
-const Span = styled.span``;
+const UserDesc = styled.p`
+font-size: 14px;
+font-weight: bold;
+`;
+const Span = styled.span`
+font-weight: 400;
+`;
 
 const UserProfile = () => {
   return (
@@ -44,44 +59,44 @@ const UserProfile = () => {
             </Left>
             <Right>
                 <Desc>
-                    <Phone />
+                    <Phone style={{color: '#26abf2'}} />
                     <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
                 </Desc>
                 <Desc>
-                    <Phone />
-                    <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
+                    <MailOutline style={{color: '#26abf2'}} />
+                    <UserDesc>Email: <Span>08166939205</Span></UserDesc>
                 </Desc>
                 <Desc>
-                    <Phone />
-                    <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
+                    <LocationOn style={{color: '#26abf2'}} />
+                    <UserDesc>Location: <Span>08166939205</Span></UserDesc>
                 </Desc>
                 <Desc>
-                    <Phone />
-                    <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
+                    <CalendarToday style={{color: '#26abf2'}} />
+                    <UserDesc>DOB: <Span>08166939205</Span></UserDesc>
                 </Desc>
                 <Desc>
-                    <Phone />
-                    <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
+                    <CalendarToday style={{color: '#26abf2'}} />
+                    <UserDesc>Reg.Date: <Span>08166939205</Span></UserDesc>
                 </Desc>
                 <Desc>
-                    <Phone />
-                    <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
+                    <CalendarToday style={{color: '#26abf2'}} />
+                    <UserDesc>Last Login: <Span>08166939205</Span></UserDesc>
                 </Desc>
                 <Desc>
-                    <Phone />
-                    <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
+                    <AccountBalanceWallet style={{color: '#26abf2'}} />
+                    <UserDesc>Virtual Account: <Span>08166939205</Span></UserDesc>
                 </Desc>
                 <Desc>
-                    <Phone />
-                    <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
+                    <PhoneIphone style={{color: '#26abf2'}} />
+                    <UserDesc>Installed Version: <Span>08166939205</Span></UserDesc>
                 </Desc>
                 <Desc>
-                    <Phone />
-                    <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
+                    <Brush style={{color: '#26abf2'}} />
+                    <UserDesc>Referral Plan: <Span>08166939205</Span></UserDesc>
                 </Desc>
                 <Desc>
-                    <Phone />
-                    <UserDesc>Phone: <Span>08166939205</Span></UserDesc>
+                    <Brush style={{color: '#26abf2'}} />
+                    <UserDesc>Level: <Span>08166939205</Span></UserDesc>
                 </Desc>
             </Right>
         </Wrapper>

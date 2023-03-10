@@ -68,7 +68,7 @@ const App = () => {
         <Route path="/withdrawal" element={<WithdrawReq />} />
 
         {/* User Page */}
-        <Route path="/users" element={<Users />} />
+        <Route path="/users" element={user ? <Users /> : <Navigate to="/login" />} />
         <Route path="/find-users" element={<FindUser />} />
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
         <Route path="/agent-payment" element={<AgentPayment />} />
