@@ -1,4 +1,5 @@
 import { AccountBalanceWallet, Brush, CalendarToday, CameraAlt, LocationOn, MailOutline, Phone, PhoneIphone } from "@mui/icons-material";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { tablet } from "../../responsive";
 
@@ -44,6 +45,26 @@ font-weight: bold;
 `;
 const Span = styled.span`
 font-weight: 400;
+`;
+const List = styled.div`
+padding: 20px;
+display: flex;
+gap: 20px;
+`;
+const Btn = styled(NavLink)`
+font-size: 14px;
+background-color: #fff;
+padding: 8px 16px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+text-decoration: none;
+color: inherit;
+
+&.active {
+    background-color: #605daf;
+    color: #fff;
+}
 `;
 
 const UserProfile = () => {
@@ -100,6 +121,15 @@ const UserProfile = () => {
                 </Desc>
             </Right>
         </Wrapper>
+        
+            <List>
+                <Btn to='#'>General</Btn>
+                <Btn to='/'>Transactions</Btn>
+                <Btn to='/'>Wallet</Btn>
+                <Btn to='#'>Push Notification</Btn>
+                <Btn to='#'>Information</Btn>
+            </List>
+        
     </Container>
   )
 }
