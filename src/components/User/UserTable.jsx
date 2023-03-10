@@ -28,7 +28,7 @@ const UserTable = () => {
     <Container>
         <Title>Users Table</Title>
         <P>Use <Span>pencil icon</Span> to view user profile</P>
-        <UserDataTable />
+        <UserDataTable  />
     </Container>
   )
 }
