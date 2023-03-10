@@ -13,12 +13,10 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../../requestMethods";
 import {
   Brandname,
-  Btn,
   Container,
   Desc,
   Fullname,
   Left,
-  List,
   Right,
   Span,
   UserDesc,
@@ -28,37 +26,33 @@ import {
 } from "./userProfile.styles";
 
 const UserProfile = () => {
+  const [user, setUser] = useState([]);
+  // const location = useLocation()
+  // const userId = location.pathname.split('/')[2];
 
-    const [user, setUser] = useState([]);
-    // const location = useLocation()
-    // const userId = location.pathname.split('/')[2];
-
-    useEffect(() => {
-        const getUser = async () => {
-          try {
-            const res = await userRequest.get('/profile/samji');
-            console.log(res);
-            setUser(res.data.data.data);
-          } catch (error) {
-            console.log(error.message);
-          }
-        };
-        getUser();
-      }, []);
-
-      if (!user) {
-        return <div>Loading....</div>
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await userRequest.get("/profile/samji");
+        console.log(res);
+        setUser(res.data.data.data);
+      } catch (error) {
+        console.log(error.message);
       }
+    };
+    getUser();
+  }, []);
 
-      
+//   if (!user) {
+//     return <div>Loading....</div>;
+//   }
 
-    //   const registeredUser = user.length > 0 ? user.find((reg) => reg.user_name === userId) : null;
+  //   const registeredUser = user.length > 0 ? user.find((reg) => reg.user_name === userId) : null;
 
-// console.log(registeredUser);
+  // console.log(registeredUser);
   return (
     <Container>
-        
-            <Wrapper>
+      <Wrapper>
         <Left>
           <UserImg src={user.photo} alt="" />
           <CameraAlt />
@@ -129,14 +123,6 @@ const UserProfile = () => {
           </Desc>
         </Right>
       </Wrapper>
-
-      <List>
-        <Btn to="#">General</Btn>
-        <Btn to="/">Transactions</Btn>
-        <Btn to="/">Wallet</Btn>
-        <Btn to="#">Push Notification</Btn>
-        <Btn to="#">Information</Btn>
-      </List>
     </Container>
   );
 };
