@@ -36,6 +36,7 @@ import WithdrawReq from "./pages/Wallet/WithdrawReq";
 import AgentPayment from "./pages/Users/AgentPayment";
 import { useSelector } from "react-redux";
 import Users from "./pages/Users/Users";
+import Profile from "./pages/Profile/Profile";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -71,6 +72,7 @@ const App = () => {
         <Route path="/find-users" element={<FindUser />} />
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
         <Route path="/agent-payment" element={<AgentPayment />} />
+        <Route path="/profile/:userId" element={<Profile />} />
 
         {/* Verification Page */}
         <Route path="/server1" element={<Server1 />} />

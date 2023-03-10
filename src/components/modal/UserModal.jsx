@@ -60,7 +60,7 @@ const UserModal = () => {
           <H2>Welcome</H2>
         </Title>
         <ListWrapper>
-          <List to='#'>
+          <List to='/profile'>
             <PersonPin style={{ color: "#95a5af" }} />
             <Span>Profile</Span>
           </List>
