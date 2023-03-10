@@ -76,6 +76,9 @@ const Navbar = () => {
     logout(dispatch);
     navigate('/login')
   }
+  const handleProfile = () => {
+    navigate('/profile/samji')
+  }
 
   const openProfileHandler = () => {
     setOpenModal(!openModal)
@@ -135,6 +138,7 @@ const Navbar = () => {
             <IconContainer>
               <Tooltip title="Profile">
                 <PermIdentity
+                onClick={handleProfile}
                   style={{
                     color: "blue",
                     boxShadow: "1px 2px 5px 1px rgba(0, 0, 0, 0.2)",

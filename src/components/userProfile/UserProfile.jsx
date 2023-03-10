@@ -9,14 +9,14 @@ import {
   PhoneIphone,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { userRequest } from "../../requestMethods";
 import {
   Brandname,
   Btn,
   Container,
   Desc,
-//   Fullname,
+  Fullname,
   Left,
   List,
   Right,
@@ -30,21 +30,21 @@ import {
 const UserProfile = () => {
 
     const [user, setUser] = useState([]);
-    const location = useLocation()
-    const userId = location.pathname.split('/')[2];
+    // const location = useLocation()
+    // const userId = location.pathname.split('/')[2];
 
     useEffect(() => {
         const getUser = async () => {
           try {
-            const res = await userRequest.get(`/profile/${userId}`);
+            const res = await userRequest.get('/profile/samji');
+            console.log(res);
             setUser(res.data.data.data);
           } catch (error) {
             console.log(error.message);
           }
         };
         getUser();
-      }, [userId]);
-      console.log(user);
+      }, []);
 
       if (!user) {
         return <div>Loading....</div>
@@ -63,7 +63,7 @@ const UserProfile = () => {
           <UserImg src={user.photo} alt="" />
           <CameraAlt />
           <Username>{user.user_name}</Username>
-          {/* <Fullname>Odejinmi Samuel</Fullname> */}
+          <Fullname>Odejinmi Samuel</Fullname>
           <Brandname> ({user.status})</Brandname>
         </Left>
         <Right>

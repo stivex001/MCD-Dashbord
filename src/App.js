@@ -72,7 +72,7 @@ const App = () => {
         <Route path="/find-users" element={<FindUser />} />
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
         <Route path="/agent-payment" element={<AgentPayment />} />
-        <Route path="/profile/:userId" element={<Profile />} />
+        <Route path="/profile/samji" element={<Profile />} />
 
         {/* Verification Page */}
         <Route path="/server1" element={<Server1 />} />
