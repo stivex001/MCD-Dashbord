@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import Widget from "./WIdget";
 
 const Container = styled.div`
+`;
+const Wrapper = styled.div`
 background-color: #fff;
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
@@ -9,9 +12,13 @@ background-color: #fff;
   margin: 50px 0;
 `;
 
-const General = ({showGeneral}) => {
+const General = () => {
   return (
-    <Container>General</Container>
+    <Container>
+        <Wrapper>
+            <Widget />
+        </Wrapper>
+    </Container>
   )
 }
 
