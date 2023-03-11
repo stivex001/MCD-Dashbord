@@ -90,10 +90,10 @@ const App = () => {
         <Route path="/payment" element={<Payment />} />
 
         {/* Sercice Controller Page */}
-        <Route path="/mtn" element={<Mtn />} />
-        <Route path="/airtel" element={<Airtel />} />
-        <Route path="/glo" element={<Glo />} />
-        <Route path="/9mobile" element={<Nmobile />} />
+        <Route path="/datalist/MTN" element={<Mtn />} />
+        <Route path="/datalist/AIRTEL" element={<Airtel />} />
+        <Route path="/datalist/GLO" element={<Glo />} />
+        <Route path="/datalist/9MOBILE" element={<Nmobile />} />
         <Route path="/tvcontrol" element={<Tv />} />
         <Route path="/electricitycontrol" element={<Electricity />} />
 

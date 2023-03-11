@@ -301,22 +301,22 @@ export const sidebarData = [
       {
         id: 1,
         title: "MTN Data Plans",
-        to: "/mtn",
+        to: "/datalist/MTN",
       },
       {
         id: 2,
         title: "AIRTEL Data Plans",
-        to: "/airtel",
+        to: "/datalist/AIRTEL",
       },
       {
         id: 3,
         title: "GLO Data Plans",
-        to: "/glo",
+        to: "/datalist/GLO",
       },
       {
         id: 4,
         title: "9MOBILE Data Plans",
-        to: "/9mobile",
+        to: "/datalist/9MOBILE",
       },
       {
         id: 5,

@@ -15,17 +15,17 @@ const Tablehead = ({
 }) => {
   return (
     <TableHead>
-      <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-        <TableCell style={{ color: "#8281cc" }}>{id}</TableCell>
-        <TableCell style={{ color: "#8281cc" }}>{network}</TableCell>
-        <TableCell style={{ color: "#8281cc" }}>{product}</TableCell>
-        <TableCell style={{ color: "#8281cc" }}>{price}</TableCell>
-        <TableCell style={{ color: "#8281cc" }}>{yourPrice}</TableCell>
-        <TableCell style={{ color: "#8887a9" }}>{discount}</TableCell>
-        <TableCell style={{ color: "#8281cc" }}>{server}</TableCell>
-        <TableCell style={{ color: "#8281cc" }}>{status} </TableCell>
-        <TableCell style={{ color: "#8281cc" }}>{date}</TableCell>
-        <TableCell style={{ color: "#8281cc" }}>{action}</TableCell>
+      <TableRow style={{ backgroundColor: "#f3f2f7"}}>
+        <TableCell style={{ color: "#8281cc", fontWeight: '700'  }}>{id}</TableCell>
+        <TableCell style={{ color: "#8281cc", fontWeight: '700'  }}>{network}</TableCell>
+        <TableCell style={{ color: "#8281cc", fontWeight: '700'  }}>{product}</TableCell>
+        <TableCell style={{ color: "#8281cc", fontWeight: '700'  }}>{price}</TableCell>
+        <TableCell style={{ color: "#8281cc", fontWeight: '700'  }}>{yourPrice}</TableCell>
+        <TableCell style={{ color: "#8887a9", fontWeight: '700'  }}>{discount}</TableCell>
+        <TableCell style={{ color: "#8281cc", fontWeight: '700'  }}>{server}</TableCell>
+        <TableCell style={{ color: "#8281cc", fontWeight: '700'  }}>{status} </TableCell>
+        <TableCell style={{ color: "#8281cc", fontWeight: '700'  }}>{date}</TableCell>
+        <TableCell style={{ color: "#8281cc", fontWeight: '700'  }}>{action}</TableCell>
       </TableRow>
     </TableHead>
   );
