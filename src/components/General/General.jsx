@@ -9,7 +9,7 @@ display: flex;
 gap: 30px;
 width: 100%;
 height: 100%;
-${tablet({ flexDirection: "column"})};
+${tablet({ flexDirection: "column", gap: '0'})};
 `;
 const Wrapper = styled.div`
   background-color: #fff;
@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
   padding: 20px;
   margin: 50px 0;
+  width: ${prop => prop.width};
 `;
 const Left = styled.div`
 flex: 1.2;
@@ -38,7 +39,7 @@ const General = () => {
         </Wrapper>
       </Left>
       <Right>
-        <Wrapper>
+        <Wrapper width='70%'>
           <Performance />
         </Wrapper>
       </Right>
