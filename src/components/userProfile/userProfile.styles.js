@@ -66,3 +66,7 @@ export const Btn = styled.button`
 
 
 `;
+export const ActiveButton = styled(Btn)`
+  background-color: red; 
+`;
+
