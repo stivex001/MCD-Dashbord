@@ -26,6 +26,10 @@ flex: 1.2;
 const Right = styled.div`
 flex: 2;
 `;
+const Ref = styled.p`
+color:#333265;
+font-size: 14px;
+`;
 
 const General = () => {
   return (
@@ -42,6 +46,7 @@ const General = () => {
         <Wrapper width='70%'>
           <Performance />
         </Wrapper>
+        <Ref>Referrals:</Ref>
       </Right>
     </Container>
   );
