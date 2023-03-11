@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Info from "./Info";
 import Widget from "./WIdget";
 
 const Container = styled.div`
@@ -17,6 +18,9 @@ const General = () => {
     <Container>
         <Wrapper>
             <Widget />
+        </Wrapper>
+        <Wrapper>
+           <Info />
         </Wrapper>
     </Container>
   )
