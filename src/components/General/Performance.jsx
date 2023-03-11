@@ -18,6 +18,7 @@ margin: 10px 0;
 `;
 const InputContainer = styled.div``;
 const InputWrapper = styled.div``;
+const Label = styled.label``;
 
 const Performance = () => {
   return (
@@ -28,7 +29,7 @@ const Performance = () => {
       </Wrapper>
       <InputContainer>
         <InputWrapper>
-          <label htmlFor="">Data</label>
+          <Label htmlFor="">Data</Label>
           <input type="range" name="" id="" />
         </InputWrapper>
       </InputContainer>
