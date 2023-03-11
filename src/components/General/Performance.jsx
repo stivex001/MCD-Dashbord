@@ -16,6 +16,8 @@ const Desc = styled.span`
 font-size: 16px;
 margin: 10px 0;
 `;
+const InputContainer = styled.div``;
+const InputWrapper = styled.div``;
 
 const Performance = () => {
   return (
@@ -24,12 +26,12 @@ const Performance = () => {
         <Heading>8.33</Heading>
         <Desc>Overall Performance</Desc>
       </Wrapper>
-      <div>
-        <div>
+      <InputContainer>
+        <InputWrapper>
           <label htmlFor="">Data</label>
           <input type="range" name="" id="" />
-        </div>
-      </div>
+        </InputWrapper>
+      </InputContainer>
     </Container>
   );
 };
