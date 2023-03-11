@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div``;
-export const SidebarLink = styled(Link)`
+export const SidebarLink = styled(NavLink)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,7 +26,7 @@ export const SidebarLabel = styled.span`
     color: #605daf;
   }
 `;
-export const DropdownLink = styled(Link)`
+export const DropdownLink = styled(NavLink)`
   height: 60px;
   padding-left: 3rem;
   display: flex;
