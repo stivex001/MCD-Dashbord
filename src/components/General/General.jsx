@@ -18,7 +18,15 @@ const Wrapper = styled.div`
   -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
   padding: 20px;
   margin: 50px 0;
-  width: ${(prop) => prop.width};
+`;
+const Wrapperr = styled.div`
+  background-color: #fff;
+  box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
+  padding: 20px;
+  margin: 50px 0;
+  ${tablet({ width: "70%" })};
 `;
 const Left = styled.div`
   flex: 1.2;
@@ -43,9 +51,9 @@ const General = () => {
         </Wrapper>
       </Left>
       <Right>
-        <Wrapper width="70%">
+        <Wrapperr width="70%">
           <Performance />
-        </Wrapper>
+        </Wrapperr>
         <Ref>Referrals:</Ref>
       </Right>
     </Container>
