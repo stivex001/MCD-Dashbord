@@ -37,6 +37,7 @@ import AgentPayment from "./pages/Users/AgentPayment";
 import { useSelector } from "react-redux";
 import Users from "./pages/Users/Users";
 import Profile from "./pages/Profile/Profile";
+import Settings from "./pages/Settings/Setting";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -68,7 +69,10 @@ const App = () => {
         <Route path="/withdrawal" element={<WithdrawReq />} />
 
         {/* User Page */}
-        <Route path="/users" element={user ? <Users /> : <Navigate to="/login" />} />
+        <Route
+          path="/users"
+          element={user ? <Users /> : <Navigate to="/login" />}
+        />
         <Route path="/find-users" element={<FindUser />} />
         <Route path="/referral-upgrade" element={<ReferalUpgrade />} />
         <Route path="/agent-payment" element={<AgentPayment />} />
@@ -88,6 +92,9 @@ const App = () => {
 
         {/* Payment Page */}
         <Route path="/payment" element={<Payment />} />
+
+        {/* Settings Page */}
+        <Route path="/allsettings" element={<Settings />} />
 
         {/* Sercice Controller Page */}
         <Route path="/datalist/MTN" element={<Mtn />} />

@@ -64,7 +64,7 @@ const UserModal = () => {
             <PersonPin style={{ color: "#95a5af" }} />
             <Span>Profile</Span>
           </List>
-          <List to='#'>
+          <List to='/allsettings'>
             <Settings style={{ color: "#95a5af" }} />
             <Span>Settings</Span>
           </List>

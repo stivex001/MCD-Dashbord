@@ -79,6 +79,9 @@ const Navbar = () => {
   const handleProfile = () => {
     navigate('/profile/samji')
   }
+  const handleSettings = () => {
+    navigate('/allsettings')
+  }
 
   const openProfileHandler = () => {
     setOpenModal(!openModal)
@@ -149,6 +152,7 @@ const Navbar = () => {
               </Tooltip>
               <Tooltip title="Settings">
                 <Settings
+                onClick={handleSettings}
                   style={{
                     margin: "0 20px",
                     color: "gray",
