@@ -5,10 +5,12 @@ import {airtimeData} from "../../components/DataPlansTable/dataPlans";
 import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
+import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
 margin: 70px 0;
+${laptop({ marginLeft: "250px" })};
 `;
 const Wrapper = styled.div`
   padding: 20px;
@@ -39,8 +41,7 @@ const AirtimeControl = () => {
             Services / <DescSpan>Reseller Airtime Control</DescSpan>
           </DescP>
         </Desc>
-      </Wrapper>
-      <TableWrapper>
+        <TableWrapper>
         <P>Network List</P>
         <Details>
           <TableContainer component={Paper}>
@@ -70,7 +71,7 @@ const AirtimeControl = () => {
           </TableContainer>
         </Details>
       </TableWrapper>
-
+      </Wrapper>
       <Footer />
     </Container>
   );

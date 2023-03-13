@@ -1,14 +1,16 @@
-import { Paper, Table, TableContainer } from "@mui/material";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
-import {airtimeData} from "../../components/DataPlansTable/dataPlans";
-import Tablebody from "../../components/DataPlansTable/Tablebody";
-import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
+import { userRequest } from "../../requestMethods";
+import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
 margin: 70px 0;
+${laptop({ marginLeft: "250px" })};
 `;
 const Wrapper = styled.div`
   padding: 20px;
@@ -27,8 +29,33 @@ const P = styled.p`
 const Details = styled.div`
   margin: 30px 0;
 `;
+const BtnConatiner = styled(Link)`
+  background-color: #aaaece;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 3px;
+`;
 
 const Settings = () => {
+    const [settings, setSettings] = useState([]);
+
+
+  useEffect(() => {
+    const getPendingTransactions = async () => {
+      try {
+        const res = await userRequest.get("/settings");
+        setSettings(res.data.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getPendingTransactions();
+  }, [settings]);
+
   return (
     <Container>
       <Navbar />
@@ -39,38 +66,41 @@ const Settings = () => {
             Settings / <DescSpan>Settings Control</DescSpan>
           </DescP>
         </Desc>
-      </Wrapper>
-      <TableWrapper>
-        <P>Settings List List</P>
+        <TableWrapper>
+        <P>Settings List</P>
         <Details>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <Tablehead
-                id="id"
-                network="Network"
-                yourPrice="Discount"
-                server="Server"
-                status="Status"
-                date="Date Modified"
-                action="Action"
-              />
-              {airtimeData.map((row) => (
-                <Tablebody
-                  id={row.id}
-                  name={row.name}
-                  network={row.network}
-                  yourprice={row.discount}
-                  server={row.server}
-                  action={row.action}
-                  status={row.status}
-                  date={row.date}
-                />
+        <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Name</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Value</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Date Modified</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {settings
+              .map((row) => (
+                <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    {row.name}
+                  </TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>{row.value}</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                    {row.updated_at}
+                  </TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>
+                  <BtnConatiner to={`/allsettings-edits/${row.id}`}>Modify</BtnConatiner>
+                  </TableCell>
+                </TableRow>
               ))}
-            </Table>
-          </TableContainer>
+          </TableBody>
+        </Table>
+      </TableContainer>
         </Details>
       </TableWrapper>
-
+      </Wrapper>
       <Footer />
     </Container>
   );

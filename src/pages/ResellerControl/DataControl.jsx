@@ -1,14 +1,16 @@
 import { Paper, Table, TableContainer } from "@mui/material";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
-import {dataData} from "../../components/DataPlansTable/dataPlans";
+import { dataData } from "../../components/DataPlansTable/dataPlans";
 import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
+import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
-margin: 70px 0;
+  margin: 70px 0;
+  ${laptop({ marginLeft: "250px" })};
 `;
 const Wrapper = styled.div`
   padding: 20px;
@@ -39,41 +41,40 @@ const DataControl = () => {
             Services / <DescSpan>Reseller Data Plans</DescSpan>
           </DescP>
         </Desc>
-      </Wrapper>
-      <TableWrapper>
-        <P>Data Plans</P>
-        <Details>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <Tablehead
-                id="id"
-                network="Type"
-                product="Name"
-                price="Price"
-                yourPrice="Discount"
-                server="Server"
-                status="Status"
-                date="Date Modified"
-                action="Action"
-              />
-              {dataData.map((row) => (
-                <Tablebody
-                  id={row.id}
-                  name={row.name}
-                  network={row.network}
-                  price={row.price}
-                  yourprice={row.discount}
-                  server={row.server}
-                  action={row.action}
-                  status={row.status}
-                  date={row.date}
+        <TableWrapper>
+          <P>Data Plans</P>
+          <Details>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <Tablehead
+                  id="id"
+                  network="Type"
+                  product="Name"
+                  price="Price"
+                  yourPrice="Discount"
+                  server="Server"
+                  status="Status"
+                  date="Date Modified"
+                  action="Action"
                 />
-              ))}
-            </Table>
-          </TableContainer>
-        </Details>
-      </TableWrapper>
-
+                {dataData.map((row) => (
+                  <Tablebody
+                    id={row.id}
+                    name={row.name}
+                    network={row.network}
+                    price={row.price}
+                    yourprice={row.discount}
+                    server={row.server}
+                    action={row.action}
+                    status={row.status}
+                    date={row.date}
+                  />
+                ))}
+              </Table>
+            </TableContainer>
+          </Details>
+        </TableWrapper>
+      </Wrapper>
       <Footer />
     </Container>
   );
