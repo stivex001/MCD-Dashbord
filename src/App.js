@@ -38,6 +38,7 @@ import { useSelector } from "react-redux";
 import Users from "./pages/Users/Users";
 import Profile from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Setting";
+import Edit from "./pages/Settings/Edit";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -95,6 +96,7 @@ const App = () => {
 
         {/* Settings Page */}
         <Route path="/allsettings" element={<Settings />} />
+        <Route path="/allsettings-edit/:userId" element={<Edit />} />
 
         {/* Sercice Controller Page */}
         <Route path="/datalist/MTN" element={<Mtn />} />

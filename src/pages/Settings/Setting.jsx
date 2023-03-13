@@ -14,6 +14,7 @@ ${laptop({ marginLeft: "250px" })};
 `;
 const Wrapper = styled.div`
   padding: 20px;
+  height: 74vh;
 `;
 const TableWrapper = styled.div`
   background-color: #fff;
@@ -91,7 +92,7 @@ const Settings = () => {
                     {row.updated_at}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                  <BtnConatiner to={`/allsettings-edits/${row.id}`}>Modify</BtnConatiner>
+                  <BtnConatiner to={`/allsettings-edit/${row.id}`}>Modify</BtnConatiner>
                   </TableCell>
                 </TableRow>
               ))}
