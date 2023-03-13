@@ -43,11 +43,11 @@ const Profile = () => {
         <UserProfile />
         <div>
         <List>
-        <Btn active={currentPage === <General /> } onClick={() => handleButtonClick(<General />)}>General</Btn>
-        <Btn  onClick={() => handleButtonClick(<SamjiTrans />)}>Transactions</Btn>
-        <Btn onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
-        <Btn onClick={() => handleButtonClick(<Nofication />)}>Push Notification</Btn>
-        <Btn onClick={() => handleButtonClick(<Information />)}>Information</Btn>
+        <Btn to='/profile/samji/#general_detail'  onClick={() => handleButtonClick(<General />)}>General</Btn>
+        <Btn to='/profile/samji/#activity_detail' onClick={() => handleButtonClick(<SamjiTrans />)}>Transactions</Btn>
+        <Btn  onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
+        <Btn  onClick={() => handleButtonClick(<Nofication />)}>Push Notification</Btn>
+        <Btn  onClick={() => handleButtonClick(<Information />)}>Information</Btn>
       </List>
       {currentPage}
         </div>

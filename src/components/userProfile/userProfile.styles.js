@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 
@@ -20,8 +20,11 @@ export const Wrapper = styled.div`
 `;
 export const Left = styled.div``;
 export const UserImg = styled.img`
-width: 295px;
-heigth: 293px;
+width: 277px;
+heigth: 210px;
+background-color: white;
+padding: 4px;
+${mobile({ width: '245px', height: '186px' })};
 `;
 export const Username = styled.p`
   font-size: 24px;
@@ -55,21 +58,25 @@ export const List = styled.div`
   -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
   padding: 20px;
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 `;
-export const Btn = styled.button`
+export const Btn = styled.div`
   font-size: 14px;
   padding: 8px 16px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   text-decoration: none;
-  background-color: ${({ active }) => active ? '#605daf' : 'white'};
-  color: ${({ active }) => active ? 'white' : 'black'};
+  // background-color: ${({ active }) => active ? '#605daf' : 'white'};
+  // color: ${({ active }) => active ? 'red' : 'black'};
+  color: black;
+  &.active {
+    background-color: #605daf;
+    color: white;
+  }
 
 
 `;
-export const ActiveButton = styled(Btn)`
-  background-color: red; 
-`;
+
 

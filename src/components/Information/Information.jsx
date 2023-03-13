@@ -56,7 +56,7 @@ const Btn = styled.button`
   cursor: pointer;
   border: none;
   border-radius: 2px;
-  width: 15%;
+  // width: 15%;
   text-align: center;
   &:hover {
     color: black;
@@ -139,7 +139,7 @@ const Information = () => {
       <Btn type="update">Update Profile</Btn>
       <ResetButton>
         <Btn>Password Reset</Btn>
-        <Btn style={{ width: "10%" }}>Pin Reset</Btn>
+        <Btn>Pin Reset</Btn>
       </ResetButton>
     </Container>
   );
