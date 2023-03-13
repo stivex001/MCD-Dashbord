@@ -33,7 +33,7 @@ const SamjiTables = () => {
       }
     };
     getTransactionsHistory();
-  }, [transHistory]);
+  }, []);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
