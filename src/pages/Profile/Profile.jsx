@@ -21,7 +21,7 @@ import {
 
 const Profile = () => {
 
-  const [currentPage, setCurrentPage] = useState(null);
+  const [currentPage, setCurrentPage] = useState(<General />);
 
 
   const handleButtonClick = (page) => {
