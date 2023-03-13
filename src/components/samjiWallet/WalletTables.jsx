@@ -11,12 +11,7 @@ import { userRequest } from "../../requestMethods";
 import { TablePagination } from "@mui/material";
 
 const Container = styled.div``;
-const Span = styled.span`
-  color: #fff;
-  padding: 2.6px 4.2px;
-  font-size: 10.5px;
-  border-radius: 5px;
-`;
+
 
 const WalletTables = () => {
   const [transHistory, setTransHistory] = useState([]);
