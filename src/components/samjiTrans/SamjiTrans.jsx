@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import SamjiTables from "./SamjiTables";
 
 const Container = styled.div`
 background-color: #fff;
@@ -8,10 +9,18 @@ background-color: #fff;
   padding: 20px;
   margin: 50px 0;
 `;
+const Title = styled.h3`
+font-size: 16px;
+color: #4a4b4c;
+margin-bottom: 15px;
+`;
 
 const SamjiTrans = () => {
   return (
-    <Container>SamjiTrans</Container>
+    <Container>
+          <Title>Transactions</Title>
+          <SamjiTables />
+    </Container>
   )
 }
 
