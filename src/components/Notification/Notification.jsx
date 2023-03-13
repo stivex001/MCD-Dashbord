@@ -1,11 +1,13 @@
 import { NearMe } from "@mui/icons-material";
 import styled from "styled-components";
+import { mobile } from "../../responsive";
 import NotificationHistory from "./NotificationHistory";
 
 const Container = styled.div`
   margin: 50px 0;
   display: flex;
   gap: 30px;
+  ${mobile({ flexDirection: "column" })};
 `;
 const Left = styled.div`
 flex: 1;
@@ -20,6 +22,7 @@ background-color: #fff;
 const Textarea = styled.textarea`
 padding: 6px 12px;
 outline-color: #333265;
+${mobile({ width: "100%" })};
 `;
 const Btn = styled.button`
 display: flex;
