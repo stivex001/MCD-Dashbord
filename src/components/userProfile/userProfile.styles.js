@@ -19,7 +19,10 @@ export const Wrapper = styled.div`
   ${mobile({ flexDirection: "column", alignItems: "flex-start", gap: "40px" })};
 `;
 export const Left = styled.div``;
-export const UserImg = styled.img``;
+export const UserImg = styled.img`
+width: 295px;
+heigth: 293px;
+`;
 export const Username = styled.p`
   font-size: 24px;
 `;

@@ -54,11 +54,11 @@ const UserProfile = () => {
     <Container>
       <Wrapper>
         <Left>
-          <UserImg src={user.photo} alt="" />
+          <UserImg src='https://mcd.5starcompany.com.ng/app/avatar/samji.JPG' alt="" />
           <CameraAlt />
-          <Username>{user.user_name}</Username>
+          <Username>Samji</Username>
           <Fullname>Odejinmi Samuel</Fullname>
-          <Brandname> ({user.status})</Brandname>
+          <Brandname> samji Ventures (superadmin)</Brandname>
         </Left>
         <Right>
           <Desc>

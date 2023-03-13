@@ -51,7 +51,8 @@ const Btn = styled.button`
   align-items: center;
   padding: 12px;
   color: #fff;
-  background-color: ${prop => prop.type === 'update' ? ' #5b63ae' : '#f64269'};
+  background-color: ${(prop) =>
+    prop.type === "update" ? " #5b63ae" : "#f64269"};
   cursor: pointer;
   border: none;
   border-radius: 2px;
@@ -135,10 +136,10 @@ const Information = () => {
           <TextArea placeholder="Make up to 10 transactions to be eligible for an Agent and send a request mail to info@5starcompany.com.ng where you earn incentives on transactions done at the end of the month" />
         </InputContainer>
       </Form>
-      <Btn type='update'>Update Profile</Btn>
+      <Btn type="update">Update Profile</Btn>
       <ResetButton>
         <Btn>Password Reset</Btn>
-        <Btn style={{width: '10%'}}>Pin Reset</Btn>
+        <Btn style={{ width: "10%" }}>Pin Reset</Btn>
       </ResetButton>
     </Container>
   );
