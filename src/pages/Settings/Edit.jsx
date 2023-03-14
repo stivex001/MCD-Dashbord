@@ -6,7 +6,9 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-import {toast} from 'react-toastify'
+import {toast, ToastContainer} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Container = styled.div`
   margin: 70px 0;
@@ -100,7 +102,7 @@ const Edit = () => {
     else {
       toast.success("Changes made successfully")
 
-      setTimeout(() => navigate('/allsettings'), 500)
+      setTimeout(() => navigate('/allsettings'), 1000)
       
     }
   };
@@ -138,6 +140,7 @@ const Edit = () => {
             </InputContainer>
           </Form>
           <Btn onClick={handleEditClick}>Update</Btn>
+          <ToastContainer />
         </FormWrapper>
       </Wrapper>
       <Footer />
