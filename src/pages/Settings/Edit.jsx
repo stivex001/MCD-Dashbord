@@ -78,7 +78,7 @@ const Edit = () => {
         <Form>
           <InputContainer>
             <InputTitle>Name</InputTitle>
-            <Input background='email' type="text" placeholder="" />
+            <Input background='email'  value='iguegiugujbjkbjkb' />
           </InputContainer>
           <InputContainer>
             <InputTitle>Value</InputTitle>

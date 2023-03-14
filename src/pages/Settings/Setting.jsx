@@ -1,10 +1,11 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { userRequest } from "../../requestMethods";
+import { getSettings } from "../../Redux/apiCalls";
 import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
@@ -42,20 +43,13 @@ const BtnConatiner = styled(Link)`
 `;
 
 const Settings = () => {
-    const [settings, setSettings] = useState([]);
+    const settings = useSelector((state) => state.settings.settings)
+    const dispatch = useDispatch()
 
 
   useEffect(() => {
-    const getPendingTransactions = async () => {
-      try {
-        const res = await userRequest.get("/settings");
-        setSettings(res.data.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getPendingTransactions();
-  }, [settings]);
+    getSettings(dispatch)
+  }, [dispatch]);
 
   return (
     <Container>
