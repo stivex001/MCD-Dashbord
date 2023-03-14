@@ -74,17 +74,23 @@ const Btn = styled.button`
 const Edit = () => {
   const location = useLocation();
   const settingsId = Number(location.pathname.split("/")[2]);
-  const [inputData, setInputData] = useState({
-    name: "",
-    message: "",
-  });
-
   const settings = useSelector((state) =>
     state.settings.settings.find((setting) => setting.id === settingsId)
   );
 
-  const handleData = (e) => {
-    setInputData({ ...inputData, [e.target.name]: e.target.value });
+  const [inputNameData, setInputNameData] = useState(settings.name);
+  const [inputValueData, setInputValueData] = useState(settings.value);
+
+  const handleInputNameChange = (event) => {
+    setInputNameData(event.target.value);
+  };
+
+  const handleInputValueChange = (event) => {
+    setInputValueData(event.target.value);
+  };
+
+  const handleEditClick = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -103,23 +109,23 @@ const Edit = () => {
               <InputTitle>Name</InputTitle>
               <Input
                 background="email"
-                onChange={handleData}
-                value={inputData.name || ""}
+                onChange={handleInputNameChange}
+                value={inputNameData}
                 name="name"
-                placeholder={settings.name}
+                readOnly
               />
             </InputContainer>
             <InputContainer>
               <InputTitle>Value</InputTitle>
               <Input
                 type="text"
-                onChange={handleData}
-                value={inputData.message || ""}
+                onChange={handleInputValueChange}
+                value={inputValueData}
                 name="name"
               />
             </InputContainer>
           </Form>
-          <Btn>Update</Btn>
+          <Btn onClick={handleEditClick}>Update</Btn>
         </FormWrapper>
       </Wrapper>
       <Footer />
