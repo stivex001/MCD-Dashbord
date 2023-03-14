@@ -16,7 +16,6 @@ const settingsSlice = createSlice({
     getSettingsSucess: (state, action) => {
       state.isFetching = false;
       state.settings = action.payload;
-      state.message = action.payload
     },
     getSettingsFailure: (state) => {
       state.isFetching = false;
