@@ -95,8 +95,8 @@ const App = () => {
         <Route path="/payment" element={<Payment />} />
 
         {/* Settings Page */}
-        <Route path="/allsettings" element={<Settings />} />
-        <Route path="/allsettings-edit/:userId" element={<Edit />} />
+        <Route path="/allsettings" element={user ? <Settings /> : <Navigate to="/login" />} />
+        <Route path="/allsettings-edit/:userId" element={user ? <Edit /> : <Navigate to="/login" />} />
 
         {/* Sercice Controller Page */}
         <Route path="/datalist/MTN" element={<Mtn />} />
