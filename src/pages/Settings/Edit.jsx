@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
@@ -8,6 +8,7 @@ import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {toast, ToastContainer} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import { modifySettings } from "../../Redux/apiCalls";
 
 
 const Container = styled.div`
@@ -85,6 +86,7 @@ const Edit = () => {
   const [inputNameData, setInputNameData] = useState(settings.name);
   const [inputValueData, setInputValueData] = useState(settings.value);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleInputNameChange = (event) => {
     setInputNameData(event.target.value);
@@ -100,6 +102,7 @@ const Edit = () => {
       toast.error("You did not make any changes")
     }
     else {
+      dispatch(modifySettings( settings.id, { name: inputNameData, value: inputValueData }));
       toast.success("Changes made successfully")
 
       setTimeout(() => navigate('/allsettings'), 1000)
