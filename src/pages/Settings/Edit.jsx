@@ -40,6 +40,7 @@ const Input = styled.input`
   padding: 12px;
   flex: 1;
   outline: none;
+  font-weight: 300;
   background-color: ${(prop) =>
     prop.background === "email" ? "#e9ecef" : "none"};
   border: 0.5px solid #d4d8e1;
