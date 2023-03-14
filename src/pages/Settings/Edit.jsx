@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
+import {toast} from 'react-toastify'
 
 const Container = styled.div`
   margin: 70px 0;
@@ -81,6 +82,7 @@ const Edit = () => {
 
   const [inputNameData, setInputNameData] = useState(settings.name);
   const [inputValueData, setInputValueData] = useState(settings.value);
+  const navigate = useNavigate()
 
   const handleInputNameChange = (event) => {
     setInputNameData(event.target.value);
@@ -92,6 +94,15 @@ const Edit = () => {
 
   const handleEditClick = (e) => {
     e.preventDefault();
+    if (inputValueData === settings.value) {
+      toast.error("You did not make any changes")
+    }
+    else {
+      toast.success("Changes made successfully")
+
+      setTimeout(() => navigate('/allsettings'), 500)
+      
+    }
   };
 
   return (
@@ -104,7 +115,7 @@ const Edit = () => {
             Settings / <DescSpan>Modify Setting</DescSpan>
           </DescP>
         </Desc>
-        <FormWrapper>
+        <FormWrapper onSubmit={handleEditClick}>
           <Form>
             <InputContainer>
               <InputTitle>Name</InputTitle>
