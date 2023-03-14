@@ -5,7 +5,7 @@ import {
   logoutSuccess,
 } from "./userSlice";
 import { publicRequest, userRequest } from "../requestMethods";
-import { getSettingsFailure, getSettingsStart, getSettingsSucess } from "./settingsSlice";
+import { getSettingsFailure, getSettingsStart, getSettingsSucess, updateSettingsFailure, updateSettingsStart, updateSettingsSucess } from "./settingsSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -36,5 +36,15 @@ export const getSettings = async (dispatch) => {
     dispatch(getSettingsSucess(res.data.data))
   } catch (error) {
     dispatch(getSettingsFailure())
+  }
+}
+
+export const modifySettings = async (id, setting, dispatch) => {
+  dispatch(updateSettingsStart());
+  try {
+    const res = await userRequest.post("/settings", setting);
+    dispatch(updateSettingsSucess(res.data))
+  } catch (error) {
+    dispatch(updateSettingsFailure())
   }
 }
