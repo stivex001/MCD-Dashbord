@@ -27,8 +27,13 @@ const settingsSlice = createSlice({
     },
     updateSettingsSucess: (state, action) => {
       state.isFetching = false;
-      state.settings[state.settings.findIndex((item) => item.id === action.payload.id)] = action.payload.setting
+      const { id, setting } = action.payload;
+      const index = state.settings.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        state.settings[index] = setting;
+      }
     },
+    
     updateSettingsFailure: (state) => {
       state.isFetching = false;
       state.error = true;

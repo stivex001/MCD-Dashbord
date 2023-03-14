@@ -39,12 +39,13 @@ export const getSettings = async (dispatch) => {
   }
 }
 
-export const modifySettings = async (id, setting, dispatch) => {
-  dispatch(updateSettingsStart());
+export const modifySettings = async (dispatch, id, setting) => {
+  dispatch(updateSettingsStart()); // set isProcessing flag to true
   try {
-    const res = await userRequest.post("/settings", setting);
-    dispatch(updateSettingsSucess(res.data))
+    const res = await userRequest.post(`/settings`, setting); 
+    console.log(res);
+    dispatch(updateSettingsSucess({ id, setting: res.data })) // update the state with the new setting object
   } catch (error) {
-    dispatch(updateSettingsFailure())
+    dispatch(updateSettingsFailure()) // set error flag to true
   }
 }
