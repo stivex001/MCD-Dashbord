@@ -16,7 +16,7 @@ import {
   updateSettingsStart,
   updateSettingsSucess,
 } from "./settingsSlice";
-import { getWalletDataFailure, getWalletDataStart, getWalletDataSucess } from "./walletSlice";
+import { getWalletDataFailure, getWalletDataStart, getWalletDataSucess, getWithdrawalDataFailure, getWithdrawalDataStart, getWithdrawalDataSucess } from "./walletSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -78,5 +78,15 @@ export const getWalletData = async (dispatch) => {
     dispatch(getWalletDataSucess(res.data.data.data));
   } catch (error) {
     dispatch(getWalletDataFailure());
+  }
+};
+
+export const getWithdrawalData = async (dispatch) => {
+  dispatch(getWithdrawalDataStart());
+  try {
+    const res = await userRequest.get("/withdrawals");
+    dispatch(getWithdrawalDataSucess(res.data.data.data));
+  } catch (error) {
+    dispatch(getWithdrawalDataFailure());
   }
 };

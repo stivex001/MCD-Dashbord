@@ -4,12 +4,15 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  TablePagination,
   TableRow,
 } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { withdrawalData } from "../../components/Wallet/wallet";
+import { getWithdrawalData } from "../../Redux/apiCalls";
 import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
@@ -63,6 +66,27 @@ const Button = styled.button`
 `;
 
 const WithdrawReq = () => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const { withdrawalData, isFetching } = useSelector((state) => state.wallet);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getWithdrawalData(dispatch);
+  }, [dispatch]);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
   return (
     <Container>
       <Navbar />
@@ -80,81 +104,95 @@ const WithdrawReq = () => {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableBody>
                   <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-                    <TableCell style={{ color: "#827fc0" }}>id</TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>Username</TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>id</TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Username</TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>
                       Account Number
                     </TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>Amount</TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>Status</TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>Wallet</TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Amount</TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Status</TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Wallet</TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>
                       Reference
                     </TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>
                       Bank Name
                     </TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>Version</TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>Date</TableCell>
-                    <TableCell style={{ color: "#827fc0" }}>Action</TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Version</TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Date</TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Action</TableCell>
                   </TableRow>
                 </TableBody>
-                {withdrawalData.map((row) => (
-                  <TableBody>
-                    <TableRow
-                      key={row.id}
-                      style={{ backgroundColor: "#f3f2f7" }}
-                    >
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.id}
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.username}
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.account}
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.amount}
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        <Span
-                          style={{
-                            backgroundColor: `${
-                              row.status === "completed" ? "#5dd099" : "#f8c955"
-                            }`,
-                          }}
+                {withdrawalData &&
+                  withdrawalData
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => (
+                      <TableBody>
+                        <TableRow
+                          key={row.id}
+                          style={{ backgroundColor: "#f3f2f7" }}
                         >
-                          {row.status}
-                        </Span>
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.wallet}
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.ref}
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.bank}
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.version}
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.date}
-                      </TableCell>
-                      <TableCell style={{ color: "#8887a9" }}>
-                        {row.status === "pending" && (
-                          <BtnConatiner>
-                            <Button bg="approve">Approve</Button>
-                            <Button>Reject</Button>
-                          </BtnConatiner>
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                ))}
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.id}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.user_name}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.account_number}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                          &#8358;{row.amount}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            <Span
+                              style={{
+                                backgroundColor: `${
+                                  row.status === "completed"
+                                    ? "#5dd099"
+                                    : "#f8c955"
+                                }`,
+                              }}
+                            >
+                              {row.status}
+                            </Span>
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.wallet}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.ref}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.bank}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.version}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.created_at}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.status === "pending" && (
+                              <BtnConatiner>
+                                <Button bg="approve">Approve</Button>
+                                <Button>Reject</Button>
+                              </BtnConatiner>
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    ))}
               </Table>
+              <TablePagination
+                rowsPerPageOptions={[10, 15, 100]}
+                component="div"
+                count={withdrawalData && withdrawalData.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
             </TableContainer>
           </Details>
         </TableWrapper>
