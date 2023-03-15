@@ -33,5 +33,5 @@ export const CardContainer = styled.div`
   justify-content: space-between;
   gap: 20px;
   margin-bottom: 50px;
-  ${tablet({ flexDirection: "column" })};
+  ${mobile({ flexDirection: "column" })};
 `;

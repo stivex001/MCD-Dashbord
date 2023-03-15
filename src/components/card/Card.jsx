@@ -25,6 +25,8 @@ const Right = styled.div``;
 const P = styled.p`
   font-size: 20px;
   color: #4a4b4c;
+  font-weight: 500;
+  text-align: right;
 `;
 const Span = styled.span`
   font-size: 12px;
