@@ -7,10 +7,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { userRequest } from "../../requestMethods";
 import { TablePagination } from "@mui/material";
 import { Link } from "react-router-dom";
 import { NoteAlt } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers } from "../../Redux/apiCalls";
 
 const Container = styled.div``;
 const UserDeatils = styled.div`
@@ -26,21 +27,14 @@ const UserImg = styled.img`
 const Username = styled.p``;
 
 const UserDataTable = () => {
-  const [allUsers, setAllUsers] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const dispatch = useDispatch();
+  const { allUsers, isFetching } = useSelector((state) => state.user);
 
   useEffect(() => {
-    const getAllUsers = async () => {
-      try {
-        const res = await userRequest.get("/allUsers");
-        setAllUsers(res.data.data.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getAllUsers();
-  }, []);
+    getAllUsers(dispatch);
+  }, [dispatch]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -50,6 +44,10 @@ const UserDataTable = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Container>
@@ -78,49 +76,52 @@ const UserDataTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allUsers
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
-                  <TableCell style={{ color: "#8887a9" }}>
-                    <UserDeatils>
-                      <UserImg src={row.photo} alt="" />
-                      <Username>{row.user_name}</Username>
-                    </UserDeatils>
-                  </TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>
-                    {row.email}
-                  </TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>
-                    {row.phoneno}
-                  </TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>
-                    {row.wallet}
-                  </TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>
-                    {row.account_number}
-                  </TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>
-                    <Link to={'/profile/' + encodeURIComponent(row.user_name)}>
-                      <NoteAlt
-                        style={{
-                          backgroundColor: "5dd099",
-                          color: "white",
-                          padding: "4px 8px",
-                          fontSize: "40px",
-                          cursor: "pointer",
-                        }}
-                      />
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))}
+            {allUsers &&
+              allUsers
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => (
+                  <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      <UserDeatils>
+                        <UserImg src={row.photo} alt="" />
+                        <Username>{row.user_name}</Username>
+                      </UserDeatils>
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.email}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.phoneno}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.wallet}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row.account_number}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      <Link
+                        to={"/profile/" + encodeURIComponent(row.user_name)}
+                      >
+                        <NoteAlt
+                          style={{
+                            backgroundColor: "5dd099",
+                            color: "white",
+                            padding: "4px 8px",
+                            fontSize: "40px",
+                            cursor: "pointer",
+                          }}
+                        />
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                ))}
           </TableBody>
         </Table>
         <TablePagination
           rowsPerPageOptions={[10, 15, 100]}
           component="div"
-          count={allUsers.length}
+          count={allUsers && allUsers.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { laptop, mobile, tablet } from "../../responsive";
+import { laptop, mobile} from "../../responsive";
 
 export const Container = styled.div`
 background-color: #f5f5f5;
