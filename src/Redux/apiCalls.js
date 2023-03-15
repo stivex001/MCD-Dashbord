@@ -16,6 +16,7 @@ import {
   updateSettingsStart,
   updateSettingsSucess,
 } from "./settingsSlice";
+import { getWalletDataFailure, getWalletDataStart, getWalletDataSucess } from "./walletSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -67,5 +68,15 @@ export const modifySettings = async (dispatch, id, setting) => {
     dispatch(updateSettingsSucess({ id, setting: res.data })); // update the state with the new setting object
   } catch (error) {
     dispatch(updateSettingsFailure()); // set error flag to true
+  }
+};
+
+export const getWalletData = async (dispatch) => {
+  dispatch(getWalletDataStart());
+  try {
+    const res = await userRequest.get("/wallets");
+    dispatch(getWalletDataSucess(res.data.data.data));
+  } catch (error) {
+    dispatch(getWalletDataFailure());
   }
 };

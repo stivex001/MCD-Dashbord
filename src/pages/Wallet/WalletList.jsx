@@ -6,9 +6,12 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import { TablePagination } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { walletsData } from "../../components/Wallet/wallet";
+import { getWalletData } from "../../Redux/apiCalls";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Container,
@@ -20,6 +23,29 @@ import {
 } from "./wallet.styles";
 
 const WalletList = () => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const { walletData, isFetching } = useSelector((state) => state.wallet);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getWalletData(dispatch);
+  }, [dispatch]);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(walletData);
   return (
     <Container>
       <Navbar />
@@ -30,68 +56,105 @@ const WalletList = () => {
             Wallet / <DescSpan>Wallet List</DescSpan>
           </DescP>
         </Desc>
-      </Wrapper>
-      <TableWrapper>
-        <Title>Wallet Table</Title>
-        <Details>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableBody>
-                <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-                  <TableCell style={{ color: "#827fc0" }}>id</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>Username</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>Amount</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>Status</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>Medium</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>Reference</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>O.Wallet</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>N.Wallet</TableCell>
-                  <TableCell style={{ color: "#827fc0" }}>Version</TableCell>
-                </TableRow>
-              </TableBody>
-              {walletsData.map((row) => (
+        <TableWrapper>
+          <Title>Wallet Table</Title>
+          <Details>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableBody>
-                  <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
-                    <TableCell style={{ color: "#8887a9" }}>{row.id}</TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.username}
+                  <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      id
                     </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.amount}
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Username
                     </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      <Span
-                        style={{
-                          backgroundColor: `${
-                            row.status === "completed" ? "#5dd099" : "#f8c955"
-                          }`,
-                        }}
-                      >
-                        {row.status}
-                      </Span>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Amount
                     </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.medium}
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Status
                     </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.ref}
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Medium
                     </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.oWallet}
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Reference
                     </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.nWallet}
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      O.Wallet
                     </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.version}
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      N.Wallet
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Version
                     </TableCell>
                   </TableRow>
                 </TableBody>
-              ))}
-            </Table>
-          </TableContainer>
-        </Details>
-      </TableWrapper>
+                {walletData &&
+                  walletData
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => (
+                      <TableBody>
+                        <TableRow
+                          key={row.id}
+                          style={{ backgroundColor: "#f3f2f7" }}
+                        >
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.id}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.user_name}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                          &#8358;{row.amount}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            <Span
+                              style={{
+                                backgroundColor: `${
+                                  row.status === "completed"
+                                    ? "#5dd099"
+                                    : "#f8c955"
+                                }`,
+                              }}
+                            >
+                              {row.status}
+                            </Span>
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.medium}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.ref}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                          &#8358;{row.o_wallet}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                          &#8358;{row.n_wallet}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.version}
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    ))}
+              </Table>
+              <TablePagination
+                rowsPerPageOptions={[10, 15, 100]}
+                component="div"
+                count={walletData && walletData.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </TableContainer>
+          </Details>
+        </TableWrapper>
+      </Wrapper>
 
       <Footer />
     </Container>

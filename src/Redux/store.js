@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import pendingTransReducer from "./pendingTransSlice";
 import settingsReducer from "./settingsSlice";
+import walletReducer from "./walletSlice";
 import {
   persistStore,
   persistReducer,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   pendingTransaction: pendingTransReducer,
   settings: settingsReducer,
+  wallet: walletReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
