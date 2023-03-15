@@ -104,23 +104,39 @@ const WithdrawReq = () => {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableBody>
                   <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>id</TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Username</TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      id
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Username
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
                       Account Number
                     </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Amount</TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Status</TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Wallet</TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Amount
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Status
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Wallet
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
                       Reference
                     </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
                       Bank Name
                     </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Version</TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Date</TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: 'bold' }}>Action</TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Version
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Date
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Action
+                    </TableCell>
                   </TableRow>
                 </TableBody>
                 {withdrawalData &&
@@ -142,19 +158,25 @@ const WithdrawReq = () => {
                             {row.account_number}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
-                          &#8358;{row.amount}
+                            &#8358;{row.amount}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
                             <Span
                               style={{
                                 backgroundColor: `${
-                                  row.status === "completed"
+                                  row.status === 1
                                     ? "#5dd099"
-                                    : "#f8c955"
+                                    : row.status === 0
+                                    ? "#f96e5b"
+                                    : "#33cdff"
                                 }`,
                               }}
                             >
-                              {row.status}
+                              {row.status === 0
+                                ? "pending"
+                                : row.status === 1
+                                ? "completed"
+                                : "rejected"}
                             </Span>
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
@@ -173,7 +195,7 @@ const WithdrawReq = () => {
                             {row.created_at}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
-                            {row.status === "pending" && (
+                            {row.status === 0 && (
                               <BtnConatiner>
                                 <Button bg="approve">Approve</Button>
                                 <Button>Reject</Button>
