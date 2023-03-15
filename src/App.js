@@ -65,9 +65,9 @@ const App = () => {
         <Route path="/charges" element={<PCharges />} />
 
         {/* Wallet Page */}
-        <Route path="/addfund" element={<Credit />} />
-        <Route path="/wallet" element={<WalletList />} />
-        <Route path="/withdrawal" element={<WithdrawReq />} />
+        <Route path="/addfund" element={user ? <Credit /> : <Navigate to="/login" />} />
+        <Route path="/wallet" element={user ? <WalletList /> : <Navigate to="/login" />} />
+        <Route path="/withdrawal" element={user ? <WithdrawReq /> : <Navigate to="/login" />} />
 
         {/* User Page */}
         <Route
