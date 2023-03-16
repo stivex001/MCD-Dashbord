@@ -8,6 +8,9 @@ import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import Button from "../UI/Button";
 import { TablePagination } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPendingTransData } from "../../Redux/apiCalls";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -25,42 +28,38 @@ const Input = styled.input`
   margin-right: 20px;
 `;
 
-const PendingTables = ({pendingTrans, page, rowsPerPage, checkId, handleChangePage, handleChange, handleChangeRowsPerPage}) => {
-  // const [pendingTrans, setPendingTrans] = useState([]);
-  // const [page, setPage] = useState(0);
-  // const [rowsPerPage, setRowsPerPage] = useState(10);
-  // const [checkId, setCheckId] = useState([]);
+const PendingTables = () => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [checkId, setCheckId] = useState([]);
+  const { pendingTrans, isFetching } = useSelector((state) => state.transaction);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const getPendingTransactions = async () => {
-  //     try {
-  //       const res = await userRequest.get("/transactions/pending");
-  //       setPendingTrans(res.data.data.data);
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   };
-  //   getPendingTransactions();
-  // }, [pendingTrans]);
+  useEffect(() => {
+    getPendingTransData(dispatch);
+  }, [dispatch]);
 
-  // const handleChangePage = (event, newPage) => {
-  //   setPage(newPage);
-  // };
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-  // const handleChangeRowsPerPage = (event) => {
-  //   setRowsPerPage(+event.target.value);
-  //   setPage(0);
-  // };
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
-  // const handleChange = (e) => {
-  //   const id = e.target.value;
-  //   if (e.target.checked) {
-  //     setCheckId([...checkId, id]);
-  //   } else {
-  //     setCheckId(checkId.filter((checkedId) => checkedId !== id));
-  //   }
+  const handleChange = (e) => {
+    const id = e.target.value;
+    if (e.target.checked) {
+      setCheckId([...checkId, id]);
+    } else {
+      setCheckId(checkId.filter((checkedId) => checkedId !== id));
+    }
     
-  // };
+  };
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
   // console.log(checkId);
   return (
     <Container>
@@ -83,7 +82,7 @@ const PendingTables = ({pendingTrans, page, rowsPerPage, checkId, handleChangePa
             </TableRow>
           </TableHead>
           <TableBody>
-            {pendingTrans
+            {pendingTrans && pendingTrans
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
                 <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
@@ -138,7 +137,7 @@ const PendingTables = ({pendingTrans, page, rowsPerPage, checkId, handleChangePa
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={pendingTrans.length}
+          count={pendingTrans && pendingTrans.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
