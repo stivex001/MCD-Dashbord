@@ -1,10 +1,9 @@
 import { Close } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import PendingTables from "../../components/Pendingtable/PendingTables";
 import Button from "../../components/UI/Button";
-import { userRequest } from "../../requestMethods";
 import {
   BtnConatiner,
   Container,
@@ -22,18 +21,9 @@ import {
 } from "./pending.styles";
 
 const Pending = () => {
-  const [checkId, setCheckId] = useState([]);
-  const [showErr, setShowErr] = useState('');
+  const { checkId, error } = useSelector((state) => state.transaction);
 
-  // const handleChange = (e) => {
-  //   const id = e.target.value;
-  //   if (e.target.checked) {
-  //     setCheckId([...checkId, id]);
-  //   } else {
-  //     setCheckId(checkId.filter((checkedId) => checkedId !== id));
-  //   }
-  // };
-
+  console.log(checkId);
   return (
     <Container>
       <Navbar />
@@ -50,22 +40,24 @@ const Pending = () => {
           <P>
             Click on <Span>Re-process</Span> to reprocess in background.
           </P>
-          {showErr && (
+          {error && (
             <MsgContainer>
-            <H2>Kindly select some box!</H2>
-            <Close style={{ color: '#806e6b', cursor: 'pointer'}} />
-          </MsgContainer>
+              <H2>Kindly select some box!</H2>
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+            </MsgContainer>
           )}
-          
+
           <BtnConatiner>
-            <Button title="Re-process Selected" checkId={checkId} showErr={showErr} />
+            <Button
+              title="Re-process Selected"
+              checkId={checkId}
+              showErr={error}
+            />
             <Button title="Mark Delivered Selected" />
             <Button title="Reverse Transaction Selected" />
           </BtnConatiner>
           <div style={{ marginTop: "10px" }}>
-            <PendingTables
-              
-            />
+            <PendingTables />
           </div>
         </TransList>
       </Wrapper>

@@ -45,6 +45,17 @@ const pendingTransactionSlice = createSlice({
       state.isProcessing = false;
       state.error = true;
     },
+    toggleCheckbox: (state, action) => {
+      const id = action.payload
+      const isChecked = state.checkId.includes(id)
+
+      if (isChecked) {
+        state.checkId = state.checkId.filter((checkedId) => checkedId !== id)
+      }
+      else {
+        state.checkId.push(id)
+      }
+    }
   },
 });
 
@@ -57,6 +68,7 @@ export const {
   getTransHistoryFailure,
   getPendingTransStart,
   getPendingTransSucess,
-  getPendingTransFailure
+  getPendingTransFailure,
+  toggleCheckbox
 } = pendingTransactionSlice.actions;
 export default pendingTransactionSlice.reducer;

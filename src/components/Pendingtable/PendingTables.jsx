@@ -11,6 +11,7 @@ import { TablePagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPendingTransData } from "../../Redux/apiCalls";
+import { toggleCheckbox } from "../../Redux/pendingTransSlice";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -31,7 +32,6 @@ const Input = styled.input`
 const PendingTables = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [checkId, setCheckId] = useState([]);
   const { pendingTrans, isFetching } = useSelector((state) => state.transaction);
   const dispatch = useDispatch();
 
@@ -50,12 +50,7 @@ const PendingTables = () => {
 
   const handleChange = (e) => {
     const id = e.target.value;
-    if (e.target.checked) {
-      setCheckId([...checkId, id]);
-    } else {
-      setCheckId(checkId.filter((checkedId) => checkedId !== id));
-    }
-    
+    dispatch(toggleCheckbox(id)) 
   };
   if (isFetching) {
     return <div>Loading...</div>;
@@ -67,15 +62,15 @@ const PendingTables = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-              <TableCell style={{ color: "#8281cc" }}>id</TableCell>
-              <TableCell style={{ color: "#8281cc" }}>Ref</TableCell>
-              <TableCell style={{ color: "#8281cc" }}>Amount</TableCell>
-              <TableCell style={{ color: "#8281cc" }}>Description</TableCell>
-              <TableCell style={{ color: "#8281cc" }}>Status</TableCell>
-              <TableCell style={{ color: "#8281cc" }}>Date</TableCell>
-              <TableCell style={{ color: "#8281cc" }}>I.P </TableCell>
-              <TableCell style={{ color: "#8281cc" }}>Server</TableCell>
-              <TableCell style={{ color: "#8281cc" }}>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>id</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Ref</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Amount</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Description</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Status</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Date</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>I.P </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Server</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>
                 Server Response
               </TableCell>
               <TableCell style={{ color: "#8281cc" }}>Action</TableCell>
@@ -97,7 +92,7 @@ const PendingTables = () => {
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>{row.ref}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    #{row.amount}
+                  &#8358;{row.amount}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
                     {row.description}
