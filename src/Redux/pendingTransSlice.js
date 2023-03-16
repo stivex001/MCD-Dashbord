@@ -8,6 +8,7 @@ const pendingTransactionSlice = createSlice({
     checkId: [],
     message: null,
     transHistory: [],
+    pendingTrans: []
   },
   reducers: {
     getTransHistoryStart: (state) => {
@@ -18,6 +19,17 @@ const pendingTransactionSlice = createSlice({
       state.transHistory = action.payload;
     },
     getTransHistoryFailure: (state) => {
+      state.isProcessing = false;
+      state.error = true;
+    },
+    getPendingTransStart: (state) => {
+      state.isProcessing = true;
+    },
+    getPendingTransSucess: (state, action) => {
+      state.isProcessing = false;
+      state.pendingTrans = action.payload;
+    },
+    getPendingTransFailure: (state) => {
       state.isProcessing = false;
       state.error = true;
     },
@@ -43,5 +55,8 @@ export const {
   getTransHistoryStart,
   getTransHistorySucess,
   getTransHistoryFailure,
+  getPendingTransStart,
+  getPendingTransSucess,
+  getPendingTransFailure
 } = pendingTransactionSlice.actions;
 export default pendingTransactionSlice.reducer;
