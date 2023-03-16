@@ -22,41 +22,17 @@ import {
 } from "./pending.styles";
 
 const Pending = () => {
-  const [pendingTrans, setPendingTrans] = useState([]);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [checkId, setCheckId] = useState([]);
   const [showErr, setShowErr] = useState('');
 
-  useEffect(() => {
-    const getPendingTransactions = async () => {
-      try {
-        const res = await userRequest.get("/transactions/pending");
-        setPendingTrans(res.data.data.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getPendingTransactions();
-  }, [pendingTrans]);
-
-  const handleChangePage = (newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
-  const handleChange = (e) => {
-    const id = e.target.value;
-    if (e.target.checked) {
-      setCheckId([...checkId, id]);
-    } else {
-      setCheckId(checkId.filter((checkedId) => checkedId !== id));
-    }
-  };
+  // const handleChange = (e) => {
+  //   const id = e.target.value;
+  //   if (e.target.checked) {
+  //     setCheckId([...checkId, id]);
+  //   } else {
+  //     setCheckId(checkId.filter((checkedId) => checkedId !== id));
+  //   }
+  // };
 
   return (
     <Container>
@@ -88,13 +64,7 @@ const Pending = () => {
           </BtnConatiner>
           <div style={{ marginTop: "10px" }}>
             <PendingTables
-              pendingTrans={pendingTrans}
-              page={page}
-              rowsPerPage={rowsPerPage}
-              checkId={checkId}
-              handleChangePage={handleChangePage}
-              handleChange={handleChange}
-              handleChangeRowsPerPage={handleChangeRowsPerPage}
+              
             />
           </div>
         </TransList>
