@@ -1,5 +1,7 @@
 
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { emptyCheckbox } from "../../Redux/pendingTransSlice";
 
 const Container = styled.div`
   background-color: ${(prop) =>
@@ -23,15 +25,15 @@ const UiButton = styled.button`
   color: #fff;
 `;
 
-const Button = ({ title, checkId, showErr }) => {
+const Button = ({ title, checkId, error }) => {
+  const dispatch = useDispatch()
 
   const handleSelect = async () => {
     if (title === 'Re-process Selected') {
-      if (checkId === []) {
-        return showErr;
+      if (checkId.length === 0) {
+        return dispatch(emptyCheckbox(error))
       }
       console.log(checkId);
-      
     }
     
     if (title === 'Mark Delivered Selected') {

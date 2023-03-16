@@ -19,6 +19,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
+  blacklist: ["transaction", "wallet", "settings"],
 };
 
 const rootReducer = combineReducers({

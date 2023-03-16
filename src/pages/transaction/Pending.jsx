@@ -1,9 +1,10 @@
 import { Close } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import PendingTables from "../../components/Pendingtable/PendingTables";
 import Button from "../../components/UI/Button";
+import { closeErr } from "../../Redux/pendingTransSlice";
 import {
   BtnConatiner,
   Container,
@@ -22,8 +23,12 @@ import {
 
 const Pending = () => {
   const { checkId, error } = useSelector((state) => state.transaction);
+  const dispatch = useDispatch();
 
-  console.log(checkId);
+  const handleClose = () => {
+    dispatch(closeErr) 
+  }
+
   return (
     <Container>
       <Navbar />
@@ -43,7 +48,7 @@ const Pending = () => {
           {error && (
             <MsgContainer>
               <H2>Kindly select some box!</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} onClick={handleClose} />
             </MsgContainer>
           )}
 
@@ -51,7 +56,7 @@ const Pending = () => {
             <Button
               title="Re-process Selected"
               checkId={checkId}
-              showErr={error}
+              error={error}
             />
             <Button title="Mark Delivered Selected" />
             <Button title="Reverse Transaction Selected" />

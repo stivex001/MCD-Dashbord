@@ -55,6 +55,13 @@ const pendingTransactionSlice = createSlice({
       else {
         state.checkId.push(id)
       }
+      state.error = false
+    },
+    emptyCheckbox: (state) => {
+      state.error = true;
+    },
+    closeErr: (state) => {
+      state.error = false
     }
   },
 });
@@ -69,6 +76,8 @@ export const {
   getPendingTransStart,
   getPendingTransSucess,
   getPendingTransFailure,
-  toggleCheckbox
+  toggleCheckbox,
+  emptyCheckbox,
+  closeErr
 } = pendingTransactionSlice.actions;
 export default pendingTransactionSlice.reducer;
