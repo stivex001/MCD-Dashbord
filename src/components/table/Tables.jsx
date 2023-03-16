@@ -77,7 +77,7 @@ const Tables = () => {
                     {row.user_name}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    #{row.amount}
+                  &#8358;{row.amount}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
                     {row.description}
