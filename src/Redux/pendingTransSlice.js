@@ -6,7 +6,7 @@ const pendingTransactionSlice = createSlice({
     isProcessing: false,
     error: false,
     checkId: [],
-    message: null,
+    message: false,
     transHistory: [],
     pendingTrans: []
   },
@@ -39,7 +39,7 @@ const pendingTransactionSlice = createSlice({
     reProcessAllSucess: (state, action) => {
       state.isProcessing = false;
       state.checkId = action.payload;
-      state.message = action.payload;
+      state.message = true;
     },
     reProcessAllFailure: (state) => {
       state.isProcessing = false;

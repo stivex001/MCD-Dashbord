@@ -21,7 +21,7 @@ import {
 } from "./pending.styles";
 
 const Pending = () => {
-  const { checkId, error } = useSelector((state) => state.transaction);
+  const { checkId, error, message } = useSelector((state) => state.transaction);
   
   return (
     <Container>
@@ -42,6 +42,12 @@ const Pending = () => {
           {error && (
             <MsgContainer>
               <H2>Kindly select some box!</H2>
+              <Close style={{ color: "#806e6b", cursor: "pointer" }}  />
+            </MsgContainer>
+          )}
+          {message && (
+            <MsgContainer type='success'>
+              <H2 type='success'>Transactions has been process in background</H2>
               <Close style={{ color: "#806e6b", cursor: "pointer" }}  />
             </MsgContainer>
           )}
