@@ -120,7 +120,7 @@ const Tables = () => {
                       {row.note}
                     </TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
-                      <Link to={"#"}>
+                      <Link to={"/users"}>
                         <NoteAlt
                           style={{
                             backgroundColor: "5dd099",
