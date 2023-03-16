@@ -24,7 +24,15 @@ import {
   getWithdrawalDataStart,
   getWithdrawalDataSucess,
 } from "./walletSlice";
-import { getPendingTransFailure, getPendingTransStart, getPendingTransSucess, getTransHistoryFailure, getTransHistoryStart, getTransHistorySucess } from "./pendingTransSlice";
+import {
+  getPendingTransFailure,
+  getPendingTransStart,
+  getPendingTransSucess,
+  getTransHistoryFailure,
+  getTransHistoryStart,
+  getTransHistorySucess,
+  reProcessAllStart,
+} from "./pendingTransSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -44,8 +52,8 @@ export const logout = async (dispatch) => {
   dispatch(logoutSuccess());
 };
 
-export const reProcessAll = async (dispatch, id) => {
-  dispatch();
+export const gettingId = async (dispatch) => {
+  dispatch(reProcessAllStart);
 };
 
 export const getAllUsers = async (dispatch) => {
