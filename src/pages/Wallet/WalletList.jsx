@@ -45,7 +45,6 @@ const WalletList = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(walletData);
   return (
     <Container>
       <Navbar />
