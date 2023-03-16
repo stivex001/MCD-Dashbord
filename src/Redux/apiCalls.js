@@ -16,7 +16,15 @@ import {
   updateSettingsStart,
   updateSettingsSucess,
 } from "./settingsSlice";
-import { getWalletDataFailure, getWalletDataStart, getWalletDataSucess, getWithdrawalDataFailure, getWithdrawalDataStart, getWithdrawalDataSucess } from "./walletSlice";
+import {
+  getWalletDataFailure,
+  getWalletDataStart,
+  getWalletDataSucess,
+  getWithdrawalDataFailure,
+  getWithdrawalDataStart,
+  getWithdrawalDataSucess,
+} from "./walletSlice";
+import { getTransHistoryFailure, getTransHistoryStart, getTransHistorySucess } from "./pendingTransSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -88,5 +96,15 @@ export const getWithdrawalData = async (dispatch) => {
     dispatch(getWithdrawalDataSucess(res.data.data.data));
   } catch (error) {
     dispatch(getWithdrawalDataFailure());
+  }
+};
+
+export const getTransHistoryData = async (dispatch) => {
+  dispatch(getTransHistoryStart());
+  try {
+    const res = await userRequest.get("/transactions");
+    dispatch(getTransHistorySucess(res.data.data.data));
+  } catch (error) {
+    dispatch(getTransHistoryFailure());
   }
 };
