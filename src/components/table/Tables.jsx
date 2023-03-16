@@ -35,7 +35,7 @@ const Tables = () => {
       }
     };
     getTransactionsHistory();
-  }, [transHistory]);
+  }, []);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
