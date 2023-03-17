@@ -90,7 +90,7 @@ const Settings = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {settings.map((row) => (
+                  {settings && settings.map((row) => (
                     <TableRow
                       key={row.id}
                       style={{ backgroundColor: "#f3f2f7" }}
