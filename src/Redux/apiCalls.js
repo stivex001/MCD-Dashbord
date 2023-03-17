@@ -1,4 +1,7 @@
 import {
+  getAgentsFailure,
+  getAgentsStart,
+  getAgentsSuccess,
   getAllUsersFailure,
   getAllUsersStart,
   getAllUsersSuccess,
@@ -73,6 +76,7 @@ export const reProcess = async (dispatch, ids) => {
   }
 };
 
+// USERS
 export const getUsersOverview = async (dispatch) => {
   dispatch(getUserOverviewStart());
   try {
@@ -93,6 +97,17 @@ export const getAllUsers = async (dispatch) => {
   }
 };
 
+export const getAgents = async (dispatch) => {
+  dispatch(getAgentsStart());
+  try {
+    const res = await userRequest.get("/agents");
+    dispatch(getAgentsSuccess(res.data.data.data));
+  } catch (error) {
+    dispatch(getAgentsFailure());
+  }
+};
+
+// SETTINGS
 export const getSettings = async (dispatch) => {
   dispatch(getSettingsStart());
   try {
@@ -152,3 +167,4 @@ export const getPendingTransData = async (dispatch) => {
     dispatch(getPendingTransFailure());
   }
 };
+

@@ -1,4 +1,4 @@
-import { ArrowDropDown } from "@mui/icons-material";
+import { ArrowDropDown, NoteAlt } from "@mui/icons-material";
 import {
   CircularProgress,
   Paper,
@@ -7,20 +7,21 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
 } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { getSettings } from "../../Redux/apiCalls";
+import { getAgents } from "../../Redux/apiCalls";
 import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Action,
   ActionList,
   ActionListCol,
-  BtnConatiner,
   Column,
   Container,
   Details,
@@ -34,20 +35,31 @@ import {
 } from "./agent.styles";
 
 const Agent = () => {
-  const { settings, isFetching } = useSelector((state) => state.settings);
+  const { agents, isFetching } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
-    getSettings(dispatch);
+    getAgents(dispatch);
   }, [dispatch]);
 
-  //   if (isFetching) {
-  //     return (
-  //       <Loading>
-  //         <CircularProgress style={{ color: "blue" }} />
-  //       </Loading>
-  //     );
-  //   }
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
 
   return (
     <Container>
@@ -99,35 +111,57 @@ const Agent = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {settings &&
-                    settings.map((row) => (
+                  {agents &&
+                    agents.map((row) => (
                       <TableRow
                         key={row.id}
                         style={{ backgroundColor: "#f3f2f7" }}
                       >
                         <TableCell style={{ color: "#8887a9" }}>
-                          {row.name}
+                          {row.user_name}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
-                          {row.value}
+                          {row.company_name}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
-                          {row.updated_at}
+                          {row.dob}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
-                          <BtnConatiner to={`/allsettings-edit/${row.id}`}>
-                            Modify
-                          </BtnConatiner>
+                          {row.phoneno}
+                        </TableCell>
+                        <TableCell style={{ color: "#8887a9" }}>
+                          <Link
+                            to={"/profile/" + encodeURIComponent(row.user_name)}
+                          >
+                            <NoteAlt
+                              style={{
+                                backgroundColor: "5dd099",
+                                color: "white",
+                                padding: "4px 8px",
+                                fontSize: "40px",
+                                cursor: "pointer",
+                              }}
+                            />
+                          </Link>
                         </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>
               </Table>
+              <TablePagination
+                rowsPerPageOptions={[10, 15, 100]}
+                component="div"
+                count={agents && agents.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
             </TableContainer>
           </Details>
         </TableWrapper>
+        <Footer />
       </Wrapper>
-      <Footer />
     </Container>
   );
 };

@@ -22,7 +22,7 @@ export const P = styled.p`
   color: #8c9ea9;
 `;
 export const Details = styled.div`
-  margin: 30px 0;
+  margin: 10px 0;
 `;
 export const BtnConatiner = styled(Link)`
   background-color: #aaaece;
