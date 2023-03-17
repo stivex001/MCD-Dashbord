@@ -1,5 +1,6 @@
 
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { reProcess } from "../../Redux/apiCalls";
 import { emptyCheckbox } from "../../Redux/pendingTransSlice";
@@ -36,7 +37,6 @@ const Button = ({ title, checkId, error, message, id }) => {
       }
       else {
         reProcess(dispatch, checkId)
-        return console.log(message, 'done');
       }
     }
     
@@ -47,11 +47,11 @@ const Button = ({ title, checkId, error, message, id }) => {
       console.log('Reverse Transaction Selected');
     }
     console.log(id);
-    if (id) {
-      
-    }
+    // if (id) {
+
+    // }
   }
-console.log(checkId);
+
   return (
     <Container type={title}>
       <UiButton type="submit" onClick={handleSelect}>{title}</UiButton>

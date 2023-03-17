@@ -40,6 +40,7 @@ const pendingTransactionSlice = createSlice({
       state.isProcessing = false;
       state.checkId = action.payload;
       state.message = true;
+      state.error = false;
     },
     reProcessAllFailure: (state) => {
       state.isProcessing = false;
@@ -54,8 +55,8 @@ const pendingTransactionSlice = createSlice({
       }
       else {
         state.checkId.push(id)
+        state.error = false
       }
-      state.error = false
     },
     emptyCheckbox: (state) => {
       state.error = true;
