@@ -7,11 +7,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { TablePagination } from "@mui/material";
+import { CircularProgress, TablePagination } from "@mui/material";
 import { Link } from "react-router-dom";
 import { NoteAlt } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { getTransHistoryData } from "../../Redux/apiCalls";
+import { Loading } from "../../pages/transaction/pending.styles";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -24,7 +25,7 @@ const Span = styled.span`
 const Tables = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const { transHistory, isFetching } = useSelector(
+  const { transHistory, isProcessing } = useSelector(
     (state) => state.transaction
   );
   const dispatch = useDispatch();
@@ -42,8 +43,10 @@ const Tables = () => {
     setPage(0);
   };
 
-  if (isFetching) {
-    return <div>Loading...</div>;
+  if (isProcessing) {
+    <Loading>
+      <CircularProgress style={{ color: "blue" }} />
+    </Loading>;
   }
 
   return (
@@ -52,19 +55,45 @@ const Tables = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>id</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Username</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Amount</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Description</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Status</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>I.Wallet</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>F.Wallet </TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>I.p</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Server</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Ref</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Date</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Note</TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: 'bold' }}>Action</TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                id
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                Username
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                Amount
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                Description
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                Status
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                I.Wallet
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                F.Wallet{" "}
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                I.p
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                Server
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                Ref
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                Date
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                Note
+              </TableCell>
+              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                Action
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

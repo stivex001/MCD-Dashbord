@@ -1,5 +1,4 @@
 import { Close } from "@mui/icons-material";
-import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
@@ -16,7 +15,6 @@ import {
   DescSpan,
   H2,
   H3,
-  Loading,
   MsgContainer,
   P,
   Span,
@@ -26,7 +24,7 @@ import {
 } from "./pending.styles";
 
 const Pending = () => {
-  const { checkId, error, message, isProcessing } = useSelector(
+  const { checkId, error, message } = useSelector(
     (state) => state.transaction
   );
   const dispatch = useDispatch();
@@ -44,13 +42,6 @@ const Pending = () => {
     setShowerr(false);
   };
 
-  if (isProcessing) {
-    return (
-      <Loading>
-        <CircularProgress style={{ color: "blue" }} />
-      </Loading>
-    );
-  }
 
   return (
     <Container>
