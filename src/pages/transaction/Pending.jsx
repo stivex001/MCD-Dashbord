@@ -7,7 +7,6 @@ import Footer from "../../components/footer/Footer";
 import PendingTables from "../../components/Pendingtable/PendingTables";
 import { reProcess } from "../../Redux/apiCalls";
 import { emptyCheckbox } from "../../Redux/pendingTransSlice";
-// import Button from "../../components/UI/Button";
 import {
   BtnConatiner,
   Button,

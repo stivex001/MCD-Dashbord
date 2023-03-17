@@ -172,9 +172,6 @@ const PendingTables = () => {
                         <Button type="Reverse Transaction">
                           Reverse Transaction Selected
                         </Button>
-                        {/* <Button title="Re-process" id={row.id} />
-                      <Button title="Mark Delivered" />
-                      <Button title="Reverse Transaction" /> */}
                       </BtnConatiner>
                     </TableCell>
                   </TableRow>
