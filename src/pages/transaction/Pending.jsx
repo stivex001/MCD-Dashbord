@@ -57,6 +57,7 @@ const Pending = () => {
               title="Re-process Selected"
               checkId={checkId}
               error={error}
+              message={message}
             />
             <Button title="Mark Delivered Selected" />
             <Button title="Reverse Transaction Selected" />

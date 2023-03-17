@@ -31,7 +31,9 @@ import {
   getTransHistoryFailure,
   getTransHistoryStart,
   getTransHistorySucess,
+  reProcessAllFailure,
   reProcessAllStart,
+  reProcessAllSucess,
 } from "./pendingTransSlice";
 
 export const login = async (dispatch, user) => {
@@ -52,8 +54,20 @@ export const logout = async (dispatch) => {
   dispatch(logoutSuccess());
 };
 
-export const gettingId = async (dispatch) => {
-  dispatch(reProcessAllStart);
+export const reProcess = async (dispatch, ids) => {
+  dispatch(reProcessAllStart());
+  try {
+    const res = await userRequest.post("/transactions/resubmit-multiple", { data: ids })
+    if (res.data.success === 1) {
+      dispatch(reProcessAllSucess(res.data))
+      console.log(res.data);
+    }
+    else {
+      dispatch(reProcessAllFailure())
+    }
+  } catch (error) {
+    dispatch(reProcessAllFailure())
+  }
 };
 
 export const getAllUsers = async (dispatch) => {

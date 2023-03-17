@@ -1,6 +1,7 @@
 
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { reProcess } from "../../Redux/apiCalls";
 import { emptyCheckbox } from "../../Redux/pendingTransSlice";
 
 const Container = styled.div`
@@ -25,7 +26,7 @@ const UiButton = styled.button`
   color: #fff;
 `;
 
-const Button = ({ title, checkId, error }) => {
+const Button = ({ title, checkId, error, message }) => {
   const dispatch = useDispatch()
 
   const handleSelect = async () => {
@@ -33,7 +34,10 @@ const Button = ({ title, checkId, error }) => {
       if (checkId.length === 0) {
         return dispatch(emptyCheckbox(error))
       }
-      console.log(checkId);
+      else {
+        reProcess(dispatch, checkId)
+        // return console.log(message, 'done');
+      }
     }
     
     if (title === 'Mark Delivered Selected') {
@@ -43,7 +47,7 @@ const Button = ({ title, checkId, error }) => {
       console.log('Reverse Transaction Selected');
     }
   }
-
+console.log(checkId);
   return (
     <Container type={title}>
       <UiButton type="submit" onClick={handleSelect}>{title}</UiButton>
