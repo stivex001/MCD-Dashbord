@@ -26,7 +26,7 @@ const UiButton = styled.button`
   color: #fff;
 `;
 
-const Button = ({ title, checkId, error, message }) => {
+const Button = ({ title, checkId, error, message, id }) => {
   const dispatch = useDispatch()
 
   const handleSelect = async () => {
@@ -36,7 +36,7 @@ const Button = ({ title, checkId, error, message }) => {
       }
       else {
         reProcess(dispatch, checkId)
-        // return console.log(message, 'done');
+        return console.log(message, 'done');
       }
     }
     
@@ -45,6 +45,10 @@ const Button = ({ title, checkId, error, message }) => {
     }
     if (title === 'Reverse Transaction Selected') {
       console.log('Reverse Transaction Selected');
+    }
+    console.log(id);
+    if (id) {
+      
     }
   }
 console.log(checkId);
