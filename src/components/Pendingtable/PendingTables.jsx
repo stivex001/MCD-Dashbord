@@ -120,7 +120,7 @@ const PendingTables = () => {
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
                     <BtnConatiner>
-                      <Button title="Re-process" />
+                      <Button title="Re-process" id={row.id} />
                       <Button title="Mark Delivered" />
                       <Button title="Reverse Transaction" />
                     </BtnConatiner>

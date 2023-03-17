@@ -57,7 +57,7 @@ export const logout = async (dispatch) => {
 export const reProcess = async (dispatch, ids) => {
   dispatch(reProcessAllStart());
   try {
-    const res = await userRequest.post("/transactions/resubmit-multiple", { data: ids })
+    const res = await userRequest.post("/transactions/resubmit-multiple", { ids, all_type: 'reprocess' })
     if (res.data.success === 1) {
       dispatch(reProcessAllSucess(res.data))
       console.log(res.data);
