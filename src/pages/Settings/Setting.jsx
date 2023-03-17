@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -15,6 +16,7 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { getSettings } from "../../Redux/apiCalls";
 import { laptop } from "../../responsive";
+import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
@@ -51,12 +53,20 @@ const BtnConatiner = styled(Link)`
 `;
 
 const Settings = () => {
-  const settings = useSelector((state) => state.settings.settings);
+  const {settings, isFetching} = useSelector((state) => state.settings);
   const dispatch = useDispatch();
 
   useEffect(() => {
     getSettings(dispatch);
   }, [dispatch]);
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
 
   return (
     <Container>

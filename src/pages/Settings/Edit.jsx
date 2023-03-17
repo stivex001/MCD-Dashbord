@@ -102,7 +102,7 @@ const Edit = () => {
       toast.error("You did not make any changes")
     }
     else {
-      dispatch(modifySettings( settings.id, { name: inputNameData, value: inputValueData }));
+      modifySettings(dispatch, {id: settings.id, value: inputValueData})
       toast.success("Changes made successfully")
 
       setTimeout(() => navigate('/allsettings'), 1000)

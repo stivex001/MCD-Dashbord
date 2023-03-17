@@ -10,7 +10,7 @@ const settingsSlice = createSlice({
   },
   reducers: {
     getSettingsStart: (state) => {
-      state.isProcessing = true;
+      state.isFetching = true;
       state.error = false;
     },
     getSettingsSucess: (state, action) => {
