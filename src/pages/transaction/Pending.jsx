@@ -17,6 +17,7 @@ import {
   DescSpan,
   H2,
   H3,
+  Loading,
   MsgContainer,
   P,
   Span,
@@ -26,23 +27,32 @@ import {
 } from "./pending.styles";
 
 const Pending = () => {
-  const { checkId, error, message, isProcessing } = useSelector((state) => state.transaction);
-  const dispatch = useDispatch()
-  const [showerr, setShowerr] = useState(error)
+  const { checkId, error, message, isProcessing } = useSelector(
+    (state) => state.transaction
+  );
+  const dispatch = useDispatch();
+  const [showerr, setShowerr] = useState(error);
 
   const handleReProcess = () => {
     if (checkId.length === 0) {
-      return dispatch(emptyCheckbox(showerr))
+      return dispatch(emptyCheckbox(showerr));
+    } else {
+      reProcess(dispatch, checkId);
     }
-    else {
-      reProcess(dispatch, checkId)
-    }
-  }
+  };
   const closeErr = () => {
-    console.log('close');
-    setShowerr(false)
+    console.log("close");
+    setShowerr(false);
+  };
+
+  if (isProcessing) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
   }
-  
+
   return (
     <Container>
       <Navbar />
@@ -62,24 +72,31 @@ const Pending = () => {
           {error && (
             <MsgContainer>
               <H2>Kindly select some box!</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }}  />
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
             </MsgContainer>
           )}
           {message && (
-            <MsgContainer type='success'>
-              <H2 type='success'>Transactions has been process in background</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} onClick={closeErr} />
+            <MsgContainer type="success">
+              <H2 type="success">
+                Transactions has been process in background
+              </H2>
+              <Close
+                style={{ color: "#806e6b", cursor: "pointer" }}
+                onClick={closeErr}
+              />
             </MsgContainer>
           )}
 
           <BtnConatiner>
-            <Button type='Re-process Selected' onClick={handleReProcess}> {isProcessing ? (
-              <CircularProgress style={{ color: "white" }} />
-            ) : (
-              "Re-process Selected"
-            )}</Button>
-            <Button type="Mark Delivered Selected">Mark Delivered Selected</Button>
-            <Button type="Reverse Transaction Selected">Reverse Transaction Selected</Button>
+            <Button type="Re-process Selected" onClick={handleReProcess}>
+              Re-process Selected
+            </Button>
+            <Button type="Mark Delivered Selected">
+              Mark Delivered Selected
+            </Button>
+            <Button type="Reverse Transaction Selected">
+              Reverse Transaction Selected
+            </Button>
           </BtnConatiner>
           <div style={{ marginTop: "10px" }}>
             <PendingTables />

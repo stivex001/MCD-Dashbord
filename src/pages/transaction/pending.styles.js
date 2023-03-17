@@ -86,3 +86,11 @@ export const Button = styled.button`
   cursor: pointer;
   border-radius: 5px;
 `;
+
+export const Loading = styled.div`
+width: 100%;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+`;
