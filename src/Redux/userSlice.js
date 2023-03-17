@@ -8,6 +8,7 @@ const userSlice = createSlice({
     error: false,
     message: null,
     allUsers: [],
+    userOverview: '',
   },
   reducers: {
     loginStart: (state) => {
@@ -28,7 +29,7 @@ const userSlice = createSlice({
       state.error = false;
     },
     getAllUsersStart: (state) => {
-      state.isProcessing = true;
+      state.isFetching = true;
       state.error = false;
     },
     getAllUsersSuccess: (state, action) => {
@@ -37,6 +38,16 @@ const userSlice = createSlice({
     },
     getAllUsersFailure: (state) => {
       state.isFetching = false;
+      state.error = true;
+    },
+    getUserOverviewStart: (state) => {
+      state.isFetching = true;
+    },
+    getUserOverviewSuccess: (state, action) => {
+      state.userOverview = action.payload;
+      state.isFetching = true;
+    },
+    getUserOverviewFailure: (state) => {
       state.error = true;
     },
   },
@@ -50,5 +61,8 @@ export const {
   getAllUsersStart,
   getAllUsersSuccess,
   getAllUsersFailure,
+  getUserOverviewStart,
+  getUserOverviewSuccess,
+  getUserOverviewFailure
 } = userSlice.actions;
 export default userSlice.reducer;

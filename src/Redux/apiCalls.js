@@ -2,6 +2,9 @@ import {
   getAllUsersFailure,
   getAllUsersStart,
   getAllUsersSuccess,
+  getUserOverviewFailure,
+  getUserOverviewStart,
+  getUserOverviewSuccess,
   loginfailure,
   loginStart,
   loginSuccess,
@@ -67,6 +70,16 @@ export const reProcess = async (dispatch, ids) => {
     }
   } catch (error) {
     dispatch(reProcessAllFailure())
+  }
+};
+
+export const getUsersOverview = async (dispatch) => {
+  dispatch(getUserOverviewStart());
+  try {
+    const res = await userRequest.get("/usersOverview");
+    dispatch(getUserOverviewSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getUserOverviewFailure());
   }
 };
 

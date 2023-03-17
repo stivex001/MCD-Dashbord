@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -14,6 +15,7 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { getWithdrawalData } from "../../Redux/apiCalls";
 import { laptop } from "../../responsive";
+import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
@@ -85,7 +87,11 @@ const WithdrawReq = () => {
   };
 
   if (isFetching) {
-    return <div>Loading...</div>;
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
   }
   return (
     <Container>

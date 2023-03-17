@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+// import { CircularProgress } from "@mui/material";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Card from "../../components/card/Card";
 import Footer from "../../components/footer/Footer";
 import UserTable from "../../components/User/UserTable";
-import { userRequest } from "../../requestMethods";
+import { getUsersOverview } from "../../Redux/apiCalls";
+// import { Loading } from "../transaction/pending.styles";
 import {
   CardContainer,
   Container,
@@ -15,19 +18,21 @@ import {
 } from "../transaction/transHistory.styles";
 
 const Users = () => {
-  const [userOverview, setUserOverview] = useState("");
+ 
+  const {userOverview} = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getUserOverview = async () => {
-      try {
-        const res = await userRequest.get("/usersOverview");
-        setUserOverview(res.data.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getUserOverview();
-  }, []);
+    getUsersOverview(dispatch);
+  }, [dispatch]);
+
+  // if (isFetching) {
+  //   return (
+  //     <Loading>
+  //       <CircularProgress style={{ color: "blue" }} />
+  //     </Loading>
+  //   );
+  // }
 
   return (
     <Container>

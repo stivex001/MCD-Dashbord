@@ -30,7 +30,7 @@ const UserDataTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const dispatch = useDispatch();
-  const { allUsers, isFetching } = useSelector((state) => state.user);
+  const { allUsers } = useSelector((state) => state.user);
 
   useEffect(() => {
     getAllUsers(dispatch);
@@ -45,9 +45,6 @@ const UserDataTable = () => {
     setPage(0);
   };
 
-  if (isFetching) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <Container>

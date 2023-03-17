@@ -106,7 +106,7 @@ const Card = ({ type, userOverview }) => {
         data = {
           icon: <Groups2 style={{ fontSize: "40px", color: "#5dd099" }} />,
           title: "Total Users",
-          total: userOverview.total_users
+          total: userOverview && userOverview.total_users
         };
         break;
   
@@ -114,7 +114,7 @@ const Card = ({ type, userOverview }) => {
         data = {
           icon: <ArrowCircleRight style={{ fontSize: "40px", color: "#f73c6f" }} />,
           title: "Total Referred",
-          total: userOverview.referred_users
+          total: userOverview && userOverview.referred_users
         };
         break;
   
@@ -122,7 +122,7 @@ const Card = ({ type, userOverview }) => {
         data = {
           icon: <List style={{ fontSize: "40px", color: "#f9af5d" }} />,
           title: "Total Agent",
-          total: userOverview.all_agents
+          total: userOverview && userOverview.all_agents
         };
         break;
   
@@ -131,7 +131,7 @@ const Card = ({ type, userOverview }) => {
         data = {
           icon: <TableChart style={{ fontSize: "40px", color: "#327ba4" }} />,
           title: "Total Wallet",
-          total: userOverview.users_wallet
+          total: userOverview && userOverview.users_wallet
         };
         break;
   
