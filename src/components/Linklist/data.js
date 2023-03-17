@@ -154,17 +154,17 @@ export const sidebarData = [
       {
         id: 5,
         title: "Agents",
-        to: "/",
+        to: "/agents",
       },
       {
         id: 6,
         title: "Resellers",
-        to: "/",
+        to: "/resellers",
       },
       {
         id: 7,
         title: "Pending Request",
-        to: "/",
+        to: "/pending_request",
       },
       {
         id: 8,
