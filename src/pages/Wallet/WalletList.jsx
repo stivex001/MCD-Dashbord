@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -12,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { getWalletData } from "../../Redux/apiCalls";
+import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Container,
@@ -42,7 +44,11 @@ const WalletList = () => {
   };
 
   if (isFetching) {
-    return <div>Loading...</div>;
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
   }
 
   return (
@@ -107,7 +113,7 @@ const WalletList = () => {
                             {row.user_name}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
-                          &#8358;{row.amount}
+                            &#8358;{row.amount}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
                             <Span
@@ -129,10 +135,10 @@ const WalletList = () => {
                             {row.ref}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
-                          &#8358;{row.o_wallet}
+                            &#8358;{row.o_wallet}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
-                          &#8358;{row.n_wallet}
+                            &#8358;{row.n_wallet}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
                             {row.version}

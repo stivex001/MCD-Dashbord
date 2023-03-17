@@ -11,7 +11,7 @@ const walletSlice = createSlice({
   },
   reducers: {
     getWalletDataStart: (state) => {
-      state.isProcessing = true;
+      state.isFetching = true;
       state.error = false;
     },
     getWalletDataSucess: (state, action) => {
@@ -23,7 +23,7 @@ const walletSlice = createSlice({
       state.error = true;
     },
     getWithdrawalDataStart: (state) => {
-      state.isProcessing = true;
+      state.isFetching = true;
       state.error = false;
     },
     getWithdrawalDataSucess: (state, action) => {
