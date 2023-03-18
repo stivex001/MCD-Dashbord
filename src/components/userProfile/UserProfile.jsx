@@ -27,6 +27,7 @@ import {
 
 const UserProfile = () => {
   const [user, setUser] = useState([]);
+  const [walletList, setWalletList] = useState([]);
   // const location = useLocation()
   // const userId = location.pathname.split('/')[2];
 
@@ -35,7 +36,8 @@ const UserProfile = () => {
       try {
         const res = await userRequest.get("/profile/samji");
         console.log(res);
-        setUser(res.data.data.data);
+        setUser(res.data.data);
+        setWalletList(res.data.data.wallet_list.data);
       } catch (error) {
         console.log(error.message);
       }
@@ -43,9 +45,9 @@ const UserProfile = () => {
     getUser();
   }, []);
 
-//   if (!user) {
-//     return <div>Loading....</div>;
-//   }
+  //   if (!user) {
+  //     return <div>Loading....</div>;
+  //   }
 
   //   const registeredUser = user.length > 0 ? user.find((reg) => reg.user_name === userId) : null;
 
@@ -54,8 +56,11 @@ const UserProfile = () => {
     <Container>
       <Wrapper>
         <Left>
-          <UserImg src='https://mcd.5starcompany.com.ng/app/avatar/samji.JPG' alt="" />
-          <CameraAlt style={{fontSize: '20px'}} />
+          <UserImg
+            src="https://mcd.5starcompany.com.ng/app/avatar/samji.JPG"
+            alt=""
+          />
+          <CameraAlt style={{ fontSize: "20px" }} />
           <Username>Samji</Username>
           <Fullname>Odejinmi Samuel</Fullname>
           <Brandname> samji Ventures (superadmin)</Brandname>
@@ -64,19 +69,20 @@ const UserProfile = () => {
           <Desc>
             <Phone style={{ color: "#26abf2" }} />
             <UserDesc>
-              Phone: <Span>{user?.phoneno || '08166939205'}</Span>
+              Phone: <Span>{user?.phoneno || "08166939205"}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <MailOutline style={{ color: "#26abf2" }} />
             <UserDesc>
-              Email: <Span>{user?.email || 'odejinmisamuel@gmail.com'}</Span>
+              Email: <Span>{user?.email || "odejinmisamuel@gmail.com"}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <LocationOn style={{ color: "#26abf2" }} />
             <UserDesc>
-              Location: <Span>{user?.address || '12 Akinbo area ogun Nigeria'}</Span>
+              Location:{" "}
+              <Span>{user?.address || "12 Akinbo area ogun Nigeria"}</Span>
             </UserDesc>
           </Desc>
           <Desc>
@@ -88,7 +94,7 @@ const UserProfile = () => {
           <Desc>
             <CalendarToday style={{ color: "#26abf2" }} />
             <UserDesc>
-              Reg.Date: <Span>{user?.reg_date || '2019-04-14 14:55:21'}</Span>
+              Reg.Date: <Span>{user?.reg_date || "2019-04-14 14:55:21"}</Span>
             </UserDesc>
           </Desc>
           <Desc>
@@ -100,7 +106,8 @@ const UserProfile = () => {
           <Desc>
             <AccountBalanceWallet style={{ color: "#26abf2" }} />
             <UserDesc>
-              Virtual Account: <Span>{user?.account_number || '7445559331 | Wema bank'}</Span>
+              Virtual Account:{" "}
+              <Span>{user?.account_number || "7445559331 | Wema bank"}</Span>
             </UserDesc>
           </Desc>
           <Desc>
@@ -112,13 +119,13 @@ const UserProfile = () => {
           <Desc>
             <Brush style={{ color: "#26abf2" }} />
             <UserDesc>
-              Referral Plan: <Span>{user?.referral_plan || 'larvae'}</Span>
+              Referral Plan: <Span>{user?.referral_plan || "larvae"}</Span>
             </UserDesc>
           </Desc>
           <Desc>
             <Brush style={{ color: "#26abf2" }} />
             <UserDesc>
-              Level: <Span>{user?.level || '1'}</Span>
+              Level: <Span>{user?.level || "1"}</Span>
             </UserDesc>
           </Desc>
         </Right>
