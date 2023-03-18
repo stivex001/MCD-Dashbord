@@ -3,68 +3,20 @@ import {
   CreditCard,
   PermIdentity,
 } from "@mui/icons-material";
-import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-
-const Container = styled.div`
-margin: 70px 0;
-${laptop({ marginLeft: "250px" })};
-`;
-const Wrapper = styled.div`
-  padding: 20px;
-`;
-const FormWrapper = styled.div`
-  background-color: #fff;
-  box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
-  padding: 20px 30px;
-`;
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
-const InputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: #e9ecef;
-  width: 100%;
-  border-radius: 1px;
-  border: 0.2px solid #e9ecef;
-`;
-const Input = styled.input`
-  padding: 12px;
-  width: 100%;
-  outline-color: #827fc2;;
-`;
-const Btn = styled.button`
-  display: flex;
-  align-items: center;
-  background: linear-gradient(to right, #5c62ae, #4088a9);
-  padding: 10px;
-  margin: 20px 0;
-  gap: 2px;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-  border: none;
-  font-weigth: 700;
-  font-size: 14px;
-  &:hover {
-    color: #343a40;
-    transition: all 0.5s;
-  }
-`;
-const Select = styled.select`
-  padding: 12px 5px;
-  width: 100%;
-  outline-color: #827fc2;
-`;
-const Option = styled.option``;
+import {
+  Btn,
+  Container,
+  Form,
+  FormWrapper,
+  Input,
+  InputContainer,
+  Option,
+  Select,
+  Wrapper,
+} from "./credit.styles";
 
 const Credit = () => {
   return (
