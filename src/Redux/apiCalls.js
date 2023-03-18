@@ -5,6 +5,9 @@ import {
   getAllUsersFailure,
   getAllUsersStart,
   getAllUsersSuccess,
+  getResellersFailure,
+  getResellersStart,
+  getResellersSuccess,
   getUserOverviewFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
@@ -104,6 +107,16 @@ export const getAgents = async (dispatch) => {
     dispatch(getAgentsSuccess(res.data.data.data));
   } catch (error) {
     dispatch(getAgentsFailure());
+  }
+};
+
+export const getResellers = async (dispatch) => {
+  dispatch(getResellersStart());
+  try {
+    const res = await userRequest.get("/resellers");
+    dispatch(getResellersSuccess(res.data.data.data));
+  } catch (error) {
+    dispatch(getResellersFailure());
   }
 };
 

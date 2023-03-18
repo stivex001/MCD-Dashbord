@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { getAgents } from "../../Redux/apiCalls";
+import { getResellers } from "../../Redux/apiCalls";
 import { Loading } from "../transaction/pending.styles";
 import Logo from "../../assets/mcd_logo.png";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
@@ -38,13 +38,13 @@ import {
 } from "./agent.styles";
 
 const Resellers = () => {
-  const { agents, isFetching } = useSelector((state) => state.user);
+  const { resellers, isFetching } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
-    getAgents(dispatch);
+    getResellers(dispatch);
   }, [dispatch]);
 
   const handleChangePage = (event, newPage) => {
@@ -114,8 +114,8 @@ const Resellers = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {agents &&
-                    agents
+                  {resellers &&
+                    resellers
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
@@ -164,7 +164,7 @@ const Resellers = () => {
               <TablePagination
                 rowsPerPageOptions={[10, 15, 100]}
                 component="div"
-                count={agents && agents.length}
+                count={resellers && resellers.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
