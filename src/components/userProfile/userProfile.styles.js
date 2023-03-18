@@ -1,6 +1,6 @@
 
 import styled from "styled-components";
-import { mobile } from "../../responsive";
+import { mobile, tablet } from "../../responsive";
 
 export const Container = styled.div`
   background-color: #fff;
@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   padding: 20px 50px;
   color: white;
-  ${mobile({ flexDirection: "column", alignItems: "flex-start", gap: "40px" })};
+  ${tablet({ flexDirection: "column", alignItems: "flex-start", gap: "40px" })};
 `;
 export const Left = styled.div``;
 export const UserImg = styled.img`
@@ -25,11 +25,14 @@ heigth: 210px;
 background-color: white;
 padding: 4px;
 ${mobile({ width: '245px', height: '186px' })};
+${tablet({ width: '100%', height: '100%' })};
 `;
 export const Username = styled.p`
   font-size: 24px;
 `;
-export const Fullname = styled.p``;
+export const Fullname = styled.p`
+margin-top: 10px;
+`;
 export const Brandname = styled.span`
   font-size: 13px;
   color: #8c9ea9;
