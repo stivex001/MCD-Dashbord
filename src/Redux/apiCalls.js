@@ -202,7 +202,7 @@ export const getWalletList = async (dispatch) => {
   dispatch(getWalletStart());
   try {
     const res = await userRequest.get("/profile/samji");
-    dispatch(getWalletSucess(res.data.data));
+    dispatch(getWalletSucess(res.data.data.wallet_list.data));
   } catch (error) {
     dispatch(getWalletFailure());
   }

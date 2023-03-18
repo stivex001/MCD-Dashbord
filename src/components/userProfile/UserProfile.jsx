@@ -34,7 +34,7 @@ const UserProfile = () => {
     const getUser = async () => {
       try {
         const res = await userRequest.get("/profile/samji");
-        console.log(res.data);
+        console.log(res.data.data.wallet_list.data);
         setUser(res.data.data);
       } catch (error) {
         console.log(error.message);

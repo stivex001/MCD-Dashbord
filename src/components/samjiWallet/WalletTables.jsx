@@ -19,6 +19,7 @@ const WalletTables = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  
 
   useEffect(() => {
     getWalletList(dispatch);
