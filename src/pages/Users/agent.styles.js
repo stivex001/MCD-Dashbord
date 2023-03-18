@@ -86,3 +86,13 @@ export const Column = styled.div`
   }
 `;
 export const ActionListCol = styled.div``;
+
+export const AgentDesc = styled.div`
+display: flex;
+align-items: center;
+gap: 10px;
+`;
+export const Img = styled.img`
+width: 32px;
+height: 32px;
+`;

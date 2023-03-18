@@ -17,15 +17,18 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { getAgents } from "../../Redux/apiCalls";
 import { Loading } from "../transaction/pending.styles";
+import Logo from "../../assets/mcd_logo.png";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Action,
   ActionList,
   ActionListCol,
+  AgentDesc,
   Column,
   Container,
   Details,
   DivWrapper,
+  Img,
   Input,
   P,
   SearchAgent,
@@ -112,40 +115,50 @@ const Agent = () => {
                 </TableHead>
                 <TableBody>
                   {agents &&
-                    agents.map((row) => (
-                      <TableRow
-                        key={row.id}
-                        style={{ backgroundColor: "#f3f2f7" }}
-                      >
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.user_name}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.company_name}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.dob}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.phoneno}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          <Link
-                            to={"/profile/" + encodeURIComponent(row.user_name)}
-                          >
-                            <NoteAlt
-                              style={{
-                                backgroundColor: "5dd099",
-                                color: "white",
-                                padding: "4px 8px",
-                                fontSize: "40px",
-                                cursor: "pointer",
-                              }}
-                            />
-                          </Link>
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                    agents
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                      .map((row) => (
+                        <TableRow
+                          key={row.id}
+                          style={{ backgroundColor: "#f3f2f7" }}
+                        >
+                          <TableCell style={{ color: "#8887a9" }}>
+                            <AgentDesc>
+                              <Img src={row.phone || Logo} alt="" />
+                              {row.user_name}
+                            </AgentDesc>
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.company_name}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.dob}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.phoneno}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            <Link
+                              to={
+                                "/profile/" + encodeURIComponent(row.user_name)
+                              }
+                            >
+                              <NoteAlt
+                                style={{
+                                  backgroundColor: "5dd099",
+                                  color: "white",
+                                  padding: "4px 8px",
+                                  fontSize: "40px",
+                                  cursor: "pointer",
+                                }}
+                              />
+                            </Link>
+                          </TableCell>
+                        </TableRow>
+                      ))}
                 </TableBody>
               </Table>
               <TablePagination
