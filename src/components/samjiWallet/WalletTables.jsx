@@ -7,28 +7,22 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { userRequest } from "../../requestMethods";
 import { TablePagination } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getWalletList } from "../../Redux/apiCalls";
 
 const Container = styled.div``;
 
 
 const WalletTables = () => {
-  const [transHistory, setTransHistory] = useState([]);
+  const {walletList} = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
-    const getTransactionsHistory = async () => {
-      try {
-        const res = await userRequest.get("/transactions");
-        setTransHistory(res.data.data.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getTransactionsHistory();
-  }, []);
+    getWalletList(dispatch);
+  }, [dispatch]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -38,6 +32,7 @@ const WalletTables = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  console.log(walletList);
 
   return (
     <Container>
@@ -75,7 +70,7 @@ const WalletTables = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {transHistory
+            {walletList && walletList
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
                 <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
@@ -109,7 +104,7 @@ const WalletTables = () => {
         <TablePagination
           rowsPerPageOptions={[10, 15, 100]}
           component="div"
-          count={transHistory.length}
+          count={walletList && walletList.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

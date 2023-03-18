@@ -44,6 +44,7 @@ import {
   reProcessAllStart,
   reProcessAllSucess,
 } from "./pendingTransSlice";
+import { getWalletFailure, getWalletStart, getWalletSucess } from "./profileSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -175,9 +176,20 @@ export const getPendingTransData = async (dispatch) => {
   dispatch(getPendingTransStart());
   try {
     const res = await userRequest.get("/transactions/pending");
+    console.log(res.data.data.data);
     dispatch(getPendingTransSucess(res.data.data.data));
   } catch (error) {
     dispatch(getPendingTransFailure());
+  }
+};
+
+export const getWalletList = async (dispatch) => {
+  dispatch(getWalletStart());
+  try {
+    const res = await userRequest.get("/profile/samji");
+    dispatch(getWalletSucess(res.data.data));
+  } catch (error) {
+    dispatch(getWalletFailure());
   }
 };
 

@@ -30,12 +30,12 @@ align-items: center;
 margin: 5px 0 20px;
 padding: 6px 12px;
 color: #fff;
-background-color: #5b63ae;
+background: linear-gradient(to right, #5c62ae, #4088a9);
 cursor: pointer;
 border: none;
 border-radius: 2px;
 &:hover {
-  color: black;
+  color: #343a40;
   transition: all 0.5s;
 }
 `;

@@ -3,6 +3,7 @@ import userReducer from "./userSlice";
 import TransReducer from "./pendingTransSlice";
 import settingsReducer from "./settingsSlice";
 import walletReducer from "./walletSlice";
+import profileReducer from "./profileSlice";
 import {
   persistStore,
   persistReducer,
@@ -19,7 +20,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  blacklist: ["transaction", "wallet", "settings"],
+  blacklist: ["transaction", "wallet", "settings", "profile"],
 };
 
 const rootReducer = combineReducers({
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   transaction: TransReducer,
   settings: settingsReducer,
   wallet: walletReducer,
+  profile: profileReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

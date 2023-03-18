@@ -6,10 +6,12 @@ import {
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
+import { laptop } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
 margin: 70px 0;
+${laptop({ marginLeft: "250px" })};
 `;
 const Wrapper = styled.div`
   padding: 20px;
@@ -37,38 +39,30 @@ const InputContainer = styled.div`
 const Input = styled.input`
   padding: 12px;
   width: 100%;
-  outline-color: #605daf;
+  outline-color: #827fc2;;
 `;
-const Btn = styled.div`
+const Btn = styled.button`
   display: flex;
   align-items: center;
-  background-color: #4e74ab;
-  padding: 10px 12px;
+  background: linear-gradient(to right, #5c62ae, #4088a9);
+  padding: 10px;
   margin: 20px 0;
-  width: 150px;
   gap: 2px;
   color: white;
   cursor: pointer;
   border-radius: 5px;
-  &:hover {
-    color: #343a40;
-  }
-`;
-const Button = styled.button`
   border: none;
-  background: none;
-  color: white;
   font-weigth: 700;
   font-size: 14px;
-  cursor: pointer;
   &:hover {
     color: #343a40;
+    transition: all 0.5s;
   }
 `;
 const Select = styled.select`
   padding: 12px 5px;
   width: 100%;
-  outline-color: #605daf;
+  outline-color: #827fc2;
 `;
 const Option = styled.option``;
 
@@ -126,7 +120,7 @@ const Credit = () => {
           </Form>
           <Btn>
             <CreditCard />
-            <Button>Credit User</Button>
+            Credit User
           </Btn>
         </FormWrapper>
       </Wrapper>
