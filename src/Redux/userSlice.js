@@ -10,6 +10,7 @@ const userSlice = createSlice({
     allUsers: [],
     userOverview: '',
     agents: [],
+    resellers: [],
   },
   reducers: {
     loginStart: (state) => {
@@ -63,6 +64,18 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    getResellersStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getResellersSuccess: (state, action) => {
+      state.isFetching = false;
+      state.resellers = action.payload;
+    },
+    getResellersFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -80,5 +93,8 @@ export const {
   getAgentsStart,
   getAgentsSuccess,
   getAgentsFailure,
+  getResellersStart,
+  getResellersSuccess,
+  getResellersFailure,
 } = userSlice.actions;
 export default userSlice.reducer;

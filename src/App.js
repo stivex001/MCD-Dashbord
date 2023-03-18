@@ -40,6 +40,7 @@ import Profile from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Setting";
 import Edit from "./pages/Settings/Edit";
 import Agent from "./pages/Users/Agent";
+import Resellers from "./pages/Users/Resellers";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -80,6 +81,7 @@ const App = () => {
         <Route path="/agent-payment" element={user ? <AgentPayment /> : <Navigate to="/login" />}/>
         <Route path="/profile/samji" element={user ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/agents" element={user ? <Agent /> : <Navigate to="/login" />} />
+        <Route path="/resellers" element={user ? <Resellers /> : <Navigate to="/login" />} />
 
         {/* Verification Page */}
         <Route path="/server1" element={<Server1 />} />
