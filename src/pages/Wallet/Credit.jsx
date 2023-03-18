@@ -1,10 +1,13 @@
 import {
   AccountBalanceWallet,
+  Close,
   CreditCard,
   PermIdentity,
 } from "@mui/icons-material";
+import { useState } from "react";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
+import { H2, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Btn,
@@ -19,10 +22,23 @@ import {
 } from "./credit.styles";
 
 const Credit = () => {
+  const [enterUsername, setEnterUsername] = useState("");
+  const [enterUsernameIsValid, setEnterUsernameIsValid] = useState(true);
+
+  const onChangeNameHandler = (e) => {
+    setEnterUsername(e.target.value);
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-  }
+    if (enterUsername.trim() === "") {
+      setEnterUsernameIsValid(false);
+      return;
+    }
+    setEnterUsernameIsValid(true);
+    setEnterUsername("");
+    console.log(enterUsername);
+  };
 
   return (
     <Container>
@@ -40,8 +56,20 @@ const Credit = () => {
               <PermIdentity
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="text" placeholder="Enter Username" />
+              <Input
+                type="text"
+                placeholder="Enter Username"
+                onChange={onChangeNameHandler}
+                value={enterUsername}
+              />
             </InputContainer>
+            {!enterUsernameIsValid && (
+              <MsgContainer>
+                <H2>Username is required!</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
+
             <InputContainer>
               <AccountBalanceWallet
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
