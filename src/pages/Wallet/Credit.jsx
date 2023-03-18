@@ -22,22 +22,29 @@ import {
 } from "./credit.styles";
 
 const Credit = () => {
-  const [enterUsername, setEnterUsername] = useState("");
+  const [formData, setFormData] = useState({
+    enterUsername: "",
+    enterAmount: "",
+    fundType: "fund",
+    bankType: "transfer",
+    description: "",
+  });
   const [enterUsernameIsValid, setEnterUsernameIsValid] = useState(true);
 
-  const onChangeNameHandler = (e) => {
-    setEnterUsername(e.target.value);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (enterUsername.trim() === "") {
+    if (formData.enterUsername.trim() === "") {
       setEnterUsernameIsValid(false);
       return;
     }
     setEnterUsernameIsValid(true);
-    setEnterUsername("");
-    console.log(enterUsername);
+    setFormData("");
+    console.log(formData);
   };
 
   return (
@@ -59,8 +66,9 @@ const Credit = () => {
               <Input
                 type="text"
                 placeholder="Enter Username"
-                onChange={onChangeNameHandler}
-                value={enterUsername}
+                name="enterUsername"
+                value={formData.enterUsername || ""}
+                onChange={handleInputChange}
               />
             </InputContainer>
             {!enterUsernameIsValid && (
@@ -74,16 +82,32 @@ const Credit = () => {
               <AccountBalanceWallet
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="number" placeholder="Enter Amount" />
+              <Input
+                type="number"
+                placeholder="Enter Amount"
+                name="enterAmount"
+                value={formData.enterAmount || ""}
+                onChange={handleInputChange}
+              />
             </InputContainer>
             <InputContainer>
-              <Select name="fund" id="">
+              <Select
+                name="fundType"
+                id=""
+                value={formData.fundType || "fund"}
+                onChange={handleInputChange}
+              >
                 <Option value="fund">Fund</Option>
                 <Option value="debit">Debit</Option>
               </Select>
             </InputContainer>
             <InputContainer>
-              <Select name="bank" id="">
+              <Select
+                name="bankType"
+                id=""
+                value={formData.bankType || "transfer"}
+                onChange={handleInputChange}
+              >
                 <Option value="transfer">Bank Transfer</Option>
                 <Option value="payant">Payant</Option>
                 <Option value="monify">Monify</Option>
@@ -100,6 +124,9 @@ const Credit = () => {
               <Input
                 type="text"
                 placeholder="Enter Additional Description (Optional)"
+                name="description"
+                value={formData.description || ""}
+                onChange={handleInputChange}
               />
             </InputContainer>
           </Form>
