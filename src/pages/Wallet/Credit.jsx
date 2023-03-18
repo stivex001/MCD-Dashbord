@@ -19,6 +19,11 @@ import {
 } from "./credit.styles";
 
 const Credit = () => {
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <Container>
       <Navbar />
@@ -29,7 +34,7 @@ const Credit = () => {
             Wallet / <DescSpan>Credit User</DescSpan>
           </DescP>
         </Desc>
-        <FormWrapper>
+        <FormWrapper onSubmit={handleFormSubmit}>
           <Form>
             <InputContainer>
               <PermIdentity
@@ -70,7 +75,7 @@ const Credit = () => {
               />
             </InputContainer>
           </Form>
-          <Btn>
+          <Btn type="submit">
             <CreditCard />
             Credit User
           </Btn>
