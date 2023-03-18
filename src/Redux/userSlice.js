@@ -6,7 +6,7 @@ const userSlice = createSlice({
     currentUser: null,
     isFetching: false,
     error: false,
-    message: null,
+    message: false,
     allUsers: [],
     userOverview: '',
     agents: [],

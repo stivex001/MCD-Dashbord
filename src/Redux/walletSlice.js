@@ -7,7 +7,8 @@ const walletSlice = createSlice({
     error: false,
     walletData: [],
     withdrawalData: [],
-    message: null,
+    message: false,
+    creditUser: null,
   },
   reducers: {
     getWalletDataStart: (state) => {
@@ -34,6 +35,19 @@ const walletSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    creditUserStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    creditUserSuccess: (state, action) => {
+      state.isFetching = false;
+      state.creditUser = action.payload;
+      state.message = true;
+    },
+    creditUserFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -44,5 +58,8 @@ export const {
   getWithdrawalDataStart,
   getWithdrawalDataSucess,
   getWithdrawalDataFailure,
+  creditUserStart,
+  creditUserSuccess,
+  creditUserFailure
 } = walletSlice.actions;
 export default walletSlice.reducer;

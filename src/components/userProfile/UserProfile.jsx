@@ -27,7 +27,6 @@ import {
 
 const UserProfile = () => {
   const [user, setUser] = useState([]);
-  const [walletList, setWalletList] = useState([]);
   // const location = useLocation()
   // const userId = location.pathname.split('/')[2];
 
@@ -35,9 +34,8 @@ const UserProfile = () => {
     const getUser = async () => {
       try {
         const res = await userRequest.get("/profile/samji");
-        console.log(res);
+        console.log(res.data);
         setUser(res.data.data);
-        setWalletList(res.data.data.wallet_list.data);
       } catch (error) {
         console.log(error.message);
       }

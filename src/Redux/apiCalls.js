@@ -26,6 +26,9 @@ import {
   updateSettingsSucess,
 } from "./settingsSlice";
 import {
+  creditUserFailure,
+  creditUserStart,
+  creditUserSuccess,
   getWalletDataFailure,
   getWalletDataStart,
   getWalletDataSucess,
@@ -142,6 +145,7 @@ export const modifySettings = async (dispatch, id, value) => {
   }
 };
 
+// WALLET
 export const getWalletData = async (dispatch) => {
   dispatch(getWalletDataStart());
   try {
@@ -159,6 +163,17 @@ export const getWithdrawalData = async (dispatch) => {
     dispatch(getWithdrawalDataSucess(res.data.data.data));
   } catch (error) {
     dispatch(getWithdrawalDataFailure());
+  }
+};
+
+export const creditUser = async (dispatch, formValue) => {
+  dispatch(creditUserStart()); // set isProcessing flag to true
+  try {
+    const res = await userRequest.post(`/credit-debit`, formValue );
+    dispatch(creditUserSuccess(res.data)); 
+    console.log(res.data);
+  } catch (error) {
+    dispatch(creditUserFailure()); // set error flag to true
   }
 };
 

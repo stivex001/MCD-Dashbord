@@ -5,8 +5,10 @@ import {
   PermIdentity,
 } from "@mui/icons-material";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
+import { creditUser } from "../../Redux/apiCalls";
 import { H2, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
@@ -30,7 +32,8 @@ const Credit = () => {
     description: "",
   });
   const [enterUsernameIsValid, setEnterUsernameIsValid] = useState(true);
-
+  const dispatch = useDispatch();
+  const {message, error} = useSelector(state => state.wallet)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -42,9 +45,15 @@ const Credit = () => {
       setEnterUsernameIsValid(false);
       return;
     }
+    creditUser(dispatch, {
+      user_name: formData.enterUsername,
+      type: "credit",
+      payment_channel: formData.bankType,
+      amount: formData.amount,
+      odescription: formData.description,
+    });
     setEnterUsernameIsValid(true);
     setFormData("");
-    console.log(formData);
   };
 
   return (
@@ -74,6 +83,12 @@ const Credit = () => {
             {!enterUsernameIsValid && (
               <MsgContainer>
                 <H2>Username is required!</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
+            {message && (
+              <MsgContainer type="success">
+                <H2 type="success">{`${formData.enterUsername} wallet credited successfully!`}</H2>
                 <Close style={{ color: "#806e6b", cursor: "pointer" }} />
               </MsgContainer>
             )}
@@ -134,6 +149,12 @@ const Credit = () => {
             <CreditCard />
             Credit User
           </Btn>
+          {error && (
+              <MsgContainer>
+                <H2>opps!! something went wrong</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
         </FormWrapper>
       </Wrapper>
 
