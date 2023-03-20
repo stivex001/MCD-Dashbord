@@ -1,17 +1,23 @@
-import styled from "styled-components";
+import { Search } from "@mui/icons-material";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import Verify from "../../components/Verification/Verify";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-
-const Container = styled.div`
-margin: 70px 0;
-`;
-const Wrapper = styled.div`
-  padding: 20px;
-`;
+import {
+  Btn,
+  Container,
+  Form,
+  FormWrapper,
+  Input,
+  InputContainer,
+  Wrapper,
+} from "./server.styles";
 
 const Server1 = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <Container>
       <Navbar />
@@ -22,7 +28,20 @@ const Server1 = () => {
             Transaction / <DescSpan>Verification &gt; Server1</DescSpan>
           </DescP>
         </Desc>
-        <Verify />
+        <FormWrapper>
+          <Form onSubmit={handleSubmit}>
+            <InputContainer>
+              <p style={{ padding: "5px", fontSize: "20px", color: "#495057" }}>
+                REF
+              </p>
+              <Input type="text" placeholder="Enter Server reference" />
+            </InputContainer>
+            <Btn type='submit'>
+              <Search />
+              Verify
+            </Btn>
+          </Form>
+        </FormWrapper>
       </Wrapper>
 
       <Footer />
