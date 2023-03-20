@@ -7,6 +7,7 @@ ${laptop({ marginLeft: "250px" })};
 `;
 export const Wrapper = styled.div`
   padding: 20px;
+  height: 70vh;
 `;
 export const FormWrapper = styled.div`
   background-color: #fff;
@@ -31,7 +32,7 @@ export const Input = styled.input`
   width: 100%;
   outline-color: #827fc2; ;
 `;
-export const Btn = styled.div`
+export const Btn = styled.button`
   display: flex;
   align-items: center;
   background: linear-gradient(to right, #5c62ae, #4088a9);
@@ -43,6 +44,7 @@ export const Btn = styled.div`
   border-radius: 1px;
   font-weigth: 700;
   font-size: 14px;
+  border: none;
   &:hover {
     color: #343a40;
     transition: all 0.5s;
