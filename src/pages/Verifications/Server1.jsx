@@ -1,8 +1,9 @@
 import { Close, Search } from "@mui/icons-material";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
+import { verifyServer1 } from "../../Redux/apiCalls";
 import { H2, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
@@ -20,6 +21,8 @@ const Server1 = () => {
   const [refData, setRefData] = useState('')
   const [enterRefIsValid, setEnterRefIsValid] = useState(true);
   const {error} = useSelector(state => state.server)
+  const dispatch = useDispatch()
+
   const handleInputChange = (e) => {
     setRefData(e.target.value);
   };
@@ -30,7 +33,11 @@ const Server1 = () => {
       setEnterRefIsValid(false);
       return;
     }
-
+    else {
+      verifyServer1(dispatch, {ref: refData})
+    }
+    setEnterRefIsValid(true);
+    setRefData("");
   }
 
   return (
@@ -62,7 +69,7 @@ const Server1 = () => {
               <p style={{ padding: "5px", fontSize: "20px", color: "#495057" }}>
                 REF
               </p>
-              <Input type="text" placeholder="Enter Server reference" onChange={handleInputChange} />
+              <Input type="text" placeholder="Enter Server reference" onChange={handleInputChange} value={refData} />
             </InputContainer>
             <Btn type='submit'>
               <Search />
