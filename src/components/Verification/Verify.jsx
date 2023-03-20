@@ -22,33 +22,26 @@ const InputContainer = styled.div`
 const Input = styled.input`
   padding: 12px;
   width: 100%;
-  outline-color: #605daf;
+  outline-color: #827fc2; ;
 `;
 const Btn = styled.div`
   display: flex;
   align-items: center;
-  background-color: #4e74ab;
+  background: linear-gradient(to right, #5c62ae, #4088a9);
   padding: 10px;
   margin: 20px 0;
   gap: 2px;
   color: white;
   cursor: pointer;
   border-radius: 1px;
-  &:hover {
-    color: #343a40;
-  }
-`;
-const Button = styled.button`
-  border: none;
-  background: none;
-  color: white;
   font-weigth: 700;
   font-size: 14px;
-  cursor: pointer;
   &:hover {
     color: #343a40;
+    transition: all 0.5s;
   }
 `;
+
 const Verify = () => {
   return (
     <FormWrapper>
@@ -61,7 +54,7 @@ const Verify = () => {
         </InputContainer>
         <Btn>
           <Search />
-          <Button>Verify</Button>
+          Verify
         </Btn>
       </Form>
     </FormWrapper>
