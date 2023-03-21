@@ -48,7 +48,7 @@ import {
   reProcessAllSucess,
 } from "./pendingTransSlice";
 import { getWalletFailure, getWalletStart, getWalletSucess } from "./profileSlice";
-import { server1Failure, server1Start, server1Success } from "./serverSlice";
+import { server1Failure, server1Start, server1Success, server6Failure, server6Start, server6Success } from "./serverSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -216,7 +216,6 @@ export const verifyServer1 = async (dispatch, ref) => {
     const res = await userRequest.post(`/verification/s5`, ref);
     if (res.data.success === 1) {
       dispatch(server1Success(res.data)); 
-      console.log(res.data);
     }
     else {
       dispatch(server1Failure());
@@ -224,5 +223,22 @@ export const verifyServer1 = async (dispatch, ref) => {
     
   } catch (error) {
     dispatch(server1Failure());
+  }
+};
+
+export const verifyServer6 = async (dispatch, ref) => {
+  dispatch(server6Start());
+  try {
+    const res = await userRequest.post(`/verification/s6`, ref);
+    if (res.data.success === 1) {
+      dispatch(server6Success(res.data)); 
+      console.log(res.data);
+    }
+    else {
+      dispatch(server6Failure());
+    }
+    
+  } catch (error) {
+    dispatch(server6Failure());
   }
 };

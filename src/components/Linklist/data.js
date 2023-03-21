@@ -225,12 +225,12 @@ export const sidebarData = [
       {
         id: 6,
         title: "Server 4",
-        to: "/server 4",
+        to: "/server4",
       },
       {
         id: 7,
         title: "Server 5",
-        to: "/server 5",
+        to: "/server5",
       },
       {
         id: 8,
