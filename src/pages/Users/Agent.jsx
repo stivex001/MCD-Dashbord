@@ -42,6 +42,7 @@ const Agent = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     getAgents(dispatch);
@@ -63,6 +64,7 @@ const Agent = () => {
       </Loading>
     );
   }
+  
 
   return (
     <Container>
@@ -88,7 +90,7 @@ const Agent = () => {
             </Action>
             <SearchAgent>
               <SearchDesc>Search: </SearchDesc>
-              <Input type="text" />
+              <Input type="text" onChange={(e) => setQuery(e.target.value)} />
             </SearchAgent>
           </DivWrapper>
           <Details>
@@ -116,6 +118,9 @@ const Agent = () => {
                 <TableBody>
                   {agents &&
                     agents
+                      .filter((row) =>
+                        row.user_name.toLowerCase().includes(query)
+                      )
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
