@@ -41,6 +41,7 @@ import Settings from "./pages/Settings/Setting";
 import Edit from "./pages/Settings/Edit";
 import Agent from "./pages/Users/Agent";
 import Resellers from "./pages/Users/Resellers";
+import Server11 from "./pages/Verifications/Server11";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -59,60 +60,172 @@ const App = () => {
           path="/transactions-pending"
           element={user ? <Pending /> : <Navigate to="/login" />}
         />
-        <Route path="/findtransaction" element={<FindTransaction />} />
-        <Route path="/add-data" element={<AddData />} />
-        <Route path="/airtime-converter" element={<AirtimeConverter />} />
-        <Route path="/market" element={<GeneralMarket />} />
-        <Route path="/reverse-transaction" element={<Reversal />} />
-        <Route path="/charges" element={<PCharges />} />
+        <Route
+          path="/findtransaction"
+          element={user ? <FindTransaction /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/add-data"
+          element={user ? <AddData /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/airtime-converter"
+          element={user ? <AirtimeConverter /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/market"
+          element={user ? <GeneralMarket /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/reverse-transaction"
+          element={user ? <Reversal /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/charges"
+          element={user ? <PCharges /> : <Navigate to="/login" />}
+        />
 
         {/* Wallet Page */}
-        <Route path="/addfund" element={user ? <Credit /> : <Navigate to="/login" />} />
-        <Route path="/wallet" element={user ? <WalletList /> : <Navigate to="/login" />} />
-        <Route path="/withdrawal" element={user ? <WithdrawReq /> : <Navigate to="/login" />} />
+        <Route
+          path="/addfund"
+          element={user ? <Credit /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/wallet"
+          element={user ? <WalletList /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/withdrawal"
+          element={user ? <WithdrawReq /> : <Navigate to="/login" />}
+        />
 
         {/* User Page */}
         <Route
           path="/users"
           element={user ? <Users /> : <Navigate to="/login" />}
         />
-        <Route path="/find-users" element={user ? <FindUser /> : <Navigate to="/login" />}/>
-        <Route path="/referral-upgrade" element={user ? <ReferalUpgrade /> : <Navigate to="/login" />} />
-        <Route path="/agent-payment" element={user ? <AgentPayment /> : <Navigate to="/login" />}/>
-        <Route path="/profile/samji" element={user ? <Profile /> : <Navigate to="/login" />} />
-        <Route path="/agents" element={user ? <Agent /> : <Navigate to="/login" />} />
-        <Route path="/resellers" element={user ? <Resellers /> : <Navigate to="/login" />} />
+        <Route
+          path="/find-users"
+          element={user ? <FindUser /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/referral-upgrade"
+          element={user ? <ReferalUpgrade /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/agent-payment"
+          element={user ? <AgentPayment /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/profile/samji"
+          element={user ? <Profile /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/agents"
+          element={user ? <Agent /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/resellers"
+          element={user ? <Resellers /> : <Navigate to="/login" />}
+        />
 
         {/* Verification Page */}
-        <Route path="/server1" element={<Server1 />} />
-        <Route path="/server1b" element={<Server1b />} />
-        <Route path="/serverdt" element={<Server1Data />} />
-        <Route path="/server2" element={<Server2 />} />
-        <Route path="/server3" element={<Server3 />} />
-        <Route path="/server4" element={<Server4 />} />
-        <Route path="/server5" element={<Server5 />} />
-        <Route path="/server6" element={<Server6 />} />
-        <Route path="/server8" element={<Server8 />} />
-        <Route path="/server10" element={<Server10 />} />
+        <Route
+          path="/server1"
+          element={user ? <Server1 /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/server1b"
+          element={user ? <Server1b /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/serverdt"
+          element={user ? <Server1Data /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/server2"
+          element={user ? <Server2 /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/server3"
+          element={user ? <Server3 /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/server4"
+          element={user ? <Server4 /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/server5"
+          element={user ? <Server5 /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/server6"
+          element={user ? <Server6 /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/server8"
+          element={user ? <Server8 /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/server10"
+          element={user ? <Server10 /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/server11"
+          element={user ? <Server11 /> : <Navigate to="/login" />}
+        />
 
         {/* Payment Page */}
-        <Route path="/payment" element={<Payment />} />
+        <Route
+          path="/payment"
+          element={user ? <Payment /> : <Navigate to="/login" />}
+        />
 
         {/* Settings Page */}
-        <Route path="/allsettings" element={user ? <Settings /> : <Navigate to="/login" />} />
-        <Route path="/allsettings-edit/:userId" element={user ? <Edit /> : <Navigate to="/login" />} />
+        <Route
+          path="/allsettings"
+          element={user ? <Settings /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/allsettings-edit/:userId"
+          element={user ? <Edit /> : <Navigate to="/login" />}
+        />
 
         {/* Sercice Controller Page */}
-        <Route path="/datalist/MTN" element={<Mtn />} />
-        <Route path="/datalist/AIRTEL" element={<Airtel />} />
-        <Route path="/datalist/GLO" element={<Glo />} />
-        <Route path="/datalist/9MOBILE" element={<Nmobile />} />
-        <Route path="/tvcontrol" element={<Tv />} />
-        <Route path="/electricitycontrol" element={<Electricity />} />
+        <Route
+          path="/datalist/MTN"
+          element={user ? <Mtn /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/datalist/AIRTEL"
+          element={user ? <Airtel /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/datalist/GLO"
+          element={user ? <Glo /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/datalist/9MOBILE"
+          element={user ? <Nmobile /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/tvcontrol"
+          element={user ? <Tv /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/electricitycontrol"
+          element={user ? <Electricity /> : <Navigate to="/login" />}
+        />
 
         {/* Reseller Page */}
-        <Route path="/airtime-control" element={<AirtimeControl />} />
-        <Route path="/data-control" element={<DataControl />} />
+        <Route
+          path="/airtime-control"
+          element={user ? <AirtimeControl /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/data-control"
+          element={user ? <DataControl /> : <Navigate to="/login" />}
+        />
       </Routes>
     </div>
   );

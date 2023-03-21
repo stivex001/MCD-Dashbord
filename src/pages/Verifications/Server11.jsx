@@ -17,7 +17,7 @@ import {
   Wrapper,
 } from "./server.styles";
 
-const Server10 = () => {
+const Server11 = () => {
   const [refData, setRefData] = useState("");
   const [enterRefIsValid, setEnterRefIsValid] = useState(true);
   const { error, isFetching, message } = useSelector((state) => state.server);
@@ -44,9 +44,9 @@ const Server10 = () => {
       <Navbar />
       <Wrapper>
         <Desc>
-          <H3>Verification &gt; Server10</H3>
+          <H3>Verification &gt; Server11</H3>
           <DescP>
-            Transaction / <DescSpan>Verification &gt; Server10</DescSpan>
+            Transaction / <DescSpan>Verification &gt; Server11</DescSpan>
           </DescP>
         </Desc>
         <FormWrapper>
@@ -93,4 +93,4 @@ const Server10 = () => {
   );
 };
 
-export default Server10;
+export default Server11;
