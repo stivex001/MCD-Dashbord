@@ -36,6 +36,19 @@ const serverSlice = createSlice({
         state.isFetching = false;
         state.error = true;
       },
+      server10Start: (state) => {
+        state.isFetching = true;
+      },
+      server10Success: (state, action) => {
+        state.isFetching = false;
+        state.verifyRef = action.payload;
+        state.error = false;
+        state.message= true;
+      },
+      server10Failure: (state) => {
+        state.isFetching = false;
+        state.error = true;
+      },
   },
 });
 
@@ -46,5 +59,8 @@ export const {
   server6Start,
   server6Success,
   server6Failure,
+  server10Start,
+  server10Success,
+  server10Failure
 } = serverSlice.actions;
 export default serverSlice.reducer;

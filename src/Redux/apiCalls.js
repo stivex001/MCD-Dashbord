@@ -47,8 +47,19 @@ import {
   reProcessAllStart,
   reProcessAllSucess,
 } from "./pendingTransSlice";
-import { getWalletFailure, getWalletStart, getWalletSucess } from "./profileSlice";
-import { server1Failure, server1Start, server1Success, server6Failure, server6Start, server6Success } from "./serverSlice";
+import {
+  getWalletFailure,
+  getWalletStart,
+  getWalletSucess,
+} from "./profileSlice";
+import {
+  server1Failure,
+  server1Start,
+  server1Success,
+  server6Failure,
+  server6Start,
+  server6Success,
+} from "./serverSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -71,16 +82,18 @@ export const logout = async (dispatch) => {
 export const reProcess = async (dispatch, ids) => {
   dispatch(reProcessAllStart());
   try {
-    const res = await userRequest.post("/transactions/resubmit-multiple", { ids, all_type: 'reprocess' })
+    const res = await userRequest.post("/transactions/resubmit-multiple", {
+      ids,
+      all_type: "reprocess",
+    });
     if (res.data.success === 1) {
-      dispatch(reProcessAllSucess(res.data))
+      dispatch(reProcessAllSucess(res.data));
       console.log(res.data);
-    }
-    else {
-      dispatch(reProcessAllFailure())
+    } else {
+      dispatch(reProcessAllFailure());
     }
   } catch (error) {
-    dispatch(reProcessAllFailure())
+    dispatch(reProcessAllFailure());
   }
 };
 
@@ -170,8 +183,8 @@ export const getWithdrawalData = async (dispatch) => {
 export const creditUser = async (dispatch, formValue) => {
   dispatch(creditUserStart()); // set isProcessing flag to true
   try {
-    const res = await userRequest.post(`/credit-debit`, formValue );
-    dispatch(creditUserSuccess(res.data)); 
+    const res = await userRequest.post(`/credit-debit`, formValue);
+    dispatch(creditUserSuccess(res.data));
     console.log(res.data);
   } catch (error) {
     dispatch(creditUserFailure()); // set error flag to true
@@ -215,12 +228,10 @@ export const verifyServer1 = async (dispatch, ref) => {
   try {
     const res = await userRequest.post(`/verification/s5`, ref);
     if (res.data.success === 1) {
-      dispatch(server1Success(res.data)); 
-    }
-    else {
+      dispatch(server1Success(res.data));
+    } else {
       dispatch(server1Failure());
     }
-    
   } catch (error) {
     dispatch(server1Failure());
   }
@@ -231,13 +242,25 @@ export const verifyServer6 = async (dispatch, ref) => {
   try {
     const res = await userRequest.post(`/verification/s6`, ref);
     if (res.data.success === 1) {
-      dispatch(server6Success(res.data)); 
-      console.log(res.data);
-    }
-    else {
+      dispatch(server6Success(res.data));
+    } else {
       dispatch(server6Failure());
     }
-    
+  } catch (error) {
+    dispatch(server6Failure());
+  }
+};
+
+export const verifyServer10 = async (dispatch, ref) => {
+  dispatch(server6Start());
+  try {
+    const res = await userRequest.post(`/verification/s10`, ref);
+    if (res.data.success === 1) {
+      dispatch(server6Success(res.data));
+      console.log(res.data);
+    } else {
+      dispatch(server6Failure());
+    }
   } catch (error) {
     dispatch(server6Failure());
   }
