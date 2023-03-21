@@ -216,6 +216,7 @@ export const verifyServer1 = async (dispatch, ref) => {
     const res = await userRequest.post(`/verification/s5`, ref);
     if (res.data.success === 1) {
       dispatch(server1Success(res.data)); 
+      console.log(res.data);
     }
     else {
       dispatch(server1Failure());

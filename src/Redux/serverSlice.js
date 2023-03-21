@@ -16,6 +16,8 @@ const serverSlice = createSlice({
     server1Success: (state, action) => {
       state.isFetching = false;
       state.verifyRef = action.payload;
+      state.error = false;
+      state.message= true;
     },
     server1Failure: (state) => {
       state.isFetching = false;

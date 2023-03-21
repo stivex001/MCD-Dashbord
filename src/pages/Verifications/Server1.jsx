@@ -6,6 +6,8 @@ import Footer from "../../components/footer/Footer";
 import { verifyServer1 } from "../../Redux/apiCalls";
 import { H2, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Btn,
   Container,
@@ -17,28 +19,26 @@ import {
 } from "./server.styles";
 
 const Server1 = () => {
-
-  const [refData, setRefData] = useState('')
+  const [refData, setRefData] = useState("");
   const [enterRefIsValid, setEnterRefIsValid] = useState(true);
-  const {error} = useSelector(state => state.server)
-  const dispatch = useDispatch()
+  const { error, isFetching, message } = useSelector((state) => state.server);
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     setRefData(e.target.value);
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (refData.trim() === "") {
       setEnterRefIsValid(false);
       return;
+    } else {
+      verifyServer1(dispatch, { ref: refData });
+      setEnterRefIsValid(true);
+      setRefData("");
     }
-    else {
-      verifyServer1(dispatch, {ref: refData})
-    }
-    setEnterRefIsValid(true);
-    setRefData("");
-  }
+  };
 
   return (
     <Container>
@@ -51,31 +51,37 @@ const Server1 = () => {
           </DescP>
         </Desc>
         <FormWrapper>
-        {!enterRefIsValid && (
-              <MsgContainer>
-                <H2>Field  is required!</H2>
-                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-              </MsgContainer>
-            )}
-            {error && (
-              <MsgContainer>
-                <H2>Transaction reference not found</H2>
-                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-              </MsgContainer>
-            )}
+          {!enterRefIsValid && (
+            <MsgContainer>
+              <H2>Field is required!</H2>
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+            </MsgContainer>
+          )}
+          {error && (
+            <MsgContainer>
+              <H2>Transaction reference not found</H2>
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+            </MsgContainer>
+          )}
+          {message && toast.success("successfully verified")}
           <Form onSubmit={handleSubmit}>
-          
             <InputContainer>
               <p style={{ padding: "5px", fontSize: "20px", color: "#495057" }}>
                 REF
               </p>
-              <Input type="text" placeholder="Enter Server reference" onChange={handleInputChange} value={refData} />
+              <Input
+                type="text"
+                placeholder="Enter Server reference"
+                onChange={handleInputChange}
+                value={refData}
+              />
             </InputContainer>
-            <Btn type='submit'>
+            <Btn type="submit">
               <Search />
-              Verify
+              {isFetching ? " Verifying..." : "Verify"}
             </Btn>
           </Form>
+          <ToastContainer />
         </FormWrapper>
       </Wrapper>
 
