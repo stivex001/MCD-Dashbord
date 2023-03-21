@@ -7,7 +7,6 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TablePagination,
   TableRow,
 } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -36,26 +35,67 @@ import {
   TableWrapper,
   Wrapper,
 } from "./agent.styles";
+import ReactPaginate from "react-paginate";
+import styled from "styled-components";
+
+const PaginateContainer = styled(ReactPaginate)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 1rem;
+  font-size: 1.2rem;
+  gap: 5px;
+
+  .pageNum {
+    color: #605daf;
+    text-decoration: none;
+    padding: 5.6px 8px;
+    border-radius: 3px;
+    border: 1px solid #dee2e6;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      background: #f6f6f9;
+    }
+    &.active {
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+
+  .active {
+    background-color: #605daf;
+  }
+`;
 
 const Agent = () => {
   const { agents, isFetching } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [query, setQuery] = useState("");
+  const [itemOffset, setItemOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(0)
+  const [currentItems, setCurrentItems] = useState(agents)
+
+  const itemsPerPage = 10;
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems( agents.slice(itemOffset, endOffset))
+     setPageCount(Math.ceil(agents.length / itemsPerPage))
+  }, [itemOffset, agents, itemsPerPage])
+
+  
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % agents.length;
+    setItemOffset(newOffset);
+  };
 
   useEffect(() => {
     getAgents(dispatch);
   }, [dispatch]);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
 
   if (isFetching) {
     return (
@@ -64,7 +104,6 @@ const Agent = () => {
       </Loading>
     );
   }
-  
 
   return (
     <Container>
@@ -116,15 +155,12 @@ const Agent = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {agents &&
-                    agents
+                  {currentItems &&
+                    currentItems
                       .filter((row) =>
                         row.user_name.toLowerCase().includes(query)
                       )
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
+                      
                       .map((row) => (
                         <TableRow
                           key={row.id}
@@ -166,14 +202,19 @@ const Agent = () => {
                       ))}
                 </TableBody>
               </Table>
-              <TablePagination
-                rowsPerPageOptions={[10, 15, 100]}
-                component="div"
-                count={agents && agents.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+              <PaginateContainer
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+                containerClassName={'pagination'}
+                activeClassName={'active'}
+                pageLinkClassName= "pageNum"
+                previousLinkClassName="pageNum"
+                nextLinkClassName="pageNum"
               />
             </TableContainer>
           </Details>
