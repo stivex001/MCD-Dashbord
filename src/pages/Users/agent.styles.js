@@ -1,3 +1,4 @@
+import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { laptop, mobile } from "../../responsive";
@@ -95,4 +96,33 @@ gap: 10px;
 export const Img = styled.img`
 width: 32px;
 height: 32px;
+`;
+
+export const PaginateContainer = styled(ReactPaginate)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 1rem;
+  font-size: 1.2rem;
+  gap: 5px;
+
+  .pageNum {
+    color: #605daf;
+    text-decoration: none;
+    padding: 5.6px 8px;
+    border-radius: 3px;
+    border: 1px solid #dee2e6;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      background: #f6f6f9;
+    }
+  }
+
+  .active .pageNum {
+    background-color: #605daf;
+    color: #fff;
+  }
 `;
