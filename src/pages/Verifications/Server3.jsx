@@ -6,7 +6,7 @@ import Footer from "../../components/footer/Footer";
 import { verifyServer1 } from "../../Redux/apiCalls";
 import { H2, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Btn,
@@ -63,7 +63,12 @@ const Server3 = () => {
               <Close style={{ color: "#806e6b", cursor: "pointer" }} />
             </MsgContainer>
           )}
-          {message && toast.success("successfully verified")}
+          {message && (
+            <MsgContainer type="success">
+              <H2 type="success">{` successfully Verified!`}</H2>
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+            </MsgContainer>
+          )}
           <Form onSubmit={handleSubmit}>
             <InputContainer>
               <p style={{ padding: "5px", fontSize: "20px", color: "#495057" }}>
