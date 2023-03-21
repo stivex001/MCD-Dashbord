@@ -53,12 +53,9 @@ import {
   getWalletSucess,
 } from "./profileSlice";
 import {
-  server1Failure,
-  server1Start,
-  server1Success,
-  server6Failure,
-  server6Start,
-  server6Success,
+  serverStart,
+  serverFailure,
+  serverSuccess,
 } from "./serverSlice";
 
 export const login = async (dispatch, user) => {
@@ -224,44 +221,59 @@ export const getWalletList = async (dispatch) => {
 
 // Servers
 export const verifyServer1 = async (dispatch, ref) => {
-  dispatch(server1Start());
+  dispatch(serverStart());
   try {
     const res = await userRequest.post(`/verification/s5`, ref);
     if (res.data.success === 1) {
-      dispatch(server1Success(res.data));
+      dispatch(serverSuccess(res.data));
     } else {
-      dispatch(server1Failure());
+      dispatch(serverFailure());
     }
   } catch (error) {
-    dispatch(server1Failure());
+    dispatch(serverFailure());
   }
 };
 
 export const verifyServer6 = async (dispatch, ref) => {
-  dispatch(server6Start());
+  dispatch(serverStart());
   try {
     const res = await userRequest.post(`/verification/s6`, ref);
     if (res.data.success === 1) {
-      dispatch(server6Success(res.data));
+      dispatch(serverSuccess(res.data));
     } else {
-      dispatch(server6Failure());
+      dispatch(serverFailure());
     }
   } catch (error) {
-    dispatch(server6Failure());
+    dispatch(serverFailure());
   }
 };
 
 export const verifyServer10 = async (dispatch, ref) => {
-  dispatch(server6Start());
+  dispatch(serverStart());
   try {
     const res = await userRequest.post(`/verification/s10`, ref);
     if (res.data.success === 1) {
-      dispatch(server6Success(res.data));
+      dispatch(serverSuccess(res.data));
       console.log(res.data);
     } else {
-      dispatch(server6Failure());
+      dispatch(serverFailure());
     }
   } catch (error) {
-    dispatch(server6Failure());
+    dispatch(serverFailure());
+  }
+};
+
+export const verifyServer11 = async (dispatch, ref) => {
+  dispatch(serverStart());
+  try {
+    const res = await userRequest.post(`/verification/s11`, ref);
+    if (res.data.success === 1) {
+      dispatch(serverSuccess(res.data));
+      console.log(res.data);
+    } else {
+      dispatch(serverFailure());
+    }
+  } catch (error) {
+    dispatch(serverFailure());
   }
 };

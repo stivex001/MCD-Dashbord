@@ -10,57 +10,25 @@ const serverSlice = createSlice({
     
   },
   reducers: {
-    server1Start: (state) => {
+    serverStart: (state) => {
       state.isFetching = true;
     },
-    server1Success: (state, action) => {
+    serverSuccess: (state, action) => {
       state.isFetching = false;
       state.verifyRef = action.payload;
       state.error = false;
       state.message= true;
     },
-    server1Failure: (state) => {
+    serverFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
-    server6Start: (state) => {
-        state.isFetching = true;
-      },
-      server6Success: (state, action) => {
-        state.isFetching = false;
-        state.verifyRef = action.payload;
-        state.error = false;
-        state.message= true;
-      },
-      server6Failure: (state) => {
-        state.isFetching = false;
-        state.error = true;
-      },
-      server10Start: (state) => {
-        state.isFetching = true;
-      },
-      server10Success: (state, action) => {
-        state.isFetching = false;
-        state.verifyRef = action.payload;
-        state.error = false;
-        state.message= true;
-      },
-      server10Failure: (state) => {
-        state.isFetching = false;
-        state.error = true;
-      },
   },
 });
 
 export const {
-  server1Start,
-  server1Success,
-  server1Failure,
-  server6Start,
-  server6Success,
-  server6Failure,
-  server10Start,
-  server10Success,
-  server10Failure
+  serverStart,
+  serverSuccess,
+  serverFailure,
 } = serverSlice.actions;
 export default serverSlice.reducer;

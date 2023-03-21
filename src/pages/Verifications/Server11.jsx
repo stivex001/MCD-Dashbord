@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { verifyServer10 } from "../../Redux/apiCalls";
+import { verifyServer11 } from "../../Redux/apiCalls";
 import { H2, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import "react-toastify/dist/ReactToastify.css";
@@ -33,7 +33,7 @@ const Server11 = () => {
       setEnterRefIsValid(false);
       return;
     } else {
-      verifyServer10(dispatch, { ref: refData });
+      verifyServer11(dispatch, { ref: refData });
       setEnterRefIsValid(true);
       setRefData("");
     }
