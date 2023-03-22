@@ -213,10 +213,10 @@ export const getPendingTransData = async (dispatch) => {
   }
 };
 
-export const getGmData = async (dispatch) => {
+export const getGmData = async (dispatch, page) => {
   dispatch(getGmStart());
   try {
-    const res = await userRequest.get("/gmhistory");
+    const res = await userRequest.get(`/gmhistory?page=${page}`);
     console.log(res.data.data.data);
     dispatch(getGmSucess(res.data.data.data));
   } catch (error) {

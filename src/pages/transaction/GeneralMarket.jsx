@@ -31,7 +31,7 @@ const GeneralMarket = () => {
   const [currentItems, setCurrentItems] = useState(generalMarket);
   
 
-  const itemsPerPage = 10;
+  const itemsPerPage = 25;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -42,10 +42,11 @@ const GeneralMarket = () => {
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % generalMarket.length;
     setItemOffset(newOffset);
+    getGmData(dispatch, event.selected + 1);
   };
 
   useEffect(() => {
-    getGmData(dispatch);
+    getGmData(dispatch, 1);
   }, [dispatch]);
 
   if (isProcessing) {
