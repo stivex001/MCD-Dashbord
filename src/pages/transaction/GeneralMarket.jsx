@@ -31,7 +31,6 @@ const GeneralMarket = () => {
   const [currentItems, setCurrentItems] = useState(generalMarket);
   const [currentPage, setCurrentPage] = useState(1);
   
-
   const itemsPerPage = 25;
 
   useEffect(() => {
