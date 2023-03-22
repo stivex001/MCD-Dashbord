@@ -10,14 +10,16 @@ import {
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { mobile } from "../../responsive";
+import { laptop, mobile } from "../../responsive";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
 margin: 70px 0;
+${laptop({ marginLeft: "250px" })};
 `;
 const Wrapper = styled.div`
   padding: 20px;
+  height: 74vh;
 `;
 const FormWrapper = styled.div`
   background-color: #fff;
