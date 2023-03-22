@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -6,10 +7,13 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { marketData } from "../../components/Transactiontables/transactions";
+import { getGmData } from "../../Redux/apiCalls";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
+import { PaginateContainer } from "../Users/agent.styles";
 import {
   Container,
   Details,
@@ -17,8 +21,41 @@ import {
   TableWrapper,
   Wrapper,
 } from "./general.styles";
+import { Loading } from "./pending.styles";
 
 const GeneralMarket = () => {
+  const { generalMarket, isProcessing } = useSelector((state) => state.transaction);
+  const dispatch = useDispatch();
+  const [itemOffset, setItemOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
+  const [currentItems, setCurrentItems] = useState(generalMarket);
+  
+
+  const itemsPerPage = 10;
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(generalMarket.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(generalMarket.length / itemsPerPage));
+  }, [itemOffset, generalMarket, itemsPerPage]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % generalMarket.length;
+    setItemOffset(newOffset);
+  };
+
+  useEffect(() => {
+    getGmData(dispatch);
+  }, [dispatch]);
+
+  if (isProcessing) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
+
   return (
     <Container>
       <Navbar />
@@ -64,7 +101,7 @@ const GeneralMarket = () => {
                     </TableCell>
                   </TableRow>
                 </TableBody>
-                {marketData.map((row) => (
+                {currentItems && currentItems.map((row) => (
                   <TableBody>
                     <TableRow
                       key={row.id}
@@ -77,16 +114,16 @@ const GeneralMarket = () => {
                         {row.id}
                       </TableCell>
                       <TableCell style={{ color: "#8887a9" }}>
-                        {row.username}
+                        {row.user_name}
                       </TableCell>
                       <TableCell style={{ color: "#8887a9" }}>
-                        {row.amount}
+                      &#8358;{row.amount}
                       </TableCell>
                       <TableCell style={{ color: "#8887a9" }}>
                         <Span
                           style={{
                             backgroundColor: `${
-                              row.type === "Credit" ? "#5dd099" : "#f8c955"
+                              row.type === "credit" ? "#5dd099" : "#f8c955"
                             }`,
                           }}
                         >
@@ -94,13 +131,13 @@ const GeneralMarket = () => {
                         </Span>
                       </TableCell>
                       <TableCell style={{ color: "#8887a9" }}>
-                        {row.transId}
+                        {row.transid}
                       </TableCell>
                       <TableCell style={{ color: "#8887a9" }}>
-                        {row.oBalance}
+                      &#8358;{row.f_wallet}
                       </TableCell>
                       <TableCell style={{ color: "#8887a9" }}>
-                        {row.nBalance}
+                      &#8358;{row.i_wallet}
                       </TableCell>
                       <TableCell style={{ color: "#8887a9" }}>
                         {row.version}
@@ -113,6 +150,21 @@ const GeneralMarket = () => {
                   </TableBody>
                 ))}
               </Table>
+              <PaginateContainer
+                marginPagesDisplayed={2}
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                pageLinkClassName="pageNum"
+                previousLinkClassName="pageNum"
+                nextLinkClassName="pageNum"
+              />
             </TableContainer>
           </Details>
         </TableWrapper>

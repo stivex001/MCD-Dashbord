@@ -8,7 +8,8 @@ const pendingTransactionSlice = createSlice({
     checkId: [],
     message: false,
     transHistory: [],
-    pendingTrans: []
+    pendingTrans: [],
+    generalMarket: [],
   },
   reducers: {
     getTransHistoryStart: (state) => {
@@ -30,6 +31,17 @@ const pendingTransactionSlice = createSlice({
       state.pendingTrans = action.payload;
     },
     getPendingTransFailure: (state) => {
+      state.isProcessing = false;
+      state.error = true;
+    },
+    getGmStart: (state) => {
+      state.isProcessing = true;
+    },
+    getGmSucess: (state, action) => {
+      state.isProcessing = false;
+      state.generalMarket = action.payload;
+    },
+    getGmFailure: (state) => {
       state.isProcessing = false;
       state.error = true;
     },
@@ -76,5 +88,8 @@ export const {
   getPendingTransFailure,
   toggleCheckbox,
   emptyCheckbox,
+  getGmStart,
+  getGmSucess,
+  getGmFailure
 } = pendingTransactionSlice.actions;
 export default pendingTransactionSlice.reducer;

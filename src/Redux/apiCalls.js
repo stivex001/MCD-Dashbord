@@ -37,6 +37,9 @@ import {
   getWithdrawalDataSucess,
 } from "./walletSlice";
 import {
+  getGmFailure,
+  getGmStart,
+  getGmSucess,
   getPendingTransFailure,
   getPendingTransStart,
   getPendingTransSucess,
@@ -188,6 +191,7 @@ export const creditUser = async (dispatch, formValue) => {
   }
 };
 
+//  TRANSACTIONS PAGE
 export const getTransHistoryData = async (dispatch) => {
   dispatch(getTransHistoryStart());
   try {
@@ -209,6 +213,18 @@ export const getPendingTransData = async (dispatch) => {
   }
 };
 
+export const getGmData = async (dispatch) => {
+  dispatch(getGmStart());
+  try {
+    const res = await userRequest.get("/gmhistory");
+    console.log(res.data.data.data);
+    dispatch(getGmSucess(res.data.data.data));
+  } catch (error) {
+    dispatch(getGmFailure());
+  }
+};
+
+// WALLET PAGE
 export const getWalletList = async (dispatch) => {
   dispatch(getWalletStart());
   try {
