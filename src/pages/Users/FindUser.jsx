@@ -21,14 +21,14 @@ const Wrapper = styled.div`
   padding: 20px;
   height: 74vh;
 `;
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   background-color: #fff;
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
   padding: 20px 30px;
 `;
-const Form = styled.form`
+const Form = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 50%);
   gap: 16px;
@@ -40,30 +40,30 @@ const InputContainer = styled.div`
   background-color: #e9ecef;
   width: 100%;
   border-radius: 1px;
-  border: 1px solid #e9ecef;
 `;
 const Input = styled.input`
   padding: 12px;
   width: 100%;
-  outline-color: #605daf;
+  outline-color: #d4d8e1;
+  border: 1px solid #d4d8e1;
 `;
-const Btn = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: #4e74ab;
-  padding: 12px;
-  margin: 20px 0;
-  width: 100px;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-`;
-const Button = styled.button`
-  border: none;
-  background: none;
-  color: white;
-  font-weigth: 700;
-  font-size: 14px;
+const Btn = styled.button`
+display: flex;
+align-items: center;
+background: linear-gradient(to right, #5c62ae, #4088a9);
+padding: 10px;
+margin: 20px 0;
+gap: 2px;
+color: white;
+cursor: pointer;
+border-radius: 5px;
+border: none;
+font-weigth: 700;
+font-size: 14px;
+&:hover {
+  color: #343a40;
+  transition: all 0.5s;
+}
 `;
 
 const FindUser = () => {
@@ -119,9 +119,9 @@ const FindUser = () => {
               <Input type="date" />
             </InputContainer>
           </Form>
-          <Btn>
+          <Btn type="submit">
             <Search />
-            <Button>Search</Button>
+            Search
           </Btn>
         </FormWrapper>
       </Wrapper>

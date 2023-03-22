@@ -32,6 +32,7 @@ export const Input = styled.input`
   padding: 12px;
   width: 100%;
   outline-color: #827fc2;
+  border: 1px solid #d4d8e1;
 `;
 export const Btn = styled.button`
   display: flex;
@@ -54,6 +55,6 @@ export const Btn = styled.button`
 export const Select = styled.select`
   padding: 12px 5px;
   width: 100%;
-  outline-color: #827fc2;
+  outline-color: #d4d8e1;
 `;
 export const Option = styled.option``;
