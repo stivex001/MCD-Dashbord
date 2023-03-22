@@ -29,6 +29,7 @@ const GeneralMarket = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(0);
   const [currentItems, setCurrentItems] = useState(generalMarket);
+  const [currentPage, setCurrentPage] = useState(1);
   
 
   const itemsPerPage = 25;
@@ -42,12 +43,13 @@ const GeneralMarket = () => {
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % generalMarket.length;
     setItemOffset(newOffset);
-    getGmData(dispatch, event.selected + 1);
+    // getGmData(dispatch, event.selected + 1);
+    setCurrentPage(event)
   };
 
   useEffect(() => {
-    getGmData(dispatch, 1);
-  }, [dispatch]);
+    getGmData(dispatch, currentPage);
+  }, [dispatch, currentPage]);
 
   if (isProcessing) {
     return (
@@ -103,9 +105,8 @@ const GeneralMarket = () => {
                   </TableRow>
                 </TableBody>
                 {currentItems && currentItems.map((row) => (
-                  <TableBody>
+                  <TableBody key={row.id}>
                     <TableRow
-                      key={row.id}
                       style={{
                         backgroundColor:
                           row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
@@ -152,13 +153,13 @@ const GeneralMarket = () => {
                 ))}
               </Table>
               <PaginateContainer
-                marginPagesDisplayed={2}
+                // marginPagesDisplayed={2}
                 breakLabel="..."
-                nextLabel="next >"
+                nextLabel=">"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="< previous"
+                pageRangeDisplayed={8}
+                pageCount={16264}
+                previousLabel="<"
                 renderOnZeroPageCount={null}
                 containerClassName={"pagination"}
                 activeClassName={"active"}

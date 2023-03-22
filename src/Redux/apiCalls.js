@@ -217,7 +217,7 @@ export const getGmData = async (dispatch, page) => {
   dispatch(getGmStart());
   try {
     const res = await userRequest.get(`/gmhistory?page=${page}`);
-    console.log(res.data.data.data);
+    console.log(res.data.data);
     dispatch(getGmSucess(res.data.data.data));
   } catch (error) {
     dispatch(getGmFailure());
