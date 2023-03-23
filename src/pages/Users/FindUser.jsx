@@ -12,7 +12,7 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import UserSearch from "../../components/User/UserSearch";
 import useInput from "../../Hooks/use-form";
-import { getAllUsers } from "../../Redux/apiCalls";
+import { getSearchedUsers } from "../../Redux/apiCalls";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Btn,
@@ -62,7 +62,7 @@ const FindUser = () => {
   } = useInput();
 
   const dispatch = useDispatch();
-  const { allUsers , isFetching } = useSelector((state) => state.user);
+  const { searchUsers , fecthedUsers } = useSelector((state) => state.user);
 
   
 
@@ -76,16 +76,9 @@ const FindUser = () => {
   const handleFormSubmission = (e) => {
     e.preventDefault();
     if (allInputValues.trim() === '') {
-      return getAllUsers(dispatch);
+      return getSearchedUsers(dispatch, enteredUsername, enteredPhonenumber);
     }
-    console.log(
-      enteredUsername,
-      enteredPhonenumber,
-      enteredDate,
-      enteredEmail,
-      enteredGroup,
-      enteredWallet
-    );
+    getSearchedUsers(dispatch, enteredUsername, enteredPhonenumber);
     resetNameInput();
     resetPhonenumberInput();
     resetGroupInput();
@@ -93,10 +86,6 @@ const FindUser = () => {
     resetEmailInput();
     resetDateInput();
   };
-  // useEffect(() => {
-  //   getAllUsers(dispatch);
-  // }, [dispatch]);
-
   return (
     <Container>
       <Navbar />
@@ -180,7 +169,7 @@ const FindUser = () => {
             Search
           </Btn>
         </FormWrapper>
-        {isFetching && <UserSearch allUsers={allUsers} />}
+        {fecthedUsers && <UserSearch searchUsers={searchUsers} />}
       </Wrapper>
 
       
