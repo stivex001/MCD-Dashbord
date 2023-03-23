@@ -7,9 +7,12 @@ import {
   Search,
   SimCardDownload,
 } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
+import UserSearch from "../../components/User/UserSearch";
 import useInput from "../../Hooks/use-form";
+import { getAllUsers } from "../../Redux/apiCalls";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Btn,
@@ -58,6 +61,11 @@ const FindUser = () => {
     reset: resetDateInput,
   } = useInput();
 
+  const dispatch = useDispatch();
+  const { allUsers , isFetching } = useSelector((state) => state.user);
+
+  
+
   const allInputValues =
     enteredUsername ||
     enteredEmail ||
@@ -67,8 +75,8 @@ const FindUser = () => {
 
   const handleFormSubmission = (e) => {
     e.preventDefault();
-    if (allInputValues === '') {
-      console.log('fetched all successfuly');
+    if (allInputValues.trim() === '') {
+      return getAllUsers(dispatch);
     }
     console.log(
       enteredUsername,
@@ -85,6 +93,9 @@ const FindUser = () => {
     resetEmailInput();
     resetDateInput();
   };
+  // useEffect(() => {
+  //   getAllUsers(dispatch);
+  // }, [dispatch]);
 
   return (
     <Container>
@@ -169,7 +180,10 @@ const FindUser = () => {
             Search
           </Btn>
         </FormWrapper>
+        {isFetching && <UserSearch allUsers={allUsers} />}
       </Wrapper>
+
+      
 
       <Footer />
     </Container>
