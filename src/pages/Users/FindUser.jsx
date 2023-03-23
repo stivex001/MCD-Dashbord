@@ -30,8 +30,10 @@ const FindUser = () => {
 
   const handleFormSubmission = (e) => {
     e.preventDefault();
+    console.log(enteredUsername);
     resetNameInput();
   };
+
 
   return (
     <Container>
