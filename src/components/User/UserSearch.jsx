@@ -43,9 +43,9 @@ color: #33cdff;
 `;
 const Username = styled.p``;
 
-const UserSearch = ({allUsers}) => {
+const UserSearch = ({searchUsers}) => {
 //   const dispatch = useDispatch();
-//   const { allUsers } = useSelector((state) => state.user);
+//   const { searchUsers } = useSelector((state) => state.user);
 
 //   useEffect(() => {
 //     getAllUsers(dispatch);
@@ -84,8 +84,8 @@ const UserSearch = ({allUsers}) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allUsers &&
-              allUsers
+            {searchUsers &&
+              searchUsers
                 .map((row) => (
                   <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
                     <TableCell style={{ color: "#8887a9" }}>

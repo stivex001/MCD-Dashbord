@@ -8,6 +8,9 @@ import {
   getResellersFailure,
   getResellersStart,
   getResellersSuccess,
+  getSearchedUserFailure,
+  getSearchedUserStart,
+  getSearchedUserSuccess,
   getUserOverviewFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
@@ -55,11 +58,7 @@ import {
   getWalletStart,
   getWalletSucess,
 } from "./profileSlice";
-import {
-  serverStart,
-  serverFailure,
-  serverSuccess,
-} from "./serverSlice";
+import { serverStart, serverFailure, serverSuccess } from "./serverSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -115,6 +114,18 @@ export const getAllUsers = async (dispatch) => {
     dispatch(getAllUsersSuccess(res.data.data.data));
   } catch (error) {
     dispatch(getAllUsersFailure());
+  }
+};
+
+export const getSearchedUsers = async (dispatch, username, phoneno) => {
+  dispatch(getSearchedUserStart());
+  try {
+    const res = await userRequest.get(
+      `/user-search?user_name=${username}&phoneno=${phoneno}&status&wallet&email&regdate`
+    );
+    dispatch(getSearchedUserSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getSearchedUserFailure());
   }
 };
 
@@ -218,7 +229,7 @@ export const getGmData = async (dispatch, page) => {
   try {
     const res = await userRequest.get(`/gmhistory?page=${page}`);
     console.log(res.data.data);
-    
+
     dispatch(getGmSucess(res.data.data.data));
   } catch (error) {
     dispatch(getGmFailure());
