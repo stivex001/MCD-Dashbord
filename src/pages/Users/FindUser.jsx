@@ -28,12 +28,63 @@ const FindUser = () => {
     reset: resetNameInput,
   } = useInput();
 
+  const {
+    value: enteredPhonenumber,
+    valueChangeHandler: phonenumberInputChange,
+    reset: resetPhonenumberInput,
+  } = useInput();
+
+  const {
+    value: enteredGroup,
+    valueChangeHandler: GroupInputChange,
+    reset: resetGroupInput,
+  } = useInput();
+
+  const {
+    value: enteredWallet,
+    valueChangeHandler: WalletInputChange,
+    reset: resetWalletInput,
+  } = useInput();
+
+  const {
+    value: enteredEmail,
+    valueChangeHandler: emailInputChange,
+    reset: resetEmailInput,
+  } = useInput();
+
+  const {
+    value: enteredDate,
+    valueChangeHandler: dateInputChange,
+    reset: resetDateInput,
+  } = useInput();
+
+  const allInputValues =
+    enteredUsername ||
+    enteredEmail ||
+    enteredPhonenumber ||
+    enteredDate ||
+    enteredWallet;
+
   const handleFormSubmission = (e) => {
     e.preventDefault();
-    console.log(enteredUsername);
+    if (allInputValues === '') {
+      console.log('fetched all successfuly');
+    }
+    console.log(
+      enteredUsername,
+      enteredPhonenumber,
+      enteredDate,
+      enteredEmail,
+      enteredGroup,
+      enteredWallet
+    );
     resetNameInput();
+    resetPhonenumberInput();
+    resetGroupInput();
+    resetWalletInput();
+    resetEmailInput();
+    resetDateInput();
   };
-
 
   return (
     <Container>
@@ -62,7 +113,12 @@ const FindUser = () => {
               <SimCardDownload
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="number" placeholder="Search for phone number" />
+              <Input
+                type="number"
+                placeholder="Search for phone number"
+                onChange={phonenumberInputChange}
+                value={enteredPhonenumber}
+              />
             </InputContainer>
             <InputContainer>
               <Group
@@ -71,25 +127,41 @@ const FindUser = () => {
               <Input
                 type="text"
                 placeholder="Search User group e.g agent, client, reseller"
+                onChange={GroupInputChange}
+                value={enteredGroup}
               />
             </InputContainer>
             <InputContainer>
               <AccountBalanceWallet
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="text" placeholder="Search for wallet value" />
+              <Input
+                type="text"
+                placeholder="Search for wallet value"
+                onChange={WalletInputChange}
+                value={enteredWallet}
+              />
             </InputContainer>
             <InputContainer>
               <MailOutline
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="text" placeholder="Search for email address" />
+              <Input
+                type="text"
+                placeholder="Search for email address"
+                onChange={emailInputChange}
+                value={enteredEmail}
+              />
             </InputContainer>
             <InputContainer>
               <EventNote
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="date" />
+              <Input
+                type="date"
+                onChange={dateInputChange}
+                value={enteredDate}
+              />
             </InputContainer>
           </Form>
           <Btn type="submit">
