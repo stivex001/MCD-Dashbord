@@ -42,8 +42,7 @@ const GeneralMarket = () => {
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % generalMarket.length;
     setItemOffset(newOffset);
-    // getGmData(dispatch, event.selected + 1);
-    setCurrentPage(event)
+    setCurrentPage(event.selected + 1)
   };
 
   useEffect(() => {
