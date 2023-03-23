@@ -9,6 +9,7 @@ import {
 } from "@mui/icons-material";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
+import useInput from "../../Hooks/use-form";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Btn,
@@ -21,6 +22,17 @@ import {
 } from "./findUser.styles";
 
 const FindUser = () => {
+  const {
+    value: enteredUsername,
+    valueChangeHandler: usernameInputChange,
+    reset: resetNameInput,
+  } = useInput();
+
+  const handleFormSubmission = (e) => {
+    e.preventDefault();
+    resetNameInput();
+  };
+
   return (
     <Container>
       <Navbar />
@@ -31,13 +43,18 @@ const FindUser = () => {
             Users / <DescSpan>Search User</DescSpan>
           </DescP>
         </Desc>
-        <FormWrapper>
+        <FormWrapper onSubmit={handleFormSubmission}>
           <Form>
             <InputContainer>
               <PermIdentity
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="text" placeholder="Search for username" />
+              <Input
+                type="text"
+                placeholder="Search for username"
+                onChange={usernameInputChange}
+                value={enteredUsername}
+              />
             </InputContainer>
             <InputContainer>
               <SimCardDownload
