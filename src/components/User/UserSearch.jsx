@@ -44,18 +44,11 @@ color: #33cdff;
 const Username = styled.p``;
 
 const UserSearch = ({searchUsers}) => {
-//   const dispatch = useDispatch();
-//   const { searchUsers } = useSelector((state) => state.user);
-
-//   useEffect(() => {
-//     getAllUsers(dispatch);
-//   }, [dispatch]);
-
 
   return (
     <Container>
         <Title>Search Result(s)</Title>
-        <P>Total Result <Span>1</Span></P>
+        <P>Total Result <Span>{searchUsers.length}</Span></P>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
