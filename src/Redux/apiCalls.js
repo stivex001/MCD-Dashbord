@@ -8,9 +8,6 @@ import {
   getResellersFailure,
   getResellersStart,
   getResellersSuccess,
-  getSearchedUserFailure,
-  getSearchedUserStart,
-  getSearchedUserSuccess,
   getUserOverviewFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
@@ -54,6 +51,9 @@ import {
   reProcessAllSucess,
 } from "./pendingTransSlice";
 import {
+  getSearchedUserFailure,
+  getSearchedUserStart,
+  getSearchedUserSuccess,
   getWalletFailure,
   getWalletStart,
   getWalletSucess,

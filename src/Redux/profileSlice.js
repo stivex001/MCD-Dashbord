@@ -7,6 +7,8 @@ const profileSlice = createSlice({
     error: false,
     walletList: [],
     message: null,
+    searchUsers: [],
+    fecthedUsers: false,
   },
   reducers: {
     getWalletStart: (state) => {
@@ -21,12 +23,28 @@ const profileSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    getSearchedUserStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getSearchedUserSuccess: (state, action) => {
+      state.isFetching = false;
+      state.searchUsers = action.payload;
+      state.fecthedUsers = true
+    },
+    getSearchedUserFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
 export const {
   getWalletStart,
   getWalletSucess,
-  getWalletFailure
+  getWalletFailure,
+  getSearchedUserStart,
+  getSearchedUserSuccess,
+  getSearchedUserFailure,
 } = profileSlice.actions;
 export default profileSlice.reducer;

@@ -7,12 +7,14 @@ import {
   Search,
   SimCardDownload,
 } from "@mui/icons-material";
+import { CircularProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import UserSearch from "../../components/User/UserSearch";
 import useInput from "../../Hooks/use-form";
 import { getSearchedUsers } from "../../Redux/apiCalls";
+import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Btn,
@@ -62,9 +64,9 @@ const FindUser = () => {
   } = useInput();
 
   const dispatch = useDispatch();
-  const { searchUsers , fecthedUsers } = useSelector((state) => state.user);
-
-  
+  const { searchUsers, fecthedUsers, isFetching } = useSelector(
+    (state) => state.profile
+  );
 
   const allInputValues =
     enteredUsername ||
@@ -75,7 +77,7 @@ const FindUser = () => {
 
   const handleFormSubmission = (e) => {
     e.preventDefault();
-    if (allInputValues.trim() === '') {
+    if (allInputValues.trim() === "") {
       return getSearchedUsers(dispatch, enteredUsername, enteredPhonenumber);
     }
     getSearchedUsers(dispatch, enteredUsername, enteredPhonenumber);
@@ -86,6 +88,14 @@ const FindUser = () => {
     resetEmailInput();
     resetDateInput();
   };
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
   return (
     <Container>
       <Navbar />
@@ -166,13 +176,11 @@ const FindUser = () => {
           </Form>
           <Btn type="submit">
             <Search />
-            Search
+            {isFetching ? "Searching...." : "Search"}
           </Btn>
         </FormWrapper>
         {fecthedUsers && <UserSearch searchUsers={searchUsers} />}
       </Wrapper>
-
-      
 
       <Footer />
     </Container>

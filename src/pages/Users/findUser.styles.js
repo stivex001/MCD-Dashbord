@@ -7,7 +7,7 @@ ${laptop({ marginLeft: "250px" })};
 `;
 export const Wrapper = styled.div`
   padding: 20px;
-//   height: 74vh;
+  margin-bottom: 150px;;
 `;
 export const FormWrapper = styled.form`
   background-color: #fff;
