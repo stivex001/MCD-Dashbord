@@ -9,6 +9,7 @@ const profileSlice = createSlice({
     message: null,
     searchUsers: [],
     fecthedUsers: false,
+    searchTrans: [],
   },
   reducers: {
     getWalletStart: (state) => {
@@ -36,6 +37,19 @@ const profileSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    getSearchedTransStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getSearchedTransSuccess: (state, action) => {
+      state.isFetching = false;
+      state.searchTrans = action.payload;
+      state.fecthedUsers = true
+    },
+    getSearchedTransFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -46,5 +60,8 @@ export const {
   getSearchedUserStart,
   getSearchedUserSuccess,
   getSearchedUserFailure,
+  getSearchedTransStart,
+  getSearchedTransSuccess,
+  getSearchedTransFailure
 } = profileSlice.actions;
 export default profileSlice.reducer;

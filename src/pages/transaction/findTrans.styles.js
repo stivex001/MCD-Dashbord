@@ -16,7 +16,7 @@ export const FormWrapper = styled.form`
   -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
   padding: 20px 30px;
 `;
-export const Form = styled.form`
+export const Form = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 50%);
   gap: 16px;

@@ -51,6 +51,8 @@ import {
   reProcessAllSucess,
 } from "./pendingTransSlice";
 import {
+  getSearchedTransStart,
+  getSearchedTransSuccess,
   getSearchedUserFailure,
   getSearchedUserStart,
   getSearchedUserSuccess,
@@ -230,6 +232,18 @@ export const getGmData = async (dispatch, page) => {
     dispatch(getGmSucess(res.data.data));
   } catch (error) {
     dispatch(getGmFailure());
+  }
+};
+
+export const getSearchedTrans = async (dispatch, username, phoneno, ref) => {
+  dispatch(getSearchedTransStart());
+  try {
+    const res = await userRequest.get(
+      `/transactions/find-transaction?user_name=${username}&phoneno=${phoneno}&reference=${ref}&amount&transaction_type&date`
+    );
+    dispatch(getSearchedTransSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getSearchedTransSuccess());
   }
 };
 
