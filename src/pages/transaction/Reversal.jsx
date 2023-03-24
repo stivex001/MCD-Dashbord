@@ -1,4 +1,5 @@
 import { Search } from "@mui/icons-material";
+import { CircularProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -6,6 +7,7 @@ import ReversalTrans from "../../components/Transactiontables/ReversalTrans";
 import useInput from "../../Hooks/use-form";
 import { getRevesal } from "../../Redux/apiCalls";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
+import { Loading } from "./pending.styles";
 import {
   Btn,
   Container,
@@ -17,7 +19,6 @@ import {
 } from "./reversal.styles";
 
 const Reversal = () => {
-
   const {
     value: enteredId,
     valueChangeHandler: IdInputChange,
@@ -29,16 +30,20 @@ const Reversal = () => {
     (state) => state.profile
   );
 
-
   const handleFormSubmission = (e) => {
     e.preventDefault();
-    getRevesal(
-      dispatch,
-      enteredId,
-    );
+    getRevesal(dispatch, enteredId);
     resetIdInput();
   };
-console.log(searchReversal.tran);
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
+
   return (
     <Container>
       <Navbar />

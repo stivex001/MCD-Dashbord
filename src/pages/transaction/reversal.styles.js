@@ -4,6 +4,7 @@ import { laptop } from "../../responsive";
 export const Container = styled.div`
   margin: 70px 0;
   ${laptop({ marginLeft: "250px" })};
+  background-color: #f4f4f4;
 `;
 export const Wrapper = styled.div`
   padding: 20px;

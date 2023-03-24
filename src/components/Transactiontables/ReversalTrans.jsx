@@ -49,12 +49,10 @@ const ReversalTrans = ({ searchReversal }) => {
           </TableHeads>
           <TableBodys>
             <TableRows>
-              <TableCellB>1</TableCellB>
-              <TableCellB>
-                odexcheapdata fund wallet using bank transfer to GTBank
-              </TableCellB>
-              <TableCellB>#1000</TableCellB>
-              <TableCellB>odexcheapdata</TableCellB>
+            <TableCellB>{row.id}</TableCellB>
+              <TableCellB>Being reversal of {row.description}</TableCellB>
+              <TableCellB>{row.amount}</TableCellB>
+              <TableCellB>{row.user_name}</TableCellB>
             </TableRows>
           </TableBodys>
         </TableContain>
