@@ -1,10 +1,11 @@
 import { Close } from "@mui/icons-material";
-import { useState } from "react";
+import { CircularProgress } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import PendingTables from "../../components/Pendingtable/PendingTables";
-import { reProcess } from "../../Redux/apiCalls";
+import { getPendingTransData, reProcess } from "../../Redux/apiCalls";
 import { emptyCheckbox } from "../../Redux/pendingTransSlice";
 import {
   BtnConatiner,
@@ -15,6 +16,7 @@ import {
   DescSpan,
   H2,
   H3,
+  Loading,
   MsgContainer,
   P,
   Span,
@@ -24,11 +26,15 @@ import {
 } from "./pending.styles";
 
 const Pending = () => {
-  const { checkId, error, message } = useSelector(
+  const { checkId, error, message, pendingTrans, isProcessing } = useSelector(
     (state) => state.transaction
   );
   const dispatch = useDispatch();
   const [showerr, setShowerr] = useState(error);
+
+  useEffect(() => {
+    getPendingTransData(dispatch);
+  }, [dispatch]);
 
   const handleReProcess = () => {
     if (checkId.length === 0) {
@@ -42,6 +48,13 @@ const Pending = () => {
     setShowerr(false);
   };
 
+  if (isProcessing) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
 
   return (
     <Container>
@@ -89,7 +102,7 @@ const Pending = () => {
             </Button>
           </BtnConatiner>
           <div style={{ marginTop: "10px" }}>
-            <PendingTables />
+            <PendingTables pendingTrans={pendingTrans} />
           </div>
         </TransList>
       </Wrapper>

@@ -217,7 +217,6 @@ export const getPendingTransData = async (dispatch) => {
   dispatch(getPendingTransStart());
   try {
     const res = await userRequest.get("/transactions/pending");
-    console.log(res.data.data.data);
     dispatch(getPendingTransSucess(res.data.data.data));
   } catch (error) {
     dispatch(getPendingTransFailure());

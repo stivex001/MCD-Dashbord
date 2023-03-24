@@ -7,6 +7,7 @@ export const Container = styled.div`
 `;
 export const Wrapper = styled.div`
   padding: 20px;
+  margin-bottom: 50px;
 `;
 export const Desc = styled.div`
   display: flex;
