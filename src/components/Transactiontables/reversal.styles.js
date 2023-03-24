@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { tablet } from "../../responsive";
 
 export const Container = styled.div`
-  margin: 50px 0;
+  margin-top: 30px;
   display: flex;
   gap: 50px;
   ${tablet({ flexDirection: "column" })};

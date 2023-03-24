@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { laptop } from "../../responsive";
 
@@ -46,6 +47,25 @@ export const Btn = styled.button`
   border: none;
   font-weigth: 700;
   font-size: 14px;
+  &:hover {
+    color: #343a40;
+    transition: all 0.5s;
+  }
+`;
+export const Reverse = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(to right, #f96a5d, #f64369);
+  padding: 12px;
+  margin: 30px 0;
+  gap: 10px;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
+  font-weigth: 700;
+  font-size: 14px;
+  text-decoration: none;
   &:hover {
     color: #343a40;
     transition: all 0.5s;
