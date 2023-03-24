@@ -203,11 +203,11 @@ export const creditUser = async (dispatch, formValue) => {
 };
 
 //  TRANSACTIONS PAGE
-export const getTransHistoryData = async (dispatch) => {
+export const getTransHistoryData = async (dispatch, page) => {
   dispatch(getTransHistoryStart());
   try {
-    const res = await userRequest.get("/transactions");
-    dispatch(getTransHistorySucess(res.data.data.data));
+    const res = await userRequest.get(`/transactions?page=${page}`);
+    dispatch(getTransHistorySucess(res.data.data));
   } catch (error) {
     dispatch(getTransHistoryFailure());
   }
