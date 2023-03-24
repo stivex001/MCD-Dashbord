@@ -36,12 +36,12 @@ export const Btn = styled.button`
   display: flex;
   align-items: center;
   background: linear-gradient(to right, #5c62ae, #4088a9);
-  padding: 10px;
+  padding: 9px;
   margin: 20px 0;
   gap: 2px;
   color: white;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 3px;
   border: none;
   font-weigth: 700;
   font-size: 14px;
