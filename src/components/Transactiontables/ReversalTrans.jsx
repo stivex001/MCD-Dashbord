@@ -11,7 +11,8 @@ import {
   Title,
 } from "./reversal.styles";
 
-const ReversalTrans = () => {
+const ReversalTrans = ({ searchReversal }) => {
+  const row = searchReversal;
   return (
     <Container>
       <Left>
@@ -26,12 +27,12 @@ const ReversalTrans = () => {
             </TableRows>
           </TableHeads>
           <TableBodys>
-            <TableCellB>1</TableCellB>
-            <TableCellB>
-              odexcheapdata fund wallet using bank transfer to GTBank
-            </TableCellB>
-            <TableCellB>#1000</TableCellB>
-            <TableCellB>odexcheapdata</TableCellB>
+            <TableRows>
+              <TableCellB>{row.id}</TableCellB>
+              <TableCellB>{row.description}</TableCellB>
+              <TableCellB>{row.amount}</TableCellB>
+              <TableCellB>{row.user_name}</TableCellB>
+            </TableRows>
           </TableBodys>
         </TableContain>
       </Left>
@@ -47,12 +48,14 @@ const ReversalTrans = () => {
             </TableRows>
           </TableHeads>
           <TableBodys>
-            <TableCellB>1</TableCellB>
-            <TableCellB>
-              odexcheapdata fund wallet using bank transfer to GTBank
-            </TableCellB>
-            <TableCellB>#1000</TableCellB>
-            <TableCellB>odexcheapdata</TableCellB>
+            <TableRows>
+              <TableCellB>1</TableCellB>
+              <TableCellB>
+                odexcheapdata fund wallet using bank transfer to GTBank
+              </TableCellB>
+              <TableCellB>#1000</TableCellB>
+              <TableCellB>odexcheapdata</TableCellB>
+            </TableRows>
           </TableBodys>
         </TableContain>
       </Right>

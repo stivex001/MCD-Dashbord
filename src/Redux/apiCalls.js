@@ -51,6 +51,9 @@ import {
   reProcessAllSucess,
 } from "./pendingTransSlice";
 import {
+  getSearchedReversalFailure,
+  getSearchedReversalStart,
+  getSearchedReversalSuccess,
   getSearchedTransStart,
   getSearchedTransSuccess,
   getSearchedUserFailure,
@@ -244,6 +247,17 @@ export const getSearchedTrans = async (dispatch, username, phoneno, ref) => {
     dispatch(getSearchedTransSuccess(res.data.data));
   } catch (error) {
     dispatch(getSearchedTransSuccess());
+  }
+};
+
+export const getRevesal = async (dispatch, id) => {
+  dispatch(getSearchedReversalStart());
+  try {
+    const res = await userRequest.get(`/transactions/reverse-check/${id}`);
+    console.log(res);
+    dispatch(getSearchedReversalSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getSearchedReversalFailure());
   }
 };
 

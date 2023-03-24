@@ -1,7 +1,10 @@
 import { Search } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import ReversalTrans from "../../components/Transactiontables/ReversalTrans";
+import useInput from "../../Hooks/use-form";
+import { getRevesal } from "../../Redux/apiCalls";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Btn,
@@ -14,13 +17,28 @@ import {
 } from "./reversal.styles";
 
 const Reversal = () => {
-  const isFetching = false;
+
+  const {
+    value: enteredId,
+    valueChangeHandler: IdInputChange,
+    reset: resetIdInput,
+  } = useInput();
+
+  const dispatch = useDispatch();
+  const { searchReversal, fecthedUsers, isFetching } = useSelector(
+    (state) => state.profile
+  );
+
 
   const handleFormSubmission = (e) => {
     e.preventDefault();
-    
+    getRevesal(
+      dispatch,
+      enteredId,
+    );
+    resetIdInput();
   };
-
+console.log(searchReversal.tran);
   return (
     <Container>
       <Navbar />
@@ -41,6 +59,8 @@ const Reversal = () => {
                 type="text"
                 placeholder="Enter transaction id or reference"
                 required
+                onChange={IdInputChange}
+                value={enteredId}
               />
             </InputContainer>
             <Btn type="submit">
@@ -49,7 +69,7 @@ const Reversal = () => {
             </Btn>
           </Form>
         </FormWrapper>
-        <ReversalTrans />
+        {fecthedUsers && <ReversalTrans searchReversal={searchReversal.tran} />}
       </Wrapper>
 
       <Footer />

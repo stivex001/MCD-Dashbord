@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { mobile } from "../../responsive";
+import { mobile, tablet } from "../../responsive";
 
 export const Container = styled.div`
   margin: 50px 0;
   display: flex;
   gap: 50px;
-  ${mobile({ flexDirection: "columns" })};
+  ${tablet({ flexDirection: "column" })};
 `;
 export const Left = styled.div`
   flex: 1;
