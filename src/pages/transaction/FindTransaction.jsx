@@ -13,7 +13,7 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import TransactionSearch from "../../components/Transactiontables/TransactionSearch";
 import useInput from "../../Hooks/use-form";
-import { getSearchedUsers } from "../../Redux/apiCalls";
+import { getSearchedTrans } from "../../Redux/apiCalls";
 import {
   Btn,
   Container,
@@ -42,7 +42,7 @@ const FindTransaction = () => {
   const {
     value: enteredTransRef,
     valueChangeHandler: TransRefInputChange,
-    reset: resetGroupInput,
+    reset: resetRefInput,
   } = useInput();
 
   const {
@@ -54,7 +54,7 @@ const FindTransaction = () => {
   const {
     value: enteredTransType,
     valueChangeHandler: transTypenputChange,
-    reset: resetEmailInput,
+    reset: resetTypeInput,
   } = useInput();
 
   const {
@@ -64,7 +64,7 @@ const FindTransaction = () => {
   } = useInput();
 
   const dispatch = useDispatch();
-  const { searchUsers, fecthedUsers, isFetching } = useSelector(
+  const { searchTrans, fecthedUsers, isFetching } = useSelector(
     (state) => state.profile
   );
 
@@ -72,20 +72,31 @@ const FindTransaction = () => {
     enteredUsername ||
     enteredTransType ||
     enteredPhonenumber ||
+    enteredTransRef ||
     enteredDate ||
     enteredWallet;
 
   const handleFormSubmission = (e) => {
     e.preventDefault();
     if (allInputValues.trim() === "") {
-      return getSearchedUsers(dispatch, enteredUsername, enteredPhonenumber);
+      return getSearchedTrans(
+        dispatch,
+        enteredUsername,
+        enteredPhonenumber,
+        enteredTransRef
+      );
     }
-    getSearchedUsers(dispatch, enteredUsername, enteredPhonenumber);
+    getSearchedTrans(
+      dispatch,
+      enteredUsername,
+      enteredPhonenumber,
+      enteredTransRef
+    );
     resetNameInput();
     resetPhonenumberInput();
-    resetGroupInput();
+    resetRefInput();
     resetWalletInput();
-    resetEmailInput();
+    resetTypeInput();
     resetDateInput();
   };
 
@@ -180,7 +191,7 @@ const FindTransaction = () => {
             {isFetching ? "Searching...." : "Search"}
           </Btn>
         </FormWrapper>
-        {fecthedUsers && <TransactionSearch searchUsers={searchUsers} />}
+        {fecthedUsers && <TransactionSearch searchTrans={searchTrans} />}
       </Wrapper>
 
       <Footer />
