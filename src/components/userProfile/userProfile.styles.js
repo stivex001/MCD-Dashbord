@@ -16,16 +16,18 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   padding: 20px 50px;
   color: white;
-  ${tablet({ flexDirection: "column", alignItems: "flex-start", gap: "40px" })};
+  ${mobile({ flexDirection: "column", alignItems: "flex-start", gap: "40px" })};
 `;
-export const Left = styled.div``;
+export const Left = styled.div`
+width: 30%;
+`;
 export const UserImg = styled.img`
-width: 277px;
-heigth: 210px;
+width: 100%;
+heigth: 100%;
 background-color: white;
 padding: 4px;
-${mobile({ width: '245px', height: '186px' })};
-${tablet({ width: '100%', height: '100%' })};
+// ${mobile({ width: '245px', height: '186px' })};s
+// ${tablet({ width: '100%', height: '100%' })};s
 `;
 export const Username = styled.p`
   font-size: 24px;

@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { NoteAlt } from "@mui/icons-material";
+import Photo from '../../assets/mcd_logo.png'
 
 
 const Container = styled.div`
@@ -83,7 +84,7 @@ const UserSearch = ({searchUsers}) => {
                   <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
                     <TableCell style={{ color: "#8887a9" }}>
                       <UserDeatils>
-                        <UserImg src={row.photo} alt="" />
+                        <UserImg src={row.photo || Photo} alt="" />
                         <Username>{row.user_name}</Username>
                       </UserDeatils>
                     </TableCell>
