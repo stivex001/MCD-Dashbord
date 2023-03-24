@@ -7,6 +7,7 @@ ${laptop({ marginLeft: "250px" })};
 `;
 export const Wrapper = styled.div`
   padding: 20px;
+  margin-bottom: 50px;
 `;
 export const TableWrapper = styled.div`
   background-color: #fff;
