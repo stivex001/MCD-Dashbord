@@ -66,7 +66,7 @@ const Reversal = () => {
           <FormWrapper onSubmit={handleFormSubmission}>
           {error && (
             <MsgContainer>
-              <H2>Transaction has been reversed earlier</H2>
+              <H2>Transactions has been reversed earlier!</H2>
               <Close style={{ color: "#806e6b", cursor: "pointer" }} />
             </MsgContainer>
           )}
