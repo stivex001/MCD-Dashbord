@@ -257,9 +257,15 @@ export const getRevesal = async (dispatch, id) => {
   dispatch(getSearchedReversalStart());
   try {
     const res = await userRequest.get(`/transactions/reverse-check/${id}`);
-    dispatch(getSearchedReversalSuccess(res.data.data));
+    if (res.data.success === 1) {
+      dispatch(getSearchedReversalSuccess(res.data.data));
+    }
+    else {
+      dispatch(getSearchedReversalFailure());
+    }
+    
   } catch (error) {
-    dispatch(getSearchedReversalFailure());
+    
   }
 };
 

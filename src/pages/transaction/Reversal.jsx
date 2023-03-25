@@ -51,7 +51,7 @@ const Reversal = () => {
       </Loading>
     );
   }
-console.log(searchReversal);
+
   return (
     <>
       <Container>
@@ -105,9 +105,9 @@ console.log(searchReversal);
           </FormWrapper>
           {fecthedUsers && (
             <>
-              <ReversalTrans searchReversal={searchReversal.tran} />
+              <ReversalTrans searchReversal={searchReversal} />
               <Reverse onClick={handleReverse}>
-                <ReportProblem style={{fontSize: '15spx'}} />
+                <ReportProblem style={{fontSize: '15px'}} />
                 Reverse transaction
                 {/* {isFetching ? "Searching...." : "Search"} */}
               </Reverse>
