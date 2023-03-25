@@ -137,11 +137,11 @@ export const getSearchedUsers = async (dispatch, username, phoneno) => {
   }
 };
 
-export const getAgents = async (dispatch) => {
+export const getAgents = async (dispatch, page) => {
   dispatch(getAgentsStart());
   try {
-    const res = await userRequest.get("/agents");
-    dispatch(getAgentsSuccess(res.data.data.data));
+    const res = await userRequest.get(`/agents?page=${page}`);
+    dispatch(getAgentsSuccess(res.data.data));
   } catch (error) {
     dispatch(getAgentsFailure());
   }

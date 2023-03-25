@@ -30,7 +30,9 @@ import {
   Img,
   Input,
   P,
+  PageNotification,
   PaginateContainer,
+  PagWrapper,
   SearchAgent,
   SearchDesc,
   TableWrapper,
@@ -42,25 +44,27 @@ const Agent = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const [itemOffset, setItemOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(0);
-  const [currentItems, setCurrentItems] = useState(agents);
+  const [pageCount, setPageCount] = useState(agents.last_page);
+  const [currentItems, setCurrentItems] = useState(agents.data);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 10;
+  const itemsPerPage = agents.per_page;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(agents.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(agents.length / itemsPerPage));
+    setCurrentItems(agents.data.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(agents.total / itemsPerPage));
   }, [itemOffset, agents, itemsPerPage]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % agents.length;
+    const newOffset = (event.selected * itemsPerPage) % agents.data.length;
     setItemOffset(newOffset);
+    setCurrentPage(event.selected + 1);
   };
 
   useEffect(() => {
-    getAgents(dispatch);
-  }, [dispatch]);
+    getAgents(dispatch, currentPage);
+  }, [dispatch, currentPage]);
 
   if (isFetching) {
     return (
@@ -167,7 +171,9 @@ const Agent = () => {
                       ))}
                 </TableBody>
               </Table>
-              <PaginateContainer
+              <PagWrapper>
+                <PageNotification>Showing {agents.from} to {agents.to} of {agents.total} entries</PageNotification>
+                <PaginateContainer
                 breakLabel="..."
                 nextLabel="next >"
                 onPageChange={handlePageClick}
@@ -181,6 +187,8 @@ const Agent = () => {
                 previousLinkClassName="pageNum"
                 nextLinkClassName="pageNum"
               />
+              </PagWrapper>
+              
             </TableContainer>
           </Details>
         </TableWrapper>

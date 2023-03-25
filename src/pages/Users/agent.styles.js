@@ -100,7 +100,6 @@ height: 32px;
 
 export const PaginateContainer = styled(ReactPaginate)`
   display: flex;
-  justify-content: center;
   align-items: center;
   list-style: none;
   margin: 1rem;
@@ -115,6 +114,7 @@ export const PaginateContainer = styled(ReactPaginate)`
     border: 1px solid #dee2e6;
     font-size: 14px;
     cursor: pointer;
+    ${mobile({ padding: "0 5px" })};
 
     &:hover {
       background: #f6f6f9;
@@ -125,4 +125,16 @@ export const PaginateContainer = styled(ReactPaginate)`
     background-color: #605daf;
     color: #fff;
   }
+`;
+
+export const PagWrapper = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+${mobile({ flexDirection: "column" })};
+`;
+export const PageNotification = styled.p`
+font-size: 14px;
+color: #333265;
+padding: 12px;
 `;
