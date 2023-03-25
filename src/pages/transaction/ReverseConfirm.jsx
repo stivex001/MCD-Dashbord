@@ -41,7 +41,9 @@ const ReverseConfirm = () => {
   const handleReverse = (e) => {
     e.preventDefault();
     getRevesalTrans(dispatch, searchReversal.tran.id);
-    // window.location.reload(); 
+    setTimeout(() => {
+        window.location.reload();
+      }, 10000)
   };
 
   if (isFetching) {

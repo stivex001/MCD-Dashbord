@@ -10,7 +10,7 @@ import {
 import { Container, Left, Right, Title } from "./reversal.styles";
 
 const ReversalTrans = ({ searchReversal }) => {
-  const row = searchReversal.data.tran;
+  const row = searchReversal.tran;
   return (
     <Container>
       <Left>
