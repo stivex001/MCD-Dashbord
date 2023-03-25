@@ -67,6 +67,7 @@ import {
   getWalletSucess,
 } from "./profileSlice";
 import { serverStart, serverFailure, serverSuccess } from "./serverSlice";
+import { creditFailure, creditStart, creditSuccess, getAirtimeCovFailure, getAirtimeCovStart, getAirtimeCovSucess } from "./airtimeConverterSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -340,11 +341,36 @@ export const verifyServer11 = async (dispatch, ref) => {
     const res = await userRequest.post(`/verification/s11`, ref);
     if (res.data.success === 1) {
       dispatch(serverSuccess(res.data));
-      console.log(res.data);
     } else {
       dispatch(serverFailure());
     }
   } catch (error) {
     dispatch(serverFailure());
+  }
+};
+
+// Airtime Coverter page
+export const getAirtimeList = async (dispatch, page) => {
+  dispatch(getAirtimeCovStart());
+  try {
+    const res = await userRequest.get(`/airtime-converter/list?page=${page}`);
+    dispatch(getAirtimeCovSucess(res.data.data));
+  } catch (error) {
+    dispatch(getAirtimeCovFailure());
+  }
+};
+
+export const creditAirtime = async (dispatch, ref) => {
+  dispatch(creditStart()); 
+  try {
+    const res = await userRequest.post(`/airtime-converter/make-payment`, ref);
+    if (res.data.success === 1) {
+      dispatch(creditSuccess(res.data));
+    }
+    else {
+      dispatch(creditFailure()); 
+    }
+  } catch (error) {
+    dispatch(creditFailure()); 
   }
 };

@@ -5,6 +5,7 @@ import settingsReducer from "./settingsSlice";
 import walletReducer from "./walletSlice";
 import profileReducer from "./profileSlice";
 import serverReducer from "./serverSlice";
+import airtimeReducer from "./airtimeConverterSlice";
 import {
   persistStore,
   persistReducer,
@@ -21,7 +22,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  blacklist: ["transaction", "wallet", "settings", "profile", "server"],
+  blacklist: ["transaction", "wallet", "settings", "profile", "server", "airtimeConverter"],
 };
 
 const rootReducer = combineReducers({
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   wallet: walletReducer,
   profile: profileReducer,
   server: serverReducer,
+  airtimeConverter: airtimeReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
