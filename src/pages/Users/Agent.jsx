@@ -172,23 +172,24 @@ const Agent = () => {
                 </TableBody>
               </Table>
               <PagWrapper>
-                <PageNotification>Showing {agents.from} to {agents.to} of {agents.total} entries</PageNotification>
+                <PageNotification>
+                  Showing {agents.from} to {agents.to} of {agents.total} entries
+                </PageNotification>
                 <PaginateContainer
-                breakLabel="..."
-                nextLabel="next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="< previous"
-                renderOnZeroPageCount={null}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-                pageLinkClassName="pageNum"
-                previousLinkClassName="pageNum"
-                nextLinkClassName="pageNum"
-              />
+                  breakLabel="..."
+                  nextLabel="next >"
+                  onPageChange={handlePageClick}
+                  pageRangeDisplayed={5}
+                  pageCount={pageCount}
+                  previousLabel="< previous"
+                  renderOnZeroPageCount={null}
+                  containerClassName={"pagination"}
+                  activeClassName={"active"}
+                  pageLinkClassName="pageNum"
+                  previousLinkClassName="pageNum"
+                  nextLinkClassName="pageNum"
+                />
               </PagWrapper>
-              
             </TableContainer>
           </Details>
         </TableWrapper>
