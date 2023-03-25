@@ -77,7 +77,7 @@ export const sidebarData = [
       {
         id: 8,
         title: "Reverse Transaction",
-        to: "/reverse-transaction",
+        to: "/reverse",
       },
       {
         id: 9,

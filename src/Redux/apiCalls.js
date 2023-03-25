@@ -258,7 +258,7 @@ export const getRevesal = async (dispatch, id) => {
   try {
     const res = await userRequest.get(`/transactions/reverse-check/${id}`);
     if (res.data.success === 1) {
-      dispatch(getSearchedReversalSuccess(res.data.data));
+      dispatch(getSearchedReversalSuccess(res.data));
     }
     else {
       dispatch(getSearchedReversalFailure());

@@ -42,6 +42,7 @@ import Edit from "./pages/Settings/Edit";
 import Agent from "./pages/Users/Agent";
 import Resellers from "./pages/Users/Resellers";
 import Server11 from "./pages/Verifications/Server11";
+import ReverseConfirm from "./pages/transaction/ReverseConfirm";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -77,8 +78,12 @@ const App = () => {
           element={user ? <GeneralMarket /> : <Navigate to="/login" />}
         />
         <Route
-          path="/reverse-transaction"
+          path="/reverse"
           element={user ? <Reversal /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/reversal-confirm"
+          element={user ? <ReverseConfirm /> : <Navigate to="/login" />}
         />
         <Route
           path="/charges"
