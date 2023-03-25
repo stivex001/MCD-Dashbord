@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { tablet } from "../../responsive";
+import { mobile } from "../../responsive";
 
 export const Container = styled.div`
   margin-top: 30px;
   display: flex;
-  gap: 50px;
-  ${tablet({ flexDirection: "column" })};
+  gap: 30px;
+  ${mobile({ flexDirection: "column" })}
 `;
 export const Left = styled.div`
   flex: 1;
@@ -13,7 +13,7 @@ export const Left = styled.div`
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
-  padding: 20px 30px;
+  padding: 20px;
 `;
 export const Right = styled.div`
   flex: 1;
@@ -21,7 +21,7 @@ export const Right = styled.div`
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
-  padding: 20px 30px;
+  padding: 20px;
 `;
 export const Title = styled.p`
   font-size: 13px;
