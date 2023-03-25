@@ -7,7 +7,6 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TablePagination,
   TableRow,
 } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -31,6 +30,9 @@ import {
   Img,
   Input,
   P,
+  PageNotification,
+  PaginateContainer,
+  PagWrapper,
   SearchAgent,
   SearchDesc,
   TableWrapper,
@@ -40,21 +42,29 @@ import {
 const Resellers = () => {
   const { resellers, isFetching } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [query, setQuery] = useState("");
+  const [itemOffset, setItemOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(resellers.last_page);
+  const [currentItems, setCurrentItems] = useState(resellers.data);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = resellers.per_page;
 
   useEffect(() => {
-    getResellers(dispatch);
-  }, [dispatch]);
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(resellers.data.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(resellers.total / itemsPerPage));
+  }, [itemOffset, resellers, itemsPerPage]);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % resellers.data.length;
+    setItemOffset(newOffset);
+    setCurrentPage(event.selected + 1);
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  useEffect(() => {
+    getResellers(dispatch, currentPage);
+  }, [dispatch, currentPage]);
 
   if (isFetching) {
     return (
@@ -88,7 +98,7 @@ const Resellers = () => {
             </Action>
             <SearchAgent>
               <SearchDesc>Search: </SearchDesc>
-              <Input type="text" />
+              <Input type="text" onChange={(e) => setQuery(e.target.value)} />
             </SearchAgent>
           </DivWrapper>
           <Details>
@@ -114,11 +124,10 @@ const Resellers = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {resellers &&
-                    resellers
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
+                  {currentItems &&
+                    currentItems
+                      .filter((row) =>
+                        row.user_name.toLowerCase().includes(query)
                       )
                       .map((row) => (
                         <TableRow
@@ -161,15 +170,26 @@ const Resellers = () => {
                       ))}
                 </TableBody>
               </Table>
-              <TablePagination
-                rowsPerPageOptions={[10, 15, 100]}
-                component="div"
-                count={resellers && resellers.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-              />
+              <PagWrapper>
+                <PageNotification>
+                  Showing {resellers.from} to {resellers.to} of{" "}
+                  {resellers.total} entries
+                </PageNotification>
+                <PaginateContainer
+                  breakLabel="..."
+                  nextLabel="next >"
+                  onPageChange={handlePageClick}
+                  pageRangeDisplayed={5}
+                  pageCount={pageCount}
+                  previousLabel="< previous"
+                  renderOnZeroPageCount={null}
+                  containerClassName={"pagination"}
+                  activeClassName={"active"}
+                  pageLinkClassName="pageNum"
+                  previousLinkClassName="pageNum"
+                  nextLinkClassName="pageNum"
+                />
+              </PagWrapper>
             </TableContainer>
           </Details>
         </TableWrapper>

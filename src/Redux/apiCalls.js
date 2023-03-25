@@ -147,11 +147,11 @@ export const getAgents = async (dispatch, page) => {
   }
 };
 
-export const getResellers = async (dispatch) => {
+export const getResellers = async (dispatch, page) => {
   dispatch(getResellersStart());
   try {
-    const res = await userRequest.get("/resellers");
-    dispatch(getResellersSuccess(res.data.data.data));
+    const res = await userRequest.get(`/resellers?page=${page}`);
+    dispatch(getResellersSuccess(res.data.data));
   } catch (error) {
     dispatch(getResellersFailure());
   }
