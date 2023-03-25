@@ -51,6 +51,24 @@ const Tables = () => {
 
   return (
     <Container>
+      {/* <TableContain>
+          <TableHeads>
+            <TableRows style={{ fontWeight: "bold" }}>
+              <TableCells>#</TableCells>
+              <TableCells>Description</TableCells>
+              <TableCells>Amount</TableCells>
+              <TableCells>Username</TableCells>
+            </TableRows>
+          </TableHeads>
+          <TableBodys>
+            <TableRows>
+              <TableCellB>{row.id}</TableCellB>
+              <TableCellB>{row.description}</TableCellB>
+              <TableCellB>{row.amount}</TableCellB>
+              <TableCellB>{row.user_name}</TableCellB>
+            </TableRows>
+          </TableBodys>
+        </TableContain> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

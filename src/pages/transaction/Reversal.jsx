@@ -51,7 +51,7 @@ const Reversal = () => {
       </Loading>
     );
   }
-
+console.log(searchReversal);
   return (
     <>
       <Container>
