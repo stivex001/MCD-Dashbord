@@ -115,11 +115,11 @@ export const getUsersOverview = async (dispatch) => {
   }
 };
 
-export const getAllUsers = async (dispatch) => {
+export const getAllUsers = async (dispatch, page) => {
   dispatch(getAllUsersStart());
   try {
-    const res = await userRequest.get("/allUsers");
-    dispatch(getAllUsersSuccess(res.data.data.data));
+    const res = await userRequest.get(`/allUsers?page=${page}`);
+    dispatch(getAllUsersSuccess(res.data.data));
   } catch (error) {
     dispatch(getAllUsersFailure());
   }

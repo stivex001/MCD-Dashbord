@@ -47,7 +47,7 @@ const userSlice = createSlice({
     },
     getUserOverviewSuccess: (state, action) => {
       state.userOverview = action.payload;
-      state.isFetching = true;
+      state.isFetching = false;
     },
     getUserOverviewFailure: (state) => {
       state.error = true;
