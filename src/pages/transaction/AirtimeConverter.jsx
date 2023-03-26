@@ -70,7 +70,7 @@ const AirtimeConverter = () => {
 
   const handleFormSubmission = (e) => {
     e.preventDefault();
-    creditAirtime(dispatch, enteredRef);
+    creditAirtime(dispatch, {ref: enteredRef});
     resetRefInput();
   };
 
@@ -113,7 +113,7 @@ const AirtimeConverter = () => {
               </p>
               <Input
                 type="text"
-                placeholder="Enter transaction id or reference"
+                placeholder="Enter Reference Number"
                 required
                 onChange={refInputChange}
                 value={enteredRef}
@@ -121,7 +121,7 @@ const AirtimeConverter = () => {
             </InputContainer>
             <Btn type="submit">
               <CreditCard />
-              Credit
+              Credit Wallet
             </Btn>
           </Form>
         </FormWrapper>

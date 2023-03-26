@@ -19,6 +19,7 @@ export const FormWrapper = styled.div`
 export const Form = styled.form`
   display: flex;
   align-items: center;
+  width: 100%;
 `;
 export const InputContainer = styled.div`
   display: flex;
@@ -39,13 +40,14 @@ export const Btn = styled.button`
   background: linear-gradient(to right, #5c62ae, #4088a9);
   padding: 9px;
   margin: 20px 0;
+  white-space: nowrap;
   gap: 2px;
   color: white;
   cursor: pointer;
   border-radius: 3px;
   border: none;
-  font-weigth: 700;
   font-size: 14px;
+  text-align: center;
   &:hover {
     color: #343a40;
     transition: all 0.5s;
