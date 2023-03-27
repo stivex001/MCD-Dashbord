@@ -130,7 +130,12 @@ const AirtimeControl = () => {
                           {row.updated_at}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
-                          <BtnConatiner to={"/reseller/airtimecontrol/" + encodeURIComponent(row.id)}>
+                          <BtnConatiner
+                            to={
+                              "/reseller/airtimecontrol/" +
+                              encodeURIComponent(row.id)
+                            }
+                          >
                             Modify
                           </BtnConatiner>
                         </TableCell>
