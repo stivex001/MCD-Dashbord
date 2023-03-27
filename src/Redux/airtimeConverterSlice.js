@@ -8,7 +8,6 @@ const airtimeConverterSlice = createSlice({
     airtimeCovList: [],
     airtimeConList: [],
     creditUser: null,
-    airtimeReseller: [],
   },
   reducers: {
     getAirtimeCovStart: (state) => {
@@ -35,15 +34,19 @@ const airtimeConverterSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    getAirtimeResellerStart: (state) => {
+    modifyAirtimeStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
-    getAirtimeResellerSucess: (state, action) => {
+    modifyAirtimeSucess: (state, action) => {
       state.isFetching = false;
-      state.airtimeReseller = action.payload;
+      const { id, airtime } = action.payload;
+      const index = state.airtimeConList.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        state.airtimeConList[index] = airtime;
+      }
     },
-    getAirtimeResellerFailure: (state) => {
+    modifyAirtimeFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
@@ -77,5 +80,8 @@ export const {
   creditStart,
   creditSuccess,
   creditFailure,
+  modifyAirtimeStart,
+  modifyAirtimeSucess,
+  modifyAirtimeFailure
 } = airtimeConverterSlice.actions;
 export default airtimeConverterSlice.reducer;
