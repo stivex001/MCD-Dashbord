@@ -1,10 +1,11 @@
-
+import { Close } from "@mui/icons-material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { modifyAirtimeCon } from "../../Redux/apiCalls";
+import { H2, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   Btn,
@@ -24,12 +25,15 @@ const ModifyAirtime = () => {
   const airtimeModify = useSelector((state) =>
     state.airtimeConverter.airtimeConList.find((airtime) => airtime.id === Id)
   );
+  const { isFetching, error } = useSelector((state) => state.airtimeConverter);
 
   const [inputNetworkData, setInputNetworkData] = useState(
     airtimeModify.network.toUpperCase()
   );
   const [inputValueData, setInputValueData] = useState(airtimeModify);
-  const [inputDiscountData, setInputDiscountData] = useState(airtimeModify.discount);
+  const [inputDiscountData, setInputDiscountData] = useState(
+    airtimeModify.discount
+  );
   const [inputServerData, setInputServerData] = useState(airtimeModify.server);
 
   const navigate = useNavigate();
@@ -126,13 +130,13 @@ const ModifyAirtime = () => {
               </Select>
             </InputContainer>
           </Form>
-          <Btn type="submit">Update</Btn>
-          {/* {error && (
+          <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
+          {error && (
             <MsgContainer>
               <H2>opps!! something went wrong</H2>
               <Close style={{ color: "#806e6b", cursor: "pointer" }} />
             </MsgContainer>
-          )} */}
+          )}
         </FormWrapper>
       </Wrapper>
 
