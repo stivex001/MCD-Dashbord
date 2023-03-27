@@ -403,8 +403,7 @@ export const modifyAirtimeCon = async (dispatch, id, discount, server) => {
   dispatch(modifyAirtimeStart()); // set isProcessing flag to true
   try {
     const res = await userRequest.post(`/appDataConfigUpdate`, id, discount, server);
-    console.log(res);
-    dispatch(modifyAirtimeSucess(res.data)); // update the state with the new setting object
+    dispatch(modifyAirtimeSucess(res.data)); 
   } catch (error) {
     dispatch(modifyAirtimeFailure()); // set error flag to true
   }

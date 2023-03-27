@@ -15,6 +15,8 @@ import Footer from "../../components/footer/Footer";
 import { getAirtimeConList } from "../../Redux/apiCalls";
 import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
+import { H2, MsgContainer } from "../transaction/pending.styles";
+import { Close } from "@mui/icons-material";
 import {
   BtnConatiner,
   Container,
@@ -26,7 +28,7 @@ import {
 } from "./airtimeControl.styles";
 
 const AirtimeControl = () => {
-  const { airtimeConList, isFetching } = useSelector(
+  const { airtimeConList, isFetching, message } = useSelector(
     (state) => state.airtimeConverter
   );
   const dispatch = useDispatch();
@@ -54,6 +56,12 @@ const AirtimeControl = () => {
           </DescP>
         </Desc>
         <TableWrapper>
+          {message && (
+            <MsgContainer type="success">
+              <H2 type="success">{`Network has been updated successfully!`}</H2>
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+            </MsgContainer>
+          )}
           <P>Network List</P>
           <Details>
             <TableContainer component={Paper}>

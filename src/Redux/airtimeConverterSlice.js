@@ -45,6 +45,7 @@ const airtimeConverterSlice = createSlice({
       if (index !== -1) {
         state.airtimeConList[index] = airtime;
       }
+      state.message = true;
     },
     modifyAirtimeFailure: (state) => {
       state.isFetching = false;

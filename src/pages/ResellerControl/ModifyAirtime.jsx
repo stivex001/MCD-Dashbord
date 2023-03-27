@@ -29,7 +29,7 @@ const ModifyAirtime = () => {
     airtimeModify.network.toUpperCase()
   );
   const [inputValueData, setInputValueData] = useState(airtimeModify);
-  const [inputDiscountData, setInputDiscountData] = useState(airtimeModify.discount + '%');
+  const [inputDiscountData, setInputDiscountData] = useState(airtimeModify.discount);
   const [inputServerData, setInputServerData] = useState(airtimeModify.server);
 
   const navigate = useNavigate();
