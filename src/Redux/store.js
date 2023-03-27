@@ -17,6 +17,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { useNavigate } from "react-router-dom";
 
 const persistConfig = {
   key: "root",
@@ -46,6 +47,23 @@ const store = configureStore({
       },
     }),
 });
+
+const startTimer = () => {
+  setTimeout(() => {
+    const navigate = useNavigate()
+    navigate('/login')
+  }, 60000)
+}
+
+const resetTimer = () => {
+  clearTimeout(timer)
+  startTimer()
+}
+
+let timer = startTimer();
+
+document.addEventListener('mousemove', resetTimer)
+document.addEventListener('keydown', resetTimer)
 
 export const persistor = persistStore(store);
 

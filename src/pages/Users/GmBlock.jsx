@@ -52,7 +52,7 @@ const GmBlock = () => {
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(gmBlock.data.slice(itemOffset, endOffset));
+    setCurrentItems(gmBlock.data && gmBlock.data.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(gmBlock.total / itemsPerPage));
   }, [itemOffset, gmBlock, itemsPerPage]);
 
@@ -121,7 +121,7 @@ const GmBlock = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {currentItems.length === 0 ? (
+                  {currentItems && currentItems.length === 0 ? (
                     <TableRow style={{ backgroundColor: "#f3f2f7"}}>
                       <TableCell colSpan={4} style={{textAlign: 'center', color: '#8887a9' }}>No data in the table</TableCell>
                     </TableRow>
