@@ -194,8 +194,8 @@ const GmBlock = () => {
             </TableContainer>
           </Details>
         </TableWrapper>
-        <Footer />
       </Wrapper>
+      <Footer />
     </Container>
   );
 };
