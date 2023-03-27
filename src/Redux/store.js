@@ -52,7 +52,7 @@ const startTimer = () => {
   setTimeout(() => {
     const navigate = useNavigate()
     navigate('/login')
-  }, 60000)
+  }, 3600000)
 }
 
 const resetTimer = () => {
