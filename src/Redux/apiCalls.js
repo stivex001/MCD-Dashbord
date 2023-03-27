@@ -70,7 +70,7 @@ import {
   getWalletSucess,
 } from "./profileSlice";
 import { serverStart, serverFailure, serverSuccess } from "./serverSlice";
-import { creditFailure, creditStart, creditSuccess, getAirtimeCovFailure, getAirtimeCovStart, getAirtimeCovSucess } from "./airtimeConverterSlice";
+import { creditFailure, creditStart, creditSuccess, getAirtimeConFailure, getAirtimeConStart, getAirtimeConSucess, getAirtimeCovFailure, getAirtimeCovStart, getAirtimeCovSucess } from "./airtimeConverterSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -385,5 +385,17 @@ export const creditAirtime = async (dispatch, ref) => {
     }
   } catch (error) {
     dispatch(creditFailure()); 
+  }
+};
+
+// RESELLER CONTROLLER
+export const getAirtimeConList = async (dispatch) => {
+  dispatch(getAirtimeConStart());
+  try {
+    const res = await userRequest.get(`/appAirtimeConfigList`);
+    console.log(res);
+    dispatch(getAirtimeConSucess(res.data.data));
+  } catch (error) {
+    dispatch(getAirtimeConFailure());
   }
 };
