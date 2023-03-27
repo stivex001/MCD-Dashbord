@@ -8,6 +8,7 @@ const airtimeConverterSlice = createSlice({
     airtimeCovList: [],
     airtimeConList: [],
     creditUser: null,
+    airtimeReseller: [],
   },
   reducers: {
     getAirtimeCovStart: (state) => {
@@ -31,6 +32,18 @@ const airtimeConverterSlice = createSlice({
       state.airtimeConList = action.payload;
     },
     getAirtimeConFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    getAirtimeResellerStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getAirtimeResellerSucess: (state, action) => {
+      state.isFetching = false;
+      state.airtimeReseller = action.payload;
+    },
+    getAirtimeResellerFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
@@ -58,6 +71,9 @@ export const {
   getAirtimeConStart,
   getAirtimeConSucess,
   getAirtimeConFailure,
+  getAirtimeResellerStart,
+  getAirtimeResellerSucess,
+  getAirtimeResellerFailure,
   creditStart,
   creditSuccess,
   creditFailure,

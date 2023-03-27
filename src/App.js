@@ -229,11 +229,11 @@ const App = () => {
 
         {/* Reseller Page */}
         <Route
-          path="/airtime-control"
+          path="/reseller/airtimecontrol"
           element={user ? <AirtimeControl /> : <Navigate to="/login" />}
         />
         <Route
-          path="/data-control"
+          path="/reseller/datacontrol"
           element={user ? <DataControl /> : <Navigate to="/login" />}
         />
       </Routes>

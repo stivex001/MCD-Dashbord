@@ -347,17 +347,17 @@ export const sidebarData = [
       {
         id: 1,
         title: "Airtime Control",
-        to: "/airtime-control",
+        to: "/reseller/airtimecontrol",
       },
       {
         id: 2,
         title: "Data Plans",
-        to: "/data-control",
+        to: "/reseller/datacontrol",
       },
       {
         id: 3,
         title: "TV Plans",
-        to: "/tvcontrol",
+        to: "/reseller/tvcontrol",
       },
     ],
   },

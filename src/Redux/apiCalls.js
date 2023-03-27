@@ -393,7 +393,6 @@ export const getAirtimeConList = async (dispatch) => {
   dispatch(getAirtimeConStart());
   try {
     const res = await userRequest.get(`/appAirtimeConfigList`);
-    console.log(res);
     dispatch(getAirtimeConSucess(res.data.data));
   } catch (error) {
     dispatch(getAirtimeConFailure());

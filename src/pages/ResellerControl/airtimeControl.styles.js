@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { laptop } from "../../responsive";
 
@@ -22,13 +23,19 @@ export const P = styled.p`
 export const Details = styled.div`
   margin: 30px 0;
 `;
-export const BtnConatiner = styled.div`
+export const BtnConatiner = styled(Link)`
   background-color: #aaaece;
   padding: 10px;
   color: #fff;
   cursor: pointer;
   font-weight: bold;
   text-align: center;
+  text-decoration: none;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: rgba(170,174,206,0.7);
+  }
 `;
 export const Span = styled.span`
   color: #fff;
