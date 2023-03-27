@@ -65,7 +65,7 @@ const Edit = () => {
             <InputContainer>
               <InputTitle>Name</InputTitle>
               <Input
-                background="email"
+                type="email"
                 onChange={handleInputNameChange}
                 value={inputNameData}
                 name="name"

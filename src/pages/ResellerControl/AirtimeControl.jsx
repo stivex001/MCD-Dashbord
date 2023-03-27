@@ -107,7 +107,7 @@ const AirtimeControl = () => {
                           {row.id}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
-                          {row.network}
+                          {row.network.toUpperCase()}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
                           {row.discount}%
@@ -123,7 +123,7 @@ const AirtimeControl = () => {
                               }`,
                             }}
                           >
-                            {row.status === 1 ? "Active" : "Pending"}
+                            {row.status === 1 ? "Active" : "Inactive"}
                           </Span>
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
@@ -131,10 +131,7 @@ const AirtimeControl = () => {
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
                           <BtnConatiner
-                            to={
-                              "/reseller/airtimecontrol/" +
-                              encodeURIComponent(row.id)
-                            }
+                            to={`/reseller/airtimecontrol/${row.id}`}
                           >
                             Modify
                           </BtnConatiner>

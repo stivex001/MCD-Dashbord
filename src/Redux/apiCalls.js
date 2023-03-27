@@ -70,7 +70,7 @@ import {
   getWalletSucess,
 } from "./profileSlice";
 import { serverStart, serverFailure, serverSuccess } from "./serverSlice";
-import { creditFailure, creditStart, creditSuccess, getAirtimeConFailure, getAirtimeConStart, getAirtimeConSucess, getAirtimeCovFailure, getAirtimeCovStart, getAirtimeCovSucess } from "./airtimeConverterSlice";
+import { creditFailure, creditStart, creditSuccess, getAirtimeConFailure, getAirtimeConStart, getAirtimeConSucess, getAirtimeCovFailure, getAirtimeCovStart, getAirtimeCovSucess, modifyAirtimeFailure, modifyAirtimeStart, modifyAirtimeSucess } from "./airtimeConverterSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -396,5 +396,16 @@ export const getAirtimeConList = async (dispatch) => {
     dispatch(getAirtimeConSucess(res.data.data));
   } catch (error) {
     dispatch(getAirtimeConFailure());
+  }
+};
+
+export const modifyAirtimeCon = async (dispatch, id, discount, server) => {
+  dispatch(modifyAirtimeStart()); // set isProcessing flag to true
+  try {
+    const res = await userRequest.post(`/appDataConfigUpdate`, id, discount, server);
+    console.log(res);
+    dispatch(modifyAirtimeSucess(res.data)); // update the state with the new setting object
+  } catch (error) {
+    dispatch(modifyAirtimeFailure()); // set error flag to true
   }
 };

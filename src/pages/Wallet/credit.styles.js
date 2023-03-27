@@ -31,7 +31,7 @@ export const InputContainer = styled.div`
 export const Input = styled.input`
   padding: 12px;
   width: 100%;
-  outline-color: #827fc2;
+  outline-color: #d4d8e1;
   border: 1px solid #d4d8e1;
 `;
 export const Btn = styled.button`

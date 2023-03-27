@@ -1,167 +1,144 @@
+
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import Navbar from "../../components/Bar/Navbar";
+import Footer from "../../components/footer/Footer";
+import { modifyAirtimeCon } from "../../Redux/apiCalls";
+import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
-    AccountBalanceWallet,
-    Close,
-    CreditCard,
-    PermIdentity,
-  } from "@mui/icons-material";
-  import { useState } from "react";
-  import { useDispatch, useSelector } from "react-redux";
-  import Navbar from "../../components/Bar/Navbar";
-  import Footer from "../../components/footer/Footer";
-  import { creditUser } from "../../Redux/apiCalls";
-  import { H2, MsgContainer } from "../transaction/pending.styles";
-  import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-  import {
-    Btn,
-    Container,
-    Form,
-    FormWrapper,
-    Input,
-    InputContainer,
-    Option,
-    Select,
-    Wrapper,
-  } from "../Wallet/credit.styles";
-  
-  const ModifyAirtime = () => {
-    const [formData, setFormData] = useState({
-      enterUsername: "",
-      enterAmount: "",
-      fundType: "fund",
-      bankType: "transfer",
-      description: "",
-    });
-    const [enterUsernameIsValid, setEnterUsernameIsValid] = useState(true);
-    const dispatch = useDispatch();
-    const {message, error} = useSelector(state => state.wallet)
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-    };
-  
-    const handleFormSubmit = (e) => {
-      e.preventDefault();
-      if (formData.enterUsername.trim() === "") {
-        setEnterUsernameIsValid(false);
-        return;
-      }
-      creditUser(dispatch, {
-        user_name: formData.enterUsername,
-        type: "credit",
-        payment_channel: formData.bankType,
-        amount: formData.amount,
-        odescription: formData.description,
-      });
-      setEnterUsernameIsValid(true);
-      setFormData("");
-    };
-  
-    return (
-      <Container>
-        <Navbar />
-        <Wrapper>
-          <Desc>
-            <H3>Credit User</H3>
-            <DescP>
-              Wallet / <DescSpan>Credit User</DescSpan>
-            </DescP>
-          </Desc>
-          <FormWrapper onSubmit={handleFormSubmit}>
-            <Form>
-              <InputContainer>
-                <PermIdentity
-                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-                />
-                <Input
-                  type="text"
-                  placeholder="Enter Username"
-                  name="enterUsername"
-                  value={formData.enterUsername || ""}
-                  onChange={handleInputChange}
-                />
-              </InputContainer>
-              {!enterUsernameIsValid && (
-                <MsgContainer>
-                  <H2>Username is required!</H2>
-                  <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-                </MsgContainer>
-              )}
-              {message && (
-                <MsgContainer type="success">
-                  <H2 type="success">{`${formData.enterUsername} wallet credited successfully!`}</H2>
-                  <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-                </MsgContainer>
-              )}
-  
-              <InputContainer>
-                <AccountBalanceWallet
-                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-                />
-                <Input
-                  type="number"
-                  placeholder="Enter Amount"
-                  name="enterAmount"
-                  value={formData.enterAmount || ""}
-                  onChange={handleInputChange}
-                />
-              </InputContainer>
-              <InputContainer>
-                <Select
-                  name="fundType"
-                  id=""
-                  value={formData.fundType || "fund"}
-                  onChange={handleInputChange}
-                >
-                  <Option value="fund">Fund</Option>
-                  <Option value="debit">Debit</Option>
-                </Select>
-              </InputContainer>
-              <InputContainer>
-                <Select
-                  name="bankType"
-                  id=""
-                  value={formData.bankType || "transfer"}
-                  onChange={handleInputChange}
-                >
-                  <Option value="transfer">Bank Transfer</Option>
-                  <Option value="payant">Payant</Option>
-                  <Option value="monify">Monify</Option>
-                  <Option value="rave">Rave</Option>
-                  <Option value="paystack">Paystack</Option>
-                  <Option value="carbon">Carbon</Option>
-                  <Option value="opay">Opay</Option>
-                </Select>
-              </InputContainer>
-              <InputContainer>
-                <p style={{ padding: "5px", fontSize: "16px", color: "#495057" }}>
-                  Description
-                </p>
-                <Input
-                  type="text"
-                  placeholder="Enter Additional Description (Optional)"
-                  name="description"
-                  value={formData.description || ""}
-                  onChange={handleInputChange}
-                />
-              </InputContainer>
-            </Form>
-            <Btn type="submit">
-              <CreditCard />
-              Credit User
-            </Btn>
-            {error && (
-                <MsgContainer>
-                  <H2>opps!! something went wrong</H2>
-                  <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-                </MsgContainer>
-              )}
-          </FormWrapper>
-        </Wrapper>
-  
-        <Footer />
-      </Container>
-    );
+  Btn,
+  Container,
+  Form,
+  FormWrapper,
+  Input,
+  InputContainer,
+  Option,
+  Select,
+  Wrapper,
+} from "../Wallet/credit.styles";
+
+const ModifyAirtime = () => {
+  const location = useLocation();
+  const Id = Number(location.pathname.split("/")[3]);
+  const airtimeModify = useSelector((state) =>
+    state.airtimeConverter.airtimeConList.find((airtime) => airtime.id === Id)
+  );
+
+  const [inputNetworkData, setInputNetworkData] = useState(
+    airtimeModify.network.toUpperCase()
+  );
+  const [inputValueData, setInputValueData] = useState(airtimeModify);
+  const [inputDiscountData, setInputDiscountData] = useState(airtimeModify.discount + '%');
+  const [inputServerData, setInputServerData] = useState(airtimeModify.server);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleInputNetworkChange = (event) => {
+    setInputNetworkData(event.target.value);
   };
-  
-  export default ModifyAirtime;
-  
+
+  const handleInputValueChange = (event) => {
+    setInputValueData(event.target.value);
+  };
+
+  const handleInputDiscountChange = (event) => {
+    setInputDiscountData(event.target.value);
+  };
+
+  const handleInputServerChange = (event) => {
+    setInputServerData(event.target.value);
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    modifyAirtimeCon(dispatch, {
+      id: airtimeModify.id,
+      discount: inputDiscountData,
+      server: inputServerData,
+    });
+    setTimeout(() => navigate("/reseller/airtimecontrol"), 1000);
+  };
+
+  return (
+    <Container>
+      <Navbar />
+      <Wrapper>
+        <Desc>
+          <H3>Modify Airtime Network</H3>
+          <DescP>
+            Reseller / <DescSpan>Modify Airtime Network</DescSpan>
+          </DescP>
+        </Desc>
+        <FormWrapper onSubmit={handleFormSubmit}>
+          <Form>
+            <InputContainer>
+              <p style={{ padding: "5px", fontSize: "16px", color: "#495057" }}>
+                Network
+              </p>
+              <Input
+                type="text"
+                onChange={handleInputNetworkChange}
+                value={inputNetworkData}
+                name="name"
+                readOnly
+              />
+            </InputContainer>
+
+            <InputContainer>
+              <p style={{ padding: "5px", fontSize: "16px", color: "#495057" }}>
+                Discount
+              </p>
+              <Input
+                type="text"
+                onChange={handleInputDiscountChange}
+                value={inputDiscountData}
+                name="name"
+              />
+            </InputContainer>
+            <InputContainer>
+              <Select
+                name="fundType"
+                id=""
+                value={inputValueData}
+                onChange={handleInputValueChange}
+              >
+                <Option value="fund">Deactivate</Option>
+                <Option value="debit">Activate</Option>
+              </Select>
+            </InputContainer>
+            <InputContainer>
+              <Select
+                name="server"
+                id=""
+                value={inputServerData}
+                onChange={handleInputServerChange}
+              >
+                <Option value="1">1</Option>
+                <Option value="2">2</Option>
+                <Option value="3">3</Option>
+                <Option value="4">4</Option>
+                <Option value="5">5</Option>
+                <Option value="6">6</Option>
+                <Option value="7">7</Option>
+                <Option value="8">8</Option>
+              </Select>
+            </InputContainer>
+          </Form>
+          <Btn type="submit">Update</Btn>
+          {/* {error && (
+            <MsgContainer>
+              <H2>opps!! something went wrong</H2>
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+            </MsgContainer>
+          )} */}
+        </FormWrapper>
+      </Wrapper>
+
+      <Footer />
+    </Container>
+  );
+};
+
+export default ModifyAirtime;

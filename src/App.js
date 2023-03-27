@@ -46,6 +46,7 @@ import ReverseConfirm from "./pages/transaction/ReverseConfirm";
 import GmBlock from "./pages/Users/GmBlock";
 import ModifyAirtime from "./pages/ResellerControl/ModifyAirtime";
 
+
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
   return (
@@ -238,7 +239,7 @@ const App = () => {
           element={user ? <DataControl /> : <Navigate to="/login" />}
         />
         <Route
-          path="/reseller/datacontrol/:id"
+          path="/reseller/airtimecontrol/:id"
           element={user ? <ModifyAirtime /> : <Navigate to="/login" />}
         />
       </Routes>
