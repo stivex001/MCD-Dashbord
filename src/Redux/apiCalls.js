@@ -51,6 +51,9 @@ import {
   reProcessAllSucess,
 } from "./pendingTransSlice";
 import {
+  getGmBlockFailure,
+  getGmBlockStart,
+  getGmBlockSucess,
   getReversalFailure,
   getReversalStart,
   getReversalSuccess,
@@ -155,6 +158,16 @@ export const getResellers = async (dispatch, page) => {
     dispatch(getResellersSuccess(res.data.data));
   } catch (error) {
     dispatch(getResellersFailure());
+  }
+};
+
+export const getGmBlockData = async (dispatch, page) => {
+  dispatch(getGmBlockStart());
+  try {
+    const res = await userRequest.get(`/gmblocked?page=${page}`);
+    dispatch(getGmBlockSucess(res.data.data));
+  } catch (error) {
+    dispatch(getGmBlockFailure());
   }
 };
 

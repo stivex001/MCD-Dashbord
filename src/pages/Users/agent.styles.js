@@ -40,7 +40,7 @@ export const DivWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 40px;
-  ${mobile({ flexDirection: "column", gap: '10px' })};
+  ${mobile({ flexDirection: "column", gap: "10px" })};
 `;
 export const SearchAgent = styled.div`
   display: flex;
@@ -48,8 +48,8 @@ export const SearchAgent = styled.div`
   gap: 5px;
 `;
 export const SearchDesc = styled.p`
-font-size: 14px;
-color: #636466;
+  font-size: 14px;
+  color: #636466;
 `;
 export const Action = styled.div`
   display: flex;
@@ -68,8 +68,9 @@ export const ActionList = styled.div`
   }
 `;
 export const Input = styled.input`
-padding: 8px;
-outline-color: #827fc2;
+  padding: 8px;
+  outline-color: #d4d8e1;
+  border: 1px solid #d4d8e1;
 `;
 export const Column = styled.div`
   display: flex;
@@ -89,13 +90,13 @@ export const Column = styled.div`
 export const ActionListCol = styled.div``;
 
 export const AgentDesc = styled.div`
-display: flex;
-align-items: center;
-gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 export const Img = styled.img`
-width: 32px;
-height: 32px;
+  width: 32px;
+  height: 32px;
 `;
 
 export const PaginateContainer = styled(ReactPaginate)`
@@ -128,13 +129,13 @@ export const PaginateContainer = styled(ReactPaginate)`
 `;
 
 export const PagWrapper = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-${mobile({ flexDirection: "column" })};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  ${mobile({ flexDirection: "column" })};
 `;
 export const PageNotification = styled.p`
-font-size: 14px;
-color: #333265;
-padding: 12px;
+  font-size: 14px;
+  color: #333265;
+  padding: 12px;
 `;
