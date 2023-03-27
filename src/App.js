@@ -44,6 +44,7 @@ import Resellers from "./pages/Users/Resellers";
 import Server11 from "./pages/Verifications/Server11";
 import ReverseConfirm from "./pages/transaction/ReverseConfirm";
 import GmBlock from "./pages/Users/GmBlock";
+import ModifyAirtime from "./pages/ResellerControl/ModifyAirtime";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -235,6 +236,10 @@ const App = () => {
         <Route
           path="/reseller/datacontrol"
           element={user ? <DataControl /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/reseller/datacontrol/:id"
+          element={user ? <ModifyAirtime /> : <Navigate to="/login" />}
         />
       </Routes>
     </div>
