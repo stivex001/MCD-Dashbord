@@ -11,7 +11,8 @@ const profileSlice = createSlice({
     fecthedUsers: false,
     searchTrans: [],
     searchReversal: [],
-    transReverse: null
+    transReverse: null,
+    gmBlock: [],
   },
   reducers: {
     getWalletStart: (state) => {
@@ -78,6 +79,17 @@ const profileSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    getGmBlockStart: (state) => {
+      state.isFetching = true;
+    },
+    getGmBlockSucess: (state, action) => {
+      state.isFetching = false;
+      state.gmBlock = action.payload;
+    },
+    getGmBlockFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -96,6 +108,9 @@ export const {
   getSearchedReversalFailure,
   getReversalStart,
   getReversalSuccess,
-  getReversalFailure
+  getReversalFailure,
+  getGmBlockStart,
+  getGmBlockSucess,
+  getGmBlockFailure
 } = profileSlice.actions;
 export default profileSlice.reducer;

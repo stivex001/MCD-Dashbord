@@ -79,13 +79,13 @@ const GmBlock = () => {
       <Navbar />
       <Wrapper>
         <Desc>
-          <H3>Agents</H3>
+          <H3>General Market</H3>
           <DescP>
-            User / <DescSpan>Agents</DescSpan>
+            User / <DescSpan>General Market</DescSpan>
           </DescP>
         </Desc>
         <TableWrapper>
-          <P>The list of approved agents.</P>
+          <P>The list of suspended users on General Market.</P>
           <DivWrapper>
             <Action>
               <ActionList>Copy</ActionList>
@@ -110,13 +110,10 @@ const GmBlock = () => {
                       User Name
                     </TableCell>
                     <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                      Business Name
+                      Reason
                     </TableCell>
                     <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                      DOB
-                    </TableCell>
-                    <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                      Phone Number
+                      Date
                     </TableCell>
                     <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
                       Action
@@ -142,13 +139,10 @@ const GmBlock = () => {
                             </AgentDesc>
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
-                            {row.company_name}
+                            {row.reason}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
-                            {row.dob}
-                          </TableCell>
-                          <TableCell style={{ color: "#8887a9" }}>
-                            {row.phoneno}
+                            {row.date}
                           </TableCell>
                           <TableCell style={{ color: "#8887a9" }}>
                             <Link
