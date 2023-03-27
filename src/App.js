@@ -43,6 +43,7 @@ import Agent from "./pages/Users/Agent";
 import Resellers from "./pages/Users/Resellers";
 import Server11 from "./pages/Verifications/Server11";
 import ReverseConfirm from "./pages/transaction/ReverseConfirm";
+import GmBlock from "./pages/Users/GmBlock";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -132,6 +133,10 @@ const App = () => {
         <Route
           path="/resellers"
           element={user ? <Resellers /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/gmBlocked"
+          element={user ? <GmBlock /> : <Navigate to="/login" />}
         />
 
         {/* Verification Page */}

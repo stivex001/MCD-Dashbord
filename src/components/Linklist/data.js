@@ -169,7 +169,7 @@ export const sidebarData = [
       {
         id: 8,
         title: "GM Blocked",
-        to: "/gm-block",
+        to: "/gmblocked",
       },
       {
         id: 9,
