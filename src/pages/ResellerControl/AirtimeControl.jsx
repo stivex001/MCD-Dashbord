@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -7,9 +8,12 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
+import { getAirtimeConList } from "../../Redux/apiCalls";
+import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
   BtnConatiner,
@@ -22,7 +26,23 @@ import {
 } from "./airtimeControl.styles";
 
 const AirtimeControl = () => {
-  const currentItems = [];
+  const { airtimeConList, isFetching } = useSelector(
+    (state) => state.airtimeConverter
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getAirtimeConList(dispatch);
+  }, [dispatch]);
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
+
   return (
     <Container>
       <Navbar />
@@ -64,7 +84,7 @@ const AirtimeControl = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {currentItems && currentItems.length === 0 ? (
+                  {airtimeConList && airtimeConList.length === 0 ? (
                     <TableRow style={{ backgroundColor: "#f3f2f7" }}>
                       <TableCell
                         colSpan={7}
@@ -74,11 +94,14 @@ const AirtimeControl = () => {
                       </TableCell>
                     </TableRow>
                   ) : (
-                    currentItems &&
-                    currentItems.map((row) => (
+                    airtimeConList &&
+                    airtimeConList.map((row) => (
                       <TableRow
                         key={row.id}
-                        style={{ backgroundColor: "#f3f2f7" }}
+                        style={{
+                          backgroundColor:
+                            row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+                        }}
                       >
                         <TableCell style={{ color: "#8887a9" }}>
                           {row.id}
@@ -87,7 +110,7 @@ const AirtimeControl = () => {
                           {row.network}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
-                          {row.discount}
+                          {row.discount}%
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
                           {row.server}
@@ -96,20 +119,20 @@ const AirtimeControl = () => {
                           <Span
                             style={{
                               backgroundColor: `${
-                                row.status === "1" ? "#5dd099" : "#f8c955"
+                                row.status === 1 ? "#5dd099" : "#f8c955"
                               }`,
                             }}
                           >
-                            {row.status === "1" ? "Active" : "Pending"}
+                            {row.status === 1 ? "Active" : "Pending"}
                           </Span>
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
                           {row.updated_at}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
-                          <Link to={"/profile/" + encodeURIComponent(row.id)}>
-                            <BtnConatiner>Modify</BtnConatiner>
-                          </Link>
+                          <BtnConatiner to={"/reseller/airtimecontrol/" + encodeURIComponent(row.id)}>
+                            Modify
+                          </BtnConatiner>
                         </TableCell>
                       </TableRow>
                     ))
