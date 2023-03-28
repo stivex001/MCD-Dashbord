@@ -136,7 +136,6 @@ export const getUser = async (dispatch) => {
   dispatch(getUserStart());
   try {
     const res = await userRequest.get(`/allUsers`);
-    console.log(res);
     dispatch(getUserSuccess(res.data.data));
   } catch (error) {
     dispatch(getUserFailure());
