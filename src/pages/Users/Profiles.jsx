@@ -7,7 +7,6 @@ import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
 import SamjiTrans from "../../components/samjiTrans/SamjiTrans";
 import SamjiWallet from "../../components/samjiWallet/SamjiWallet";
-import UserProfile from "../../components/userProfile/UserProfile";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
 
 import {
@@ -18,6 +17,7 @@ import {
   H3,
   Wrapper,
 } from "../transaction/transHistory.styles";
+import UserProfiles from "./UserProfile";
 
 const Profiles = () => {
 
@@ -40,7 +40,7 @@ const Profiles = () => {
           </DescP>
         </Desc>
         
-        <UserProfile />
+        <UserProfiles />
         <div>
         <List>
         <Btn to='/profile/samji/#general_detail'  onClick={() => handleButtonClick(<General />)}>General</Btn>

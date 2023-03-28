@@ -25,7 +25,7 @@ import {
     Wrapper,
   } from "../../components/userProfile/userProfile.styles";
   
-  const UserProfile = () => {
+  const UserProfiles = () => {
     const [user, setUser] = useState([]);
     // const location = useLocation()
     // const userId = location.pathname.split('/')[2];
@@ -55,7 +55,7 @@ import {
         <Wrapper>
           <Left>
             <UserImg
-              src="https://mcd.5starcompany.com.ng/app/avatar/samji.JPG"
+              src=""
               alt=""
             />
             <CameraAlt style={{ fontSize: "20px" }} />
@@ -132,5 +132,5 @@ import {
     );
   };
   
-  export default UserProfile;
+  export default UserProfiles;
   
