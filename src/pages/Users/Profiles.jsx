@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
-import General from "../../components/General/General";
+import UserGeneral from "../../components/General/UserGeneral";
 import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
 import SamjiTrans from "../../components/samjiTrans/SamjiTrans";
@@ -21,7 +21,7 @@ import UserProfiles from "./UserProfile";
 
 const Profiles = () => {
 
-  const [currentPage, setCurrentPage] = useState(<General />);
+  const [currentPage, setCurrentPage] = useState(<UserGeneral />);
 
 
   const handleButtonClick = (page) => {
@@ -43,7 +43,7 @@ const Profiles = () => {
         <UserProfiles />
         <div>
         <List>
-        <Btn to='/profile/samji/#general_detail'  onClick={() => handleButtonClick(<General />)}>General</Btn>
+        <Btn to='/profile/samji/#general_detail'  onClick={() => handleButtonClick(<UserGeneral />)}>General</Btn>
         <Btn to='/profile/samji/#activity_detail' onClick={() => handleButtonClick(<SamjiTrans />)}>Transactions</Btn>
         <Btn  onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
         <Btn  onClick={() => handleButtonClick(<Nofication />)}>Push Notification</Btn>
