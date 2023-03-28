@@ -42,6 +42,23 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    getUserStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getUserSuccess: (state, action) => {
+      state.isFetching = false;
+      const { id, user } = action.payload;
+      const index = state.allUsers.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        state.allUsers[index] = user;
+      }
+      state.message = true;
+    },
+    getUserFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
     getUserOverviewStart: (state) => {
       state.isFetching = true;
     },
@@ -87,6 +104,9 @@ export const {
   getAllUsersStart,
   getAllUsersSuccess,
   getAllUsersFailure,
+  getUserStart,
+  getUserSuccess,
+  getUserFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
   getUserOverviewFailure,

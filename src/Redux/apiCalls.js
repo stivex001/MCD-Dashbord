@@ -8,9 +8,12 @@ import {
   getResellersFailure,
   getResellersStart,
   getResellersSuccess,
+  getUserFailure,
   getUserOverviewFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
+  getUserStart,
+  getUserSuccess,
   loginfailure,
   loginStart,
   loginSuccess,
@@ -126,6 +129,17 @@ export const getAllUsers = async (dispatch, page) => {
     dispatch(getAllUsersSuccess(res.data.data));
   } catch (error) {
     dispatch(getAllUsersFailure());
+  }
+};
+
+export const getUser = async (dispatch) => {
+  dispatch(getUserStart());
+  try {
+    const res = await userRequest.get(`/allUsers`);
+    console.log(res);
+    dispatch(getUserSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getUserFailure());
   }
 };
 

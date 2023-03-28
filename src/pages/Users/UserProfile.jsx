@@ -8,9 +8,7 @@ import {
     Phone,
     PhoneIphone,
   } from "@mui/icons-material";
-  import { useEffect, useState } from "react";
-  // import { useLocation } from "react-router-dom";
-  import { userRequest } from "../../requestMethods";
+  import { useEffect } from "react";
   import {
     Brandname,
     Container,
@@ -24,32 +22,27 @@ import {
     Username,
     Wrapper,
   } from "../../components/userProfile/userProfile.styles";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { getUser } from "../../Redux/apiCalls";
   
   const UserProfiles = () => {
-    const [user, setUser] = useState([]);
-    // const location = useLocation()
-    // const userId = location.pathname.split('/')[2];
+    
+    const location = useLocation()
+    const userId = Number(location.pathname.split('/')[2])
+    const dispatch = useDispatch();
+    console.log(userId);
+    const users = false
+//     const users = useSelector((state) =>
+//     state.user.allUsers?.find((user) => user.id === userId)
+//   );
+  const allUsers = useSelector(state => state.user.allUsers)
+    
+  useEffect(() => {
+    getUser(dispatch);
+  }, [dispatch]);
   
-    useEffect(() => {
-      const getUser = async () => {
-        try {
-          const res = await userRequest.get("/profile/samji");
-          console.log(res.data.data.wallet_list.data);
-          setUser(res.data.data);
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
-      getUser();
-    }, []);
-  
-    //   if (!user) {
-    //     return <div>Loading....</div>;
-    //   }
-  
-    //   const registeredUser = user.length > 0 ? user.find((reg) => reg.user_name === userId) : null;
-  
-    // console.log(registeredUser);
+    console.log(allUsers.id);
     return (
       <Container>
         <Wrapper>
@@ -67,45 +60,45 @@ import {
             <Desc>
               <Phone style={{ color: "#26abf2" }} />
               <UserDesc>
-                Phone: <Span>{user?.phoneno || "08166939205"}</Span>
+                Phone: <Span>{users?.phoneno || "08166939205"}</Span>
               </UserDesc>
             </Desc>
             <Desc>
               <MailOutline style={{ color: "#26abf2" }} />
               <UserDesc>
-                Email: <Span>{user?.email || "odejinmisamuel@gmail.com"}</Span>
+                Email: <Span>{users?.email || "odejinmisamuel@gmail.com"}</Span>
               </UserDesc>
             </Desc>
             <Desc>
               <LocationOn style={{ color: "#26abf2" }} />
               <UserDesc>
                 Location:{" "}
-                <Span>{user?.address || "12 Akinbo area ogun Nigeria"}</Span>
+                <Span>{users?.address || "12 Akinbo area ogun Nigeria"}</Span>
               </UserDesc>
             </Desc>
             <Desc>
               <CalendarToday style={{ color: "#26abf2" }} />
               <UserDesc>
-                DOB: <Span>{user?.dob}</Span>
+                DOB: <Span>{users?.dob}</Span>
               </UserDesc>
             </Desc>
             <Desc>
               <CalendarToday style={{ color: "#26abf2" }} />
               <UserDesc>
-                Reg.Date: <Span>{user?.reg_date || "2019-04-14 14:55:21"}</Span>
+                Reg.Date: <Span>{users?.reg_date || "2019-04-14 14:55:21"}</Span>
               </UserDesc>
             </Desc>
             <Desc>
               <CalendarToday style={{ color: "#26abf2" }} />
               <UserDesc>
-                Last Login: <Span>{user?.last_login}</Span>
+                Last Login: <Span>{users?.last_login}</Span>
               </UserDesc>
             </Desc>
             <Desc>
               <AccountBalanceWallet style={{ color: "#26abf2" }} />
               <UserDesc>
                 Virtual Account:{" "}
-                <Span>{user?.account_number || "7445559331 | Wema bank"}</Span>
+                <Span>{users?.account_number || "7445559331 | Wema bank"}</Span>
               </UserDesc>
             </Desc>
             <Desc>
@@ -117,13 +110,13 @@ import {
             <Desc>
               <Brush style={{ color: "#26abf2" }} />
               <UserDesc>
-                Referral Plan: <Span>{user?.referral_plan || "larvae"}</Span>
+                Referral Plan: <Span>{users?.referral_plan || "larvae"}</Span>
               </UserDesc>
             </Desc>
             <Desc>
               <Brush style={{ color: "#26abf2" }} />
               <UserDesc>
-                Level: <Span>{user?.level || "1"}</Span>
+                Level: <Span>{users?.level || "1"}</Span>
               </UserDesc>
             </Desc>
           </Right>
