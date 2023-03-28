@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
@@ -20,14 +22,17 @@ import {
 import UserProfiles from "./UserProfile";
 
 const Profiles = () => {
-
-  const [currentPage, setCurrentPage] = useState(<UserGeneral />);
-
+  const location = useLocation();
+  const userId = location.pathname.split("/")[2];
+  const decodedId = decodeURIComponent(userId);
+  const users = useSelector((state) =>
+    state.user.allUsers.data.find((user) => user.user_name === decodedId)
+  );
+  const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
 
   const handleButtonClick = (page) => {
     setCurrentPage(page);
-  }
-
+  };
 
   return (
     <Container>
@@ -39,21 +44,28 @@ const Profiles = () => {
             User / <DescSpan>Profile</DescSpan>
           </DescP>
         </Desc>
-        
-        <UserProfiles />
+
+        <UserProfiles users={users} />
         <div>
-        <List>
-        <Btn to='/profile/samji/#general_detail'  onClick={() => handleButtonClick(<UserGeneral />)}>General</Btn>
-        <Btn to='/profile/samji/#activity_detail' onClick={() => handleButtonClick(<SamjiTrans />)}>Transactions</Btn>
-        <Btn  onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
-        <Btn  onClick={() => handleButtonClick(<Nofication />)}>Push Notification</Btn>
-        <Btn  onClick={() => handleButtonClick(<Information />)}>Information</Btn>
-      </List>
-      {currentPage}
+          <List>
+            <Btn onClick={() => handleButtonClick(<UserGeneral users={users} />)}>
+              General
+            </Btn>
+            <Btn onClick={() => handleButtonClick(<SamjiTrans />)}>
+              Transactions
+            </Btn>
+            <Btn onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
+            <Btn onClick={() => handleButtonClick(<Nofication />)}>
+              Push Notification
+            </Btn>
+            <Btn onClick={() => handleButtonClick(<Information />)}>
+              Information
+            </Btn>
+          </List>
+          {currentPage}
         </div>
-        
       </Wrapper>
-      
+
       <Footer />
     </Container>
   );

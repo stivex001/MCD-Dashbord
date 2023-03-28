@@ -15,7 +15,7 @@ import {
   Wrapperr,
 } from "./userGeneral.styles";
 
-const UserGeneral = () => {
+const UserGeneral = ({users}) => {
   return (
     <Container>
       <Left>
@@ -23,21 +23,21 @@ const UserGeneral = () => {
           <InfoContainer>
             <InfoDesc>
               <InfoLeft>
-                <P>#455</P>
+                <P>&#8358;{users.wallet}</P>
                 <Span>Wallet Balance</Span>
               </InfoLeft>
               <InfoRight>
-                <P>#368</P>
+                <P>&#8358;{users.bonus}</P>
                 <Span>Bonus Balance</Span>
               </InfoRight>
             </InfoDesc>
             <InfoDesc>
               <InfoLeft>
-                <P>#455</P>
+                <P>&#8358;{users.agent_commision}</P>
                 <Span>Agent Comm</Span>
               </InfoLeft>
               <InfoRight>
-                <P>#368</P>
+                <P>{users.points}</P>
                 <Span>Mega Points</Span>
               </InfoRight>
             </InfoDesc>
