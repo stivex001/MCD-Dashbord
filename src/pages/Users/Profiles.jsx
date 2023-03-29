@@ -48,17 +48,34 @@ const Profiles = () => {
         <UserProfiles users={users} />
         <div>
           <List>
-            <Btn onClick={() => handleButtonClick(<UserGeneral users={users} />)}>
+            <Btn
+              active={currentPage.type.name === "UserGeneral"}
+              onClick={() => handleButtonClick(<UserGeneral users={users} />)}
+            >
               General
             </Btn>
-            <Btn onClick={() => handleButtonClick(<SamjiTrans />)}>
+            <Btn
+              active={currentPage.type.name === "SamjiTrans"}
+              onClick={() => handleButtonClick(<SamjiTrans />)}
+            >
               Transactions
             </Btn>
-            <Btn onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
-            <Btn onClick={() => handleButtonClick(<Nofication />)}>
+            <Btn
+              active={currentPage.type.name === "SamjiWallet"}
+              onClick={() => handleButtonClick(<SamjiWallet />)}
+            >
+              Wallet
+            </Btn>
+            <Btn
+              active={currentPage.type.name === "Nofication"}
+              onClick={() => handleButtonClick(<Nofication />)}
+            >
               Push Notification
             </Btn>
-            <Btn onClick={() => handleButtonClick(<Information />)}>
+            <Btn
+              active={currentPage.type.name === "Information"}
+              onClick={() => handleButtonClick(<Information />)}
+            >
               Information
             </Btn>
           </List>

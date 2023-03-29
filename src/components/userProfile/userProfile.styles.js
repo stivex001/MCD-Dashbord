@@ -66,19 +66,18 @@ export const List = styled.div`
   flex-wrap: wrap;
   gap: 20px;
 `;
-export const Btn = styled.div`
+export const Btn = styled.button`
   font-size: 14px;
   padding: 8px 16px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   text-decoration: none;
-  // background-color: ${({ active }) => active ? '#605daf' : 'white'};
-  // color: ${({ active }) => active ? 'red' : 'black'};
-  color: black;
-  &.active {
-    background-color: #605daf;
-    color: white;
+  background-color: ${({ active }) => active ? '#605daf' : '#fff'};
+  color: ${({ active }) => active ? '#fff' : '#292a2f'};
+  
+  &:focus {
+    outline: none;
   }
 
 
