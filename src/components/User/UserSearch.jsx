@@ -23,7 +23,7 @@ const UserSearch = ({ searchUsers }) => {
     <Container>
       <Title>Search Result(s)</Title>
       <P>
-        Total Result <Span>{searchUsers.length}</Span>
+        Total Result <Span>{searchUsers?.length}</Span>
       </P>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

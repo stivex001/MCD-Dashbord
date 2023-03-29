@@ -1,4 +1,4 @@
-import Info from "./Info";
+import GeneralNews from "./GeneralNews";
 import Performance from "./Performance";
 import {
   Container,
@@ -43,9 +43,11 @@ const UserGeneral = ({users}) => {
             </InfoDesc>
           </InfoContainer>
         </Wrapper>
+
         <Wrapper>
-          <Info />
+          <GeneralNews users={users} />
         </Wrapper>
+
       </Left>
       <Right>
         <Wrapperr width="70%">
