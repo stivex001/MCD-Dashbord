@@ -46,6 +46,7 @@ import ReverseConfirm from "./pages/transaction/ReverseConfirm";
 import GmBlock from "./pages/Users/GmBlock";
 import ModifyAirtime from "./pages/ResellerControl/ModifyAirtime";
 import Profiles from "./pages/Users/Profiles";
+import SearchUserProfile from "./pages/Users/SearchUserProfile";
 
 
 const App = () => {
@@ -132,6 +133,10 @@ const App = () => {
         <Route
           path="/profile/:id"
           element={user ? <Profiles /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/searchprofile/:id"
+          element={user ? <SearchUserProfile /> : <Navigate to="/login" />}
         />
         <Route
           path="/agents"

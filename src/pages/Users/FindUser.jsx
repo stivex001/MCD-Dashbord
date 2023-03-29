@@ -9,7 +9,6 @@ import {
 } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import UserSearch from "../../components/User/UserSearch";
@@ -65,18 +64,9 @@ const FindUser = () => {
   } = useInput();
 
   const dispatch = useDispatch();
-  const {  fecthedUsers, isFetching } = useSelector(
+  const { searchUsers, fecthedUsers, isFetching } = useSelector(
     (state) => state.profile
   );
-  const location = useLocation();
-  const userId = location.pathname.split("/")[2];
-  const decodedId = decodeURIComponent(userId);
-  const searchUsers = useSelector((state) =>
-  state.profile.searchUsers.find((user) => user.user_name === decodedId)
-);
-
-console.log(searchUsers);
-
 
   const allInputValues =
     enteredUsername ||
