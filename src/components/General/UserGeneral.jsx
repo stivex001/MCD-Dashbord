@@ -1,4 +1,3 @@
-import GeneralNews from "./GeneralNews";
 import Info from "./Info";
 import Performance from "./Performance";
 import {
@@ -23,14 +22,12 @@ const UserGeneral = ({ users }) => {
             mega={users.points}
           />
         </Wrapper>
-        <Wrapper>
-          <Info />
-        </Wrapper>
 
         <Wrapper>
-          <GeneralNews users={users} />
+          <Info target={users.target} gnews={users.gnews} />
         </Wrapper>
       </Left>
+
       <Right>
         <Wrapperr width="70%">
           <Performance />
