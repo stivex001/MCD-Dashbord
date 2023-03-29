@@ -44,7 +44,7 @@ const General = () => {
     <Container>
       <Left>
         <Wrapper>
-          <Widget />
+          <Widget walletB="140" />
         </Wrapper>
         <Wrapper>
           <Info />

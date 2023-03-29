@@ -1,53 +1,35 @@
+import { Info } from "@mui/icons-material";
 import GeneralNews from "./GeneralNews";
 import Performance from "./Performance";
 import {
   Container,
-  InfoContainer,
-  InfoDesc,
-  InfoLeft,
-  InfoRight,
   Left,
-  P,
   Ref,
   Right,
-  Span,
   Wrapper,
   Wrapperr,
 } from "./userGeneral.styles";
+import Widget from "./WIdget";
 
-const SearchGeneral = ({searchUsers}) => {
+const SearchGeneral = ({ searchUsers }) => {
   return (
     <Container>
       <Left>
         <Wrapper>
-          <InfoContainer>
-            <InfoDesc>
-              <InfoLeft>
-                <P>&#8358;{searchUsers?.wallet}</P>
-                <Span>Wallet Balance</Span>
-              </InfoLeft>
-              <InfoRight>
-                <P>&#8358;{searchUsers?.bonus}</P>
-                <Span>Bonus Balance</Span>
-              </InfoRight>
-            </InfoDesc>
-            <InfoDesc>
-              <InfoLeft>
-                <P>&#8358;{searchUsers?.agent_commision}</P>
-                <Span>Agent Comm</Span>
-              </InfoLeft>
-              <InfoRight>
-                <P>{searchUsers?.points}</P>
-                <Span>Mega Points</Span>
-              </InfoRight>
-            </InfoDesc>
-          </InfoContainer>
+          <Widget
+            walletB={searchUsers.wallet}
+            bonusB={searchUsers.bonus}
+            agentC={searchUsers.agent_commision}
+            mega={searchUsers.points}
+          />
+        </Wrapper>
+        <Wrapper>
+          <Info />
         </Wrapper>
 
-        {/* <Wrapper>
+        <Wrapper>
           <GeneralNews searchUsers={searchUsers} />
-        </Wrapper> */}
-
+        </Wrapper>
       </Left>
       <Right>
         <Wrapperr width="70%">

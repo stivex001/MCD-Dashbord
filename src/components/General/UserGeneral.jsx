@@ -1,53 +1,35 @@
 import GeneralNews from "./GeneralNews";
+import Info from "./Info";
 import Performance from "./Performance";
 import {
   Container,
-  InfoContainer,
-  InfoDesc,
-  InfoLeft,
-  InfoRight,
   Left,
-  P,
   Ref,
   Right,
-  Span,
   Wrapper,
   Wrapperr,
 } from "./userGeneral.styles";
+import Widget from "./WIdget";
 
-const UserGeneral = ({users}) => {
+const UserGeneral = ({ users }) => {
   return (
     <Container>
       <Left>
         <Wrapper>
-          <InfoContainer>
-            <InfoDesc>
-              <InfoLeft>
-                <P>&#8358;{users.wallet}</P>
-                <Span>Wallet Balance</Span>
-              </InfoLeft>
-              <InfoRight>
-                <P>&#8358;{users.bonus}</P>
-                <Span>Bonus Balance</Span>
-              </InfoRight>
-            </InfoDesc>
-            <InfoDesc>
-              <InfoLeft>
-                <P>&#8358;{users.agent_commision}</P>
-                <Span>Agent Comm</Span>
-              </InfoLeft>
-              <InfoRight>
-                <P>{users.points}</P>
-                <Span>Mega Points</Span>
-              </InfoRight>
-            </InfoDesc>
-          </InfoContainer>
+          <Widget
+            walletB={users.wallet}
+            bonusB={users.bonus}
+            agentC={users.agent_commision}
+            mega={users.points}
+          />
+        </Wrapper>
+        <Wrapper>
+          <Info />
         </Wrapper>
 
         <Wrapper>
           <GeneralNews users={users} />
         </Wrapper>
-
       </Left>
       <Right>
         <Wrapperr width="70%">

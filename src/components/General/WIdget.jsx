@@ -24,26 +24,26 @@ const Span = styled.span`
    color: #fff;
 `;
 
-const Widget = () => {
+const Widget = ({walletB, bonusB, agentC, mega}) => {
   return (
     <Container>
       <Wrapper>
         <Left>
-          <P>#455</P>
+          <P>&#8358;{walletB}</P>
           <Span>Wallet Balance</Span>
         </Left>
         <Right>
-          <P>#368</P>
+          <P>&#8358;{bonusB}</P>
           <Span>Bonus Balance</Span>
         </Right>
       </Wrapper>
       <Wrapper>
         <Left>
-          <P>#455</P>
+          <P>&#8358;{agentC}</P>
           <Span>Agent Comm</Span>
         </Left>
         <Right>
-          <P>#368</P>
+          <P>{mega}</P>
           <Span>Mega Points</Span>
         </Right>
       </Wrapper>
