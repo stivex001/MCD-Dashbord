@@ -24,13 +24,25 @@ const UserGeneral = ({ users }) => {
         </Wrapper>
 
         <Wrapper>
-          <Info target={users.target} gnews={users.gnews} />
+          <Info
+            target={
+              "Make up to 10 transactions to be eligible for an Agent and send a request mail to info@5starcompany.com.ng where you earn incentives on transactions done at the end of the month"
+            }
+            gnews={users.gnews}
+          />
         </Wrapper>
       </Left>
 
       <Right>
         <Wrapperr width="70%">
-          <Performance />
+          <Performance
+            title={users.perf || '0'}
+            data={users.data || '0'}
+            airtime={users.airtime || '0'}
+            tv={users.tv || '0'}
+            card={users.card || '0'}
+            checker={users.checker || '0'}
+          />
         </Wrapperr>
         <Ref>Referrals:</Ref>
       </Right>
