@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components";
+
+import styled from "styled-components";
 
 // const slide = keyframes`
 //   0% { transform: translateX(0); }
