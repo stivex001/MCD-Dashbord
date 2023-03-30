@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Navbar from "../../components/Bar/Navbar";
 import {
   Container,
   Details,
@@ -27,6 +26,7 @@ const Title = styled.h3`
   color: #4a4b4c;
   margin-bottom: 15px;
 `;
+
 
 const ProfileTransaction = ({ userTrans, setCurrentTransPage }) => {
   const [itemOffset, setItemOffset] = useState(0);
@@ -51,7 +51,6 @@ const ProfileTransaction = ({ userTrans, setCurrentTransPage }) => {
 
   return (
     <Container>
-      <Navbar />
       <Wrapper>
         <TableWrapper>
           <Title>Transactions</Title>

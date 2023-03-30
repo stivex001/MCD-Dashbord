@@ -6,6 +6,7 @@ import walletReducer from "./walletSlice";
 import profileReducer from "./profileSlice";
 import serverReducer from "./serverSlice";
 import airtimeReducer from "./airtimeConverterSlice";
+import authReducer from "./authSlice";
 import {
   persistStore,
   persistReducer,
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   server: serverReducer,
   airtimeConverter: airtimeReducer,
+  auth: authReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

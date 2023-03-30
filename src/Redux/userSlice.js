@@ -11,7 +11,7 @@ const userSlice = createSlice({
     userOverview: "",
     agents: [],
     resellers: [],
-    userPerformance: {},
+    userPerformance: [],
     userTrans: []
   },
   reducers: {

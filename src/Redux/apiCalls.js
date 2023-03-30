@@ -91,6 +91,7 @@ import {
   modifyAirtimeSucess,
 } from "./airtimeConverterSlice";
 
+
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
@@ -108,6 +109,23 @@ export const login = async (dispatch, user) => {
 export const logout = async (dispatch) => {
   dispatch(logoutSuccess());
 };
+// export const login = async (dispatch, user) => {
+//   dispatch(loginStart());
+//   try {
+//     const res = await publicRequest.post("/login", user);
+//     if (res.data.success === 1) {
+//       dispatch(loginSuccess(res.data));
+//     } else {
+//       dispatch(loginfailure());
+//     }
+//   } catch (error) {
+//     dispatch(loginfailure());
+//   }
+// };
+
+// export const logout = async (dispatch) => {
+//   dispatch(logoutSuccess());
+// };
 
 export const reProcess = async (dispatch, ids) => {
   dispatch(reProcessAllStart());
@@ -162,13 +180,14 @@ export const getUserPerformance = async (dispatch, username) => {
 export const getUserTrans = async (dispatch, username, page) => {
   dispatch(getUserTransStart());
   try {
-    const res = await userRequest.get(`/profile/${username}/transactions?page=${page}`);
+    const res = await userRequest.get(
+      `/profile/${username}/transactions?page=${page}`
+    );
     dispatch(getUserTransSuccess(res.data.data));
   } catch (error) {
     dispatch(getUserTransFailure());
   }
 };
-
 
 export const getSearchedUsers = async (dispatch, username, phoneno) => {
   dispatch(getSearchedUserStart());

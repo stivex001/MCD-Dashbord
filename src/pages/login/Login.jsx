@@ -27,7 +27,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { currentUser, isFetching, error, message } = useSelector(
-    (state) => state.user
+    (state) => state.auth
   );
   const navigate = useNavigate();
 
