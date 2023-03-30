@@ -27,7 +27,7 @@ import {
       <Container>
         <Wrapper>
           <Left>
-            <UserImg src="" alt="" />
+            <UserImg src={searchUsers?.photo} alt="" />
             <CameraAlt style={{ fontSize: "20px" }} />
             <Username>{searchUsers?.user_name}</Username>
             <Fullname>{searchUsers?.full_name}</Fullname>

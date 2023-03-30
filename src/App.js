@@ -134,10 +134,10 @@ const App = () => {
           path="/profile/:id"
           element={user ? <Profiles /> : <Navigate to="/login" />}
         />
-        {/* <Route
-          path="/searchprofile/:id"
+        <Route
+          path="/profiles/:id"
           element={user ? <SearchUserProfile /> : <Navigate to="/login" />}
-        /> */}
+        />
         <Route
           path="/agents"
           element={user ? <Agent /> : <Navigate to="/login" />}

@@ -8,12 +8,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import {
-  Details,
-  Span,
-  TableWrapper,
-  Wrapper,
-} from "../transaction/general.styles";
+import { Span, TableWrapper } from "../transaction/general.styles";
 import {
   PageNotification,
   PaginateContainer,
@@ -34,7 +29,7 @@ const Container = styled.div`
   margin: 50px 0;
 `;
 
-const ProfileTransaction = ({ userTrans, setCurrentTransPage }) => {
+const SearchTransaction = ({ userTrans, setCurrentTransPage }) => {
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(userTrans.last_page);
   const [currentItems, setCurrentItems] = useState(userTrans.data);
@@ -197,4 +192,4 @@ const ProfileTransaction = ({ userTrans, setCurrentTransPage }) => {
   );
 };
 
-export default ProfileTransaction;
+export default SearchTransaction;

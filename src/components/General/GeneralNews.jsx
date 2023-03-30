@@ -26,11 +26,11 @@ const GeneralNews = ({ users }) => {
     <Container>
       <MessageWrapper>
         <News>
-          <Message>{users.gnews}</Message>
+          <Message>{users?.gnews}</Message>
           <Span>General News</Span>
         </News>
         <News>
-          <Message>{users.target}</Message>
+          <Message>{users?.target}</Message>
           <Span>Target</Span>
         </News>
       </MessageWrapper>

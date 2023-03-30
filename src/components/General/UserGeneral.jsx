@@ -11,7 +11,7 @@ import {
 import Widget from "./WIdget";
 
 const UserGeneral = ({ users, userPerformance }) => {
-  console.log(userPerformance)
+
   return (
     <Container>
       <Left>

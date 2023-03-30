@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 
@@ -10,6 +10,8 @@ import Nofication from "../../components/Notification/Notification";
 import SamjiTrans from "../../components/samjiTrans/SamjiTrans";
 import SamjiWallet from "../../components/samjiWallet/SamjiWallet";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
+import { getUserTrans } from "../../Redux/apiCalls";
+import SearchTransaction from "../Profile/SearchTransaction";
 
 import {
   Container,
@@ -32,6 +34,15 @@ const SearchUserProfile = () => {
   const [currentPage, setCurrentPage] = useState(
     <SearchGeneral searchUsers={searchUsers} />
   );
+  const { userTrans, userPerformance, userWallet, isFetching, message } =
+    useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [currentTransPage, setCurrentTransPage] = useState(1);
+  const [currentWalletPage, setCurrentWalletPage] = useState(1);
+
+  useEffect(() => {
+    getUserTrans(dispatch, searchUsers.user_name, currentTransPage);
+  }, [dispatch, searchUsers, currentTransPage]);
 
   const handleButtonClick = (page) => {
     setCurrentPage(page);
@@ -52,13 +63,26 @@ const SearchUserProfile = () => {
         <div>
           <List>
             <Btn
+              active={currentPage.type.name === "SearchGeneral"}
               onClick={() =>
                 handleButtonClick(<SearchGeneral searchUsers={searchUsers} />)
               }
             >
               General
             </Btn>
-            <Btn onClick={() => handleButtonClick(<SamjiTrans />)}>
+            <Btn
+            active={currentPage.type.name === "SearchTransaction"}
+              onClick={() =>
+                handleButtonClick(
+                  <SearchTransaction
+                    userTrans={userTrans}
+                    isFetching={isFetching}
+                    currentTransPage={currentTransPage}
+                    setCurrentTransPage={setCurrentTransPage}
+                  />
+                )
+              }
+            >
               Transactions
             </Btn>
             <Btn onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>

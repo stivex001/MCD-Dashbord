@@ -10,11 +10,11 @@ export const Wrapper = styled.div`
   margin-bottom: 50px;
 `;
 export const TableWrapper = styled.div`
-  background-color: #fff;
+  /* background-color: #fff;
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
-  padding: 10px 20px;
+  padding: 10px 20px; */
 `;
 export const Details = styled.div`
   margin: 30px 0;

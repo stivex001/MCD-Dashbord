@@ -27,7 +27,7 @@ const UserProfiles = ({ users }) => {
     <Container>
       <Wrapper>
         <Left>
-          <UserImg src="" alt="" />
+          <UserImg src={users?.photo} alt='' />
           <CameraAlt style={{ fontSize: "20px" }} />
           <Username>{users?.user_name}</Username>
           <Fullname>{users?.full_name}</Fullname>
