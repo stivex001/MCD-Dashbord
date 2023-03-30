@@ -33,7 +33,7 @@ const Users = () => {
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(allUsers.data.slice(itemOffset, endOffset));
+    setCurrentItems(allUsers.data && allUsers.data.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(allUsers.total / itemsPerPage));
   }, [itemOffset, allUsers, itemsPerPage]);
 

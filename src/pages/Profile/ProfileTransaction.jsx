@@ -16,7 +16,11 @@ import {
   TableWrapper,
   Wrapper,
 } from "../transaction/general.styles";
-import { PageNotification, PaginateContainer, PagWrapper } from "../Users/agent.styles";
+import {
+  PageNotification,
+  PaginateContainer,
+  PagWrapper,
+} from "../Users/agent.styles";
 
 const Title = styled.h3`
   font-size: 16px;
@@ -25,18 +29,17 @@ const Title = styled.h3`
 `;
 
 const ProfileTransaction = ({ userTrans, setCurrentTransPage }) => {
- 
-
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(userTrans.last_page);
   const [currentItems, setCurrentItems] = useState(userTrans.data);
-  
 
   const itemsPerPage = userTrans.per_page;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(userTrans.data.slice(itemOffset, endOffset));
+    setCurrentItems(
+      userTrans.data && userTrans.data.slice(itemOffset, endOffset)
+    );
     setPageCount(Math.ceil(userTrans.total / itemsPerPage));
   }, [itemOffset, userTrans, itemsPerPage]);
 
@@ -95,7 +98,17 @@ const ProfileTransaction = ({ userTrans, setCurrentTransPage }) => {
                     </TableCell>
                   </TableRow>
                 </TableBody>
-                {currentItems &&
+                {currentItems && currentItems.length === 0 ? (
+                  <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                    <TableCell
+                      colSpan={12}
+                      style={{ textAlign: "center", color: "#8887a9" }}
+                    >
+                      No data in the table
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  currentItems &&
                   currentItems.map((row) => (
                     <TableBody key={row.id}>
                       <TableRow
@@ -109,7 +122,7 @@ const ProfileTransaction = ({ userTrans, setCurrentTransPage }) => {
                           {row.user_name}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
-                        &#8358;{row.amount}
+                          &#8358;{row.amount}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
                           {row.description}
@@ -152,11 +165,13 @@ const ProfileTransaction = ({ userTrans, setCurrentTransPage }) => {
                         </TableCell>
                       </TableRow>
                     </TableBody>
-                  ))}
+                  ))
+                )}
               </Table>
               <PagWrapper>
                 <PageNotification>
-                  Showing {userTrans.from} to {userTrans.to} of {userTrans.total} entries
+                  Showing {userTrans.from || '0'} to {userTrans.to || '0'} of{" "}
+                  {userTrans.total} entries
                 </PageNotification>
                 <PaginateContainer
                   breakLabel="..."
