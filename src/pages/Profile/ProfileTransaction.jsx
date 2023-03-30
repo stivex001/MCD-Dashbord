@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
-import Footer from "../../components/footer/Footer";
 import {
   Container,
   Details,
@@ -138,7 +137,6 @@ const ProfileTransaction = ({ userPerformance }) => {
           </Details>
         </TableWrapper>
       </Wrapper>
-      <Footer />
     </Container>
   );
 };
