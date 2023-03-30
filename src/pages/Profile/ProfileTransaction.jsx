@@ -6,6 +6,7 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
 import {
@@ -15,6 +16,7 @@ import {
   TableWrapper,
   Wrapper,
 } from "../transaction/general.styles";
+import { PageNotification, PaginateContainer, PagWrapper } from "../Users/agent.styles";
 
 const Title = styled.h3`
   font-size: 16px;
@@ -22,8 +24,27 @@ const Title = styled.h3`
   margin-bottom: 15px;
 `;
 
-const ProfileTransaction = ({ userTrans }) => {
-  const userTransaction = userTrans.data;
+const ProfileTransaction = ({ userTrans, setCurrentTransPage }) => {
+ 
+
+  const [itemOffset, setItemOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(userTrans.last_page);
+  const [currentItems, setCurrentItems] = useState(userTrans.data);
+  
+
+  const itemsPerPage = userTrans.per_page;
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(userTrans.data.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(userTrans.total / itemsPerPage));
+  }, [itemOffset, userTrans, itemsPerPage]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % userTrans.data.length;
+    setItemOffset(newOffset);
+    setCurrentTransPage(event.selected + 1);
+  };
 
   return (
     <Container>
@@ -74,8 +95,8 @@ const ProfileTransaction = ({ userTrans }) => {
                     </TableCell>
                   </TableRow>
                 </TableBody>
-                {userTransaction &&
-                  userTransaction.map((row) => (
+                {currentItems &&
+                  currentItems.map((row) => (
                     <TableBody key={row.id}>
                       <TableRow
                         key={row.id}
@@ -133,6 +154,25 @@ const ProfileTransaction = ({ userTrans }) => {
                     </TableBody>
                   ))}
               </Table>
+              <PagWrapper>
+                <PageNotification>
+                  Showing {userTrans.from} to {userTrans.to} of {userTrans.total} entries
+                </PageNotification>
+                <PaginateContainer
+                  breakLabel="..."
+                  nextLabel="next >"
+                  onPageChange={handlePageClick}
+                  pageRangeDisplayed={5}
+                  pageCount={pageCount}
+                  previousLabel="< previous"
+                  renderOnZeroPageCount={null}
+                  containerClassName={"pagination"}
+                  activeClassName={"active"}
+                  pageLinkClassName="pageNum"
+                  previousLinkClassName="pageNum"
+                  nextLinkClassName="pageNum"
+                />
+              </PagWrapper>
             </TableContainer>
           </Details>
         </TableWrapper>

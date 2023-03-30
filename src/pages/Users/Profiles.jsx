@@ -33,10 +33,11 @@ const Profiles = () => {
   const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
   const { userTrans, isFetching } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [currentTransPage, setCurrentTransPage] = useState(1);
 
   useEffect(() => {
-    getUserTrans(dispatch, users.user_name);
-  }, [dispatch, users]);
+    getUserTrans(dispatch, users.user_name, currentTransPage);
+  }, [dispatch, users, currentTransPage]);
 
   const handleButtonClick = (page) => {
     setCurrentPage(page);
@@ -66,7 +67,12 @@ const Profiles = () => {
               active={currentPage.type.name === "ProfileTransaction"}
               onClick={() =>
                 handleButtonClick(
-                  <ProfileTransaction userTrans={userTrans} isFetching={isFetching} />
+                  <ProfileTransaction
+                    userTrans={userTrans}
+                    isFetching={isFetching}
+                    currentTransPage={currentTransPage}
+                    setCurrentTransPage={setCurrentTransPage}
+                  />
                 )
               }
             >

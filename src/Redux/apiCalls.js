@@ -158,10 +158,10 @@ export const getUserPerformance = async (dispatch, username) => {
   }
 };
 
-export const getUserTrans = async (dispatch, username) => {
+export const getUserTrans = async (dispatch, username, page) => {
   dispatch(getUserTransStart());
   try {
-    const res = await userRequest.get(`/profile/${username}/transactions`);
+    const res = await userRequest.get(`/profile/${username}/transactions?page=${page}`);
     dispatch(getUserTransSuccess(res.data.data));
   } catch (error) {
     dispatch(getUserTransFailure());
