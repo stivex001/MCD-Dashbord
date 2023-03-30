@@ -10,7 +10,7 @@ import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
 import SamjiWallet from "../../components/samjiWallet/SamjiWallet";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
-import { getUserPerformance } from "../../Redux/apiCalls";
+import { getUserPerformance, getUserTrans } from "../../Redux/apiCalls";
 import ProfileTransaction from "../Profile/ProfileTransaction";
 
 import {
@@ -31,11 +31,11 @@ const Profiles = () => {
     state.user.allUsers.data.find((user) => user.user_name === decodedId)
   );
   const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
-  const { userPerformance, isFetching } = useSelector((state) => state.user);
+  const { userTrans, isFetching } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getUserPerformance(dispatch, users.user_name);
+    getUserTrans(dispatch, users.user_name);
   }, [dispatch, users]);
 
   const handleButtonClick = (page) => {
@@ -66,7 +66,7 @@ const Profiles = () => {
               active={currentPage.type.name === "ProfileTransaction"}
               onClick={() =>
                 handleButtonClick(
-                  <ProfileTransaction userPerformance={userPerformance} isFetching={isFetching} />
+                  <ProfileTransaction userTrans={userTrans} isFetching={isFetching} />
                 )
               }
             >

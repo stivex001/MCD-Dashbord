@@ -11,7 +11,8 @@ const userSlice = createSlice({
     userOverview: "",
     agents: [],
     resellers: [],
-    userPerformance: {}
+    userPerformance: {},
+    userTrans: []
   },
   reducers: {
     loginStart: (state) => {
@@ -52,6 +53,18 @@ const userSlice = createSlice({
       state.userPerformance = action.payload
     },
     getUserPerfFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    getUserTransStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getUserTransSuccess: (state, action) => {
+      state.isFetching = false;
+      state.userTrans = action.payload
+    },
+    getUserTransFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
@@ -103,6 +116,9 @@ export const {
   getUserPerfStart,
   getUserPerfSuccess,
   getUserPerfFailure,
+  getUserTransStart,
+  getUserTransSuccess,
+  getUserTransFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
   getUserOverviewFailure,

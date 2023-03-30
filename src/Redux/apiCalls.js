@@ -14,6 +14,9 @@ import {
   getUserPerfFailure,
   getUserPerfStart,
   getUserPerfSuccess,
+  getUserTransFailure,
+  getUserTransStart,
+  getUserTransSuccess,
   loginfailure,
   loginStart,
   loginSuccess,
@@ -154,6 +157,17 @@ export const getUserPerformance = async (dispatch, username) => {
     dispatch(getUserPerfFailure());
   }
 };
+
+export const getUserTrans = async (dispatch, username) => {
+  dispatch(getUserTransStart());
+  try {
+    const res = await userRequest.get(`/profile/${username}/transactions`);
+    dispatch(getUserTransSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getUserTransFailure());
+  }
+};
+
 
 export const getSearchedUsers = async (dispatch, username, phoneno) => {
   dispatch(getSearchedUserStart());

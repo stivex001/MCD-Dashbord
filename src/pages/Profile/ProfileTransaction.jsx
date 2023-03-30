@@ -22,8 +22,8 @@ const Title = styled.h3`
   margin-bottom: 15px;
 `;
 
-const ProfileTransaction = ({ userPerformance }) => {
-  const userTransaction = userPerformance.data;
+const ProfileTransaction = ({ userTrans }) => {
+  const userTransaction = userTrans.data;
 
   return (
     <Container>
