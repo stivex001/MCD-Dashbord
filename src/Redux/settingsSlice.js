@@ -22,7 +22,7 @@ const settingsSlice = createSlice({
       state.error = true;
     },
     updateSettingsStart: (state) => {
-      state.isProcessing = true;
+      state.isFetching = true;
       state.error = false;
     },
     updateSettingsSucess: (state, action) => {

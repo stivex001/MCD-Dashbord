@@ -22,11 +22,14 @@ export const Span = styled.span`
   font-size: 11.375px;
   color: #33cdff;
 `;
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 50px;
+`;
+export const FormWrapper = styled.form`
+ 
 `;
 export const InputContainer = styled.div`
   display: flex;
@@ -53,7 +56,7 @@ export const Btn = styled.button`
   padding: 12px;
   color: #fff;
   background-color: ${(prop) =>
-    prop.type === "update" ? " #5b63ae" : "#f64269"};
+    prop.type === "submit" ? " #5b63ae" : "#f64269"};
   cursor: pointer;
   border: none;
   border-radius: 2px;

@@ -35,9 +35,8 @@ const Profiles = () => {
     state.user.allUsers.data.find((user) => user.user_name === decodedId)
   );
   const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
-  const { userTrans, userPerformance, userWallet, isFetching } = useSelector(
-    (state) => state.user
-  );
+  const { userTrans, userPerformance, userWallet, isFetching, message } =
+    useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [currentTransPage, setCurrentTransPage] = useState(1);
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
@@ -121,7 +120,15 @@ const Profiles = () => {
             </Btn>
             <Btn
               active={currentPage.type.name === "Information"}
-              onClick={() => handleButtonClick(<Information users={users} />)}
+              onClick={() =>
+                handleButtonClick(
+                  <Information
+                    users={users}
+                    isFetching={isFetching}
+                    message={message}
+                  />
+                )
+              }
             >
               Information
             </Btn>

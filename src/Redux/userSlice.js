@@ -115,6 +115,24 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    updateUserStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updateUserSucess: (state, action) => {
+      state.isFetching = false;
+      const { id, user } = action.payload;
+      const index = state.allUsers.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        state.allUsers[index] = user;
+      }
+      state.message = true;
+    },
+    
+    updateUserFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -144,5 +162,8 @@ export const {
   getResellersStart,
   getResellersSuccess,
   getResellersFailure,
+  updateUserStart,
+  updateUserSucess,
+  updateUserFailure,
 } = userSlice.actions;
 export default userSlice.reducer;

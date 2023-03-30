@@ -24,6 +24,9 @@ import {
   loginStart,
   loginSuccess,
   logoutSuccess,
+  updateUserFailure,
+  updateUserStart,
+  updateUserSucess,
 } from "./userSlice";
 import { publicRequest, userRequest } from "../requestMethods";
 import {
@@ -93,7 +96,6 @@ import {
   modifyAirtimeStart,
   modifyAirtimeSucess,
 } from "./airtimeConverterSlice";
-
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -216,7 +218,6 @@ export const getSearchedUsers = async (dispatch, username, phoneno) => {
   }
 };
 
-
 export const getAgents = async (dispatch, page) => {
   dispatch(getAgentsStart());
   try {
@@ -244,6 +245,38 @@ export const getGmBlockData = async (dispatch, page) => {
     dispatch(getGmBlockSucess(res.data.data));
   } catch (error) {
     dispatch(getGmBlockFailure());
+  }
+};
+
+export const updateUser = async (
+  dispatch,
+  id,
+  full_name,
+  company_name,
+  bvn,
+  email,
+  phoneno,
+  address,
+  target
+) => {
+  dispatch(updateUserStart());
+  try {
+    const res = await userRequest.post(
+      `/update-user`,
+      id,
+      full_name,
+      company_name,
+      bvn,
+      email,
+      phoneno,
+      address,
+      target
+    );
+    
+    dispatch(updateUserSucess(res.data)); 
+    
+  } catch (error) {
+    dispatch(updateUserFailure()); // set error flag to true
   }
 };
 
