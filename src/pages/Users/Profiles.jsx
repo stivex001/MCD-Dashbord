@@ -31,13 +31,17 @@ const Profiles = () => {
     state.user.allUsers.data.find((user) => user.user_name === decodedId)
   );
   const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
-  const { userTrans, isFetching } = useSelector((state) => state.user);
+  const { userTrans, userPerformance, isFetching } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [currentTransPage, setCurrentTransPage] = useState(1);
 
   useEffect(() => {
     getUserTrans(dispatch, users.user_name, currentTransPage);
   }, [dispatch, users, currentTransPage]);
+
+  useEffect(() => {
+    getUserPerformance(dispatch, users.user_name);
+  }, [dispatch, users]);
 
   const handleButtonClick = (page) => {
     setCurrentPage(page);
@@ -59,7 +63,7 @@ const Profiles = () => {
           <List>
             <Btn
               active={currentPage.type.name === "UserGeneral"}
-              onClick={() => handleButtonClick(<UserGeneral users={users} />)}
+              onClick={() => handleButtonClick(<UserGeneral users={users} userPerformance={userPerformance} />)}
             >
               General
             </Btn>
