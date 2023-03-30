@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 
@@ -7,9 +8,10 @@ import Footer from "../../components/footer/Footer";
 import UserGeneral from "../../components/General/UserGeneral";
 import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
-import SamjiTrans from "../../components/samjiTrans/SamjiTrans";
 import SamjiWallet from "../../components/samjiWallet/SamjiWallet";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
+import { getUserPerformance } from "../../Redux/apiCalls";
+import ProfileTransaction from "../Profile/ProfileTransaction";
 
 import {
   Container,
@@ -29,6 +31,12 @@ const Profiles = () => {
     state.user.allUsers.data.find((user) => user.user_name === decodedId)
   );
   const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
+  const { userPerformance, isFetching } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getUserPerformance(dispatch, users.user_name);
+  }, [dispatch, users]);
 
   const handleButtonClick = (page) => {
     setCurrentPage(page);
@@ -55,8 +63,12 @@ const Profiles = () => {
               General
             </Btn>
             <Btn
-              active={currentPage.type.name === "SamjiTrans"}
-              onClick={() => handleButtonClick(<SamjiTrans />)}
+              active={currentPage.type.name === "ProfileTransaction"}
+              onClick={() =>
+                handleButtonClick(
+                  <ProfileTransaction userPerformance={userPerformance} isFetching={isFetching} />
+                )
+              }
             >
               Transactions
             </Btn>

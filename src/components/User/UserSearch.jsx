@@ -78,7 +78,7 @@ const UserSearch = ({ searchUsers }) => {
                     {row.req_date}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    <Link to={"/searchprofile/" + row.user_name}>
+                    <Link to={"/profile/" + row.user_name}>
                       <NoteAlt
                         style={{
                           backgroundColor: "5dd099",

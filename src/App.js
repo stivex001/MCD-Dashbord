@@ -126,18 +126,18 @@ const App = () => {
           path="/agent-payment"
           element={user ? <AgentPayment /> : <Navigate to="/login" />}
         />
-        <Route
+        {/* <Route
           path="/profile/samji"
           element={user ? <Profile /> : <Navigate to="/login" />}
-        />
+        /> */}
         <Route
           path="/profile/:id"
           element={user ? <Profiles /> : <Navigate to="/login" />}
         />
-        <Route
+        {/* <Route
           path="/searchprofile/:id"
           element={user ? <SearchUserProfile /> : <Navigate to="/login" />}
-        />
+        /> */}
         <Route
           path="/agents"
           element={user ? <Agent /> : <Navigate to="/login" />}

@@ -8,12 +8,12 @@ import {
   getResellersFailure,
   getResellersStart,
   getResellersSuccess,
-  getUserFailure,
   getUserOverviewFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
-  getUserStart,
-  getUserSuccess,
+  getUserPerfFailure,
+  getUserPerfStart,
+  getUserPerfSuccess,
   loginfailure,
   loginStart,
   loginSuccess,
@@ -73,7 +73,20 @@ import {
   getWalletSucess,
 } from "./profileSlice";
 import { serverStart, serverFailure, serverSuccess } from "./serverSlice";
-import { creditFailure, creditStart, creditSuccess, getAirtimeConFailure, getAirtimeConStart, getAirtimeConSucess, getAirtimeCovFailure, getAirtimeCovStart, getAirtimeCovSucess, modifyAirtimeFailure, modifyAirtimeStart, modifyAirtimeSucess } from "./airtimeConverterSlice";
+import {
+  creditFailure,
+  creditStart,
+  creditSuccess,
+  getAirtimeConFailure,
+  getAirtimeConStart,
+  getAirtimeConSucess,
+  getAirtimeCovFailure,
+  getAirtimeCovStart,
+  getAirtimeCovSucess,
+  modifyAirtimeFailure,
+  modifyAirtimeStart,
+  modifyAirtimeSucess,
+} from "./airtimeConverterSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -132,13 +145,13 @@ export const getAllUsers = async (dispatch, page) => {
   }
 };
 
-export const getUser = async (dispatch) => {
-  dispatch(getUserStart());
+export const getUserPerformance = async (dispatch, username) => {
+  dispatch(getUserPerfStart());
   try {
-    const res = await userRequest.get(`/allUsers`);
-    dispatch(getUserSuccess(res.data.data));
+    const res = await userRequest.get(`/profile/${username}/transactions`);
+    dispatch(getUserPerfSuccess(res.data.data));
   } catch (error) {
-    dispatch(getUserFailure());
+    dispatch(getUserPerfFailure());
   }
 };
 
@@ -286,14 +299,10 @@ export const getRevesal = async (dispatch, id) => {
     const res = await userRequest.get(`/transactions/reverse-check/${id}`);
     if (res.data.success === 1) {
       dispatch(getSearchedReversalSuccess(res.data.data));
-    }
-    else {
+    } else {
       dispatch(getSearchedReversalFailure());
     }
-    
-  } catch (error) {
-    
-  }
+  } catch (error) {}
 };
 
 export const getRevesalTrans = async (dispatch, id) => {
@@ -387,17 +396,16 @@ export const getAirtimeList = async (dispatch, page) => {
 };
 
 export const creditAirtime = async (dispatch, ref) => {
-  dispatch(creditStart()); 
+  dispatch(creditStart());
   try {
     const res = await userRequest.post(`/airtime-converter/make-payment`, ref);
     if (res.data.success === 1) {
       dispatch(creditSuccess(res.data));
-    }
-    else {
-      dispatch(creditFailure()); 
+    } else {
+      dispatch(creditFailure());
     }
   } catch (error) {
-    dispatch(creditFailure()); 
+    dispatch(creditFailure());
   }
 };
 
@@ -415,8 +423,13 @@ export const getAirtimeConList = async (dispatch) => {
 export const modifyAirtimeCon = async (dispatch, id, discount, server) => {
   dispatch(modifyAirtimeStart()); // set isProcessing flag to true
   try {
-    const res = await userRequest.post(`/appDataConfigUpdate`, id, discount, server);
-    dispatch(modifyAirtimeSucess(res.data)); 
+    const res = await userRequest.post(
+      `/appDataConfigUpdate`,
+      id,
+      discount,
+      server
+    );
+    dispatch(modifyAirtimeSucess(res.data));
   } catch (error) {
     dispatch(modifyAirtimeFailure()); // set error flag to true
   }
