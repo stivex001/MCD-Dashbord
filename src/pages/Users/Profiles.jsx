@@ -8,10 +8,10 @@ import Footer from "../../components/footer/Footer";
 import UserGeneral from "../../components/General/UserGeneral";
 import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
-import SamjiWallet from "../../components/samjiWallet/SamjiWallet";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
 import { getUserPerformance, getUserTrans } from "../../Redux/apiCalls";
 import ProfileTransaction from "../Profile/ProfileTransaction";
+import ProfileWallet from "../Profile/ProfileWallet";
 
 import {
   Container,
@@ -83,8 +83,8 @@ const Profiles = () => {
               Transactions
             </Btn>
             <Btn
-              active={currentPage.type.name === "SamjiWallet"}
-              onClick={() => handleButtonClick(<SamjiWallet />)}
+              active={currentPage.type.name === "ProfileWallet"}
+              onClick={() => handleButtonClick(<ProfileWallet />)}
             >
               Wallet
             </Btn>
