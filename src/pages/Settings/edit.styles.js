@@ -45,7 +45,7 @@ export const Input = styled.input`
 `;
 export const InputTitle = styled.p`
   padding: 12px;
-  fontsize: 14px;
+  font-size: 14px;
   color: #495057;
   background: #e9ecef;
 `;

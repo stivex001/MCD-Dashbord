@@ -46,7 +46,7 @@ color: white;
 cursor: pointer;
 border-radius: 5px;
 border: none;
-font-weigth: 700;
+font-weight: 700;
 font-size: 14px;
 &:hover {
   color: #343a40;

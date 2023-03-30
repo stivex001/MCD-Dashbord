@@ -121,7 +121,7 @@ const Profiles = () => {
             </Btn>
             <Btn
               active={currentPage.type.name === "Information"}
-              onClick={() => handleButtonClick(<Information />)}
+              onClick={() => handleButtonClick(<Information users={users} />)}
             >
               Information
             </Btn>
