@@ -9,7 +9,11 @@ import UserGeneral from "../../components/General/UserGeneral";
 import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
-import { getUserPerformance, getUserTrans } from "../../Redux/apiCalls";
+import {
+  getUserPerformance,
+  getUserTrans,
+  getUserWallet,
+} from "../../Redux/apiCalls";
 import ProfileTransaction from "../Profile/ProfileTransaction";
 import ProfileWallet from "../Profile/ProfileWallet";
 
@@ -31,13 +35,20 @@ const Profiles = () => {
     state.user.allUsers.data.find((user) => user.user_name === decodedId)
   );
   const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
-  const { userTrans, userPerformance, isFetching } = useSelector((state) => state.user);
+  const { userTrans, userPerformance, userWallet, isFetching } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
   const [currentTransPage, setCurrentTransPage] = useState(1);
+  const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
   useEffect(() => {
     getUserTrans(dispatch, users.user_name, currentTransPage);
   }, [dispatch, users, currentTransPage]);
+
+  useEffect(() => {
+    getUserWallet(dispatch, users.user_name, currentWalletPage);
+  }, [dispatch, users, currentWalletPage]);
 
   useEffect(() => {
     getUserPerformance(dispatch, users.user_name);
@@ -63,7 +74,14 @@ const Profiles = () => {
           <List>
             <Btn
               active={currentPage.type.name === "UserGeneral"}
-              onClick={() => handleButtonClick(<UserGeneral users={users} userPerformance={userPerformance} />)}
+              onClick={() =>
+                handleButtonClick(
+                  <UserGeneral
+                    users={users}
+                    userPerformance={userPerformance}
+                  />
+                )
+              }
             >
               General
             </Btn>
@@ -84,7 +102,14 @@ const Profiles = () => {
             </Btn>
             <Btn
               active={currentPage.type.name === "ProfileWallet"}
-              onClick={() => handleButtonClick(<ProfileWallet />)}
+              onClick={() =>
+                handleButtonClick(
+                  <ProfileWallet
+                    setCurrentWalletPage={setCurrentWalletPage}
+                    userWallet={userWallet}
+                  />
+                )
+              }
             >
               Wallet
             </Btn>

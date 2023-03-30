@@ -17,6 +17,9 @@ import {
   getUserTransFailure,
   getUserTransStart,
   getUserTransSuccess,
+  getUserWalletFailure,
+  getUserWalletStart,
+  getUserWalletSuccess,
   loginfailure,
   loginStart,
   loginSuccess,
@@ -189,6 +192,18 @@ export const getUserTrans = async (dispatch, username, page) => {
   }
 };
 
+export const getUserWallet = async (dispatch, username, page) => {
+  dispatch(getUserWalletStart());
+  try {
+    const res = await userRequest.get(
+      `/profile/${username}/walletLogs?page=${page}`
+    );
+    dispatch(getUserWalletSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getUserWalletFailure());
+  }
+};
+
 export const getSearchedUsers = async (dispatch, username, phoneno) => {
   dispatch(getSearchedUserStart());
   try {
@@ -200,6 +215,7 @@ export const getSearchedUsers = async (dispatch, username, phoneno) => {
     dispatch(getSearchedUserFailure());
   }
 };
+
 
 export const getAgents = async (dispatch, page) => {
   dispatch(getAgentsStart());
