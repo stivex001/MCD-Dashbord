@@ -175,7 +175,6 @@ export const getUserPerformance = async (dispatch, username) => {
   dispatch(getUserPerfStart());
   try {
     const res = await userRequest.get(`/profile/${username}/overview`);
-    console.log(res);
     dispatch(getUserPerfSuccess(res.data));
   } catch (error) {
     dispatch(getUserPerfFailure());

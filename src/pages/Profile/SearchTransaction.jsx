@@ -31,21 +31,21 @@ const Container = styled.div`
 
 const SearchTransaction = ({ userTrans, setCurrentTransPage }) => {
   const [itemOffset, setItemOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(userTrans.last_page);
-  const [currentItems, setCurrentItems] = useState(userTrans.data);
+  const [pageCount, setPageCount] = useState(userTrans?.last_page);
+  const [currentItems, setCurrentItems] = useState(userTrans?.data);
 
-  const itemsPerPage = userTrans.per_page;
+  const itemsPerPage = userTrans?.per_page;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(
-      userTrans.data && userTrans.data.slice(itemOffset, endOffset)
+      userTrans?.data && userTrans?.data.slice(itemOffset, endOffset)
     );
-    setPageCount(Math.ceil(userTrans.total / itemsPerPage));
+    setPageCount(Math.ceil(userTrans?.total / itemsPerPage));
   }, [itemOffset, userTrans, itemsPerPage]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % userTrans.data.length;
+    const newOffset = (event.selected * itemsPerPage) % userTrans?.data.length;
     setItemOffset(newOffset);
     setCurrentTransPage(event.selected + 1);
   };
@@ -168,8 +168,8 @@ const SearchTransaction = ({ userTrans, setCurrentTransPage }) => {
           </Table>
           <PagWrapper>
             <PageNotification>
-              Showing {userTrans.from || "0"} to {userTrans.to || "0"} of{" "}
-              {userTrans.total} entries
+              Showing {userTrans?.from || "0"} to {userTrans?.to || "0"} of{" "}
+              {userTrans?.total} entries
             </PageNotification>
             <PaginateContainer
               breakLabel="..."

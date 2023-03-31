@@ -42,15 +42,15 @@ const Profiles = () => {
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
   useEffect(() => {
-    getUserTrans(dispatch, users.user_name, currentTransPage);
+    getUserTrans(dispatch, users?.user_name, currentTransPage);
   }, [dispatch, users, currentTransPage]);
 
   useEffect(() => {
-    getUserWallet(dispatch, users.user_name, currentWalletPage);
+    getUserWallet(dispatch, users?.user_name, currentWalletPage);
   }, [dispatch, users, currentWalletPage]);
 
   useEffect(() => {
-    getUserPerformance(dispatch, users.user_name);
+    getUserPerformance(dispatch, users?.user_name);
   }, [dispatch, users]);
 
   const handleButtonClick = (page) => {

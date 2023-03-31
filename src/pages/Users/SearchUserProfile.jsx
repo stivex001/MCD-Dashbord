@@ -5,11 +5,14 @@ import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
 import SearchGeneral from "../../components/General/SearchGeneral";
-import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
-import SamjiWallet from "../../components/samjiWallet/SamjiWallet";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
-import { getUserTrans, getUserWallet } from "../../Redux/apiCalls";
+import {
+  getUserPerformance,
+  getUserTrans,
+  getUserWallet,
+} from "../../Redux/apiCalls";
+import SearchInformation from "../Profile/SearchInformation";
 import SearchTransaction from "../Profile/SearchTransaction";
 import SearchWallet from "../Profile/SearchWallet";
 
@@ -41,12 +44,16 @@ const SearchUserProfile = () => {
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
   useEffect(() => {
-    getUserTrans(dispatch, searchUsers.user_name, currentTransPage);
+    getUserTrans(dispatch, searchUsers?.user_name, currentTransPage);
   }, [dispatch, searchUsers, currentTransPage]);
 
   useEffect(() => {
-    getUserWallet(dispatch, searchUsers.user_name, currentWalletPage);
+    getUserWallet(dispatch, searchUsers?.user_name, currentWalletPage);
   }, [dispatch, searchUsers, currentWalletPage]);
+
+  useEffect(() => {
+    getUserPerformance(dispatch, searchUsers?.user_name);
+  }, [dispatch, searchUsers]);
 
   const handleButtonClick = (page) => {
     setCurrentPage(page);
@@ -69,7 +76,12 @@ const SearchUserProfile = () => {
             <Btn
               active={currentPage.type.name === "SearchGeneral"}
               onClick={() =>
-                handleButtonClick(<SearchGeneral searchUsers={searchUsers} />)
+                handleButtonClick(
+                  <SearchGeneral
+                    searchUsers={searchUsers}
+                    userPerformance={userPerformance}
+                  />
+                )
               }
             >
               General
@@ -102,10 +114,24 @@ const SearchUserProfile = () => {
             >
               Wallet
             </Btn>
-            <Btn onClick={() => handleButtonClick(<Nofication />)}>
+            <Btn
+              active={currentPage.type.name === "Nofication"}
+              onClick={() => handleButtonClick(<Nofication />)}
+            >
               Push Notification
             </Btn>
-            <Btn onClick={() => handleButtonClick(<Information />)}>
+            <Btn
+              active={currentPage.type.name === "SearchInformation"}
+              onClick={() =>
+                handleButtonClick(
+                  <SearchInformation
+                    users={searchUsers}
+                    isFetching={isFetching}
+                    message={message}
+                  />
+                )
+              }
+            >
               Information
             </Btn>
           </List>

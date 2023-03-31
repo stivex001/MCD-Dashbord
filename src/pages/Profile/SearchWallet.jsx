@@ -26,21 +26,21 @@ const Title = styled.h3`
 const SearchWallet = ({userWallet, setCurrentWalletPage}) => {
 
     const [itemOffset, setItemOffset] = useState(0);
-    const [pageCount, setPageCount] = useState(userWallet.last_page);
-    const [currentItems, setCurrentItems] = useState(userWallet.data);
+    const [pageCount, setPageCount] = useState(userWallet?.last_page);
+    const [currentItems, setCurrentItems] = useState(userWallet?.data);
   
-    const itemsPerPage = userWallet.per_page;
+    const itemsPerPage = userWallet?.per_page;
   
     useEffect(() => {
       const endOffset = itemOffset + itemsPerPage;
       setCurrentItems(
-        userWallet.data && userWallet.data.slice(itemOffset, endOffset)
+        userWallet?.data && userWallet?.data.slice(itemOffset, endOffset)
       );
-      setPageCount(Math.ceil(userWallet.total / itemsPerPage));
+      setPageCount(Math.ceil(userWallet?.total / itemsPerPage));
     }, [itemOffset, userWallet, itemsPerPage]);
   
     const handlePageClick = (event) => {
-      const newOffset = (event.selected * itemsPerPage) % userWallet.data.length;
+      const newOffset = (event.selected * itemsPerPage) % userWallet?.data.length;
       setItemOffset(newOffset);
       setCurrentWalletPage(event.selected + 1);
     };
@@ -146,8 +146,8 @@ const SearchWallet = ({userWallet, setCurrentWalletPage}) => {
               </Table>
               <PagWrapper>
                 <PageNotification>
-                  Showing {userWallet.from || '0'} to {userWallet.to || '0'} of{" "}
-                  {userWallet.total} entries
+                  Showing {userWallet?.from || '0'} to {userWallet?.to || '0'} of{" "}
+                  {userWallet?.total} entries
                 </PageNotification>
                 <PaginateContainer
                   breakLabel="..."
