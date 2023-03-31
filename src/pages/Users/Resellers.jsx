@@ -44,20 +44,20 @@ const Resellers = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const [itemOffset, setItemOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(resellers.last_page);
-  const [currentItems, setCurrentItems] = useState(resellers.data);
+  const [pageCount, setPageCount] = useState(resellers?.last_page);
+  const [currentItems, setCurrentItems] = useState(resellers?.data);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = resellers.per_page;
+  const itemsPerPage = resellers?.per_page;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(resellers.data.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(resellers.total / itemsPerPage));
+    setCurrentItems(resellers.data && resellers.data.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(resellers?.total / itemsPerPage));
   }, [itemOffset, resellers, itemsPerPage]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % resellers.data.length;
+    const newOffset = (event.selected * itemsPerPage) % resellers?.data.length;
     setItemOffset(newOffset);
     setCurrentPage(event.selected + 1);
   };
@@ -152,7 +152,7 @@ const Resellers = () => {
                           <TableCell style={{ color: "#8887a9" }}>
                             <Link
                               to={
-                                "/profile/" + encodeURIComponent(row.user_name)
+                                "/profiler/" + encodeURIComponent(row.user_name)
                               }
                             >
                               <NoteAlt
@@ -172,8 +172,8 @@ const Resellers = () => {
               </Table>
               <PagWrapper>
                 <PageNotification>
-                  Showing {resellers.from} to {resellers.to} of{" "}
-                  {resellers.total} entries
+                  Showing {resellers?.from} to {resellers?.to} of{" "}
+                  {resellers?.total} entries
                 </PageNotification>
                 <PaginateContainer
                   breakLabel="..."

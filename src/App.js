@@ -47,6 +47,7 @@ import ModifyAirtime from "./pages/ResellerControl/ModifyAirtime";
 import Profiles from "./pages/Users/Profiles";
 import SearchUserProfile from "./pages/Users/SearchUserProfile";
 import AgentProfile from "./pages/Users/AgentProfile";
+import ResellerProfile from "./pages/Users/ResellerProfile";
 
 
 const App = () => {
@@ -133,6 +134,10 @@ const App = () => {
         <Route
           path="/profile/:id"
           element={user ? <Profiles /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/profiler/:id"
+          element={user ? <ResellerProfile /> : <Navigate to="/login" />}
         />
         <Route
           path="/profiles/:id"
