@@ -77,7 +77,7 @@ const Navbar = () => {
     navigate('/login')
   }
   const handleProfile = () => {
-    navigate('/profile/samji')
+    navigate('/profiles/samji')
   }
   const handleSettings = () => {
     navigate('/allsettings')
