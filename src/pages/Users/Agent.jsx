@@ -44,20 +44,20 @@ const Agent = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const [itemOffset, setItemOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(agents.last_page);
-  const [currentItems, setCurrentItems] = useState(agents.data);
+  const [pageCount, setPageCount] = useState(agents?.last_page);
+  const [currentItems, setCurrentItems] = useState(agents?.data);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = agents.per_page;
+  const itemsPerPage = agents?.per_page;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(agents.data.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(agents.total / itemsPerPage));
+    setCurrentItems(agents.data && agents.data.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(agents?.total / itemsPerPage));
   }, [itemOffset, agents, itemsPerPage]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % agents.data.length;
+    const newOffset = (event.selected * itemsPerPage) % agents?.data.length;
     setItemOffset(newOffset);
     setCurrentPage(event.selected + 1);
   };
@@ -153,7 +153,7 @@ const Agent = () => {
                           <TableCell style={{ color: "#8887a9" }}>
                             <Link
                               to={
-                                "/profile/" + encodeURIComponent(row.user_name)
+                                "/profile-/" + encodeURIComponent(row.user_name)
                               }
                             >
                               <NoteAlt
@@ -173,7 +173,7 @@ const Agent = () => {
               </Table>
               <PagWrapper>
                 <PageNotification>
-                  Showing {agents.from} to {agents.to} of {agents.total} entries
+                  Showing {agents?.from} to {agents?.to} of {agents?.total} entries
                 </PageNotification>
                 <PaginateContainer
                   breakLabel="..."

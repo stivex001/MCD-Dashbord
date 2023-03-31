@@ -56,7 +56,9 @@ const UserTable = ({ allUsers, currentItems, handlePageClick, pageCount }) => {
           <TableBody>
             {currentItems &&
               currentItems.map((row) => (
-                <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
+                <TableRow key={row.id} style={{
+                  backgroundColor: row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+                }}>
                   <TableCell style={{ color: "#8887a9" }}>
                     <UserDeatils>
                       <UserImg src={row.photo} alt="" />

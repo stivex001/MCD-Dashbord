@@ -36,7 +36,6 @@ import WithdrawReq from "./pages/Wallet/WithdrawReq";
 import AgentPayment from "./pages/Users/AgentPayment";
 import { useSelector } from "react-redux";
 import Users from "./pages/Users/Users";
-import Profile from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Setting";
 import Edit from "./pages/Settings/Edit";
 import Agent from "./pages/Users/Agent";
@@ -47,6 +46,7 @@ import GmBlock from "./pages/Users/GmBlock";
 import ModifyAirtime from "./pages/ResellerControl/ModifyAirtime";
 import Profiles from "./pages/Users/Profiles";
 import SearchUserProfile from "./pages/Users/SearchUserProfile";
+import AgentProfile from "./pages/Users/AgentProfile";
 
 
 const App = () => {
@@ -126,10 +126,10 @@ const App = () => {
           path="/agent-payment"
           element={user ? <AgentPayment /> : <Navigate to="/login" />}
         />
-        {/* <Route
-          path="/profile/samji"
-          element={user ? <Profile /> : <Navigate to="/login" />}
-        /> */}
+        <Route
+          path="/profile-/:id"
+          element={user ? <AgentProfile /> : <Navigate to="/login" />}
+        />
         <Route
           path="/profile/:id"
           element={user ? <Profiles /> : <Navigate to="/login" />}
