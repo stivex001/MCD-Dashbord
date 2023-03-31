@@ -7,11 +7,11 @@ import Footer from "../../components/footer/Footer";
 import SearchGeneral from "../../components/General/SearchGeneral";
 import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
-import SamjiTrans from "../../components/samjiTrans/SamjiTrans";
 import SamjiWallet from "../../components/samjiWallet/SamjiWallet";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
-import { getUserTrans } from "../../Redux/apiCalls";
+import { getUserTrans, getUserWallet } from "../../Redux/apiCalls";
 import SearchTransaction from "../Profile/SearchTransaction";
+import SearchWallet from "../Profile/SearchWallet";
 
 import {
   Container,
@@ -44,6 +44,10 @@ const SearchUserProfile = () => {
     getUserTrans(dispatch, searchUsers.user_name, currentTransPage);
   }, [dispatch, searchUsers, currentTransPage]);
 
+  useEffect(() => {
+    getUserWallet(dispatch, searchUsers.user_name, currentWalletPage);
+  }, [dispatch, searchUsers, currentWalletPage]);
+
   const handleButtonClick = (page) => {
     setCurrentPage(page);
   };
@@ -71,7 +75,7 @@ const SearchUserProfile = () => {
               General
             </Btn>
             <Btn
-            active={currentPage.type.name === "SearchTransaction"}
+              active={currentPage.type.name === "SearchTransaction"}
               onClick={() =>
                 handleButtonClick(
                   <SearchTransaction
@@ -85,7 +89,19 @@ const SearchUserProfile = () => {
             >
               Transactions
             </Btn>
-            <Btn onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
+            <Btn
+              active={currentPage.type.name === "SearchWallet"}
+              onClick={() =>
+                handleButtonClick(
+                  <SearchWallet
+                    setCurrentWalletPage={setCurrentWalletPage}
+                    userWallet={userWallet}
+                  />
+                )
+              }
+            >
+              Wallet
+            </Btn>
             <Btn onClick={() => handleButtonClick(<Nofication />)}>
               Push Notification
             </Btn>

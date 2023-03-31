@@ -9,10 +9,8 @@ import {
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
-  Details,
   Span,
   TableWrapper,
-  Wrapper,
 } from "../transaction/general.styles";
 import {
   PageNotification,

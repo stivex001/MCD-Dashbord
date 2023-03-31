@@ -23,7 +23,7 @@ const Title = styled.h3`
   margin-bottom: 15px;
 `;
 
-const ProfileWallet = ({userWallet, setCurrentWalletPage}) => {
+const SearchWallet = ({userWallet, setCurrentWalletPage}) => {
 
     const [itemOffset, setItemOffset] = useState(0);
     const [pageCount, setPageCount] = useState(userWallet.last_page);
@@ -97,8 +97,8 @@ const ProfileWallet = ({userWallet, setCurrentWalletPage}) => {
                     <TableBody key={row.id}>
                       <TableRow
                         style={{
-                          backgroundColor: row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
-                        }}
+                            backgroundColor: row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+                          }}
                       >
                         <TableCell style={{ color: "#8887a9" }}>
                           {row.id}
@@ -170,4 +170,4 @@ const ProfileWallet = ({userWallet, setCurrentWalletPage}) => {
   );
 };
 
-export default ProfileWallet;
+export default SearchWallet;
