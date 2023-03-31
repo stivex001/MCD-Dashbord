@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
-import UserGeneral from "../../components/General/UserGeneral";
+import AgentGeneral from "../../components/General/AgentGeneral";
 import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
@@ -25,16 +25,17 @@ import {
   H3,
   Wrapper,
 } from "../transaction/transHistory.styles";
-import UserProfiles from "./UserProfile";
+import AgentUserProfile from "./AgentUserProfile";
+
 
 const AgentProfile = () => {
   const location = useLocation();
   const userId = location.pathname.split("/")[2];
   const decodedId = decodeURIComponent(userId);
   const users = useSelector((state) =>
-    state.user.allUsers.data.find((user) => user.user_name === decodedId)
+    state.user.agents.data.find((user) => user.user_name === decodedId)
   );
-  const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
+  const [currentPage, setCurrentPage] = useState(<AgentGeneral searchUsers={users} />);
   const { userTrans, userPerformance, userWallet, isFetching, message } =
     useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -68,15 +69,15 @@ const AgentProfile = () => {
           </DescP>
         </Desc>
 
-        <UserProfiles users={users} />
+        <AgentUserProfile users={users} />
         <div>
           <List>
             <Btn
-              active={currentPage.type.name === "UserGeneral"}
+              active={currentPage.type.name === "AgentGeneral"}
               onClick={() =>
                 handleButtonClick(
-                  <UserGeneral
-                    users={users}
+                  <AgentGeneral
+                    searchUsers={users}
                     userPerformance={userPerformance}
                   />
                 )
