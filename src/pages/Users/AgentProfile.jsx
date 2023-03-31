@@ -14,8 +14,9 @@ import {
   getUserTrans,
   getUserWallet,
 } from "../../Redux/apiCalls";
-import ProfileTransaction from "../Profile/ProfileTransaction";
-import ProfileWallet from "../Profile/ProfileWallet";
+import AgentTransaction from "../Profile/AgentTransaction";
+import AgentWallet from "../Profile/AgentWallet";
+
 
 import {
   Container,
@@ -86,10 +87,10 @@ const AgentProfile = () => {
               General
             </Btn>
             <Btn
-              active={currentPage.type.name === "ProfileTransaction"}
+              active={currentPage.type.name === "AgentTransaction"}
               onClick={() =>
                 handleButtonClick(
-                  <ProfileTransaction
+                  <AgentTransaction
                     userTrans={userTrans}
                     isFetching={isFetching}
                     currentTransPage={currentTransPage}
@@ -101,10 +102,10 @@ const AgentProfile = () => {
               Transactions
             </Btn>
             <Btn
-              active={currentPage.type.name === "ProfileWallet"}
+              active={currentPage.type.name === "AgentWallet"}
               onClick={() =>
                 handleButtonClick(
-                  <ProfileWallet
+                  <AgentWallet
                     setCurrentWalletPage={setCurrentWalletPage}
                     userWallet={userWallet}
                   />
