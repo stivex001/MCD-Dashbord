@@ -111,26 +111,15 @@ export const login = async (dispatch, user) => {
   }
 };
 
-export const logout = async (dispatch) => {
-  dispatch(logoutSuccess());
-};
-// export const login = async (dispatch, user) => {
-//   dispatch(loginStart());
-//   try {
-//     const res = await publicRequest.post("/login", user);
-//     if (res.data.success === 1) {
-//       dispatch(loginSuccess(res.data));
-//     } else {
-//       dispatch(loginfailure());
-//     }
-//   } catch (error) {
-//     dispatch(loginfailure());
-//   }
-// };
-
 // export const logout = async (dispatch) => {
 //   dispatch(logoutSuccess());
 // };
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem('persist:root');
+  userRequest.defaults.headers.common['Authorization'] = '';
+  dispatch(logoutSuccess());
+};
 
 export const reProcess = async (dispatch, ids) => {
   dispatch(reProcessAllStart());
