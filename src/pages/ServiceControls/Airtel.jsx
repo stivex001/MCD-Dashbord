@@ -3,10 +3,12 @@ import {
   CircularProgress,
   Paper,
   Table,
+  TableCell,
   TableContainer,
   TablePagination,
+  TableRow,
 } from "@mui/material";
-import {  useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Tablebody from "../../components/DataPlansTable/Tablebody";
@@ -16,7 +18,18 @@ import useInput from "../../Hooks/use-form";
 import { getAirtelList } from "../../Redux/apiCalls";
 import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-import { Btn, Container, Details, Form, FormWrapper, Input, InputContainer, P, TableWrapper, Wrapper } from "./airtel.styles";
+import {
+  Btn,
+  Container,
+  Details,
+  Form,
+  FormWrapper,
+  Input,
+  InputContainer,
+  P,
+  TableWrapper,
+  Wrapper,
+} from "./airtel.styles";
 
 const Airtel = () => {
   const { airtelList, isFetching } = useSelector((state) => state.datalist);
@@ -56,8 +69,6 @@ const Airtel = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-
 
   if (isFetching) {
     return (
@@ -126,7 +137,17 @@ const Airtel = () => {
                     date="Date Modified"
                     action="Action"
                   />
-                  {airtelList.data &&
+                  {airtelList.data && airtelList.data.length === 0 ? (
+                    <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                      <TableCell
+                        colSpan={10}
+                        style={{ textAlign: "center", color: "#8887a9" }}
+                      >
+                        No data in the table
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    airtelList.data &&
                     airtelList.data.map((row) => (
                       <Tablebody
                         key={row.id}
@@ -139,7 +160,8 @@ const Airtel = () => {
                         status={row.status}
                         date={row.updated_at}
                       />
-                    ))}
+                    ))
+                  )}
                 </Table>
               </TableContainer>
             </Details>
