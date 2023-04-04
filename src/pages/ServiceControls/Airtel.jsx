@@ -48,8 +48,7 @@ const Airtel = () => {
             Services / <DescSpan>Data Plans</DescSpan>
           </DescP>
         </Desc>
-      </Wrapper>
-      <TableWrapper>
+        <TableWrapper>
         <P>Data Plans</P>
         <Details>
           <TableContainer component={Paper}>
@@ -92,6 +91,8 @@ const Airtel = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableWrapper>
+      </Wrapper>
+      
 
       <Footer />
     </Container>

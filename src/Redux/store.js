@@ -7,6 +7,7 @@ import profileReducer from "./profileSlice";
 import serverReducer from "./serverSlice";
 import airtimeReducer from "./airtimeConverterSlice";
 import authReducer from "./authSlice";
+import dataReducer from "./dataListSlice";
 import {
   persistStore,
   persistReducer,
@@ -18,13 +19,19 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { useNavigate } from "react-router-dom";
 
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  blacklist: ["transaction", "wallet", "settings", "server", "airtimeConverter"],
+  blacklist: [
+    "transaction",
+    "wallet",
+    "settings",
+    "server",
+    "airtimeConverter",
+    "datalist",
+  ],
 };
 
 const rootReducer = combineReducers({
@@ -35,7 +42,8 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   server: serverReducer,
   airtimeConverter: airtimeReducer,
-  auth: authReducer
+  auth: authReducer,
+  datalist: dataReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -49,23 +57,6 @@ const store = configureStore({
       },
     }),
 });
-
-const startTimer = () => {
-  setTimeout(() => {
-    const navigate = useNavigate()
-    navigate('/login')
-  }, 3600000)
-}
-
-const resetTimer = () => {
-  clearTimeout(timer)
-  startTimer()
-}
-
-let timer = startTimer();
-
-document.addEventListener('mousemove', resetTimer)
-document.addEventListener('keydown', resetTimer)
 
 export const persistor = persistStore(store);
 
