@@ -101,10 +101,10 @@ const Mtn = () => {
               <MenuItem key="CG" value="CG">
                 CG
               </MenuItem>
-              <MenuItem key="CG" value="CG">
+              <MenuItem key="SME" value="SME">
                 SME
               </MenuItem>
-              <MenuItem key="CG" value="CG">
+              <MenuItem key="DG" value="DG">
                 DG
               </MenuItem>
             </TextField>
