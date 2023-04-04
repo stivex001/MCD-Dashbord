@@ -97,6 +97,7 @@ const Airtel = () => {
               label="Select Type"
               variant="outlined"
               onChange={typeInputChange}
+              fullWidth
             >
               <MenuItem key="CG" value="CG">
                 CG
@@ -114,6 +115,8 @@ const Airtel = () => {
               label="Select Server"
               variant="outlined"
               onChange={serverInputChange}
+              fullWidth="true"
+              style={{width: '50%'}}
             >
               {Server.map((server) => (
                 <MenuItem key={server.id} value={server.value}>
