@@ -15,7 +15,7 @@ import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
 import useInput from "../../Hooks/use-form";
-import { getAirtelList } from "../../Redux/apiCalls";
+import { getMtnList } from "../../Redux/apiCalls";
 import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import {
@@ -32,7 +32,7 @@ import {
 } from "./airtel.styles";
 
 const Mtn = () => {
-  const { airtelList, isFetching } = useSelector((state) => state.datalist);
+  const { mtnList, isFetching } = useSelector((state) => state.datalist);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -54,9 +54,9 @@ const Mtn = () => {
   const handleFormSubmission = (e) => {
     e.preventDefault();
     if (allInputValues.trim() === "") {
-      return getAirtelList(dispatch, enteredType, enteredServer);
+      return getMtnList(dispatch, enteredType, enteredServer);
     }
-    getAirtelList(dispatch, enteredType, enteredServer);
+    getMtnList(dispatch, enteredType, enteredServer);
     resetTypeInput();
     resetServerInput();
   };
@@ -120,7 +120,7 @@ const Mtn = () => {
           </Btn>
         </FormWrapper>
 
-        {airtelList && (
+        {mtnList && (
           <TableWrapper>
             <P>Data Plans</P>
             <Details>
@@ -137,7 +137,7 @@ const Mtn = () => {
                     date="Date Modified"
                     action="Action"
                   />
-                  {airtelList.data && airtelList.data.length === 0 ? (
+                  {mtnList.data && mtnList.data.length === 0 ? (
                     <TableRow style={{ backgroundColor: "#f3f2f7" }}>
                       <TableCell
                         colSpan={10}
@@ -147,8 +147,8 @@ const Mtn = () => {
                       </TableCell>
                     </TableRow>
                   ) : (
-                    airtelList.data &&
-                    airtelList.data.map((row) => (
+                    mtnList.data &&
+                    mtnList.data.map((row) => (
                       <Tablebody
                         key={row.id}
                         id={row.id}
@@ -168,7 +168,7 @@ const Mtn = () => {
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
               component="div"
-              count={airtelList?.length}
+              count={mtnList?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}
