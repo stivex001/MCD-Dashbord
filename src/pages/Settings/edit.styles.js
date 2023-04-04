@@ -11,14 +11,13 @@ export const Wrapper = styled.div`
   background-color: #f5f5f5;
 `;
 export const Form = styled.form`
-  background-color: #fff;
-
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
   margin-bottom: 10px;
 `;
 export const FormWrapper = styled.div`
+  background-color: #fff;
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
@@ -55,7 +54,7 @@ export const Btn = styled.button`
   align-items: center;
   padding: 12px;
   color: #fff;
-  background-color: #5b63ae;
+  background: linear-gradient(to right, #5966ae, #4383a9);
   cursor: pointer;
   border: none;
   border-radius: 5px;

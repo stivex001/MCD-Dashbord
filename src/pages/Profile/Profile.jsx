@@ -20,14 +20,11 @@ import {
 } from "../transaction/transHistory.styles";
 
 const Profile = () => {
-
   const [currentPage, setCurrentPage] = useState(<General />);
-
 
   const handleButtonClick = (page) => {
     setCurrentPage(page);
-  }
-
+  };
 
   return (
     <Container>
@@ -39,21 +36,34 @@ const Profile = () => {
             User / <DescSpan>Profile</DescSpan>
           </DescP>
         </Desc>
-        
+
         <UserProfile />
         <div>
-        <List>
-        <Btn to='/profile/samji/#general_detail'  onClick={() => handleButtonClick(<General />)}>General</Btn>
-        <Btn to='/profile/samji/#activity_detail' onClick={() => handleButtonClick(<SamjiTrans />)}>Transactions</Btn>
-        <Btn  onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
-        <Btn  onClick={() => handleButtonClick(<Nofication />)}>Push Notification</Btn>
-        <Btn  onClick={() => handleButtonClick(<Information />)}>Information</Btn>
-      </List>
-      {currentPage}
+          <List>
+            <Btn
+              to="/profile/samji/#general_detail"
+              onClick={() => handleButtonClick(<General />)}
+            >
+              General
+            </Btn>
+            <Btn
+              to="/profile/samji/#activity_detail"
+              onClick={() => handleButtonClick(<SamjiTrans />)}
+            >
+              Transactions
+            </Btn>
+            <Btn onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
+            <Btn onClick={() => handleButtonClick(<Nofication />)}>
+              Push Notification
+            </Btn>
+            <Btn onClick={() => handleButtonClick(<Information />)}>
+              Information
+            </Btn>
+          </List>
+          {currentPage}
         </div>
-        
       </Wrapper>
-      
+
       <Footer />
     </Container>
   );

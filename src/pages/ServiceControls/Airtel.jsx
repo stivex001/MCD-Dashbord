@@ -38,17 +38,11 @@ const Airtel = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const {
-    value: enteredType,
-    valueChangeHandler: typeInputChange,
-    reset: resetTypeInput,
-  } = useInput();
+  const { value: enteredType, valueChangeHandler: typeInputChange } =
+    useInput();
 
-  const {
-    value: enteredServer,
-    valueChangeHandler: serverInputChange,
-    reset: resetServerInput,
-  } = useInput();
+  const { value: enteredServer, valueChangeHandler: serverInputChange } =
+    useInput();
 
   const allInputValues = enteredType || enteredServer;
 
@@ -58,8 +52,6 @@ const Airtel = () => {
       return getAirtelList(dispatch, enteredType, enteredServer);
     }
     getAirtelList(dispatch, enteredType, enteredServer);
-    resetTypeInput();
-    resetServerInput();
   };
 
   const handleChangePage = (event, newPage) => {
@@ -97,7 +89,6 @@ const Airtel = () => {
               label="Select Type"
               variant="outlined"
               onChange={typeInputChange}
-              fullWidth
             >
               <MenuItem key="CG" value="CG">
                 CG
@@ -115,8 +106,6 @@ const Airtel = () => {
               label="Select Server"
               variant="outlined"
               onChange={serverInputChange}
-              fullWidth="true"
-              style={{ width: "50%" }}
             >
               {Server.map((server) => (
                 <MenuItem key={server.id} value={server.value}>
