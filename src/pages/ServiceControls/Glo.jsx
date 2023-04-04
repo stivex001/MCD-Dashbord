@@ -31,7 +31,7 @@ import {
   Wrapper,
 } from "./airtel.styles";
 
-const Airtel = () => {
+const Glo = () => {
   const { gloList, isFetching } = useSelector((state) => state.datalist);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
@@ -183,4 +183,4 @@ const Airtel = () => {
   );
 };
 
-export default Airtel;
+export default Glo;
