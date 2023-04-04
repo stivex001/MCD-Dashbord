@@ -1,46 +1,40 @@
-import { CircularProgress, Paper, Table, TableContainer } from "@mui/material";
+import {
+  CircularProgress,
+  Paper,
+  Table,
+  TableContainer,
+  TablePagination,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
-import { airtelData } from "../../components/DataPlansTable/dataPlans";
 import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
 import { getAirtelList } from "../../Redux/apiCalls";
 import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-import { PaginateContainer } from "../Users/agent.styles";
 import { Container, Details, P, TableWrapper, Wrapper } from "./airtel.styles";
 
 const Airtel = () => {
   const { airtelList, isFetching } = useSelector((state) => state.datalist);
   const dispatch = useDispatch();
-  const [itemOffset, setItemOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(airtelList?.last_page);
-  const [currentItems, setCurrentItems] = useState(airtelList?.data);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [type, setType] = useState('DG')
-  const [server, setServer] = useState(10)
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [type, setType] = useState("DG");
+  const [server, setServer] = useState(10);
 
-  const itemsPerPage = airtelList?.per_page;
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-  useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(
-      airtelList?.data && airtelList?.data.slice(itemOffset, endOffset)
-    );
-    setPageCount(Math.ceil(airtelList?.total / itemsPerPage));
-  }, [itemOffset, airtelList, itemsPerPage]);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % airtelList?.data.length;
-    setItemOffset(newOffset);
-    setCurrentPage(event.selected + 1);
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
   };
 
   useEffect(() => {
-    getAirtelList(dispatch, type, server );
-    
+    getAirtelList(dispatch, type, server);
   }, [dispatch, type, server]);
 
   // useEffect(() => {
@@ -55,7 +49,6 @@ const Airtel = () => {
   //   });
   // }, [dispatch]);
 
-  console.log(airtelList);
   if (isFetching) {
     return (
       <Loading>
@@ -90,38 +83,31 @@ const Airtel = () => {
                   date="Date Modified"
                   action="Action"
                 />
-                {airtelList.data && airtelList.data.map((row) => (
-                  <Tablebody
-                    key={row.id}
-                    id={row.id}
-                    network={row.network}
-                    name={row.name}
-                    price={row.price}
-                    yourprice={row.amount}
-                    server={row.server}
-                    action={row.action}
-                    status={row.status}
-                    date={row.updated_at}
-                  />
-                ))}
+                {airtelList.data &&
+                  airtelList.data.map((row) => (
+                    <Tablebody
+                      key={row.id}
+                      id={row.id}
+                      network={row.network}
+                      name={row.name}
+                      price={row.price}
+                      yourprice={row.amount}
+                      server={row.server}
+                      status={row.status}
+                      date={row.updated_at}
+                    />
+                  ))}
               </Table>
             </TableContainer>
           </Details>
-          <PaginateContainer
-            // marginPagesDisplayed={2}
-            page={currentPage}
-            breakLabel="..."
-            nextLabel=">"
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={8}
-            pageCount={pageCount}
-            previousLabel="<"
-            renderOnZeroPageCount={null}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-            pageLinkClassName="pageNum"
-            previousLinkClassName="pageNum"
-            nextLinkClassName="pageNum"
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={airtelList?.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </TableWrapper>
       </Wrapper>

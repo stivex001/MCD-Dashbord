@@ -41,23 +41,23 @@ const Tablebody = ({
         <TableCell style={{ color: "#8887a9" }}>{id}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{network}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{name}</TableCell>
-        <TableCell style={{ color: "#8887a9" }}>{price}</TableCell>
-        <TableCell style={{ color: "#8887a9" }}>{yourprice}</TableCell>
+        <TableCell style={{ color: "#8887a9" }}>&#8358;{price}</TableCell>
+        <TableCell style={{ color: "#8887a9" }}>&#8358;{yourprice}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{discount}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{server}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>
           <Span
             style={{
-              backgroundColor: `${status === "Active" ? "#5dd099" : "#f8c955"}`,
+              backgroundColor: `${status === 1 ? "#5dd099" : "#f8c955"}`,
             }}
           >
-            {status}
+            {status === 1 ? 'Active' : 'Inactive'}
           </Span>
         </TableCell>
 
         <TableCell style={{ color: "#8887a9" }}>{date}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>
-          <BtnConatiner>{action}</BtnConatiner>
+          <BtnConatiner>Modify</BtnConatiner>
         </TableCell>
       </TableRow>
     </TableBody>
