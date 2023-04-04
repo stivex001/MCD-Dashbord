@@ -100,6 +100,15 @@ import {
   getAirtelFailure,
   getAirtelStart,
   getAirtelSucess,
+  getGloFailure,
+  getGloStart,
+  getGloSucess,
+  getMobileFailure,
+  getMobileStart,
+  getMobileSucess,
+  getMtnFailure,
+  getMtnStart,
+  getMtnSucess,
 } from "./dataListSlice";
 
 export const login = async (dispatch, user) => {
@@ -521,5 +530,41 @@ export const getAirtelList = async (dispatch, type, server) => {
     dispatch(getAirtelSucess(res.data));
   } catch (error) {
     dispatch(getAirtelFailure());
+  }
+};
+
+export const getMtnList = async (dispatch, type, server) => {
+  dispatch(getMtnStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigList/MTN/${type}/${server}`
+    );
+    dispatch(getMtnSucess(res.data));
+  } catch (error) {
+    dispatch(getMtnFailure());
+  }
+};
+
+export const getGloList = async (dispatch, type, server) => {
+  dispatch(getGloStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigList/GLO/${type}/${server}`
+    );
+    dispatch(getGloSucess(res.data));
+  } catch (error) {
+    dispatch(getGloFailure());
+  }
+};
+
+export const getMobileList = async (dispatch, type, server) => {
+  dispatch(getMobileStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigList/9MOBILE/${type}/${server}`
+    );
+    dispatch(getMobileSucess(res.data));
+  } catch (error) {
+    dispatch(getMobileFailure());
   }
 };
