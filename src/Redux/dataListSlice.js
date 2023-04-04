@@ -15,7 +15,7 @@ const dataListSlice = createSlice({
     },
     getAirtelSucess: (state, action) => {
       state.isFetching = false;
-      state.settings = action.payload;
+      state.airtelList = action.payload;
     },
     getAirtelFailure: (state) => {
       state.isFetching = false;

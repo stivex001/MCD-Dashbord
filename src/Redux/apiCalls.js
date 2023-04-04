@@ -96,6 +96,11 @@ import {
   modifyAirtimeStart,
   modifyAirtimeSucess,
 } from "./airtimeConverterSlice";
+import {
+  getAirtelFailure,
+  getAirtelStart,
+  getAirtelSucess,
+} from "./dataListSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -116,8 +121,8 @@ export const login = async (dispatch, user) => {
 // };
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem('persist:root');
-  userRequest.defaults.headers.common['Authorization'] = '';
+  localStorage.removeItem("persist:root");
+  userRequest.defaults.headers.common["Authorization"] = "";
   dispatch(logoutSuccess());
 };
 
@@ -260,9 +265,8 @@ export const updateUser = async (
       address,
       target
     );
-    
-    dispatch(updateUserSucess(res.data)); 
-    
+
+    dispatch(updateUserSucess(res.data));
   } catch (error) {
     dispatch(updateUserFailure()); // set error flag to true
   }
@@ -503,5 +507,19 @@ export const modifyAirtimeCon = async (dispatch, id, discount, server) => {
     dispatch(modifyAirtimeSucess(res.data));
   } catch (error) {
     dispatch(modifyAirtimeFailure()); // set error flag to true
+  }
+};
+
+// DATA LIST
+
+export const getAirtelList = async (dispatch, type, server) => {
+  dispatch(getAirtelStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigList/AIRTEL/${type}/${server}`
+    );
+    dispatch(getAirtelSucess(res.data));
+  } catch (error) {
+    dispatch(getAirtelFailure());
   }
 };

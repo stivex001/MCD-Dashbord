@@ -28,11 +28,16 @@ const Tablebody = ({
   status,
   date,
   discount,
-  type
+  type,
 }) => {
   return (
     <TableBody>
-      <TableRow key={id} style={{ backgroundColor: "#f3f2f7" }}>
+      <TableRow
+        key={id}
+        style={{
+          backgroundColor: id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+        }}
+      >
         <TableCell style={{ color: "#8887a9" }}>{id}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{network}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>{name}</TableCell>
@@ -49,7 +54,7 @@ const Tablebody = ({
             {status}
           </Span>
         </TableCell>
-        
+
         <TableCell style={{ color: "#8887a9" }}>{date}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>
           <BtnConatiner>{action}</BtnConatiner>

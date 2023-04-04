@@ -29,22 +29,22 @@ const GeneralMarket = () => {
   );
   const dispatch = useDispatch();
   const [itemOffset, setItemOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(generalMarket.last_page);
-  const [currentItems, setCurrentItems] = useState(generalMarket.data);
+  const [pageCount, setPageCount] = useState(generalMarket?.last_page);
+  const [currentItems, setCurrentItems] = useState(generalMarket?.data);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = generalMarket.per_page;
+  const itemsPerPage = generalMarket?.per_page;
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(
-      generalMarket.data && generalMarket.data.slice(itemOffset, endOffset)
+      generalMarket?.data && generalMarket?.data.slice(itemOffset, endOffset)
     );
-    setPageCount(Math.ceil(generalMarket.total / itemsPerPage));
+    setPageCount(Math.ceil(generalMarket?.total / itemsPerPage));
   }, [itemOffset, generalMarket, itemsPerPage]);
 
   const handlePageClick = (event) => {
     const newOffset =
-      (event.selected * itemsPerPage) % generalMarket.data.length;
+      (event.selected * itemsPerPage) % generalMarket?.data.length;
     setItemOffset(newOffset);
     setCurrentPage(event.selected + 1);
   };
