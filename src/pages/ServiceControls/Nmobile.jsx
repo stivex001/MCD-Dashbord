@@ -1,12 +1,14 @@
-import { PermIdentity, Search, SimCardDownload } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
 import {
   CircularProgress,
+  MenuItem,
   Paper,
   Table,
   TableCell,
   TableContainer,
   TablePagination,
   TableRow,
+  TextField,
 } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,12 +26,11 @@ import {
   Details,
   Form,
   FormWrapper,
-  Input,
-  InputContainer,
   P,
   TableWrapper,
   Wrapper,
 } from "./airtel.styles";
+import Server from "./server";
 
 const Nmobile = () => {
   const { mobileList, isFetching } = useSelector((state) => state.datalist);
@@ -91,28 +92,35 @@ const Nmobile = () => {
 
         <FormWrapper onSubmit={handleFormSubmission}>
           <Form>
-            <InputContainer>
-              <PermIdentity
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="text"
-                placeholder="Search by type (CG, DG, SME)"
-                onChange={typeInputChange}
-                value={enteredType}
-              />
-            </InputContainer>
-            <InputContainer>
-              <SimCardDownload
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="number"
-                placeholder="Search by server (1 - 13)"
-                onChange={serverInputChange}
-                value={enteredServer}
-              />
-            </InputContainer>
+            <TextField
+              select
+              label="Select Type"
+              variant="outlined"
+              onChange={typeInputChange}
+            >
+              <MenuItem key="CG" value="CG">
+                CG
+              </MenuItem>
+              <MenuItem key="CG" value="CG">
+                SME
+              </MenuItem>
+              <MenuItem key="CG" value="CG">
+                DG
+              </MenuItem>
+            </TextField>
+
+            <TextField
+              select
+              label="Select Server"
+              variant="outlined"
+              onChange={serverInputChange}
+            >
+              {Server.map((server) => (
+                <MenuItem key={server.id} value={server.value}>
+                  {server.value}
+                </MenuItem>
+              ))}
+            </TextField>
           </Form>
           <Btn type="submit">
             <Search />
