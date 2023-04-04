@@ -49,7 +49,7 @@ const UserModal = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    logout(dispatch);
+    dispatch(logout());
     navigate("/login");
   };
 
@@ -60,15 +60,15 @@ const UserModal = () => {
           <H2>Welcome</H2>
         </Title>
         <ListWrapper>
-          <List to='/profiles/samji'>
+          <List to="/profiles/samji">
             <PersonPin style={{ color: "#95a5af" }} />
             <Span>Profile</Span>
           </List>
-          <List to='/allsettings'>
+          <List to="/allsettings">
             <Settings style={{ color: "#95a5af" }} />
             <Span>Settings</Span>
           </List>
-          <List to='#'>
+          <List to="#">
             <Lock style={{ color: "#95a5af" }} />
             <Span>Lock Screen</Span>
           </List>

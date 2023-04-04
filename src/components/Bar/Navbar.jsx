@@ -73,7 +73,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    logout(dispatch);
+    dispatch(logout());
     navigate('/login')
   }
   const handleProfile = () => {

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/mcd_logo.png";
-import { login, logout } from "../../Redux/apiCalls";
+import { login} from "../../Redux/apiCalls";
 import {
   Button,
   Container,
@@ -39,7 +39,6 @@ const Login = () => {
       navigate("/login");
     } else {
       navigate("/");
-      logout(dispatch())
     }
   };
 
