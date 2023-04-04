@@ -1,4 +1,5 @@
 import { TableBody, TableCell, TableRow } from "@mui/material";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 // import { mtnData } from "./dataPlans";
 
@@ -8,13 +9,15 @@ const Span = styled.span`
   font-size: 10.5px;
   border-radius: 5px;
 `;
-const BtnConatiner = styled.div`
+const BtnConatiner = styled(Link)`
   background-color: #aaaece;
   padding: 10px;
   color: #fff;
   cursor: pointer;
   font-weight: bold;
   text-align: center;
+  text-decoration: none;
+  border-radius: 3px;
 `;
 
 const Tablebody = ({
@@ -57,7 +60,7 @@ const Tablebody = ({
 
         <TableCell style={{ color: "#8887a9" }}>{date}</TableCell>
         <TableCell style={{ color: "#8887a9" }}>
-          <BtnConatiner>Modify</BtnConatiner>
+          <BtnConatiner to={`/dataControl/${id}`}>Modify</BtnConatiner>
         </TableCell>
       </TableRow>
     </TableBody>

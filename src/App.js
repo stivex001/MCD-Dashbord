@@ -48,6 +48,7 @@ import Profiles from "./pages/Users/Profiles";
 import SearchUserProfile from "./pages/Users/SearchUserProfile";
 import AgentProfile from "./pages/Users/AgentProfile";
 import ResellerProfile from "./pages/Users/ResellerProfile";
+import Datacontrol from "./pages/ServiceControls/Datacontrol";
 
 
 const App = () => {
@@ -242,6 +243,10 @@ const App = () => {
         <Route
           path="/electricitycontrol"
           element={user ? <Electricity /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/dataControl/:Id"
+          element={user ? <Datacontrol /> : <Navigate to="/login" />}
         />
 
         {/* Reseller Page */}
