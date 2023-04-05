@@ -124,6 +124,9 @@ import {
   updateMtnFailure,
   updateMtnStart,
   updateMtnSucess,
+  updateTvFailure,
+  updateTvStart,
+  updateTvSucess,
 } from "./dataListSlice";
 
 export const login = async (dispatch, user) => {
@@ -731,5 +734,32 @@ export const modifyMobileData = async (
     }
   } catch (error) {
     dispatch(updateMobileFailure()); // set error flag to true
+  }
+};
+
+export const modifyTvData = async (
+  dispatch,
+  id,
+  name,
+  price,
+  discount
+) => {
+  dispatch(updateTvStart()); // set isProcessing flag to true
+  try {
+    const res = await userRequest.post(
+      `/appTvConfigUpdate`,
+      id,
+      name,
+      price,
+      discount
+    );
+
+    if (res.data.success === 1) {
+      dispatch(updateTvSucess(res.data));
+    } else {
+      dispatch(updateTvFailure());
+    }
+  } catch (error) {
+    dispatch(updateTvFailure()); // set error flag to true
   }
 };

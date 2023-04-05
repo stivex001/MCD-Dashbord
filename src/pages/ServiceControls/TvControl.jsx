@@ -17,7 +17,7 @@ import {
   Wrapper,
 } from "../Settings/edit.styles";
 import { MenuItem, TextField } from "@mui/material";
-import { modifyGloData } from "../../Redux/apiCalls";
+import { modifyTvData } from "../../Redux/apiCalls";
 import Server from "./server";
 
 const TvControl = () => {
@@ -30,8 +30,8 @@ const TvControl = () => {
 
   const [inputNameData, setInputNameData] = useState(tvList?.name);
   const [inputPrice, setInputPrice] = useState(tvList?.price);
-  const [inputAmount, setInputAmount] = useState(tvList?.amount);
-  const [inputNote, setInputNote] = useState(tvList?.note);
+  const [inputDiscount, setInputDiscount] = useState(tvList?.discount);
+  const [inputType, setInputType] = useState(tvList?.type);
   const [inputServer, setInputServer] = useState(tvList?.server);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,12 +44,12 @@ const TvControl = () => {
     setInputPrice(event.target.value);
   };
 
-  const handleInputAmountChange = (event) => {
-    setInputAmount(event.target.value);
+  const handleInputTypeChange = (event) => {
+    setInputType(event.target.value);
   };
 
-  const handleInputNoteChange = (event) => {
-    setInputNote(event.target.value);
+  const handleInputDiscountChange = (event) => {
+    setInputDiscount(event.target.value);
   };
 
   const handleInputServerChange = (event) => {
@@ -59,19 +59,15 @@ const TvControl = () => {
   const handleUpdateClick = (e) => {
     e.preventDefault();
 
-    modifyGloData(dispatch, {
+    modifyTvData(dispatch, {
       id: tvList.id,
       name: inputNameData,
-      provider_price: inputPrice,
-      amount: inputAmount,
-      status: 1,
-      note: inputNote,
-      server: inputServer,
-      discount: "0.75",
+      price: inputPrice,
+      discount: inputDiscount,
     });
     if (!error) {
       toast.success(`${inputNameData} has been updated successfully`);
-      setTimeout(() => navigate("/datalist/GLO"), 5000);
+      setTimeout(() => navigate("/tvcontrol"), 5000);
     } else {
       toast.error("Kindly choose correct plan. Kindly check and try again");
     }
@@ -82,23 +78,34 @@ const TvControl = () => {
       <Navbar />
       <Wrapper>
         <Desc>
-          <H3>Modify Data Plan</H3>
+          <H3>Modify TV Plan</H3>
           <DescP>
-            Data / <DescSpan>Modify Data Plan</DescSpan>
+            TV / <DescSpan>Modify TV Plan</DescSpan>
           </DescP>
         </Desc>
         <FormWrapper onSubmit={handleUpdateClick}>
           <Form>
             <InputContainer>
-              <InputTitle>Product Name</InputTitle>
+              <InputTitle>Type</InputTitle>
+              <Input
+                type="text"
+                onChange={handleInputTypeChange}
+                value={inputType}
+                readOnly
+                style={{backgroundColor: '#e9ecef'}}
+              />
+            </InputContainer>
+            <InputContainer>
+              <InputTitle>Name</InputTitle>
               <Input
                 type="text"
                 onChange={handleInputNameChange}
                 value={inputNameData}
+                name="name"
               />
             </InputContainer>
             <InputContainer>
-              <InputTitle>Provider Price</InputTitle>
+              <InputTitle>Price</InputTitle>
               <Input
                 type="number"
                 onChange={handleInputPriceChange}
@@ -107,12 +114,11 @@ const TvControl = () => {
               />
             </InputContainer>
             <InputContainer>
-              <InputTitle>Your Price</InputTitle>
+              <InputTitle>Discount</InputTitle>
               <Input
-                type="number"
-                onChange={handleInputAmountChange}
-                value={inputAmount}
-                name="name"
+                type="text"
+                onChange={handleInputDiscountChange}
+                value={inputDiscount}
               />
             </InputContainer>
             <InputContainer>
@@ -145,15 +151,6 @@ const TvControl = () => {
                   </MenuItem>
                 ))}
               </TextField>
-            </InputContainer>
-            <InputContainer>
-              <InputTitle>Note</InputTitle>
-              <Input
-                type="text"
-                onChange={handleInputNoteChange}
-                value={inputNote}
-                placeholder="Enter Note (Optional)"
-              />
             </InputContainer>
           </Form>
           <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>

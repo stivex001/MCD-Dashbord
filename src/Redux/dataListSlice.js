@@ -80,7 +80,7 @@ const dataListSlice = createSlice({
     updateAirtelSucess: (state, action) => {
       state.isFetching = false;
       state.airtelList = action.payload;
-      state.message = true
+      state.message = true;
     },
     updateAirtelFailure: (state) => {
       state.isFetching = false;
@@ -93,7 +93,7 @@ const dataListSlice = createSlice({
     updateMtnSucess: (state, action) => {
       state.isFetching = false;
       state.mtnList = action.payload;
-      state.message = true
+      state.message = true;
     },
     updateMtnFailure: (state) => {
       state.isFetching = false;
@@ -106,7 +106,7 @@ const dataListSlice = createSlice({
     updateGloSucess: (state, action) => {
       state.isFetching = false;
       state.gloList = action.payload;
-      state.message = true
+      state.message = true;
     },
     updateGloFailure: (state) => {
       state.isFetching = false;
@@ -119,9 +119,22 @@ const dataListSlice = createSlice({
     updatMobilelSucess: (state, action) => {
       state.isFetching = false;
       state.mobileList = action.payload;
-      state.message = true
+      state.message = true;
     },
     updateMobileFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    updateTvStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updateTvSucess: (state, action) => {
+      state.isFetching = false;
+      state.tvList = action.payload;
+      state.message = true;
+    },
+    updateTvFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
@@ -155,6 +168,9 @@ export const {
   updateMobileFailure,
   getTvStart,
   getTvSucess,
-  getTvFailure
+  getTvFailure,
+  updateTvStart,
+  updateTvSucess,
+  updateTvFailure,
 } = dataListSlice.actions;
 export default dataListSlice.reducer;
