@@ -60,6 +60,19 @@ const dataListSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    updateAirtelStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updateAirtelSucess: (state, action) => {
+      state.isFetching = false;
+      state.airtelList = action.payload;
+      state.message = true
+    },
+    updateAirtelFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -76,5 +89,8 @@ export const {
   getMobileStart,
   getMobileSucess,
   getMobileFailure,
+  updateAirtelStart,
+  updateAirtelSucess,
+  updateAirtelFailure
 } = dataListSlice.actions;
 export default dataListSlice.reducer;

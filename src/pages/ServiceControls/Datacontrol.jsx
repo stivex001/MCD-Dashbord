@@ -6,7 +6,6 @@ import Footer from "../../components/footer/Footer";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { modifySettings } from "../../Redux/apiCalls";
 import {
   Btn,
   Container,
@@ -18,21 +17,22 @@ import {
   Wrapper,
 } from "../Settings/edit.styles";
 import { MenuItem, TextField } from "@mui/material";
+import { modifyAirtelData } from "../../Redux/apiCalls";
+import Server from "./server";
 
 const Datacontrol = () => {
   const { Id } = useParams();
-  const id = Number(Id)
+  const id = Number(Id);
   const airtelList = useSelector((state) =>
-  state.datalist.airtelList.data?.find((list) => list.id === id)
+    state.datalist.airtelList.data?.find((list) => list.id === id)
   );
-  // const airtelList = useSelector((state) => state.datalist.airtelList);
+  const { isFetching } = useSelector((state) => state.datalist);
 
-  // console.log(typeof(id));
-
-  const [inputNameData, setInputNameData] = useState(airtelList.data?.name);
-  const [inputPrice, setInputPrice] = useState(airtelList.data?.price);
-  const [inputAmount, setInputAmount] = useState(airtelList.data?.amount);
-  const [inputNote, setInputNote] = useState(airtelList.data?.note);
+  const [inputNameData, setInputNameData] = useState(airtelList?.name);
+  const [inputPrice, setInputPrice] = useState(airtelList?.price);
+  const [inputAmount, setInputAmount] = useState(airtelList?.amount);
+  const [inputNote, setInputNote] = useState(airtelList?.note);
+  const [inputServer, setInputServer] = useState(airtelList?.server);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -52,12 +52,25 @@ const Datacontrol = () => {
     setInputNote(event.target.value);
   };
 
+  const handleInputServerChange = (event) => {
+    setInputServer(event.target.value);
+  };
+
   const handleUpdateClick = (e) => {
     e.preventDefault();
 
-    // modifySettings(dispatch, { id: settings.id, value: inputValueData });
-    toast.success("Changes made successfully");
-    setTimeout(() => navigate("/allsettings"), 1000);
+    modifyAirtelData(dispatch, {
+      id: airtelList.id,
+      name: inputNameData,
+      provider_price: inputPrice,
+      amount: inputAmount,
+      status: 1,
+      note: inputNote,
+      server: inputServer,
+      discount: "0.75"
+    });
+    toast.success(`${inputNameData} has been updated successfully`);
+    setTimeout(() => navigate("/datalist/AIRTEL"), 5000);
   };
 
   return (
@@ -119,31 +132,14 @@ const Datacontrol = () => {
                 label="1"
                 variant="outlined"
                 style={{ width: "100%" }}
+                onChange={handleInputServerChange}
+                value={inputServer}
               >
-                <MenuItem key="1" value="1">
-                  1
-                </MenuItem>
-                <MenuItem key="2" value="2">
-                  2
-                </MenuItem>
-                <MenuItem key="3" value="3">
-                  3
-                </MenuItem>
-                <MenuItem key="4" value="4">
-                  4
-                </MenuItem>
-                <MenuItem key="5" value="5">
-                  5
-                </MenuItem>
-                <MenuItem key="6" value="6">
-                  6
-                </MenuItem>
-                <MenuItem key="7" value="7">
-                  7
-                </MenuItem>
-                <MenuItem key="8" value="8">
-                  8
-                </MenuItem>
+                {Server.map((server) => (
+                  <MenuItem key={server.id} value={server.value}>
+                    {server.value}
+                  </MenuItem>
+                ))}
               </TextField>
             </InputContainer>
             <InputContainer>
@@ -156,7 +152,7 @@ const Datacontrol = () => {
               />
             </InputContainer>
           </Form>
-          <Btn>Update</Btn>
+          <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
           <ToastContainer />
         </FormWrapper>
       </Wrapper>

@@ -10,13 +10,13 @@ export const Wrapper = styled.div`
   height: 73vh;
   background-color: #f5f5f5;
 `;
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 10px;
 `;
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.form`
   background-color: #fff;
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);

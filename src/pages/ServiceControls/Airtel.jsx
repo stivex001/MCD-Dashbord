@@ -33,7 +33,7 @@ import {
 import Server from "./server";
 
 const Airtel = () => {
-  const { airtelList, isFetching } = useSelector((state) => state.datalist);
+  const { airtelList, isFetching, } = useSelector((state) => state.datalist);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -89,6 +89,7 @@ const Airtel = () => {
               label="Select Type"
               variant="outlined"
               onChange={typeInputChange}
+              value={enteredType}
             >
               <MenuItem key="CG" value="CG">
                 CG
@@ -106,6 +107,7 @@ const Airtel = () => {
               label="Select Server"
               variant="outlined"
               onChange={serverInputChange}
+              value={enteredServer}
             >
               {Server.map((server) => (
                 <MenuItem key={server.id} value={server.value}>

@@ -30,7 +30,6 @@ const persistConfig = {
     "settings",
     "server",
     "airtimeConverter",
-    "datalist",
   ],
 };
 
