@@ -9,6 +9,7 @@ const dataListSlice = createSlice({
     mtnList: [],
     gloList: [],
     mobileList: [],
+    tvList: [],
     message: null,
   },
   reducers: {
@@ -57,6 +58,18 @@ const dataListSlice = createSlice({
       state.mobileList = action.payload;
     },
     getMobileFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    getTvStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getTvSucess: (state, action) => {
+      state.isFetching = false;
+      state.tvList = action.payload;
+    },
+    getTvFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
@@ -139,6 +152,9 @@ export const {
   updateGloFailure,
   updateMobileStart,
   updateMobileSucess,
-  updateMobileFailure
+  updateMobileFailure,
+  getTvStart,
+  getTvSucess,
+  getTvFailure
 } = dataListSlice.actions;
 export default dataListSlice.reducer;

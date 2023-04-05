@@ -109,6 +109,9 @@ import {
   getMtnFailure,
   getMtnStart,
   getMtnSucess,
+  getTvFailure,
+  getTvStart,
+  getTvSucess,
   updateAirtelFailure,
   updateAirtelStart,
   updateAirtelSucess,
@@ -578,6 +581,16 @@ export const getMobileList = async (dispatch, type, server) => {
     dispatch(getMobileSucess(res.data));
   } catch (error) {
     dispatch(getMobileFailure());
+  }
+};
+
+export const getTvList = async (dispatch, page) => {
+  dispatch(getTvStart());
+  try {
+    const res = await userRequest.get(`/appTvConfigList?page=${page}`);
+    dispatch(getTvSucess(res.data.data));
+  } catch (error) {
+    dispatch(getTvFailure());
   }
 };
 
