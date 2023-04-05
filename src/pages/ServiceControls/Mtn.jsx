@@ -38,17 +38,11 @@ const Mtn = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const {
-    value: enteredType,
-    valueChangeHandler: typeInputChange,
-    reset: resetTypeInput,
-  } = useInput();
+  const { value: enteredType, valueChangeHandler: typeInputChange } =
+    useInput();
 
-  const {
-    value: enteredServer,
-    valueChangeHandler: serverInputChange,
-    reset: resetServerInput,
-  } = useInput();
+  const { value: enteredServer, valueChangeHandler: serverInputChange } =
+    useInput();
 
   const allInputValues = enteredType || enteredServer;
 
@@ -58,8 +52,6 @@ const Mtn = () => {
       return getMtnList(dispatch, enteredType, enteredServer);
     }
     getMtnList(dispatch, enteredType, enteredServer);
-    resetTypeInput();
-    resetServerInput();
   };
 
   const handleChangePage = (event, newPage) => {
@@ -97,6 +89,7 @@ const Mtn = () => {
               label="Select Type"
               variant="outlined"
               onChange={typeInputChange}
+              value={enteredType}
             >
               <MenuItem key="CG" value="CG">
                 CG
@@ -114,6 +107,7 @@ const Mtn = () => {
               label="Select Server"
               variant="outlined"
               onChange={serverInputChange}
+              value={enteredServer}
             >
               {Server.map((server) => (
                 <MenuItem key={server.id} value={server.value}>
@@ -176,7 +170,7 @@ const Mtn = () => {
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
               component="div"
-              count={mtnList?.length}
+              count={mtnList.data?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}
