@@ -73,6 +73,45 @@ const dataListSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    updateMtnStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updateMtnSucess: (state, action) => {
+      state.isFetching = false;
+      state.mtnList = action.payload;
+      state.message = true
+    },
+    updateMtnFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    updateGloStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updateGloSucess: (state, action) => {
+      state.isFetching = false;
+      state.gloList = action.payload;
+      state.message = true
+    },
+    updateGloFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    updateMobileStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updatMobilelSucess: (state, action) => {
+      state.isFetching = false;
+      state.mobileList = action.payload;
+      state.message = true
+    },
+    updateMobileFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -91,6 +130,15 @@ export const {
   getMobileFailure,
   updateAirtelStart,
   updateAirtelSucess,
-  updateAirtelFailure
+  updateAirtelFailure,
+  updateMtnStart,
+  updateMtnSucess,
+  updateMtnFailure,
+  updateGloStart,
+  updateGloSucess,
+  updateGloFailure,
+  updateMobileStart,
+  updateMobileSucess,
+  updateMobileFailure
 } = dataListSlice.actions;
 export default dataListSlice.reducer;

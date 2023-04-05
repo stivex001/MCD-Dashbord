@@ -112,6 +112,15 @@ import {
   updateAirtelFailure,
   updateAirtelStart,
   updateAirtelSucess,
+  updateGloFailure,
+  updateGloStart,
+  updateGloSucess,
+  updateMobileFailure,
+  updateMobileStart,
+  updateMobileSucess,
+  updateMtnFailure,
+  updateMtnStart,
+  updateMtnSucess,
 } from "./dataListSlice";
 
 export const login = async (dispatch, user) => {
@@ -604,5 +613,110 @@ export const modifyAirtelData = async (
     }
   } catch (error) {
     dispatch(updateAirtelFailure()); // set error flag to true
+  }
+};
+
+export const modifyMtnData = async (
+  dispatch,
+  id,
+  name,
+  provider_price,
+  amount,
+  status,
+  note,
+  server,
+  discount
+) => {
+  dispatch(updateMtnStart()); // set isProcessing flag to true
+  try {
+    const res = await userRequest.post(
+      `/appDataConfigUpdate`,
+      id,
+      name,
+      provider_price,
+      amount,
+      status,
+      note,
+      server,
+      discount
+    );
+
+    if (res.data.success === 1) {
+      dispatch(updateMtnSucess(res.data));
+    } else {
+      dispatch(updateMtnFailure());
+    }
+  } catch (error) {
+    dispatch(updateMtnFailure()); // set error flag to true
+  }
+};
+
+export const modifyGloData = async (
+  dispatch,
+  id,
+  name,
+  provider_price,
+  amount,
+  status,
+  note,
+  server,
+  discount
+) => {
+  dispatch(updateGloStart()); // set isProcessing flag to true
+  try {
+    const res = await userRequest.post(
+      `/appDataConfigUpdate`,
+      id,
+      name,
+      provider_price,
+      amount,
+      status,
+      note,
+      server,
+      discount
+    );
+
+    if (res.data.success === 1) {
+      dispatch(updateGloSucess(res.data));
+    } else {
+      dispatch(updateGloFailure());
+    }
+  } catch (error) {
+    dispatch(updateGloFailure()); // set error flag to true
+  }
+};
+
+export const modifyMobileData = async (
+  dispatch,
+  id,
+  name,
+  provider_price,
+  amount,
+  status,
+  note,
+  server,
+  discount
+) => {
+  dispatch(updateMobileStart()); // set isProcessing flag to true
+  try {
+    const res = await userRequest.post(
+      `/appDataConfigUpdate`,
+      id,
+      name,
+      provider_price,
+      amount,
+      status,
+      note,
+      server,
+      discount
+    );
+
+    if (res.data.success === 1) {
+      dispatch(updateMobileSucess(res.data));
+    } else {
+      dispatch(updateMobileFailure());
+    }
+  } catch (error) {
+    dispatch(updateMobileFailure()); // set error flag to true
   }
 };

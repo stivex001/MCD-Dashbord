@@ -49,6 +49,7 @@ import SearchUserProfile from "./pages/Users/SearchUserProfile";
 import AgentProfile from "./pages/Users/AgentProfile";
 import ResellerProfile from "./pages/Users/ResellerProfile";
 import Datacontrol from "./pages/ServiceControls/Datacontrol";
+import MtnDatacontrol from "./pages/ServiceControls/MtnDataControl";
 
 
 const App = () => {
@@ -247,6 +248,10 @@ const App = () => {
         <Route
           path="/dataControl/:Id"
           element={user ? <Datacontrol /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/mtndataControl/:Id"
+          element={user ? <MtnDatacontrol /> : <Navigate to="/login" />}
         />
 
         {/* Reseller Page */}

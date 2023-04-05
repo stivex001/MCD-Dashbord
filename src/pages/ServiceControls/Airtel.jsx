@@ -4,8 +4,10 @@ import {
   MenuItem,
   Paper,
   Table,
+  TableBody,
   TableCell,
   TableContainer,
+  TableHead,
   TablePagination,
   TableRow,
   TextField,
@@ -13,13 +15,13 @@ import {
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
-import Tablebody from "../../components/DataPlansTable/Tablebody";
-import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
 import useInput from "../../Hooks/use-form";
 import { getAirtelList } from "../../Redux/apiCalls";
+import { Span } from "../transaction/general.styles";
 import { Loading } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
+import { BtnConatiner } from "../Users/agent.styles";
 import {
   Btn,
   Container,
@@ -33,7 +35,7 @@ import {
 import Server from "./server";
 
 const Airtel = () => {
-  const { airtelList, isFetching, } = useSelector((state) => state.datalist);
+  const { airtelList, isFetching } = useSelector((state) => state.datalist);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -128,17 +130,55 @@ const Airtel = () => {
             <Details>
               <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                  <Tablehead
-                    id="id"
-                    network="Network"
-                    product="Product Name"
-                    price="Provider Price"
-                    yourPrice="Your Price"
-                    server="Server"
-                    status="Status"
-                    date="Date Modified"
-                    action="Action"
-                  />
+                  <TableHead>
+                    <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "700" }}
+                      >
+                        Id
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "700" }}
+                      >
+                        Network
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "700" }}
+                      >
+                        Product Name
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "700" }}
+                      >
+                        Provider Price
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "700" }}
+                      >
+                        Your Price
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "700" }}
+                      >
+                        Server
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "700" }}
+                      >
+                        Status{" "}
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "700" }}
+                      >
+                        Date Modified
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "700" }}
+                      >
+                        Action
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
                   {airtelList.data && airtelList.data.length === 0 ? (
                     <TableRow style={{ backgroundColor: "#f3f2f7" }}>
                       <TableCell
@@ -151,17 +191,54 @@ const Airtel = () => {
                   ) : (
                     airtelList.data &&
                     airtelList.data.map((row) => (
-                      <Tablebody
-                        key={row.id}
-                        id={row.id}
-                        network={row.network}
-                        name={row.name}
-                        price={row.price}
-                        yourprice={row.amount}
-                        server={row.server}
-                        status={row.status}
-                        date={row.updated_at}
-                      />
+                      <TableBody>
+                        <TableRow
+                          key={row.id}
+                          style={{
+                            backgroundColor:
+                              row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+                          }}
+                        >
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.id}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.network}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.name}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            &#8358;{row.price}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            &#8358;{row.amount}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.server}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            <Span
+                              style={{
+                                backgroundColor: `${
+                                  row.status === 1 ? "#5dd099" : "#f8c955"
+                                }`,
+                              }}
+                            >
+                              {row.status === 1 ? "Active" : "Inactive"}
+                            </Span>
+                          </TableCell>
+
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.updated_at}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            <BtnConatiner to={`/dataControl/${row.id}`}>
+                              Modify
+                            </BtnConatiner>
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
                     ))
                   )}
                 </Table>
