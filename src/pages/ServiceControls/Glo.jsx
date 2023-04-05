@@ -40,17 +40,11 @@ const Glo = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const {
-    value: enteredType,
-    valueChangeHandler: typeInputChange,
-    reset: resetTypeInput,
-  } = useInput();
+  const { value: enteredType, valueChangeHandler: typeInputChange } =
+    useInput();
 
-  const {
-    value: enteredServer,
-    valueChangeHandler: serverInputChange,
-    reset: resetServerInput,
-  } = useInput();
+  const { value: enteredServer, valueChangeHandler: serverInputChange } =
+    useInput();
 
   const allInputValues = enteredType || enteredServer;
 
@@ -60,8 +54,6 @@ const Glo = () => {
       return getGloList(dispatch, enteredType, enteredServer);
     }
     getGloList(dispatch, enteredType, enteredServer);
-    resetTypeInput();
-    resetServerInput();
   };
 
   const handleChangePage = (event, newPage) => {
@@ -99,6 +91,7 @@ const Glo = () => {
               label="Select Type"
               variant="outlined"
               onChange={typeInputChange}
+              value={enteredType}
             >
               <MenuItem key="CG" value="CG">
                 CG
@@ -116,6 +109,7 @@ const Glo = () => {
               label="Select Server"
               variant="outlined"
               onChange={serverInputChange}
+              value={enteredServer}
             >
               {Server.map((server) => (
                 <MenuItem key={server.id} value={server.value}>
@@ -131,149 +125,137 @@ const Glo = () => {
         </FormWrapper>
 
         {gloList && (
-          <TableWrapper>
-            <P>Data Plans</P>
-            <Details>
-              <TableWrapper>
-                <P>Data Plans</P>
-                <Details>
-                  <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                      <TableHead>
-                        <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-                          <TableCell
-                            style={{ color: "#8281cc", fontWeight: "700" }}
+          <Details>
+            <TableWrapper>
+              <P>Data Plans</P>
+              <Details>
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                      <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                        <TableCell
+                          style={{ color: "#8281cc", fontWeight: "700" }}
+                        >
+                          Id
+                        </TableCell>
+                        <TableCell
+                          style={{ color: "#8281cc", fontWeight: "700" }}
+                        >
+                          Network
+                        </TableCell>
+                        <TableCell
+                          style={{ color: "#8281cc", fontWeight: "700" }}
+                        >
+                          Product Name
+                        </TableCell>
+                        <TableCell
+                          style={{ color: "#8281cc", fontWeight: "700" }}
+                        >
+                          Provider Price
+                        </TableCell>
+                        <TableCell
+                          style={{ color: "#8281cc", fontWeight: "700" }}
+                        >
+                          Your Price
+                        </TableCell>
+                        <TableCell
+                          style={{ color: "#8281cc", fontWeight: "700" }}
+                        >
+                          Server
+                        </TableCell>
+                        <TableCell
+                          style={{ color: "#8281cc", fontWeight: "700" }}
+                        >
+                          Status{" "}
+                        </TableCell>
+                        <TableCell
+                          style={{ color: "#8281cc", fontWeight: "700" }}
+                        >
+                          Date Modified
+                        </TableCell>
+                        <TableCell
+                          style={{ color: "#8281cc", fontWeight: "700" }}
+                        >
+                          Action
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    {gloList.data && gloList.data.length === 0 ? (
+                      <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                        <TableCell
+                          colSpan={10}
+                          style={{ textAlign: "center", color: "#8887a9" }}
+                        >
+                          No data in the table
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      gloList.data &&
+                      gloList.data.map((row) => (
+                        <TableBody>
+                          <TableRow
+                            key={row.id}
+                            style={{
+                              backgroundColor:
+                                row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+                            }}
                           >
-                            Id
-                          </TableCell>
-                          <TableCell
-                            style={{ color: "#8281cc", fontWeight: "700" }}
-                          >
-                            Network
-                          </TableCell>
-                          <TableCell
-                            style={{ color: "#8281cc", fontWeight: "700" }}
-                          >
-                            Product Name
-                          </TableCell>
-                          <TableCell
-                            style={{ color: "#8281cc", fontWeight: "700" }}
-                          >
-                            Provider Price
-                          </TableCell>
-                          <TableCell
-                            style={{ color: "#8281cc", fontWeight: "700" }}
-                          >
-                            Your Price
-                          </TableCell>
-                          <TableCell
-                            style={{ color: "#8281cc", fontWeight: "700" }}
-                          >
-                            Server
-                          </TableCell>
-                          <TableCell
-                            style={{ color: "#8281cc", fontWeight: "700" }}
-                          >
-                            Status{" "}
-                          </TableCell>
-                          <TableCell
-                            style={{ color: "#8281cc", fontWeight: "700" }}
-                          >
-                            Date Modified
-                          </TableCell>
-                          <TableCell
-                            style={{ color: "#8281cc", fontWeight: "700" }}
-                          >
-                            Action
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      {gloList.data && gloList.data.length === 0 ? (
-                        <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-                          <TableCell
-                            colSpan={10}
-                            style={{ textAlign: "center", color: "#8887a9" }}
-                          >
-                            No data in the table
-                          </TableCell>
-                        </TableRow>
-                      ) : (
-                        gloList.data &&
-                        gloList.data.map((row) => (
-                          <TableBody>
-                            <TableRow
-                              key={row.id}
-                              style={{
-                                backgroundColor:
-                                  row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
-                              }}
-                            >
-                              <TableCell style={{ color: "#8887a9" }}>
-                                {row.id}
-                              </TableCell>
-                              <TableCell style={{ color: "#8887a9" }}>
-                                {row.network}
-                              </TableCell>
-                              <TableCell style={{ color: "#8887a9" }}>
-                                {row.name}
-                              </TableCell>
-                              <TableCell style={{ color: "#8887a9" }}>
-                                &#8358;{row.price}
-                              </TableCell>
-                              <TableCell style={{ color: "#8887a9" }}>
-                                &#8358;{row.amount}
-                              </TableCell>
-                              <TableCell style={{ color: "#8887a9" }}>
-                                {row.server}
-                              </TableCell>
-                              <TableCell style={{ color: "#8887a9" }}>
-                                <Span
-                                  style={{
-                                    backgroundColor: `${
-                                      row.status === 1 ? "#5dd099" : "#f8c955"
-                                    }`,
-                                  }}
-                                >
-                                  {row.status === 1 ? "Active" : "Inactive"}
-                                </Span>
-                              </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              {row.id}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              {row.network}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              {row.name}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              &#8358;{row.price}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              &#8358;{row.amount}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              {row.server}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              <Span
+                                style={{
+                                  backgroundColor: `${
+                                    row.status === 1 ? "#5dd099" : "#f8c955"
+                                  }`,
+                                }}
+                              >
+                                {row.status === 1 ? "Active" : "Inactive"}
+                              </Span>
+                            </TableCell>
 
-                              <TableCell style={{ color: "#8887a9" }}>
-                                {row.updated_at}
-                              </TableCell>
-                              <TableCell style={{ color: "#8887a9" }}>
-                                <BtnConatiner to={`/glodataControl/${row.id}`}>
-                                  Modify
-                                </BtnConatiner>
-                              </TableCell>
-                            </TableRow>
-                          </TableBody>
-                        ))
-                      )}
-                    </Table>
-                  </TableContainer>
-                </Details>
-                <TablePagination
-                  rowsPerPageOptions={[10, 25, 100]}
-                  component="div"
-                  count={gloList.data?.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-              </TableWrapper>
-            </Details>
-            <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={gloList?.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </TableWrapper>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              {row.updated_at}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              <BtnConatiner to={`/glodataControl/${row.id}`}>
+                                Modify
+                              </BtnConatiner>
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      ))
+                    )}
+                  </Table>
+                </TableContainer>
+              </Details>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={gloList.data?.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </TableWrapper>
+          </Details>
         )}
       </Wrapper>
 

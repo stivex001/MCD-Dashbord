@@ -71,7 +71,7 @@ const MobileDatacontrol = () => {
     });
     if (!error) {
       toast.success(`${inputNameData} has been updated successfully`);
-      setTimeout(() => navigate("/datalist/AIRTEL"), 5000);
+      setTimeout(() => navigate("/datalist/9MOBILE"), 5000);
     } else {
       toast.error("Kindly choose correct plan. Kindly check and try again");
     }
