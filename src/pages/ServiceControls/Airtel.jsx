@@ -170,7 +170,7 @@ const Airtel = () => {
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
               component="div"
-              count={airtelList?.length}
+              count={airtelList.data?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}

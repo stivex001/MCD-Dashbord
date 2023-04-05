@@ -26,7 +26,7 @@ const Datacontrol = () => {
   const airtelList = useSelector((state) =>
     state.datalist.airtelList.data?.find((list) => list.id === id)
   );
-  const { isFetching } = useSelector((state) => state.datalist);
+  const { isFetching, error } = useSelector((state) => state.datalist);
 
   const [inputNameData, setInputNameData] = useState(airtelList?.name);
   const [inputPrice, setInputPrice] = useState(airtelList?.price);
@@ -67,10 +67,14 @@ const Datacontrol = () => {
       status: 1,
       note: inputNote,
       server: inputServer,
-      discount: "0.75"
+      discount: "0.75",
     });
-    toast.success(`${inputNameData} has been updated successfully`);
-    setTimeout(() => navigate("/datalist/AIRTEL"), 5000);
+    if (!error) {
+      toast.success(`${inputNameData} has been updated successfully`);
+      setTimeout(() => navigate("/datalist/AIRTEL"), 5000);
+    } else {
+      toast.error("Kindly choose correct plan. Kindly check and try again");
+    }
   };
 
   return (

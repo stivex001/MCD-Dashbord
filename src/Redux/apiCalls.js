@@ -597,7 +597,11 @@ export const modifyAirtelData = async (
       discount
     );
     console.log(res.data);
-    dispatch(updateAirtelSucess(res.data));
+    if (res.data.success === 1) {
+      dispatch(updateAirtelSucess(res.data));
+    } else {
+      dispatch(updateAirtelFailure());
+    }
   } catch (error) {
     dispatch(updateAirtelFailure()); // set error flag to true
   }
