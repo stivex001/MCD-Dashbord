@@ -17,22 +17,22 @@ import {
   Wrapper,
 } from "../Settings/edit.styles";
 import { MenuItem, TextField } from "@mui/material";
-import { modifyMtnData } from "../../Redux/apiCalls";
+import { modifyGloData } from "../../Redux/apiCalls";
 import Server from "./server";
 
-const MtnDatacontrol = () => {
+const GloDatacontrol = () => {
   const { Id } = useParams();
   const id = Number(Id);
-  const mtnList = useSelector((state) =>
-    state.datalist.mtnList.data?.find((list) => list.id === id)
+  const gloList = useSelector((state) =>
+    state.datalist.gloList.data?.find((list) => list.id === id)
   );
   const { isFetching, error } = useSelector((state) => state.datalist);
 
-  const [inputNameData, setInputNameData] = useState(mtnList?.name);
-  const [inputPrice, setInputPrice] = useState(mtnList?.price);
-  const [inputAmount, setInputAmount] = useState(mtnList?.amount);
-  const [inputNote, setInputNote] = useState(mtnList?.note);
-  const [inputServer, setInputServer] = useState(mtnList?.server);
+  const [inputNameData, setInputNameData] = useState(gloList?.name);
+  const [inputPrice, setInputPrice] = useState(gloList?.price);
+  const [inputAmount, setInputAmount] = useState(gloList?.amount);
+  const [inputNote, setInputNote] = useState(gloList?.note);
+  const [inputServer, setInputServer] = useState(gloList?.server);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -59,8 +59,8 @@ const MtnDatacontrol = () => {
   const handleUpdateClick = (e) => {
     e.preventDefault();
 
-    modifyMtnData(dispatch, {
-      id: mtnList.id,
+    modifyGloData(dispatch, {
+      id: gloList.id,
       name: inputNameData,
       provider_price: inputPrice,
       amount: inputAmount,
@@ -165,4 +165,4 @@ const MtnDatacontrol = () => {
   );
 };
 
-export default MtnDatacontrol;
+export default GloDatacontrol;

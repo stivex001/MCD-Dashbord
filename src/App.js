@@ -50,7 +50,8 @@ import AgentProfile from "./pages/Users/AgentProfile";
 import ResellerProfile from "./pages/Users/ResellerProfile";
 import Datacontrol from "./pages/ServiceControls/Datacontrol";
 import MtnDatacontrol from "./pages/ServiceControls/MtnDataControl";
-
+import GloDatacontrol from "./pages/ServiceControls/GloDataControl";
+import MobileDatacontrol from "./pages/ServiceControls/MobileDataControl";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -252,6 +253,16 @@ const App = () => {
         <Route
           path="/mtndataControl/:Id"
           element={user ? <MtnDatacontrol /> : <Navigate to="/login" />}
+        />
+
+        <Route
+          path="/glodataControl/:Id"
+          element={user ? <GloDatacontrol /> : <Navigate to="/login" />}
+        />
+
+        <Route
+          path="/9mobiledataControl/:Id"
+          element={user ? <MobileDatacontrol /> : <Navigate to="/login" />}
         />
 
         {/* Reseller Page */}
