@@ -52,6 +52,7 @@ import Datacontrol from "./pages/ServiceControls/Datacontrol";
 import MtnDatacontrol from "./pages/ServiceControls/MtnDataControl";
 import GloDatacontrol from "./pages/ServiceControls/GloDataControl";
 import MobileDatacontrol from "./pages/ServiceControls/MobileDataControl";
+import TvControl from "./pages/ServiceControls/TvControl";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -263,6 +264,11 @@ const App = () => {
         <Route
           path="/9mobiledataControl/:Id"
           element={user ? <MobileDatacontrol /> : <Navigate to="/login" />}
+        />
+
+        <Route
+          path="/tvcontrol/:Id"
+          element={user ? <TvControl /> : <Navigate to="/login" />}
         />
 
         {/* Reseller Page */}

@@ -148,7 +148,7 @@ const Tv = () => {
                           {row.updated_at}
                         </TableCell>
                         <TableCell style={{ color: "#8887a9" }}>
-                          <BtnConatiner to={`/dataControl/${row.id}`}>
+                          <BtnConatiner to={`/tvcontrol/${row.id}`}>
                             Modify
                           </BtnConatiner>
                         </TableCell>
