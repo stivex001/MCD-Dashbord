@@ -109,6 +109,9 @@ import {
   getMtnFailure,
   getMtnStart,
   getMtnSucess,
+  updateAirtelFailure,
+  updateAirtelStart,
+  updateAirtelSucess,
 } from "./dataListSlice";
 
 export const login = async (dispatch, user) => {
@@ -566,5 +569,36 @@ export const getMobileList = async (dispatch, type, server) => {
     dispatch(getMobileSucess(res.data));
   } catch (error) {
     dispatch(getMobileFailure());
+  }
+};
+
+export const modifyAirtelData = async (
+  dispatch,
+  id,
+  name,
+  provider_price,
+  amount,
+  status,
+  note,
+  server,
+  discount
+) => {
+  dispatch(updateAirtelStart()); // set isProcessing flag to true
+  try {
+    const res = await userRequest.post(
+      `/appDataConfigUpdate`,
+      id,
+      name,
+      provider_price,
+      amount,
+      status,
+      note,
+      server,
+      discount
+    );
+    console.log(res.data);
+    dispatch(updateAirtelSucess(res.data));
+  } catch (error) {
+    dispatch(updateAirtelFailure()); // set error flag to true
   }
 };
