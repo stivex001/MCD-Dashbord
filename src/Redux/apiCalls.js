@@ -100,6 +100,9 @@ import {
   getAirtelFailure,
   getAirtelStart,
   getAirtelSucess,
+  getElectricityFailure,
+  getElectricityStart,
+  getElectricitySucess,
   getGloFailure,
   getGloStart,
   getGloSucess,
@@ -115,6 +118,9 @@ import {
   updateAirtelFailure,
   updateAirtelStart,
   updateAirtelSucess,
+  updateElectricityFailure,
+  updateElectricityStart,
+  updateElectricitySucess,
   updateGloFailure,
   updateGloStart,
   updateGloSucess,
@@ -597,6 +603,17 @@ export const getTvList = async (dispatch, page) => {
   }
 };
 
+export const getElectricityList = async (dispatch) => {
+  dispatch(getElectricityStart());
+  try {
+    const res = await userRequest.get(`/appElectricityConfigList`);
+   
+    dispatch(getElectricitySucess(res.data.data));
+  } catch (error) {
+    dispatch(getElectricityFailure());
+  }
+};
+
 export const modifyAirtelData = async (
   dispatch,
   id,
@@ -737,13 +754,7 @@ export const modifyMobileData = async (
   }
 };
 
-export const modifyTvData = async (
-  dispatch,
-  id,
-  name,
-  price,
-  discount
-) => {
+export const modifyTvData = async (dispatch, id, name, price, discount) => {
   dispatch(updateTvStart()); // set isProcessing flag to true
   try {
     const res = await userRequest.post(
@@ -761,5 +772,28 @@ export const modifyTvData = async (
     }
   } catch (error) {
     dispatch(updateTvFailure()); // set error flag to true
+  }
+};
+
+export const modifyElectrictyData = async (
+  dispatch,
+  id,
+  discount
+) => {
+  dispatch(updateElectricityStart()); // set isProcessing flag to true
+  try {
+    const res = await userRequest.post(
+      `/appElectricityConfigUpdate`,
+      id,
+      discount
+    );
+
+    if (res.data.success === 1) {
+      dispatch(updateElectricitySucess(res.data));
+    } else {
+      dispatch(updateElectricityFailure());
+    }
+  } catch (error) {
+    dispatch(updateElectricityFailure()); // set error flag to true
   }
 };

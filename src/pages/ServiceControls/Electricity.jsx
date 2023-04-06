@@ -1,34 +1,48 @@
-import { Paper, Table, TableContainer } from "@mui/material";
-import styled from "styled-components";
+import {
+  CircularProgress,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from "@mui/material";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
-import {electricityData} from "../../components/DataPlansTable/dataPlans";
-import Tablebody from "../../components/DataPlansTable/Tablebody";
-import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
+import { getElectricityList } from "../../Redux/apiCalls";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-
-const Container = styled.div`
-margin: 70px 0;
-`;
-const Wrapper = styled.div`
-  padding: 20px;
-`;
-const TableWrapper = styled.div`
-  background-color: #fff;
-  box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
-  padding: 20px 30px;
-`;
-const P = styled.p`
-  font-size: 13px;
-  color: #8c9ea9;
-`;
-const Details = styled.div`
-  margin: 30px 0;
-`;
+import { P } from "./airtel.styles";
+import {
+  Container,
+  Details,
+  Span,
+  TableWrapper,
+  Wrapper,
+} from "../transaction/general.styles";
+import { Loading } from "../transaction/pending.styles";
+import { BtnConatiner } from "../ResellerControl/airtimeControl.styles";
 
 const Electricity = () => {
+  const { electricityList, isFetching } = useSelector(
+    (state) => state.datalist
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getElectricityList(dispatch);
+  }, [dispatch]);
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
+
   return (
     <Container>
       <Navbar />
@@ -39,39 +53,89 @@ const Electricity = () => {
             Services / <DescSpan>Electricity Control</DescSpan>
           </DescP>
         </Desc>
-      </Wrapper>
-      <TableWrapper>
-        <P>Data Plans</P>
-        <Details>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <Tablehead
-                id="id"
-                network="Company"
-                yourPrice="Discount"
-                server="Server"
-                status="Status"
-                date="Date Modified"
-                action="Action"
-              />
-              {electricityData.map((row) => (
-                <Tablebody
-                  id={row.id}
-                  name={row.name}
-                  network={row.network}
-                  price={row.price}
-                  yourprice={row.discount}
-                  server={row.server}
-                  action={row.action}
-                  status={row.status}
-                  date={row.date}
-                />
-              ))}
-            </Table>
-          </TableContainer>
-        </Details>
-      </TableWrapper>
+        <TableWrapper>
+          <P>Network List</P>
+          <Details>
+            <TableContainer
+              component={Paper}
+              sx={{ border: "1px solid #e0e0e0" }}
+            >
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableBody>
+                  <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      id
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Company
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Discount
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Server
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Status
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Date Modified
+                    </TableCell>
+                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
+                      Action
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+                {Array.isArray(electricityList) &&
+                  electricityList.map((row) => (
+                    <TableBody key={row.id}>
+                      <TableRow
+                        style={{
+                          backgroundColor:
+                            row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+                        }}
+                      >
+                        <TableCell style={{ color: "#8887a9" }}>
+                          {row.id}
+                        </TableCell>
+                        <TableCell style={{ color: "#8887a9" }}>
+                          {row.name}
+                        </TableCell>
+                        <TableCell style={{ color: "#8887a9" }}>
+                          {row.discount}
+                        </TableCell>
 
+                        <TableCell style={{ color: "#8887a9" }}>
+                          {row.server}
+                        </TableCell>
+                        <TableCell style={{ color: "#8887a9" }}>
+                          <Span
+                            style={{
+                              backgroundColor: `${
+                                row.status === 1 ? "#5dd099" : "#f8c955"
+                              }`,
+                            }}
+                          >
+                            {row.status === 1 ? "Active" : "Inactive"}
+                          </Span>
+                        </TableCell>
+
+                        <TableCell style={{ color: "#8887a9" }}>
+                          {row.updated_at}
+                        </TableCell>
+                        <TableCell style={{ color: "#8887a9" }}>
+                          <BtnConatiner to={`/electricitycontrol/${row.id}`}>
+                            Modify
+                          </BtnConatiner>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  ))}
+              </Table>
+            </TableContainer>
+          </Details>
+        </TableWrapper>
+      </Wrapper>
       <Footer />
     </Container>
   );

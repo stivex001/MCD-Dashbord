@@ -10,6 +10,7 @@ const dataListSlice = createSlice({
     gloList: [],
     mobileList: [],
     tvList: [],
+    electricityList: [],
     message: null,
   },
   reducers: {
@@ -70,6 +71,18 @@ const dataListSlice = createSlice({
       state.tvList = action.payload;
     },
     getTvFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    getElectricityStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getElectricitySucess: (state, action) => {
+      state.isFetching = false;
+      state.electricityList = action.payload;
+    },
+    getElectricityFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
@@ -138,6 +151,18 @@ const dataListSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    updateElectricityStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updateElectricitySucess: (state, action) => {
+      state.isFetching = false;
+      state.electricityList = action.payload;
+    },
+    updateElectricityFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -172,5 +197,11 @@ export const {
   updateTvStart,
   updateTvSucess,
   updateTvFailure,
+  getElectricityStart,
+  getElectricitySucess,
+  getElectricityFailure,
+  updateElectricityStart,
+  updateElectricitySucess,
+  updateElectricityFailure,
 } = dataListSlice.actions;
 export default dataListSlice.reducer;
