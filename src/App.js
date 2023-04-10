@@ -54,6 +54,7 @@ import GloDatacontrol from "./pages/ServiceControls/GloDataControl";
 import MobileDatacontrol from "./pages/ServiceControls/MobileDataControl";
 import TvControl from "./pages/ServiceControls/TvControl";
 import ElectricityControl from "./pages/ServiceControls/ElectricityControl";
+import Daily from "./pages/Reports/Daily";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -289,6 +290,13 @@ const App = () => {
         <Route
           path="/reseller/airtimecontrol/:id"
           element={user ? <ModifyAirtime /> : <Navigate to="/login" />}
+        />
+
+        {/* REPORTS Page */}
+
+        <Route
+          path="/report_daily"
+          element={user ? <Daily /> : <Navigate to="/login" />}
         />
       </Routes>
     </div>
