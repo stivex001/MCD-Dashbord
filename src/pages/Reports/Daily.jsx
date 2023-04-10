@@ -5,10 +5,24 @@ import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import { Container, Wrapper } from "../transaction/general.styles";
 import styled from "styled-components";
 import { EventAvailable, Search } from "@mui/icons-material";
+import { mobile } from "../../responsive";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 
-const ReportWrapper = styled.div``;
+const ReportWrapper = styled.div`
+  display: flex;
+  gap: 30px;
+  ${mobile({ flexDirection: "column" })};
+`;
 const Left = styled.div`
-  flex: 1;
+  flex: 1.5;
   background-color: #fff;
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
@@ -62,6 +76,7 @@ const Input = styled.input`
 `;
 
 const Daily = () => {
+  const report = false;
   return (
     <Container>
       <Navbar />
@@ -88,7 +103,42 @@ const Daily = () => {
           </Left>
           <Right>
             <Title>Daily Report for 10 April, 2023</Title>
-            {/* <NotificationHistory /> */}
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                    <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                      Name
+                    </TableCell>
+                    <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                      Sum
+                    </TableCell>
+                    <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
+                      Count
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {report &&
+                    report.map((row) => (
+                      <TableRow
+                        key={row.id}
+                        style={{ backgroundColor: "#f3f2f7" }}
+                      >
+                        <TableCell style={{ color: "#8887a9" }}>
+                          {row.name}
+                        </TableCell>
+                        <TableCell style={{ color: "#8887a9" }}>
+                          {row.sum}
+                        </TableCell>
+                        <TableCell style={{ color: "#8887a9" }}>
+                          {row.count}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Right>
         </ReportWrapper>
       </Wrapper>
