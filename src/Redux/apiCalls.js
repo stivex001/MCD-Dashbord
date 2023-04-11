@@ -149,9 +149,6 @@ export const login = async (dispatch, user) => {
   }
 };
 
-// export const logout = async (dispatch) => {
-//   dispatch(logoutSuccess());
-// };
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("persist:root");
@@ -780,7 +777,7 @@ export const modifyElectrictyData = async (
   id,
   discount
 ) => {
-  dispatch(updateElectricityStart()); // set isProcessing flag to true
+  dispatch(updateElectricityStart()); 
   try {
     const res = await userRequest.post(
       `/appElectricityConfigUpdate`,

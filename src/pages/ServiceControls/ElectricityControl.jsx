@@ -23,8 +23,11 @@ import Server from "./server";
 const ElectricityControl = () => {
   const { Id } = useParams();
   const id = Number(Id);
+
   const electricityList = useSelector((state) =>
-    state.datalist.electricityList?.find((list) => list.id === id)
+    Array.isArray(state.datalist.electricityList)
+      ? state.datalist.electricityList?.find((list) => list.id === id)
+      : null
   );
   const { isFetching, error } = useSelector((state) => state.datalist);
 
@@ -53,9 +56,14 @@ const ElectricityControl = () => {
       id: electricityList.id,
       discount: inputDiscount,
     });
+
     if (!error) {
-      toast.success(`${inputNameData} has been updated successfully`);
-      setTimeout(() => navigate("/electricitycontrol"), 5000);
+      if (electricityList) {
+        toast.success(`${inputNameData} has been updated successfully`);
+        setTimeout(() => navigate("/electricitycontrol"), 5000);
+      } else {
+        toast.error("Electricity plan not found. Please try again.");
+      }
     } else {
       toast.error("Kindly choose correct plan. Kindly check and try again");
     }
