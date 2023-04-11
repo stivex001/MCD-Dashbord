@@ -286,7 +286,7 @@ const App = () => {
           element={user ? <Datapins /> : <Navigate to="/login" />}
         />
         <Route
-          path="/datapins/:Id"
+          path="/datapinscontrol/:Id"
           element={user ? <DatapinsControl /> : <Navigate to="/login" />}
         />
 

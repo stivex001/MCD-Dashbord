@@ -30,7 +30,7 @@ export const InputContainer = styled.div`
   border-radius: 1px;
 `;
 export const Input = styled.input`
-  padding: 12px;
+  padding: 10px;
   flex: 1;
   outline: none;
   font-weight: 400;

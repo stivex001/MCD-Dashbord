@@ -82,21 +82,29 @@ const DatapinsControl = () => {
         <FormWrapper onSubmit={handleUpdateClick}>
           <Form>
             <InputContainer>
-              <InputTitle>Name</InputTitle>
+              <InputTitle>Product Name</InputTitle>
               <Input
                 type="text"
                 onChange={handleInputNameChange}
                 value={inputNameData}
-                readOnly
-                style={{ backgroundColor: "#e9ecef" }}
               />
             </InputContainer>
             <InputContainer>
-              <InputTitle>Discount</InputTitle>
+              <InputTitle>Provider Price</InputTitle>
               <Input
-                type="text"
-                onChange={handleInputDiscountChange}
-                value={inputDiscount}
+                type="number"
+                // onChange={handleInputPriceChange}
+                // value={inputPrice}
+                name="name"
+              />
+            </InputContainer>
+            <InputContainer>
+              <InputTitle>Your Price</InputTitle>
+              <Input
+                type="number"
+                // onChange={handleInputAmountChange}
+                // value={inputAmount}
+                name="name"
               />
             </InputContainer>
             <InputContainer>
@@ -117,6 +125,7 @@ const DatapinsControl = () => {
             <InputContainer>
               <TextField
                 select
+                label="1"
                 variant="outlined"
                 style={{ width: "100%" }}
                 onChange={handleInputServerChange}
@@ -128,6 +137,15 @@ const DatapinsControl = () => {
                   </MenuItem>
                 ))}
               </TextField>
+            </InputContainer>
+            <InputContainer>
+              <InputTitle>Note</InputTitle>
+              <Input
+                type="text"
+                // onChange={handleInputNoteChange}
+                // value={inputNote}
+                placeholder="Enter Note (Optional)"
+              />
             </InputContainer>
           </Form>
           <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
