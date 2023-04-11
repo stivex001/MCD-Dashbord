@@ -328,6 +328,11 @@ export const sidebarData = [
         title: "Electricity Control",
         to: "/electricitycontrol",
       },
+      {
+        id: 7,
+        title: "Data",
+        to: "/datapins",
+      },
     ],
   },
   {

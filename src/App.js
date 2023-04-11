@@ -57,6 +57,7 @@ import ElectricityControl from "./pages/ServiceControls/ElectricityControl";
 import Daily from "./pages/Reports/Daily";
 import Monthly from "./pages/Reports/Montly";
 import Yearly from "./pages/Reports/Yearly";
+import Datapins from "./pages/ServiceControls/Datapins";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -278,6 +279,10 @@ const App = () => {
         <Route
           path="/electricitycontrol/:Id"
           element={user ? <ElectricityControl /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/datapins"
+          element={user ? <Datapins /> : <Navigate to="/login" />}
         />
 
         {/* Reseller Page */}

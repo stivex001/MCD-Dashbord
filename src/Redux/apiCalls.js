@@ -100,6 +100,9 @@ import {
   getAirtelFailure,
   getAirtelStart,
   getAirtelSucess,
+  getDatapinsFailure,
+  getDatapinsStart,
+  getDatapinsSucess,
   getElectricityFailure,
   getElectricityStart,
   getElectricitySucess,
@@ -118,6 +121,9 @@ import {
   updateAirtelFailure,
   updateAirtelStart,
   updateAirtelSucess,
+  updateDatapinsFailure,
+  updateDatapinsStart,
+  updateDatapinsSucess,
   updateElectricityFailure,
   updateElectricityStart,
   updateElectricitySucess,
@@ -148,7 +154,6 @@ export const login = async (dispatch, user) => {
     dispatch(loginfailure());
   }
 };
-
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("persist:root");
@@ -604,10 +609,21 @@ export const getElectricityList = async (dispatch) => {
   dispatch(getElectricityStart());
   try {
     const res = await userRequest.get(`/appElectricityConfigList`);
-   
+
     dispatch(getElectricitySucess(res.data.data));
   } catch (error) {
     dispatch(getElectricityFailure());
+  }
+};
+
+export const getDatapinsList = async (dispatch) => {
+  dispatch(getDatapinsStart());
+  try {
+    const res = await userRequest.get(`/appDataPinConfigList`);
+
+    dispatch(getDatapinsSucess(res.data.data));
+  } catch (error) {
+    dispatch(getDatapinsFailure());
   }
 };
 
@@ -772,12 +788,8 @@ export const modifyTvData = async (dispatch, id, name, price, discount) => {
   }
 };
 
-export const modifyElectrictyData = async (
-  dispatch,
-  id,
-  discount
-) => {
-  dispatch(updateElectricityStart()); 
+export const modifyElectrictyData = async (dispatch, id, discount) => {
+  dispatch(updateElectricityStart());
   try {
     const res = await userRequest.post(
       `/appElectricityConfigUpdate`,
@@ -792,5 +804,25 @@ export const modifyElectrictyData = async (
     }
   } catch (error) {
     dispatch(updateElectricityFailure()); // set error flag to true
+  }
+};
+
+export const modifyDatapins = async (dispatch, id, name, price) => {
+  dispatch(updateDatapinsStart());
+  try {
+    const res = await userRequest.post(
+      `/appDataPinConfigUpdate`,
+      id,
+      name,
+      price
+    );
+
+    if (res.data.success === 1) {
+      dispatch(updateDatapinsSucess(res.data));
+    } else {
+      dispatch(updateDatapinsFailure());
+    }
+  } catch (error) {
+    dispatch(updateDatapinsFailure()); // set error flag to true
   }
 };
