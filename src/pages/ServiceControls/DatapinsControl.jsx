@@ -17,23 +17,23 @@ import {
   Wrapper,
 } from "../Settings/edit.styles";
 import { MenuItem, TextField } from "@mui/material";
-import { modifyElectrictyData } from "../../Redux/apiCalls";
+import { modifyDatapins } from "../../Redux/apiCalls";
 import Server from "./server";
 
 const DatapinsControl = () => {
   const { Id } = useParams();
   const id = Number(Id);
 
-  const electricityList = useSelector((state) =>
-    Array.isArray(state.datalist.electricityList)
-      ? state.datalist.electricityList?.find((list) => list.id === id)
+  const datapins = useSelector((state) =>
+    Array.isArray(state.datalist.datapins)
+      ? state.datalist.datapins?.find((list) => list.id === id)
       : null
   );
   const { isFetching, error } = useSelector((state) => state.datalist);
 
-  const [inputNameData, setInputNameData] = useState(electricityList?.name);
-  const [inputDiscount, setInputDiscount] = useState(electricityList?.discount);
-  const [inputServer, setInputServer] = useState(electricityList?.server);
+  const [inputNameData, setInputNameData] = useState(datapins?.name);
+  const [inputPrice, setInputPrice] = useState(datapins?.price);
+  const [inputServer, setInputServer] = useState(datapins?.server);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,8 +41,8 @@ const DatapinsControl = () => {
     setInputNameData(event.target.value);
   };
 
-  const handleInputDiscountChange = (event) => {
-    setInputDiscount(event.target.value);
+  const handleInputPriceChange = (event) => {
+    setInputPrice(event.target.value);
   };
 
   const handleInputServerChange = (event) => {
@@ -52,17 +52,18 @@ const DatapinsControl = () => {
   const handleUpdateClick = (e) => {
     e.preventDefault();
 
-    modifyElectrictyData(dispatch, {
-      id: electricityList.id,
-      discount: inputDiscount,
+    modifyDatapins(dispatch, {
+      id: datapins.id,
+      name: inputNameData,
+      price: inputPrice,
     });
 
     if (!error) {
-      if (electricityList) {
+      if (datapins) {
         toast.success(`${inputNameData} has been updated successfully`);
-        setTimeout(() => navigate("/electricitycontrol"), 5000);
+        setTimeout(() => navigate("/datapins"), 5000);
       } else {
-        toast.error("Electricity plan not found. Please try again.");
+        toast.error("DataPins not found. Please try again.");
       }
     } else {
       toast.error("Kindly choose correct plan. Kindly check and try again");
@@ -74,9 +75,9 @@ const DatapinsControl = () => {
       <Navbar />
       <Wrapper>
         <Desc>
-          <H3>Modify TV Plan</H3>
+          <H3>Modify Data</H3>
           <DescP>
-            TV / <DescSpan>Modify TV Plan</DescSpan>
+            Data / <DescSpan>Modify Data</DescSpan>
           </DescP>
         </Desc>
         <FormWrapper onSubmit={handleUpdateClick}>
@@ -90,20 +91,11 @@ const DatapinsControl = () => {
               />
             </InputContainer>
             <InputContainer>
-              <InputTitle>Provider Price</InputTitle>
+              <InputTitle>Price</InputTitle>
               <Input
                 type="number"
-                // onChange={handleInputPriceChange}
-                // value={inputPrice}
-                name="name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <InputTitle>Your Price</InputTitle>
-              <Input
-                type="number"
-                // onChange={handleInputAmountChange}
-                // value={inputAmount}
+                onChange={handleInputPriceChange}
+                value={inputPrice}
                 name="name"
               />
             </InputContainer>
@@ -125,7 +117,6 @@ const DatapinsControl = () => {
             <InputContainer>
               <TextField
                 select
-                label="1"
                 variant="outlined"
                 style={{ width: "100%" }}
                 onChange={handleInputServerChange}
@@ -140,12 +131,7 @@ const DatapinsControl = () => {
             </InputContainer>
             <InputContainer>
               <InputTitle>Note</InputTitle>
-              <Input
-                type="text"
-                // onChange={handleInputNoteChange}
-                // value={inputNote}
-                placeholder="Enter Note (Optional)"
-              />
+              <Input type="text" placeholder="Enter Note (Optional)" />
             </InputContainer>
           </Form>
           <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
