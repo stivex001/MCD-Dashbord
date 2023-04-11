@@ -55,6 +55,7 @@ import MobileDatacontrol from "./pages/ServiceControls/MobileDataControl";
 import TvControl from "./pages/ServiceControls/TvControl";
 import ElectricityControl from "./pages/ServiceControls/ElectricityControl";
 import Daily from "./pages/Reports/Daily";
+import Monthly from "./pages/Reports/Montly";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -297,6 +298,10 @@ const App = () => {
         <Route
           path="/report_daily"
           element={user ? <Daily /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/report_monthly"
+          element={user ? <Monthly /> : <Navigate to="/login" />}
         />
       </Routes>
     </div>

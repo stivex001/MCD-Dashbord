@@ -7,7 +7,7 @@ export const ReportWrapper = styled.div`
   ${mobile({ flexDirection: "column" })};
 `;
 export const Left = styled.div`
-  flex: 1.5;
+  flex: 1.8;
   background-color: #fff;
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
