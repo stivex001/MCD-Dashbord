@@ -58,6 +58,7 @@ import Daily from "./pages/Reports/Daily";
 import Monthly from "./pages/Reports/Montly";
 import Yearly from "./pages/Reports/Yearly";
 import Datapins from "./pages/ServiceControls/Datapins";
+import DatapinsControl from "./pages/ServiceControls/DatapinsControl";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -283,6 +284,10 @@ const App = () => {
         <Route
           path="/datapins"
           element={user ? <Datapins /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/datapins/:Id"
+          element={user ? <DatapinsControl /> : <Navigate to="/login" />}
         />
 
         {/* Reseller Page */}
