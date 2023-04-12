@@ -37,12 +37,12 @@ const UserGeneral = ({ users, userPerformance }) => {
       <Right>
         <Wrapperr width="70%">
           <Performance
-            title={userPerformance?.perf || '0'}
-            data={userPerformance?.data || '0'}
-            airtime={userPerformance?.airtime || '0'}
-            tv={userPerformance?.tv || '0'}
-            card={userPerformance?.card || '0'}
-            checker={userPerformance?.result || '0'}
+            title={ '0'}
+            data={ '0'}
+            airtime={'0'}
+            tv={'0'}
+            card={'0'}
+            checker={'0'}
           />
         </Wrapperr>
         <Ref>Referrals:</Ref>
