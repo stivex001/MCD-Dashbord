@@ -8,10 +8,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import {
-  Span,
-  TableWrapper,
-} from "../transaction/general.styles";
+import { Span, TableWrapper } from "../transaction/general.styles";
 import {
   PageNotification,
   PaginateContainer,
