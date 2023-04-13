@@ -6,11 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { NoteAlt } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
-import { getTransHistoryData } from "../../Redux/apiCalls";
 import { PaginateContainer } from "../../pages/Users/agent.styles";
 
 const Container = styled.div`
@@ -33,33 +30,13 @@ const Span = styled.span`
   border-radius: 5px;
 `;
 
-const TransactionTables = ({ transHistory }) => {
-  const dispatch = useDispatch();
-  const [itemOffset, setItemOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(transHistory.to);
-  const [currentItems, setCurrentItems] = useState(transHistory.data);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const itemsPerPage = 25;
-  useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(
-      transHistory.data && transHistory.data.slice(itemOffset, endOffset)
-    );
-    setPageCount(Math.ceil(transHistory.to / itemsPerPage));
-  }, [itemOffset, transHistory, itemsPerPage]);
-
-  const handlePageClick = (event) => {
-    const newOffset =
-      (event.selected * itemsPerPage) % transHistory.data.length;
-    setItemOffset(newOffset);
-    setCurrentPage(event.selected + 1);
-  };
-
-  useEffect(() => {
-    getTransHistoryData(dispatch, currentPage);
-  }, [dispatch, currentPage]);
-
+const TransactionTables = ({
+  transHistory,
+  currentItems,
+  currentPage,
+  handlePageClick,
+  pageCount,
+}) => {
   return (
     <Container>
       <Title>Transactions Table</Title>
@@ -111,10 +88,12 @@ const TransactionTables = ({ transHistory }) => {
           <TableBody>
             {currentItems &&
               currentItems.map((row) => (
-                <TableRow key={row.id} style={{
-                  backgroundColor:
-                    row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
-                }}>
+                <TableRow
+                  key={row.id}
+                  style={{
+                    backgroundColor: row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+                  }}
+                >
                   <TableCell style={{ color: "#8887a9" }}>{row.id}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
                     {row.user_name}
