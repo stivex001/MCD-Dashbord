@@ -7,12 +7,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { toggleCheckbox } from "../../Redux/pendingTransSlice";
+import { emptyCheckbox, toggleCheckbox } from "../../Redux/pendingTransSlice";
 import {
   PageNotification,
   PaginateContainer,
   PagWrapper,
 } from "../../pages/Users/agent.styles";
+import { reProcessOne } from "../../Redux/apiCalls";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -53,7 +54,7 @@ const PendingTables = ({
   pendingTrans,
   pageCount,
   currentItems,
-  currentPage,
+  showerr,
   handlePageClick,
 }) => {
   const dispatch = useDispatch();
@@ -62,10 +63,15 @@ const PendingTables = ({
     const id = e.target.value;
     dispatch(toggleCheckbox(id));
   };
+
   const handleReProcess = (id) => {
-    console.log(id);
+    if (!id) {
+      return dispatch(emptyCheckbox(showerr));
+    } else {
+      reProcessOne(dispatch, id);
+    }
   };
-  console.log(currentItems);
+ 
   return (
     <Container>
       <TableContainer component={Paper}>
@@ -162,7 +168,7 @@ const PendingTables = ({
                       <Button
                         type="Re-process Selected"
                         id={row.id}
-                        onClick={handleReProcess}
+                        onClick={() => handleReProcess(row.id)}
                       >
                         Re-process
                       </Button>

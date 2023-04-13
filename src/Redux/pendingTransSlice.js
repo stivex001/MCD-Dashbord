@@ -6,6 +6,7 @@ const pendingTransactionSlice = createSlice({
     isProcessing: false,
     error: false,
     checkId: [],
+    Id: null,
     message: false,
     transHistory: [],
     pendingTrans: [],
@@ -58,6 +59,19 @@ const pendingTransactionSlice = createSlice({
       state.isProcessing = false;
       state.error = true;
     },
+    reProcessOneStart: (state) => {
+      state.isProcessing = true;
+    },
+    reProcessOneSucess: (state, action) => {
+      state.isProcessing = false;
+      state.Id = action.payload;
+      state.message = true;
+      state.error = false;
+    },
+    reProcessOneFailure: (state) => {
+      state.isProcessing = false;
+      state.error = true;
+    },
     toggleCheckbox: (state, action) => {
       const id = action.payload
       const isChecked = state.checkId.includes(id)
@@ -90,6 +104,9 @@ export const {
   emptyCheckbox,
   getGmStart,
   getGmSucess,
-  getGmFailure
+  getGmFailure,
+  reProcessOneStart,
+  reProcessOneSucess,
+  reProcessOneFailure
 } = pendingTransactionSlice.actions;
 export default pendingTransactionSlice.reducer;

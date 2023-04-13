@@ -126,8 +126,9 @@ const Pending = () => {
               pendingTrans={pendingTrans}
               pageCount={pageCount}
               currentItems={currentItems}
-              currentPage={currentPage}
+              showerr={showerr}
               handlePageClick={handlePageClick}
+              currentPage={currentPage}
             />
           </div>
         </TransList>

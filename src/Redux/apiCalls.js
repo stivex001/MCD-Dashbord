@@ -61,6 +61,9 @@ import {
   reProcessAllFailure,
   reProcessAllStart,
   reProcessAllSucess,
+  reProcessOneFailure,
+  reProcessOneStart,
+  reProcessOneSucess,
 } from "./pendingTransSlice";
 import {
   getGmBlockFailure,
@@ -170,12 +173,27 @@ export const reProcess = async (dispatch, ids) => {
     });
     if (res.data.success === 1) {
       dispatch(reProcessAllSucess(res.data));
-      console.log(res.data);
     } else {
       dispatch(reProcessAllFailure());
     }
   } catch (error) {
     dispatch(reProcessAllFailure());
+  }
+};
+
+export const reProcessOne = async (dispatch, id) => {
+  dispatch(reProcessOneStart());
+  try {
+    const res = await userRequest.post("/transactions/resubmit", {
+      id,
+    });
+    if (res.data.success === 1) {
+      dispatch(reProcessOneSucess(res.data));
+    } else {
+      dispatch(reProcessOneFailure());
+    }
+  } catch (error) {
+    dispatch(reProcessOneFailure());
   }
 };
 
