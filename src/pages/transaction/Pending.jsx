@@ -31,6 +31,26 @@ const Pending = () => {
   );
   const dispatch = useDispatch();
   const [showerr, setShowerr] = useState(error);
+  const [itemOffset, setItemOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(pendingTrans?.last_page);
+  const [currentItems, setCurrentItems] = useState(pendingTrans?.data);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = pendingTrans?.per_page;
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(
+      pendingTrans?.data && pendingTrans?.data.slice(itemOffset, endOffset)
+    );
+    setPageCount(Math.ceil(pendingTrans?.total / itemsPerPage));
+  }, [itemOffset, pendingTrans, itemsPerPage]);
+
+  const handlePageClick = (event) => {
+    const newOffset =
+      (event.selected * itemsPerPage) % pendingTrans?.data.length;
+    setItemOffset(newOffset);
+    setCurrentPage(event.selected + 1);
+  };
 
   useEffect(() => {
     getPendingTransData(dispatch);
@@ -102,7 +122,13 @@ const Pending = () => {
             </Button>
           </BtnConatiner>
           <div style={{ marginTop: "10px" }}>
-            <PendingTables pendingTrans={pendingTrans} />
+            <PendingTables
+              pendingTrans={pendingTrans}
+              pageCount={pageCount}
+              currentItems={currentItems}
+              currentPage={currentPage}
+              handlePageClick={handlePageClick}
+            />
           </div>
         </TransList>
       </Wrapper>

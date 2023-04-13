@@ -371,11 +371,11 @@ export const getTransHistoryData = async (dispatch, page) => {
   }
 };
 
-export const getPendingTransData = async (dispatch) => {
+export const getPendingTransData = async (dispatch, page) => {
   dispatch(getPendingTransStart());
   try {
-    const res = await userRequest.get("/transactions/pending");
-    dispatch(getPendingTransSucess(res.data.data.data));
+    const res = await userRequest.get(`/transactions/pending?page=${page}`);
+    dispatch(getPendingTransSucess(res.data.data));
   } catch (error) {
     dispatch(getPendingTransFailure());
   }

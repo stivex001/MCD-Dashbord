@@ -8,6 +8,11 @@ import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { toggleCheckbox } from "../../Redux/pendingTransSlice";
+import {
+  PageNotification,
+  PaginateContainer,
+  PagWrapper,
+} from "../../pages/Users/agent.styles";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -44,7 +49,13 @@ const Input = styled.input`
   margin-right: 20px;
 `;
 
-const PendingTables = ({ pendingTrans }) => {
+const PendingTables = ({
+  pendingTrans,
+  pageCount,
+  currentItems,
+  currentPage,
+  handlePageClick,
+}) => {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -54,7 +65,7 @@ const PendingTables = ({ pendingTrans }) => {
   const handleReProcess = (id) => {
     console.log(id);
   };
-
+console.log(currentItems);
   return (
     <Container>
       <TableContainer component={Paper}>
@@ -92,8 +103,8 @@ const PendingTables = ({ pendingTrans }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {pendingTrans &&
-              pendingTrans.map((row) => (
+            {currentItems &&
+              currentItems.map((row) => (
                 <TableRow
                   key={row.id}
                   style={{
@@ -157,6 +168,26 @@ const PendingTables = ({ pendingTrans }) => {
               ))}
           </TableBody>
         </Table>
+        <PagWrapper>
+          <PageNotification>
+            Showing {pendingTrans?.from} to {pendingTrans?.to} of{" "}
+            {pendingTrans?.total} entries
+          </PageNotification>
+          <PaginateContainer
+            breakLabel="..."
+            nextLabel="next >"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            previousLabel="< previous"
+            renderOnZeroPageCount={null}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+            pageLinkClassName="pageNum"
+            previousLinkClassName="pageNum"
+            nextLinkClassName="pageNum"
+          />
+        </PagWrapper>
       </TableContainer>
     </Container>
   );
