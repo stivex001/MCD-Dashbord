@@ -8,7 +8,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 import { NoteAlt } from "@mui/icons-material";
-import { PaginateContainer } from "../../pages/Users/agent.styles";
+import {
+  PageNotification,
+  PaginateContainer,
+  PagWrapper,
+} from "../../pages/Users/agent.styles";
 
 const Container = styled.div`
   background-color: #fff;
@@ -86,7 +90,17 @@ const TransactionTables = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {currentItems &&
+            {currentItems && currentItems.length === 0 ? (
+              <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                <TableCell
+                  colSpan={12}
+                  style={{ textAlign: "center", color: "#8887a9" }}
+                >
+                  There is no Transaction History Available
+                </TableCell>
+              </TableRow>
+            ) : (
+              currentItems &&
               currentItems.map((row) => (
                 <TableRow
                   key={row.id}
@@ -148,26 +162,31 @@ const TransactionTables = ({
                     </Link>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            )}
           </TableBody>
         </Table>
 
-        <PaginateContainer
-          // marginPagesDisplayed={2}
-          page={currentPage}
-          breakLabel="..."
-          nextLabel=">"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={8}
-          pageCount={pageCount}
-          previousLabel="<"
-          renderOnZeroPageCount={null}
-          containerClassName={"pagination"}
-          activeClassName={"active"}
-          pageLinkClassName="pageNum"
-          previousLinkClassName="pageNum"
-          nextLinkClassName="pageNum"
-        />
+        <PagWrapper>
+          <PageNotification>
+            Showing {transHistory?.from || "0"} to {transHistory?.to || "0"} of{" "}
+            {transHistory?.to || "0"} entries
+          </PageNotification>
+          <PaginateContainer
+            breakLabel="..."
+            nextLabel="next >"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            previousLabel="< previous"
+            renderOnZeroPageCount={null}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+            pageLinkClassName="pageNum"
+            previousLinkClassName="pageNum"
+            nextLinkClassName="pageNum"
+          />
+        </PagWrapper>
       </TableContainer>
     </Container>
   );
