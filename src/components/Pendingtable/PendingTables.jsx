@@ -65,7 +65,7 @@ const PendingTables = ({
   const handleReProcess = (id) => {
     console.log(id);
   };
-console.log(currentItems);
+  console.log(currentItems);
   return (
     <Container>
       <TableContainer component={Paper}>
@@ -103,7 +103,17 @@ console.log(currentItems);
             </TableRow>
           </TableHead>
           <TableBody>
-            {currentItems &&
+            {currentItems && currentItems.length === 0 ? (
+              <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                <TableCell
+                  colSpan={10}
+                  style={{ textAlign: "center", color: "#8887a9" }}
+                >
+                  There is no Pending Transaction Available
+                </TableCell>
+              </TableRow>
+            ) : (
+              currentItems &&
               currentItems.map((row) => (
                 <TableRow
                   key={row.id}
@@ -165,13 +175,14 @@ console.log(currentItems);
                     </BtnConatiner>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            )}
           </TableBody>
         </Table>
         <PagWrapper>
           <PageNotification>
-            Showing {pendingTrans?.from} to {pendingTrans?.to} of{" "}
-            {pendingTrans?.total} entries
+            Showing {pendingTrans?.from || "0"} to {pendingTrans?.to || "0"} of{" "}
+            {pendingTrans?.total || "0"} entries
           </PageNotification>
           <PaginateContainer
             breakLabel="..."
