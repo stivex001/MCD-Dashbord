@@ -25,7 +25,8 @@ import {
   H3,
   Wrapper,
 } from "../transaction/transHistory.styles";
-import UserProfiles from "./UserProfile";
+import UserProfiles from "../Users/UserProfile";
+
 
 const SamjiProfile = () => {
   const location = useLocation();
