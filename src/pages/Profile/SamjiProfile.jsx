@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
-import UserGeneral from "../../components/General/UserGeneral";
+import SamGeneral from "../../components/General/SamGeneral";
 import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
 import {
-    getSamjiProfile,
+  getSamjiProfile,
   getUserPerformance,
   getUserTrans,
   getUserWallet,
@@ -27,19 +27,18 @@ import {
   Wrapper,
 } from "../transaction/transHistory.styles";
 import SamProfile from "../Users/SamProfile";
-import UserProfiles from "../Users/UserProfile";
 
 const SamjiProfile = () => {
-  const location = useLocation();
-  const userId = location.pathname.split("/")[2];
-  const decodedId = decodeURIComponent(userId);
-//   const users = useSelector((state) =>
-//     state.user.allUsers.data.find((user) => user.user_name === decodedId)
-//   );
-const users = false
-//   const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
+//   const location = useLocation();
+//   const userId = location.pathname.split("/")[2];
+//   const decodedId = decodeURIComponent(userId);
+  //   const samji = useSelector((state) =>
+  //     state.user.allUsers.data.find((user) => user.user_name === decodedId)
+  //   );
+
   const { userTrans, userPerformance, userWallet, isFetching, message, samji } =
     useSelector((state) => state.user);
+  const [currentPage, setCurrentPage] = useState(<SamGeneral samji={samji} />);
   const dispatch = useDispatch();
   const [currentTransPage, setCurrentTransPage] = useState(1);
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
@@ -47,23 +46,22 @@ const users = false
   useEffect(() => {
     getSamjiProfile(dispatch);
   }, [dispatch]);
- 
 
-//   useEffect(() => {
-//     getUserTrans(dispatch, users?.user_name, currentTransPage);
-//   }, [dispatch, users, currentTransPage]);
+  useEffect(() => {
+    getUserTrans(dispatch, samji?.user_name, currentTransPage);
+  }, [dispatch, samji, currentTransPage]);
 
-//   useEffect(() => {
-//     getUserWallet(dispatch, users?.user_name, currentWalletPage);
-//   }, [dispatch, users, currentWalletPage]);
+  useEffect(() => {
+    getUserWallet(dispatch, samji?.user_name, currentWalletPage);
+  }, [dispatch, samji, currentWalletPage]);
 
-//   useEffect(() => {
-//     getUserPerformance(dispatch, users?.user_name);
-//   }, [dispatch, users]);
+  useEffect(() => {
+    getUserPerformance(dispatch, samji?.user_name);
+  }, [dispatch, samji]);
 
-//   const handleButtonClick = (page) => {
-//     setCurrentPage(page);
-//   };
+  const handleButtonClick = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <Container>
@@ -77,16 +75,13 @@ const users = false
         </Desc>
 
         <SamProfile samji={samji} />
-        {/* <div>
+        <div>
           <List>
             <Btn
-              active={currentPage.type.name === "UserGeneral"}
+              active={currentPage.type.name === "SamGeneral"}
               onClick={() =>
                 handleButtonClick(
-                  <UserGeneral
-                    users={users}
-                    userPerformance={userPerformance}
-                  />
+                  <SamGeneral samji={samji} userPerformance={userPerformance} />
                 )
               }
             >
@@ -131,7 +126,7 @@ const users = false
               onClick={() =>
                 handleButtonClick(
                   <Information
-                    users={users}
+                    samji={samji}
                     isFetching={isFetching}
                     message={message}
                   />
@@ -142,7 +137,7 @@ const users = false
             </Btn>
           </List>
           {currentPage}
-        </div> */}
+        </div>
       </Wrapper>
 
       <Footer />
