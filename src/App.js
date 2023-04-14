@@ -59,6 +59,7 @@ import Monthly from "./pages/Reports/Montly";
 import Yearly from "./pages/Reports/Yearly";
 import Datapins from "./pages/ServiceControls/Datapins";
 import DatapinsControl from "./pages/ServiceControls/DatapinsControl";
+import SamjiProfile from "./pages/Profile/SamjiProfile";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -152,6 +153,10 @@ const App = () => {
         <Route
           path="/profiles/:id"
           element={user ? <SearchUserProfile /> : <Navigate to="/login" />}
+        />
+         <Route
+          path="/profile/samji"
+          element={user ? <SamjiProfile /> : <Navigate to="/login" />}
         />
         <Route
           path="/agents"
