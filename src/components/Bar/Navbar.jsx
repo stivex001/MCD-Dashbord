@@ -39,15 +39,13 @@ import UserModal from "../modal/UserModal";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/apiCalls";
 
-
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
   const [screenSize, setScreenSize] = useState();
   const [openModal, setOpenModal] = useState(false);
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  
-  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const handleResize = () => {
       setScreenSize(window.innerWidth);
@@ -74,18 +72,18 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login')
-  }
+    navigate("/login");
+  };
   const handleProfile = () => {
-    navigate('/profiles/samji')
-  }
+    navigate("/profile/samji");
+  };
   const handleSettings = () => {
-    navigate('/allsettings')
-  }
+    navigate("/allsettings");
+  };
 
   const openProfileHandler = () => {
-    setOpenModal(!openModal)
-  }
+    setOpenModal(!openModal);
+  };
 
   return (
     <Container>
@@ -93,11 +91,11 @@ const Navbar = () => {
         <NavIcon>
           <IconWrapper>
             <Dehaze
-            style={{ color: "white", fontSize: "32px" }}
-            onClick={showSidebar}
-          />
+              style={{ color: "white", fontSize: "32px" }}
+              onClick={showSidebar}
+            />
           </IconWrapper>
-          
+
           <BarSearch>
             <Input type="text" placeholder="Search..." />
             <Search style={{ color: "white", fontSize: "20px" }} />
@@ -108,7 +106,7 @@ const Navbar = () => {
             src="https://mcd.5starcompany.com.ng/app/avatar/samji.jpg"
             alt=""
           />
-         {openModal && <UserModal /> }
+          {openModal && <UserModal />}
         </Right>
       </Wrapper>
       <SidebrNav sidebar={sidebar}>
@@ -117,17 +115,16 @@ const Navbar = () => {
             {/* <LogoImg src="" alt="" /> */}
             <LogoTitle>MCD DASHBOARD</LogoTitle>
             <IconWrapper>
-               <Close
-              style={{ color: "white", fontSize: "30px", marginLeft: "30px" }}
-              onClick={showSidebar}
-            />
+              <Close
+                style={{ color: "white", fontSize: "30px", marginLeft: "30px" }}
+                onClick={showSidebar}
+              />
             </IconWrapper>
-           
           </SidebarLogo>
 
           <UserContainer>
             <UserDesc>
-              <UserImage  
+              <UserImage
                 src="https://mcd.5starcompany.com.ng/app/avatar/samji.jpg"
                 alt=""
               />
@@ -141,7 +138,7 @@ const Navbar = () => {
             <IconContainer>
               <Tooltip title="Profile">
                 <PermIdentity
-                onClick={handleProfile}
+                  onClick={handleProfile}
                   style={{
                     color: "blue",
                     boxShadow: "1px 2px 5px 1px rgba(0, 0, 0, 0.2)",
@@ -152,7 +149,7 @@ const Navbar = () => {
               </Tooltip>
               <Tooltip title="Settings">
                 <Settings
-                onClick={handleSettings}
+                  onClick={handleSettings}
                   style={{
                     margin: "0 20px",
                     color: "gray",
