@@ -8,6 +8,9 @@ import {
   getResellersFailure,
   getResellersStart,
   getResellersSuccess,
+  getSamjiFailure,
+  getSamjiStart,
+  getSamjiSuccess,
   getUserOverviewFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
@@ -261,6 +264,18 @@ export const getSearchedUsers = async (dispatch, username, phoneno) => {
     dispatch(getSearchedUserSuccess(res.data.data));
   } catch (error) {
     dispatch(getSearchedUserFailure());
+  }
+};
+
+export const getSamjiProfile = async (dispatch) => {
+  dispatch(getSamjiStart());
+  try {
+    const res = await userRequest.get(
+      `/user-search?user_name=sam&phoneno=08166939205&status&wallet&email&regdate`
+    );
+    dispatch(getSamjiSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getSamjiFailure());
   }
 };
 

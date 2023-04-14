@@ -13,7 +13,8 @@ const userSlice = createSlice({
     resellers: [],
     userPerformance: [],
     userTrans: [],
-    userWallet: []
+    userWallet: [],
+    samji: [],
   },
   reducers: {
     loginStart: (state) => {
@@ -115,6 +116,18 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    getSamjiStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getSamjiSuccess: (state, action) => {
+      state.isFetching = false;
+      state.samji = action.payload;
+    },
+    getSamjiFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
     updateUserStart: (state) => {
       state.isFetching = true;
       state.error = false;
@@ -162,6 +175,9 @@ export const {
   getResellersStart,
   getResellersSuccess,
   getResellersFailure,
+  getSamjiStart,
+  getSamjiSuccess,
+  getSamjiFailure,
   updateUserStart,
   updateUserSucess,
   updateUserFailure,

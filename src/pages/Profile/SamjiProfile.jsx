@@ -10,6 +10,7 @@ import Information from "../../components/Information/Information";
 import Nofication from "../../components/Notification/Notification";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
 import {
+    getSamjiProfile,
   getUserPerformance,
   getUserTrans,
   getUserWallet,
@@ -25,38 +26,44 @@ import {
   H3,
   Wrapper,
 } from "../transaction/transHistory.styles";
+import SamProfile from "../Users/SamProfile";
 import UserProfiles from "../Users/UserProfile";
-
 
 const SamjiProfile = () => {
   const location = useLocation();
   const userId = location.pathname.split("/")[2];
   const decodedId = decodeURIComponent(userId);
-  const users = useSelector((state) =>
-    state.user.allUsers.data.find((user) => user.user_name === decodedId)
-  );
-  const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
-  const { userTrans, userPerformance, userWallet, isFetching, message } =
+//   const users = useSelector((state) =>
+//     state.user.allUsers.data.find((user) => user.user_name === decodedId)
+//   );
+const users = false
+//   const [currentPage, setCurrentPage] = useState(<UserGeneral users={users} />);
+  const { userTrans, userPerformance, userWallet, isFetching, message, samji } =
     useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [currentTransPage, setCurrentTransPage] = useState(1);
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
   useEffect(() => {
-    getUserTrans(dispatch, users?.user_name, currentTransPage);
-  }, [dispatch, users, currentTransPage]);
+    getSamjiProfile(dispatch);
+  }, [dispatch]);
+ 
 
-  useEffect(() => {
-    getUserWallet(dispatch, users?.user_name, currentWalletPage);
-  }, [dispatch, users, currentWalletPage]);
+//   useEffect(() => {
+//     getUserTrans(dispatch, users?.user_name, currentTransPage);
+//   }, [dispatch, users, currentTransPage]);
 
-  useEffect(() => {
-    getUserPerformance(dispatch, users?.user_name);
-  }, [dispatch, users]);
+//   useEffect(() => {
+//     getUserWallet(dispatch, users?.user_name, currentWalletPage);
+//   }, [dispatch, users, currentWalletPage]);
 
-  const handleButtonClick = (page) => {
-    setCurrentPage(page);
-  };
+//   useEffect(() => {
+//     getUserPerformance(dispatch, users?.user_name);
+//   }, [dispatch, users]);
+
+//   const handleButtonClick = (page) => {
+//     setCurrentPage(page);
+//   };
 
   return (
     <Container>
@@ -69,8 +76,8 @@ const SamjiProfile = () => {
           </DescP>
         </Desc>
 
-        <UserProfiles users={users} />
-        <div>
+        <SamProfile samji={samji} />
+        {/* <div>
           <List>
             <Btn
               active={currentPage.type.name === "UserGeneral"}
@@ -135,7 +142,7 @@ const SamjiProfile = () => {
             </Btn>
           </List>
           {currentPage}
-        </div>
+        </div> */}
       </Wrapper>
 
       <Footer />
