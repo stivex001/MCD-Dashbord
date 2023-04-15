@@ -14,6 +14,9 @@ import {
   getSamTransFailure,
   getSamTransStart,
   getSamTransSuccess,
+  getSamWalletFailure,
+  getSamWalletStart,
+  getSamWalletSuccess,
   getUserOverviewFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
@@ -267,6 +270,18 @@ export const getUserWallet = async (dispatch, username, page) => {
     dispatch(getUserWalletSuccess(res.data.data));
   } catch (error) {
     dispatch(getUserWalletFailure());
+  }
+};
+
+export const getSamWallet = async (dispatch,page) => {
+  dispatch(getSamWalletStart());
+  try {
+    const res = await userRequest.get(
+      `profile/samji/walletLogs?page=${page}`
+    );
+    dispatch(getSamWalletSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getSamWalletFailure());
   }
 };
 
