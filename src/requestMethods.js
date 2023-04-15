@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const BASE_URL = "https://adminapi.mcd.5starcompany.com.ng/api/v1";
 
 const getToken = () => {
@@ -37,7 +36,7 @@ userRequest.interceptors.response.use(
       localStorage.removeItem("persist:root");
       window.location.href = "/login";
     }
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
 );
 
