@@ -11,11 +11,10 @@ import Nofication from "../../components/Notification/Notification";
 import { Btn, List } from "../../components/userProfile/userProfile.styles";
 import {
   getSamjiProfile,
+  getSamTrans,
   getUserPerformance,
-  getUserTrans,
   getUserWallet,
 } from "../../Redux/apiCalls";
-import ProfileTransaction from "../Profile/ProfileTransaction";
 import ProfileWallet from "../Profile/ProfileWallet";
 
 import {
@@ -27,16 +26,17 @@ import {
   Wrapper,
 } from "../transaction/transHistory.styles";
 import SamProfile from "../Users/SamProfile";
+import SamjiTransaction from "./SamjiTransaction";
 
 const SamjiProfile = () => {
-//   const location = useLocation();
-//   const userId = location.pathname.split("/")[2];
-//   const decodedId = decodeURIComponent(userId);
+  //   const location = useLocation();
+  //   const userId = location.pathname.split("/")[2];
+  //   const decodedId = decodeURIComponent(userId);
   //   const samji = useSelector((state) =>
   //     state.user.allUsers.data.find((user) => user.user_name === decodedId)
   //   );
 
-  const { userTrans, userPerformance, userWallet, isFetching, message, samji } =
+  const { userPerformance, userWallet, isFetching, message, samji, samTrans } =
     useSelector((state) => state.user);
   const [currentPage, setCurrentPage] = useState(<SamGeneral samji={samji} />);
   const dispatch = useDispatch();
@@ -48,8 +48,8 @@ const SamjiProfile = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    getUserTrans(dispatch, samji?.user_name, currentTransPage);
-  }, [dispatch, samji, currentTransPage]);
+    getSamTrans(dispatch, currentTransPage);
+  }, [dispatch, currentTransPage]);
 
   useEffect(() => {
     getUserWallet(dispatch, samji?.user_name, currentWalletPage);
@@ -88,11 +88,11 @@ const SamjiProfile = () => {
               General
             </Btn>
             <Btn
-              active={currentPage.type.name === "ProfileTransaction"}
+              active={currentPage.type.name === "SamjiTransaction"}
               onClick={() =>
                 handleButtonClick(
-                  <ProfileTransaction
-                    userTrans={userTrans}
+                  <SamjiTransaction
+                    userTrans={samTrans}
                     isFetching={isFetching}
                     currentTransPage={currentTransPage}
                     setCurrentTransPage={setCurrentTransPage}
