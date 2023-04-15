@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
-
 import Footer from "../../components/footer/Footer";
 import SamGeneral from "../../components/General/SamGeneral";
 import Information from "../../components/Information/Information";
@@ -12,10 +10,9 @@ import { Btn, List } from "../../components/userProfile/userProfile.styles";
 import {
   getSamjiProfile,
   getSamTrans,
+  getSamWallet,
   getUserPerformance,
-  getUserWallet,
 } from "../../Redux/apiCalls";
-import ProfileWallet from "../Profile/ProfileWallet";
 
 import {
   Container,
@@ -27,16 +24,10 @@ import {
 } from "../transaction/transHistory.styles";
 import SamProfile from "../Users/SamProfile";
 import SamjiTransaction from "./SamjiTransaction";
+import SamWallet from "./SamWallet";
 
 const SamjiProfile = () => {
-  //   const location = useLocation();
-  //   const userId = location.pathname.split("/")[2];
-  //   const decodedId = decodeURIComponent(userId);
-  //   const samji = useSelector((state) =>
-  //     state.user.allUsers.data.find((user) => user.user_name === decodedId)
-  //   );
-
-  const { userPerformance, userWallet, isFetching, message, samji, samTrans } =
+  const { userPerformance, samWallet, isFetching, message, samji, samTrans } =
     useSelector((state) => state.user);
   const [currentPage, setCurrentPage] = useState(<SamGeneral samji={samji} />);
   const dispatch = useDispatch();
@@ -52,7 +43,7 @@ const SamjiProfile = () => {
   }, [dispatch, currentTransPage]);
 
   useEffect(() => {
-    getUserWallet(dispatch, samji?.user_name, currentWalletPage);
+    getSamWallet(dispatch, currentWalletPage);
   }, [dispatch, samji, currentWalletPage]);
 
   useEffect(() => {
@@ -103,12 +94,13 @@ const SamjiProfile = () => {
               Transactions
             </Btn>
             <Btn
-              active={currentPage.type.name === "ProfileWallet"}
+              active={currentPage.type.name === "SamWallet"}
               onClick={() =>
                 handleButtonClick(
-                  <ProfileWallet
+                  <SamWallet
                     setCurrentWalletPage={setCurrentWalletPage}
-                    userWallet={userWallet}
+                    userWallet={samWallet}
+                    isFetching={isFetching}
                   />
                 )
               }

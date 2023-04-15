@@ -22,7 +22,9 @@ import {
 } from "./information.styles";
 import { useNavigate } from "react-router-dom";
 
-const Information = ({ users, isFetching }) => {
+const Information = ({ samji, isFetching }) => {
+  const users = samji[0]
+  
   const { value: enteredUsername, valueChangeHandler: usernameInputChange } =
     useInput();
 

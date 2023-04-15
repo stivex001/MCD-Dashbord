@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -9,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Span, TableWrapper } from "../transaction/general.styles";
+import { Loading } from "../transaction/pending.styles";
 import {
   PageNotification,
   PaginateContainer,
@@ -29,7 +31,7 @@ const Container = styled.div`
   margin: 50px 0;
 `;
 
-const SamjiTransaction = ({ userTrans, setCurrentTransPage }) => {
+const SamjiTransaction = ({ userTrans, setCurrentTransPage, isFetching }) => {
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(userTrans?.last_page);
   const [currentItems, setCurrentItems] = useState(userTrans?.data);
@@ -49,6 +51,14 @@ const SamjiTransaction = ({ userTrans, setCurrentTransPage }) => {
     setItemOffset(newOffset);
     setCurrentTransPage(event.selected + 1);
   };
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
 
   return (
     <Container>
