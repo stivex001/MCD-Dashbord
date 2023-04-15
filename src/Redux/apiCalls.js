@@ -11,6 +11,9 @@ import {
   getSamjiFailure,
   getSamjiStart,
   getSamjiSuccess,
+  getSamTransFailure,
+  getSamTransStart,
+  getSamTransSuccess,
   getUserOverviewFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
@@ -240,6 +243,18 @@ export const getUserTrans = async (dispatch, username, page) => {
     dispatch(getUserTransSuccess(res.data.data));
   } catch (error) {
     dispatch(getUserTransFailure());
+  }
+};
+
+export const getSamTrans = async (dispatch, page) => {
+  dispatch(getSamTransStart());
+  try {
+    const res = await userRequest.get(
+      `profile/samji/transactions?page=${page}`
+    );
+    dispatch(getSamTransSuccess(res.data.data));
+  } catch (error) {
+    dispatch(getSamTransFailure());
   }
 };
 

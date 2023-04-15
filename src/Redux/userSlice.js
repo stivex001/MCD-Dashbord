@@ -15,6 +15,7 @@ const userSlice = createSlice({
     userTrans: [],
     userWallet: [],
     samji: [],
+    samTrans: []
   },
   reducers: {
     loginStart: (state) => {
@@ -67,6 +68,18 @@ const userSlice = createSlice({
       state.userTrans = action.payload
     },
     getUserTransFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    getSamTransStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getSamTransSuccess: (state, action) => {
+      state.isFetching = false;
+      state.samTrans = action.payload
+    },
+    getSamTransFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
@@ -163,6 +176,9 @@ export const {
   getUserTransStart,
   getUserTransSuccess,
   getUserTransFailure,
+  getSamTransStart,
+  getSamTransSuccess,
+  getSamTransFailure,
   getUserWalletStart,
   getUserWalletSuccess,
   getUserWalletFailure,
