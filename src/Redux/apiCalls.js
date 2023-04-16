@@ -152,6 +152,7 @@ import {
   updateTvStart,
   updateTvSucess,
 } from "./dataListSlice";
+import { getPnlFailure, getPnlStart, getPnlSuccess } from "./reportSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -887,5 +888,20 @@ export const modifyDatapins = async (dispatch, id, name, price) => {
     }
   } catch (error) {
     dispatch(updateDatapinsFailure()); // set error flag to true
+  }
+};
+
+// REPORT
+
+export const getPnlList = async (dispatch, date) => {
+  dispatch(getPnlStart());
+  try {
+    const res = await userRequest.get(
+      `/report/pnl_income?date=${date}`
+    );
+    console.log(res);
+    dispatch(getPnlSuccess(res.data));
+  } catch (error) {
+    dispatch(getPnlFailure());
   }
 };
