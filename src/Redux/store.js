@@ -8,6 +8,7 @@ import serverReducer from "./serverSlice";
 import airtimeReducer from "./airtimeConverterSlice";
 import authReducer from "./authSlice";
 import dataReducer from "./dataListSlice";
+import reportReducer from "./reportSlice";
 import {
   persistStore,
   persistReducer,
@@ -30,6 +31,7 @@ const persistConfig = {
     "settings",
     "server",
     "airtimeConverter",
+    "report",
   ],
 };
 
@@ -43,6 +45,7 @@ const rootReducer = combineReducers({
   airtimeConverter: airtimeReducer,
   auth: authReducer,
   datalist: dataReducer,
+  report: reportReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
