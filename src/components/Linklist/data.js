@@ -395,6 +395,11 @@ export const sidebarData = [
         title: "Daily Report",
         to: "/report_daily",
       },
+      {
+        id: 4,
+        title: "PNL Report",
+        to: "/report_pnl",
+      },
     ],
   },
 ];

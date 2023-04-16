@@ -60,6 +60,7 @@ import Yearly from "./pages/Reports/Yearly";
 import Datapins from "./pages/ServiceControls/Datapins";
 import DatapinsControl from "./pages/ServiceControls/DatapinsControl";
 import SamjiProfile from "./pages/Profile/SamjiProfile";
+import Pnl from "./pages/Reports/Pnl";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -322,6 +323,10 @@ const App = () => {
         <Route
           path="/report_yearly"
           element={user ? <Yearly /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/report_pnl"
+          element={user ? <Pnl /> : <Navigate to="/login" />}
         />
       </Routes>
     </div>
