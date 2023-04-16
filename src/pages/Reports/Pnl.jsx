@@ -21,9 +21,23 @@ import {
   Right,
   Title,
 } from "./daily.styles";
+import useInput from "../../Hooks/use-form";
+import { useDispatch, useSelector } from "react-redux";
+import { getPnlList } from "../../Redux/apiCalls";
 
 const Pnl = () => {
   const report = false;
+  const dispatch = useDispatch()
+  const {pnl, isFetching, error} = useSelector(state => state.report)
+  const { value: enteredDate, valueChangeHandler: dateInputChange } =
+    useInput();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    getPnlList(dispatch, enteredDate)
+  };
+console.log(pnl);
   return (
     <Container>
       <Navbar />
@@ -35,15 +49,16 @@ const Pnl = () => {
           </DescP>
         </Desc>
         <ReportWrapper>
-          <Left>
+          <Left onSubmit={handleSearch}>
             <Title>Search</Title>
             <InputWrapper>
               <EventAvailable
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="date" />
+              <Input type="date" onChange={dateInputChange}
+                value={enteredDate} />
             </InputWrapper>
-            <Btn>
+            <Btn type="submit">
               <Search />
               Search
             </Btn>

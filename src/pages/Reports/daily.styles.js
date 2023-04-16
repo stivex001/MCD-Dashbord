@@ -6,7 +6,7 @@ export const ReportWrapper = styled.div`
   gap: 30px;
   ${mobile({ flexDirection: "column" })};
 `;
-export const Left = styled.div`
+export const Left = styled.form`
   flex: 1.8;
   background-color: #fff;
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
