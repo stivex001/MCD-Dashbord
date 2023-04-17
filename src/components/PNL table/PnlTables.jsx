@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 
 const PnlTables = ({ report }) => {
+  const data = report.data.incomed;
   return (
     <div>
       <TableContainer component={Paper}>
@@ -24,14 +25,16 @@ const PnlTables = ({ report }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {report &&
-              report.map((row) => (
-                <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
-                  <TableCell style={{ color: "#8887a9" }}>{row.name}</TableCell>
+            {data &&
+              data.map((row, index) => (
+                <TableRow
+                  key={row.id}
+                  style={{
+                    backgroundColor: index % 2 === 0 ? "#f3f2f7" : "#ffffff",
+                  }}
+                >
+                  <TableCell style={{ color: "#8887a9" }}>{row.gl}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>{row.sum}</TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>
-                    {row.count}
-                  </TableCell>
                 </TableRow>
               ))}
           </TableBody>

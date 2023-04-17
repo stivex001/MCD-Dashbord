@@ -54,7 +54,7 @@ const Pnl = () => {
 
     getPnlList(dispatch, enteredDate);
   };
-  console.log(pnl.data);
+  console.log(pnl.data.incomed);
   return (
     <Container>
       <Navbar />
@@ -95,7 +95,7 @@ const Pnl = () => {
               <Title>Profit & Loss Report for {formatCurrentMonthYear()}</Title>
             )}
 
-            <PnlTables report={report} />
+            <PnlTables report={pnl} />
           </Right>
         </ReportWrapper>
       </Wrapper>
