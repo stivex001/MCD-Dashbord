@@ -34,7 +34,7 @@ export const Btn = styled.button`
   align-items: center;
   margin: 10px 0 20px;
   padding: 6px 12px;
-  color: #fff;
+  color: white;
   background: linear-gradient(to right, #5c62ae, #4088a9);
   cursor: pointer;
   border: none;

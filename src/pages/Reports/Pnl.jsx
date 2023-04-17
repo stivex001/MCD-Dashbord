@@ -37,7 +37,7 @@ const Pnl = () => {
 
     getPnlList(dispatch, enteredDate)
   };
-console.log(pnl);
+console.log(pnl.data);
   return (
     <Container>
       <Navbar />
@@ -55,7 +55,7 @@ console.log(pnl);
               <EventAvailable
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="date" onChange={dateInputChange}
+              <Input type="month" onChange={dateInputChange}
                 value={enteredDate} />
             </InputWrapper>
             <Btn type="submit">

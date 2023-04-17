@@ -274,12 +274,10 @@ export const getUserWallet = async (dispatch, username, page) => {
   }
 };
 
-export const getSamWallet = async (dispatch,page) => {
+export const getSamWallet = async (dispatch, page) => {
   dispatch(getSamWalletStart());
   try {
-    const res = await userRequest.get(
-      `profile/samji/walletLogs?page=${page}`
-    );
+    const res = await userRequest.get(`profile/samji/walletLogs?page=${page}`);
     dispatch(getSamWalletSuccess(res.data.data));
   } catch (error) {
     dispatch(getSamWalletFailure());
@@ -896,10 +894,8 @@ export const modifyDatapins = async (dispatch, id, name, price) => {
 export const getPnlList = async (dispatch, date) => {
   dispatch(getPnlStart());
   try {
-    const res = await userRequest.get(
-      `/report/pnl_income?date=${date}`
-    );
-    console.log(res);
+    const res = await userRequest.get(`/report/pnl_income?date=${date}`);
+
     dispatch(getPnlSuccess(res.data));
   } catch (error) {
     dispatch(getPnlFailure());
