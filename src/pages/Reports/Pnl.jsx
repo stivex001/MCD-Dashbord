@@ -16,11 +16,12 @@ import {
 import useInput from "../../Hooks/use-form";
 import { useDispatch, useSelector } from "react-redux";
 import { getPnlList } from "../../Redux/apiCalls";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PnlTables from "../../components/PNL table/PnlTables";
+import { Loading } from "../transaction/pending.styles";
+import { CircularProgress } from "@mui/material";
 
 const Pnl = () => {
-  const report = false;
   const dispatch = useDispatch();
   const { pnl, isFetching, error } = useSelector((state) => state.report);
   const [currentMonthYear, setCurrentMonthYear] = useState(() => {
@@ -49,12 +50,29 @@ const Pnl = () => {
     return `${month}, ${year}`;
   };
 
+  useEffect(() => {
+    getPnlList(dispatch, currentMonthYear);
+  }, [dispatch, currentMonthYear]);
+
   const handleSearch = (e) => {
     e.preventDefault();
 
+    if (currentMonthYear) {
+      getPnlList(dispatch, currentMonthYear);
+    }
+
     getPnlList(dispatch, enteredDate);
   };
-  console.log(pnl.data.incomed);
+  console.log(pnl.data);
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
+
   return (
     <Container>
       <Navbar />
@@ -83,7 +101,7 @@ const Pnl = () => {
             </InputWrapper>
             <Btn type="submit">
               <Search />
-              Search
+              {isFetching ? "Searching..." : "Search"}
             </Btn>
           </Left>
           <Right>

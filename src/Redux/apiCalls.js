@@ -152,7 +152,14 @@ import {
   updateTvStart,
   updateTvSucess,
 } from "./dataListSlice";
-import { getPnlFailure, getPnlStart, getPnlSuccess } from "./reportSlice";
+import {
+  getPnlExpensesFailure,
+  getPnlExpensesStart,
+  getPnlExpensesSuccess,
+  getPnlFailure,
+  getPnlStart,
+  getPnlSuccess,
+} from "./reportSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -899,5 +906,16 @@ export const getPnlList = async (dispatch, date) => {
     dispatch(getPnlSuccess(res.data));
   } catch (error) {
     dispatch(getPnlFailure());
+  }
+};
+
+export const getPnlExpensesList = async (dispatch, date) => {
+  dispatch(getPnlExpensesStart());
+  try {
+    const res = await userRequest.get(`/report/pnl_expense?date=${date}`);
+
+    dispatch(getPnlExpensesSuccess(res.data));
+  } catch (error) {
+    dispatch(getPnlExpensesFailure());
   }
 };
