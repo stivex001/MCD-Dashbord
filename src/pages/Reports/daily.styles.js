@@ -27,7 +27,7 @@ export const Right = styled.div`
 export const Title = styled.h3`
   font-size: 16px;
   color: #4a4b4c;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 `;
 export const Btn = styled.button`
   display: flex;

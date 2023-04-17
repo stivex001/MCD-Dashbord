@@ -7,11 +7,18 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import styled from "styled-components";
+
+const P = styled.p`
+font-size: 14px;
+color: #333265;
+`;
 
 const PnlTables = ({ report }) => {
   const data = report.data.incomed;
   return (
     <div>
+      <P>Total Income:</P>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
