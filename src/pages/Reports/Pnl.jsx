@@ -24,20 +24,44 @@ import {
 import useInput from "../../Hooks/use-form";
 import { useDispatch, useSelector } from "react-redux";
 import { getPnlList } from "../../Redux/apiCalls";
+import { useState } from "react";
 
 const Pnl = () => {
   const report = false;
-  const dispatch = useDispatch()
-  const {pnl, isFetching, error} = useSelector(state => state.report)
+  const dispatch = useDispatch();
+  const { pnl, isFetching, error } = useSelector((state) => state.report);
+  const [currentMonthYear, setCurrentMonthYear] = useState(() => {
+    const currentDate = new Date();
+    return `${currentDate.getFullYear()}-${String(
+      currentDate.getMonth() + 1
+    ).padStart(2, "0")}`;
+  });
+
   const { value: enteredDate, valueChangeHandler: dateInputChange } =
     useInput();
+
+  const formatDateString = (dateString) => {
+    const date = new Date(dateString);
+    const month = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+
+    return `${month}, ${year}`;
+  };
+
+  const formatCurrentMonthYear = () => {
+    const currentDate = new Date();
+    const month = currentDate.toLocaleString("default", { month: "long" });
+    const year = currentDate.getFullYear();
+
+    return `${month}, ${year}`;
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
 
-    getPnlList(dispatch, enteredDate)
+    getPnlList(dispatch, enteredDate);
   };
-console.log(pnl.data);
+  console.log(pnl.data);
   return (
     <Container>
       <Navbar />
@@ -55,8 +79,14 @@ console.log(pnl.data);
               <EventAvailable
                 style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
               />
-              <Input type="month" onChange={dateInputChange}
-                value={enteredDate} />
+              <Input
+                type="month"
+                onChange={(e) => {
+                  setCurrentMonthYear(e.target.value);
+                  dateInputChange(e);
+                }}
+                value={enteredDate || currentMonthYear}
+              />
             </InputWrapper>
             <Btn type="submit">
               <Search />
@@ -64,7 +94,14 @@ console.log(pnl.data);
             </Btn>
           </Left>
           <Right>
-            <Title>Profit & Loss Report for April, 2023</Title>
+            {enteredDate ? (
+              <Title>
+                Profit & Loss Report for {formatDateString(enteredDate)}{" "}
+              </Title>
+            ) : (
+              <Title>Profit & Loss Report for {formatCurrentMonthYear()}</Title>
+            )}
+
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
