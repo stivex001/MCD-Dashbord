@@ -15,7 +15,7 @@ import {
 } from "./daily.styles";
 import useInput from "../../Hooks/use-form";
 import { useDispatch, useSelector } from "react-redux";
-import { getPnlList } from "../../Redux/apiCalls";
+import { getPnlExpensesList, getPnlList } from "../../Redux/apiCalls";
 import { useEffect, useState } from "react";
 import PnlTables from "../../components/PNL table/PnlTables";
 import { Loading } from "../transaction/pending.styles";
@@ -23,7 +23,7 @@ import { CircularProgress } from "@mui/material";
 
 const Pnl = () => {
   const dispatch = useDispatch();
-  const { pnl, isFetching, error } = useSelector((state) => state.report);
+  const { pnl, isFetching, pnlExpenses } = useSelector((state) => state.report);
   const [currentMonthYear, setCurrentMonthYear] = useState(() => {
     const currentDate = new Date();
     return `${currentDate.getFullYear()}-${String(
@@ -54,16 +54,23 @@ const Pnl = () => {
     getPnlList(dispatch, currentMonthYear);
   }, [dispatch, currentMonthYear]);
 
+  useEffect(() => {
+    getPnlExpensesList(dispatch, currentMonthYear);
+  }, [dispatch, currentMonthYear]);
+
   const handleSearch = (e) => {
     e.preventDefault();
 
     if (currentMonthYear) {
       getPnlList(dispatch, currentMonthYear);
+      getPnlExpensesList(dispatch, currentMonthYear);
     }
 
     getPnlList(dispatch, enteredDate);
+    getPnlExpensesList(dispatch, enteredDate);
   };
   console.log(pnl.data);
+  console.log(pnlExpenses.data);
 
   if (isFetching) {
     return (
@@ -113,7 +120,7 @@ const Pnl = () => {
               <Title>Profit & Loss Report for {formatCurrentMonthYear()}</Title>
             )}
 
-            <PnlTables report={pnl} />
+            <PnlTables report={pnl} pnlExpenses={pnlExpenses} />
           </Right>
         </ReportWrapper>
       </Wrapper>
