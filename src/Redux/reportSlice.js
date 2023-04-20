@@ -8,6 +8,7 @@ const reportSlice = createSlice({
     message: false,
     pnl: [],
     pnlExpenses: [],
+    pnlGl: [],
   },
   reducers: {
     getPnlStart: (state) => {
@@ -34,6 +35,18 @@ const reportSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    getPnlGlStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getPnlGlSuccess: (state, action) => {
+      state.isFetching = false;
+      state.pnlGl = action.payload;
+    },
+    getPnlGlFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -44,5 +57,8 @@ export const {
   getPnlExpensesStart,
   getPnlExpensesSuccess,
   getPnlExpensesFailure,
+  getPnlGlStart,
+  getPnlGlSuccess,
+  getPnlGlFailure
 } = reportSlice.actions;
 export default reportSlice.reducer;
