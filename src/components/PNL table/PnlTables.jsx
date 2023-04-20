@@ -15,16 +15,16 @@ const P = styled.p`
 `;
 
 const PnlTables = ({ report, pnlExpenses }) => {
-  const data = report.data?.incomed;
+  const data = report.data?.income_gls;
   const total = report.data?.income_sum.toFixed(2);
-  const expenses = pnlExpenses.data?.expensed;
+  const expenses = pnlExpenses.data?.expense_gls;
   const totalExpenses = pnlExpenses.data?.expense_sum.toFixed(2);
 
   return (
     <div>
       <P>Total Income: {total}</P>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow style={{ backgroundColor: "#f3f2f7" }}>
               <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
