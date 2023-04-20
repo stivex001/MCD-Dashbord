@@ -15,7 +15,11 @@ import {
 } from "./daily.styles";
 import useInput from "../../Hooks/use-form";
 import { useDispatch, useSelector } from "react-redux";
-import { getPnlExpensesList, getPnlGlList, getPnlList } from "../../Redux/apiCalls";
+import {
+  getPnlExpensesList,
+  getPnlGlList,
+  getPnlList,
+} from "../../Redux/apiCalls";
 import { useEffect, useState } from "react";
 import PnlTables from "../../components/PNL table/PnlTables";
 import { Loading } from "../transaction/pending.styles";
@@ -23,7 +27,9 @@ import { CircularProgress } from "@mui/material";
 
 const Pnl = () => {
   const dispatch = useDispatch();
-  const { pnl, isFetching, pnlExpenses, pnlGl } = useSelector((state) => state.report);
+  const { pnl, isFetching, pnlExpenses, pnlGl } = useSelector(
+    (state) => state.report
+  );
   const [currentMonthYear, setCurrentMonthYear] = useState(() => {
     const currentDate = new Date();
     return `${currentDate.getFullYear()}-${String(
@@ -65,20 +71,19 @@ const Pnl = () => {
     getPnlGlList(dispatch, currentMonthYear);
   }, [dispatch, currentMonthYear]);
 
-
   const handleSearch = (e) => {
     e.preventDefault();
 
     if (currentMonthYear) {
       getPnlList(dispatch, currentMonthYear);
       getPnlExpensesList(dispatch, currentMonthYear);
+      getPnlGlList(dispatch, currentMonthYear);
     }
 
     getPnlList(dispatch, enteredDate);
     getPnlExpensesList(dispatch, enteredDate);
+    getPnlGlList(dispatch, enteredDate);
   };
-  
-  console.log(pnlExpenses.data);
 
   if (isFetching) {
     return (
