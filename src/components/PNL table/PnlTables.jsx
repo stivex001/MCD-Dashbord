@@ -51,12 +51,12 @@ const P = styled.p`
 //   /* padding: 20px 0px; */
 // `;
 
-const PnlTables = ({ report, pnlExpenses }) => {
+const PnlTables = ({ report, pnlExpenses, pnlGl }) => {
   const data = report.data?.income_gls;
   const total = report.data?.income_sum.toFixed(2);
   const expenses = pnlExpenses.data?.expense_gls;
   const totalExpenses = pnlExpenses.data?.expense_sum.toFixed(2);
-
+// console.log(pnlGl);
   return (
     <div>
       <P>Total Income: {total}</P>

@@ -157,6 +157,9 @@ import {
   getPnlExpensesStart,
   getPnlExpensesSuccess,
   getPnlFailure,
+  getPnlGlFailure,
+  getPnlGlStart,
+  getPnlGlSuccess,
   getPnlStart,
   getPnlSuccess,
 } from "./reportSlice";
@@ -917,5 +920,16 @@ export const getPnlExpensesList = async (dispatch, date) => {
     dispatch(getPnlExpensesSuccess(res.data));
   } catch (error) {
     dispatch(getPnlExpensesFailure());
+  }
+};
+
+export const getPnlGlList = async (dispatch, date, gl) => {
+  dispatch(getPnlGlStart());
+  try {
+    const res = await userRequest.get(`/report/pnl_gl?date=${date}&gl=${gl}`);
+
+    dispatch(getPnlGlSuccess(res.data));
+  } catch (error) {
+    dispatch(getPnlGlFailure());
   }
 };

@@ -15,7 +15,7 @@ import {
 } from "./daily.styles";
 import useInput from "../../Hooks/use-form";
 import { useDispatch, useSelector } from "react-redux";
-import { getPnlExpensesList, getPnlList } from "../../Redux/apiCalls";
+import { getPnlExpensesList, getPnlGlList, getPnlList } from "../../Redux/apiCalls";
 import { useEffect, useState } from "react";
 import PnlTables from "../../components/PNL table/PnlTables";
 import { Loading } from "../transaction/pending.styles";
@@ -23,7 +23,7 @@ import { CircularProgress } from "@mui/material";
 
 const Pnl = () => {
   const dispatch = useDispatch();
-  const { pnl, isFetching, pnlExpenses } = useSelector((state) => state.report);
+  const { pnl, isFetching, pnlExpenses, pnlGl } = useSelector((state) => state.report);
   const [currentMonthYear, setCurrentMonthYear] = useState(() => {
     const currentDate = new Date();
     return `${currentDate.getFullYear()}-${String(
@@ -50,6 +50,9 @@ const Pnl = () => {
     return `${month}, ${year}`;
   };
 
+  // const gl = pnl.data?.income_gls.map(({gl}) => gl);
+  // console.log(gl);
+
   useEffect(() => {
     getPnlList(dispatch, currentMonthYear);
   }, [dispatch, currentMonthYear]);
@@ -57,6 +60,11 @@ const Pnl = () => {
   useEffect(() => {
     getPnlExpensesList(dispatch, currentMonthYear);
   }, [dispatch, currentMonthYear]);
+
+  useEffect(() => {
+    getPnlGlList(dispatch, currentMonthYear);
+  }, [dispatch, currentMonthYear]);
+
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -69,7 +77,7 @@ const Pnl = () => {
     getPnlList(dispatch, enteredDate);
     getPnlExpensesList(dispatch, enteredDate);
   };
-  console.log(pnl.data);
+  
   console.log(pnlExpenses.data);
 
   if (isFetching) {
@@ -120,7 +128,7 @@ const Pnl = () => {
               <Title>Profit & Loss Report for {formatCurrentMonthYear()}</Title>
             )}
 
-            <PnlTables report={pnl} pnlExpenses={pnlExpenses} />
+            <PnlTables report={pnl} pnlExpenses={pnlExpenses} pnlGl={pnlGl} />
           </Right>
         </ReportWrapper>
       </Wrapper>
