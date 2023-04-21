@@ -98,18 +98,13 @@ const Pnl = () => {
 
   useEffect(() => {
     getPnlExpensesList(dispatch, currentMonthYear);
-  }, [dispatch, currentMonthYear]);
-
-  // gls.forEach((g) => {
-  //   const gl = encodeURIComponent(g.gl);
-  //   getPnlGlList(dispatch, currentMonthYear, gl);
-  // });
+  }, [dispatch, currentMonthYear])
 
   useEffect(() => {
-    getPnlGlList(dispatch, currentMonthYear, ["Data"] );
+    getPnlGlList(dispatch, currentMonthYear );
   }, [dispatch, currentMonthYear]);
 
-  console.log(pnlGl.data);
+  console.log(pnlGl);
 
   const handleSearch = (e) => {
     e.preventDefault();

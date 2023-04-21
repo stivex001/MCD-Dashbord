@@ -923,28 +923,41 @@ export const getPnlExpensesList = async (dispatch, date) => {
   }
 };
 
-// export const getPnlGlList = async (dispatch, date, gl) => {
-//   dispatch(getPnlGlStart());
-//   try {
-//     const res = await userRequest.get(`/report/pnl_gl?date=${date}&gl=${gl}`);
-
-//     dispatch(getPnlGlSuccess(res.data));
-//   } catch (error) {
-//     dispatch(getPnlGlFailure());
-//   }
-// };
-
-export const getPnlGlList = async (dispatch, date, gls) => {
+export const getPnlGlList = async (dispatch, date, gl) => {
   dispatch(getPnlGlStart());
+  const gls = [
+    { gl: "Data" },
+    { gl: "Personal Account" },
+    { gl: "Paystack" },
+    { gl: "Rave" },
+    { gl: "Reseller Virtual Account" },
+    { gl: "other" },
+    { gl: "BIZVERIFICATION" },
+    { gl: "Withdrawal Fee" },
+    { gl: "referral upgrade" },
+    { gl: "Agent Registration" },
+  ];
   try {
-    const res = await userRequest.get(`/report/pnl_gl?date=${date}`);
-
-    const filteredData = res.data.filter(item => {
-      return gls.includes(item.gl);
-    });
-
-    dispatch(getPnlGlSuccess(filteredData));
+    const promises = gls.map((gl) => userRequest.get(`/report/pnl_gl?date=${date}&gl=${gl.gl}`));
+    const res = await Promise.all(promises)
+    const data = res.map((response) => response.data);
+    dispatch(getPnlGlSuccess(data));
   } catch (error) {
     dispatch(getPnlGlFailure());
   }
 };
+
+// export const getPnlGlList = async (dispatch, date, gls) => {
+//   dispatch(getPnlGlStart());
+//   try {
+//     const res = await userRequest.get(`/report/pnl_gl?date=${date}`);
+
+//     const filteredData = res.data.filter(item => {
+//       return gls.includes(item.gl);
+//     });
+
+//     dispatch(getPnlGlSuccess(filteredData));
+//   } catch (error) {
+//     dispatch(getPnlGlFailure());
+//   }
+// };

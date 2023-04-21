@@ -123,7 +123,7 @@ const PnlTables = ({ report, pnlExpenses, pnlGl }) => {
                 >
                   <TableCell style={{ color: "#8887a9" }}>{row.gl}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    {row.gl === "Data" ? pnlGl.data.gl_sum : "0.00"}
+                    {amounts?.[index] ?? "0.00"}
                   </TableCell>
                 </TableRow>
               ))}
@@ -156,7 +156,7 @@ const PnlTables = ({ report, pnlExpenses, pnlGl }) => {
                   >
                     <TableCell style={{ color: "#8887a9" }}>{row.gl}</TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
-                      {row.gl === "Data" ? pnlGl.data.gl_sum : "0.00"}
+                      {expenseAmounts?.[index] ?? "0.00"}
                     </TableCell>
                   </TableRow>
                 ))}
