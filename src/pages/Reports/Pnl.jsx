@@ -56,7 +56,40 @@ const Pnl = () => {
     return `${month}, ${year}`;
   };
 
-  // const gl = pnl.data?.income_gls.map(({gl}) => gl);
+  // const gl = pnl.data?.income_gls.map(({ gl }) => gl.replace(/"/g, ""));
+  const gls = [
+    {
+      gl: "Data",
+    },
+    {
+      gl: "Personal Account",
+    },
+    {
+      gl: "Paystack",
+    },
+    {
+      gl: "Rave",
+    },
+    {
+      gl: "Reseller Virtual Account",
+    },
+    {
+      gl: "other",
+    },
+    {
+      gl: "BIZVERIFICATION",
+    },
+    {
+      gl: "Withdrawal Fee",
+    },
+    {
+      gl: "referral upgrade",
+    },
+    {
+      gl: "Agent Registration",
+    },
+  ];
+
   // console.log(gl);
 
   useEffect(() => {
@@ -67,9 +100,16 @@ const Pnl = () => {
     getPnlExpensesList(dispatch, currentMonthYear);
   }, [dispatch, currentMonthYear]);
 
+  // gls.forEach((g) => {
+  //   const gl = encodeURIComponent(g.gl);
+  //   getPnlGlList(dispatch, currentMonthYear, gl);
+  // });
+
   useEffect(() => {
-    getPnlGlList(dispatch, currentMonthYear);
+    getPnlGlList(dispatch, currentMonthYear, ["Data"] );
   }, [dispatch, currentMonthYear]);
+
+  console.log(pnlGl.data);
 
   const handleSearch = (e) => {
     e.preventDefault();
