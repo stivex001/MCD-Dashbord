@@ -923,12 +923,27 @@ export const getPnlExpensesList = async (dispatch, date) => {
   }
 };
 
-export const getPnlGlList = async (dispatch, date, gl) => {
+// export const getPnlGlList = async (dispatch, date, gl) => {
+//   dispatch(getPnlGlStart());
+//   try {
+//     const res = await userRequest.get(`/report/pnl_gl?date=${date}&gl=${gl}`);
+
+//     dispatch(getPnlGlSuccess(res.data));
+//   } catch (error) {
+//     dispatch(getPnlGlFailure());
+//   }
+// };
+
+export const getPnlGlList = async (dispatch, date, gls) => {
   dispatch(getPnlGlStart());
   try {
-    const res = await userRequest.get(`/report/pnl_gl?date=${date}&gl=${gl}`);
+    const res = await userRequest.get(`/report/pnl_gl?date=${date}`);
 
-    dispatch(getPnlGlSuccess(res.data));
+    const filteredData = res.data.filter(item => {
+      return gls.includes(item.gl);
+    });
+
+    dispatch(getPnlGlSuccess(filteredData));
   } catch (error) {
     dispatch(getPnlGlFailure());
   }
