@@ -946,7 +946,7 @@ export const getPnlGlExpensesList = async (dispatch, date, gl) => {
   dispatch(getPnlGlExpensesStart());
   try {
     const response = await userRequest.get(`/report/pnl_expense?date=${date}`);
-    const gls = response.data.data.income_gls;
+    const gls = response.data.data.expense_gls;
     const promises = gls.map((gl) =>
       userRequest.get(`/report/pnl_gl?date=${date}&gl=${gl.gl}`)
     );
