@@ -57,16 +57,15 @@ const Pnl = () => {
   };
 
   // const gl = pnl.data?.income_gls.map(({ gl }) => gl.replace(/"/g, ""));
-  const data = pnl.data?.income_gls.map(({gl}) => gl);
+  const data = pnl.data?.income_gls.map(({ gl }) => gl);
   const glSums = pnlGl?.map((item) => item.data.gl_sum);
 
   const combinedData = data.map((gl, index) => {
     return {
       gl: gl,
-      gl_sum: glSums[index]
+      gl_sum: glSums[index],
     };
   });
-  
 
   useEffect(() => {
     getPnlList(dispatch, currentMonthYear);
@@ -79,13 +78,6 @@ const Pnl = () => {
   useEffect(() => {
     getPnlGlList(dispatch, currentMonthYear);
   }, [dispatch, currentMonthYear]);
-
-  
-
-
-  
-  console.log(glSums);
-  console.log(data);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -149,7 +141,12 @@ const Pnl = () => {
               <Title>Profit & Loss Report for {formatCurrentMonthYear()}</Title>
             )}
 
-            <PnlTables report={pnl} pnlExpenses={pnlExpenses} pnlGl={pnlGl} combinedData={combinedData} />
+            <PnlTables
+              report={pnl}
+              pnlExpenses={pnlExpenses}
+              pnlGl={pnlGl}
+              combinedData={combinedData}
+            />
           </Right>
         </ReportWrapper>
       </Wrapper>
