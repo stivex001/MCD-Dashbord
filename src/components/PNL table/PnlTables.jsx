@@ -51,33 +51,21 @@ const P = styled.p`
 //   /* padding: 20px 0px; */
 // `;
 
-const PnlTables = ({ report, pnlExpenses, pnlGl }) => {
-  const data = report.data?.income_gls;
+const PnlTables = ({ report, pnlExpenses, pnlGl, combinedData }) => {
   const total = report.data?.income_sum.toFixed(2);
   const expenses = pnlExpenses.data?.expense_gls;
   const totalExpenses = pnlExpenses.data?.expense_sum.toFixed(2);
 
-  const amounts = data?.map((row) => {
-    const glValue = row.gl;
-    // console.log(typeof(glValue));
-    const pnlRow = Array.isArray(pnlGl)
-      ? pnlGl.find((pnlRow) => pnlRow.gl === glValue)
-      : null;
+  // const expenseAmounts = expenses?.map((row) => {
+  //   const glValue = row.gl;
+  //   // console.log(typeof(glValue));
+  //   const pnlRow = Array.isArray(pnlGl)
+  //     ? pnlGl.find((pnlRow) => pnlRow.gl === glValue)
+  //     : null;
 
-    const sum = pnlRow?.gl_sum ?? 0;
-    return sum.toFixed(2);
-  });
-
-  const expenseAmounts = expenses?.map((row) => {
-    const glValue = row.gl;
-    // console.log(typeof(glValue));
-    const pnlRow = Array.isArray(pnlGl)
-      ? pnlGl.find((pnlRow) => pnlRow.gl === glValue)
-      : null;
-
-    const sum = pnlRow?.gl_sum ?? 0;
-    return sum.toFixed(2);
-  });
+  //   const sum = pnlRow?.gl_sum ?? 0;
+  //   return sum.toFixed(2);
+  // });
   // console.log(pnlGl);
   return (
     <div>
@@ -113,8 +101,8 @@ const PnlTables = ({ report, pnlExpenses, pnlGl }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data &&
-              data.map((row, index) => (
+            {combinedData &&
+              combinedData.map((row, index) => (
                 <TableRow
                   key={index}
                   style={{
@@ -123,7 +111,7 @@ const PnlTables = ({ report, pnlExpenses, pnlGl }) => {
                 >
                   <TableCell style={{ color: "#8887a9" }}>{row.gl}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    {amounts?.[index] ?? "0.00"}
+                    {row.gl_sum}
                   </TableCell>
                 </TableRow>
               ))}
@@ -156,7 +144,7 @@ const PnlTables = ({ report, pnlExpenses, pnlGl }) => {
                   >
                     <TableCell style={{ color: "#8887a9" }}>{row.gl}</TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
-                      {expenseAmounts?.[index] ?? "0.00"}
+                      {/* {expenseAmounts?.[index] ?? "0.00"} */}
                     </TableCell>
                   </TableRow>
                 ))}

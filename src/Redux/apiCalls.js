@@ -925,21 +925,13 @@ export const getPnlExpensesList = async (dispatch, date) => {
 
 export const getPnlGlList = async (dispatch, date, gl) => {
   dispatch(getPnlGlStart());
-  const gls = [
-    { gl: "Data" },
-    { gl: "Personal Account" },
-    { gl: "Paystack" },
-    { gl: "Rave" },
-    { gl: "Reseller Virtual Account" },
-    { gl: "other" },
-    { gl: "BIZVERIFICATION" },
-    { gl: "Withdrawal Fee" },
-    { gl: "referral upgrade" },
-    { gl: "Agent Registration" },
-  ];
   try {
-    const promises = gls.map((gl) => userRequest.get(`/report/pnl_gl?date=${date}&gl=${gl.gl}`));
-    const res = await Promise.all(promises)
+    const response = await userRequest.get(`/report/pnl_income?date=${date}`);
+    const gls = response.data.data.income_gls;
+    const promises = gls.map((gl) =>
+      userRequest.get(`/report/pnl_gl?date=${date}&gl=${gl.gl}`)
+    );
+    const res = await Promise.all(promises);
     const data = res.map((response) => response.data);
     dispatch(getPnlGlSuccess(data));
   } catch (error) {

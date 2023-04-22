@@ -57,40 +57,16 @@ const Pnl = () => {
   };
 
   // const gl = pnl.data?.income_gls.map(({ gl }) => gl.replace(/"/g, ""));
-  const gls = [
-    {
-      gl: "Data",
-    },
-    {
-      gl: "Personal Account",
-    },
-    {
-      gl: "Paystack",
-    },
-    {
-      gl: "Rave",
-    },
-    {
-      gl: "Reseller Virtual Account",
-    },
-    {
-      gl: "other",
-    },
-    {
-      gl: "BIZVERIFICATION",
-    },
-    {
-      gl: "Withdrawal Fee",
-    },
-    {
-      gl: "referral upgrade",
-    },
-    {
-      gl: "Agent Registration",
-    },
-  ];
+  const data = pnl.data?.income_gls.map(({gl}) => gl);
+  const glSums = pnlGl?.map((item) => item.data.gl_sum);
 
-  // console.log(gl);
+  const combinedData = data.map((gl, index) => {
+    return {
+      gl: gl,
+      gl_sum: glSums[index]
+    };
+  });
+  
 
   useEffect(() => {
     getPnlList(dispatch, currentMonthYear);
@@ -98,13 +74,18 @@ const Pnl = () => {
 
   useEffect(() => {
     getPnlExpensesList(dispatch, currentMonthYear);
-  }, [dispatch, currentMonthYear])
-
-  useEffect(() => {
-    getPnlGlList(dispatch, currentMonthYear );
   }, [dispatch, currentMonthYear]);
 
-  console.log(pnlGl);
+  useEffect(() => {
+    getPnlGlList(dispatch, currentMonthYear);
+  }, [dispatch, currentMonthYear]);
+
+  
+
+
+  
+  console.log(glSums);
+  console.log(data);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -168,7 +149,7 @@ const Pnl = () => {
               <Title>Profit & Loss Report for {formatCurrentMonthYear()}</Title>
             )}
 
-            <PnlTables report={pnl} pnlExpenses={pnlExpenses} pnlGl={pnlGl} />
+            <PnlTables report={pnl} pnlExpenses={pnlExpenses} pnlGl={pnlGl} combinedData={combinedData} />
           </Right>
         </ReportWrapper>
       </Wrapper>
