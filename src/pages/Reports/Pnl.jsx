@@ -17,6 +17,7 @@ import useInput from "../../Hooks/use-form";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getPnlExpensesList,
+  getPnlGlExpensesList,
   getPnlGlList,
   getPnlList,
 } from "../../Redux/apiCalls";
@@ -27,7 +28,7 @@ import { CircularProgress } from "@mui/material";
 
 const Pnl = () => {
   const dispatch = useDispatch();
-  const { pnl, isFetching, pnlExpenses, pnlGl } = useSelector(
+  const { pnl, isFetching, pnlExpenses, pnlGl, pnlGlExpenses } = useSelector(
     (state) => state.report
   );
   const [currentMonthYear, setCurrentMonthYear] = useState(() => {
@@ -60,10 +61,20 @@ const Pnl = () => {
   const data = pnl.data?.income_gls.map(({ gl }) => gl);
   const glSums = pnlGl?.map((item) => item.data.gl_sum);
 
+  const expensesData = pnlExpenses.data?.expense_gls.map(({ gl }) => gl);
+  const expensesGlSums = pnlGlExpenses?.map((item) => item.data.gl_sum);
+
   const combinedData = data?.map((gl, index) => {
     return {
       gl: gl,
       gl_sum: glSums[index],
+    };
+  });
+
+  const expensesCombinedData = expensesData?.map((gl, index) => {
+    return {
+      gl: gl,
+      gl_sum: expensesGlSums[index],
     };
   });
 
@@ -79,6 +90,10 @@ const Pnl = () => {
     getPnlGlList(dispatch, currentMonthYear);
   }, [dispatch, currentMonthYear]);
 
+  useEffect(() => {
+    getPnlGlExpensesList(dispatch, currentMonthYear);
+  }, [dispatch, currentMonthYear]);
+
   const handleSearch = (e) => {
     e.preventDefault();
 
@@ -86,11 +101,13 @@ const Pnl = () => {
       getPnlList(dispatch, currentMonthYear);
       getPnlExpensesList(dispatch, currentMonthYear);
       getPnlGlList(dispatch, currentMonthYear);
+      getPnlGlExpensesList(dispatch, currentMonthYear);
     }
 
     getPnlList(dispatch, enteredDate);
     getPnlExpensesList(dispatch, enteredDate);
     getPnlGlList(dispatch, enteredDate);
+    getPnlGlExpensesList(dispatch, enteredDate);
   };
 
   if (isFetching) {
@@ -146,6 +163,7 @@ const Pnl = () => {
               pnlExpenses={pnlExpenses}
               pnlGl={pnlGl}
               combinedData={combinedData}
+              expensesCombinedData={expensesCombinedData}
             />
           </Right>
         </ReportWrapper>
