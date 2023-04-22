@@ -14,9 +14,13 @@ const P = styled.p`
   color: #333265;
 `;
 
-const PnlTables = ({ report, pnlExpenses, pnlGl, combinedData }) => {
+const PnlTables = ({
+  report,
+  pnlExpenses,
+  combinedData,
+  expensesCombinedData,
+}) => {
   const total = report.data?.income_sum.toFixed(2);
-  const expenses = pnlExpenses.data?.expense_gls;
   const totalExpenses = pnlExpenses.data?.expense_sum.toFixed(2);
 
   return (
@@ -45,7 +49,7 @@ const PnlTables = ({ report, pnlExpenses, pnlGl, combinedData }) => {
                 >
                   <TableCell style={{ color: "#8887a9" }}>{row?.gl}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    {(row?.gl_sum).toFixed(2) || "0.00"}
+                    {row?.gl_sum || "0.00"}
                   </TableCell>
                 </TableRow>
               ))}
@@ -56,7 +60,7 @@ const PnlTables = ({ report, pnlExpenses, pnlGl, combinedData }) => {
 
         <P style={{ marginTop: "30px" }}>Total Expenses: {totalExpenses}</P>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table aria-label="simple table">
             <TableHead>
               <TableRow style={{ backgroundColor: "#f3f2f7" }}>
                 <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
@@ -68,17 +72,19 @@ const PnlTables = ({ report, pnlExpenses, pnlGl, combinedData }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {expenses &&
-                expenses.map((row, index) => (
+              {expensesCombinedData &&
+                expensesCombinedData.map((row, index) => (
                   <TableRow
                     key={index}
                     style={{
                       backgroundColor: index % 2 === 0 ? "#f3f2f7" : "#ffffff",
                     }}
                   >
-                    <TableCell style={{ color: "#8887a9" }}>{row.gl}</TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
-                      {/* {expenseAmounts?.[index] ?? "0.00"} */}
+                      {row?.gl}
+                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>
+                      {row?.gl_sum || "0.00"}
                     </TableCell>
                   </TableRow>
                 ))}
