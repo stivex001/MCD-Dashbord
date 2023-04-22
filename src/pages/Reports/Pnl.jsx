@@ -60,7 +60,7 @@ const Pnl = () => {
   const data = pnl.data?.income_gls.map(({ gl }) => gl);
   const glSums = pnlGl?.map((item) => item.data.gl_sum);
 
-  const combinedData = data.map((gl, index) => {
+  const combinedData = data?.map((gl, index) => {
     return {
       gl: gl,
       gl_sum: glSums[index],

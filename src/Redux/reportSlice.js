@@ -9,6 +9,7 @@ const reportSlice = createSlice({
     pnl: [],
     pnlExpenses: [],
     pnlGl: [],
+    pnlGlExpenses: [],
   },
   reducers: {
     getPnlStart: (state) => {
@@ -47,6 +48,18 @@ const reportSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    getPnlGlExpensesStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getPnlGlExpensesSuccess: (state, action) => {
+      state.isFetching = false;
+      state.pnlGlExpenses = action.payload;
+    },
+    getPnlGlExpensesFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -59,6 +72,9 @@ export const {
   getPnlExpensesFailure,
   getPnlGlStart,
   getPnlGlSuccess,
-  getPnlGlFailure
+  getPnlGlFailure,
+  getPnlGlExpensesStart,
+  getPnlGlExpensesSuccess,
+  getPnlGlExpensesFailure
 } = reportSlice.actions;
 export default reportSlice.reducer;

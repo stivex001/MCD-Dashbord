@@ -157,6 +157,9 @@ import {
   getPnlExpensesStart,
   getPnlExpensesSuccess,
   getPnlFailure,
+  getPnlGlExpensesFailure,
+  getPnlGlExpensesStart,
+  getPnlGlExpensesSuccess,
   getPnlGlFailure,
   getPnlGlStart,
   getPnlGlSuccess,
@@ -912,17 +915,6 @@ export const getPnlList = async (dispatch, date) => {
   }
 };
 
-export const getPnlExpensesList = async (dispatch, date) => {
-  dispatch(getPnlExpensesStart());
-  try {
-    const res = await userRequest.get(`/report/pnl_expense?date=${date}`);
-
-    dispatch(getPnlExpensesSuccess(res.data));
-  } catch (error) {
-    dispatch(getPnlExpensesFailure());
-  }
-};
-
 export const getPnlGlList = async (dispatch, date, gl) => {
   dispatch(getPnlGlStart());
   try {
@@ -939,17 +931,29 @@ export const getPnlGlList = async (dispatch, date, gl) => {
   }
 };
 
-// export const getPnlGlList = async (dispatch, date, gls) => {
-//   dispatch(getPnlGlStart());
-//   try {
-//     const res = await userRequest.get(`/report/pnl_gl?date=${date}`);
+export const getPnlExpensesList = async (dispatch, date) => {
+  dispatch(getPnlExpensesStart());
+  try {
+    const res = await userRequest.get(`/report/pnl_expense?date=${date}`);
 
-//     const filteredData = res.data.filter(item => {
-//       return gls.includes(item.gl);
-//     });
+    dispatch(getPnlExpensesSuccess(res.data));
+  } catch (error) {
+    dispatch(getPnlExpensesFailure());
+  }
+};
 
-//     dispatch(getPnlGlSuccess(filteredData));
-//   } catch (error) {
-//     dispatch(getPnlGlFailure());
-//   }
-// };
+export const getPnlGlExpensesList = async (dispatch, date, gl) => {
+  dispatch(getPnlGlExpensesStart());
+  try {
+    const response = await userRequest.get(`/report/pnl_expense?date=${date}`);
+    const gls = response.data.data.income_gls;
+    const promises = gls.map((gl) =>
+      userRequest.get(`/report/pnl_gl?date=${date}&gl=${gl.gl}`)
+    );
+    const res = await Promise.all(promises);
+    const data = res.map((response) => response.data);
+    dispatch(getPnlGlExpensesSuccess(data));
+  } catch (error) {
+    dispatch(getPnlGlExpensesFailure());
+  }
+};

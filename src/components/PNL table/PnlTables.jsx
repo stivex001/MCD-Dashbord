@@ -43,9 +43,9 @@ const PnlTables = ({ report, pnlExpenses, pnlGl, combinedData }) => {
                     backgroundColor: index % 2 === 0 ? "#f3f2f7" : "#ffffff",
                   }}
                 >
-                  <TableCell style={{ color: "#8887a9" }}>{row.gl}</TableCell>
+                  <TableCell style={{ color: "#8887a9" }}>{row?.gl}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    {row.gl_sum.toFixed(2) || "0.00"}
+                    {(row?.gl_sum).toFixed(2) || "0.00"}
                   </TableCell>
                 </TableRow>
               ))}
