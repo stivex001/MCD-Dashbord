@@ -111,7 +111,7 @@ const PnlTables = ({ report, pnlExpenses, pnlGl, combinedData }) => {
                 >
                   <TableCell style={{ color: "#8887a9" }}>{row.gl}</TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    {row.gl_sum}
+                    {(row.gl_sum.toFixed(2)) || '0.00'}
                   </TableCell>
                 </TableRow>
               ))}
