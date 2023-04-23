@@ -57,7 +57,6 @@ const Pnl = () => {
     return `${month}, ${year}`;
   };
 
-  // const gl = pnl.data?.income_gls.map(({ gl }) => gl.replace(/"/g, ""));
   const data = pnl.data?.income_gls.map(({ gl }) => gl);
   const glSums = pnlGl?.map((item) => item.data.gl_sum);
 
