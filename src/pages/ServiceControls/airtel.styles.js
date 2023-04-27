@@ -77,7 +77,7 @@ export const Btn = styled.button`
 export const ModifyBtn = styled.button`
   display: flex;
   align-items: center;
-  background: linear-gradient(to right, #5c62ae, #4088a9);
+  background: linear-gradient(to right, #5dd099, #4088a9);
   padding: 10px;
   margin: 20px 0;
   gap: 2px;
