@@ -74,3 +74,25 @@ export const Btn = styled.button`
     transition: all 0.5s;
   }
 `;
+export const ModifyBtn = styled.button`
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to right, #5c62ae, #4088a9);
+  padding: 10px;
+  margin: 20px 0;
+  gap: 2px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  &:hover {
+    color: #343a40;
+    transition: all 0.5s;
+  }
+`;
+export const ButtonWrapper = styled.div`
+display: flex;
+justify-content: space-between;
+`;

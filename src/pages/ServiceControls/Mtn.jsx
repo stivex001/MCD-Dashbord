@@ -1,4 +1,4 @@
-import { Search } from "@mui/icons-material";
+import { NoteAdd, Search } from "@mui/icons-material";
 import {
   CircularProgress,
   MenuItem,
@@ -24,10 +24,12 @@ import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import { BtnConatiner } from "../Users/agent.styles";
 import {
   Btn,
+  ButtonWrapper,
   Container,
   Details,
   Form,
   FormWrapper,
+  ModifyBtn,
   P,
   TableWrapper,
   Wrapper,
@@ -118,10 +120,16 @@ const Mtn = () => {
               ))}
             </TextField>
           </Form>
-          <Btn type="submit">
-            <Search />
-            {isFetching ? "Searching...." : "Search"}
-          </Btn>
+          <ButtonWrapper>
+            <Btn type="submit">
+              <Search />
+              {isFetching ? "Searching...." : "Search"}
+            </Btn>
+            <ModifyBtn type="submit">
+              <NoteAdd />
+              {isFetching ? "Modifying...." : "Modify"}
+            </ModifyBtn>
+          </ButtonWrapper>
         </FormWrapper>
 
         {mtnList && (
