@@ -66,6 +66,14 @@ const Pending = () => {
       reProcess(dispatch, checkId);
     }
   };
+
+  const handleRevesal = () => {
+    if (checkId.length === 0) {
+      return dispatch(emptyCheckbox(error));
+    } 
+    console.log('selected');
+  }
+
   const handleClose = () => {
     dispatch(clearMessage());
     dispatch(clearError());
@@ -123,7 +131,7 @@ const Pending = () => {
             <Button type="Mark Delivered Selected">
               Mark Delivered Selected
             </Button>
-            <Button type="Reverse Transaction Selected">
+            <Button type="Reverse Transaction Selected" onClick={handleRevesal}>
               Reverse Transaction Selected
             </Button>
           </BtnConatiner>
