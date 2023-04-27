@@ -6,7 +6,11 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import PendingTables from "../../components/Pendingtable/PendingTables";
 import { getPendingTransData, reProcess } from "../../Redux/apiCalls";
-import { emptyCheckbox } from "../../Redux/pendingTransSlice";
+import {
+  clearError,
+  clearMessage,
+  emptyCheckbox,
+} from "../../Redux/pendingTransSlice";
 import {
   BtnConatiner,
   Button,
@@ -30,7 +34,6 @@ const Pending = () => {
     (state) => state.transaction
   );
   const dispatch = useDispatch();
-  const [showerr, setShowerr] = useState(error);
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(pendingTrans?.last_page);
   const [currentItems, setCurrentItems] = useState(pendingTrans?.data);
@@ -58,14 +61,14 @@ const Pending = () => {
 
   const handleReProcess = () => {
     if (checkId.length === 0) {
-      return dispatch(emptyCheckbox(showerr));
+      return dispatch(emptyCheckbox(error));
     } else {
       reProcess(dispatch, checkId);
     }
   };
-  const closeErr = () => {
-    console.log("close");
-    setShowerr(false);
+  const handleClose = () => {
+    dispatch(clearMessage());
+    dispatch(clearError());
   };
 
   if (isProcessing) {
@@ -95,7 +98,10 @@ const Pending = () => {
           {error && (
             <MsgContainer>
               <H2>Kindly select some box!</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              <Close
+                onClick={handleClose}
+                style={{ color: "#806e6b", cursor: "pointer" }}
+              />
             </MsgContainer>
           )}
           {message && (
@@ -105,7 +111,7 @@ const Pending = () => {
               </H2>
               <Close
                 style={{ color: "#806e6b", cursor: "pointer" }}
-                onClick={closeErr}
+                onClick={handleClose}
               />
             </MsgContainer>
           )}
@@ -126,7 +132,7 @@ const Pending = () => {
               pendingTrans={pendingTrans}
               pageCount={pageCount}
               currentItems={currentItems}
-              showerr={showerr}
+              showerr={error}
               handlePageClick={handlePageClick}
               currentPage={currentPage}
             />

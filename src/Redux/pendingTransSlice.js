@@ -87,6 +87,12 @@ const pendingTransactionSlice = createSlice({
     emptyCheckbox: (state) => {
       state.error = true;
     },
+    clearMessage: (state) => {
+      state.message = null;
+    },
+    clearError: (state) => {
+      state.error = false;
+    },
   },
 });
 
@@ -107,6 +113,8 @@ export const {
   getGmFailure,
   reProcessOneStart,
   reProcessOneSucess,
-  reProcessOneFailure
+  reProcessOneFailure,
+  clearError,
+  clearMessage
 } = pendingTransactionSlice.actions;
 export default pendingTransactionSlice.reducer;

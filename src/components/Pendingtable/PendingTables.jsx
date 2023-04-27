@@ -75,7 +75,7 @@ const PendingTables = ({
   return (
     <Container>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table  aria-label="simple table">
           <TableHead>
             <TableRow style={{ backgroundColor: "#f3f2f7" }}>
               <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
