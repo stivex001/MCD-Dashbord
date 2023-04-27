@@ -35,6 +35,7 @@ import {
   Wrapper,
 } from "./airtel.styles";
 import Server from "./server";
+import { clearError, clearMessage } from "../../Redux/dataListSlice";
 
 const Mtn = () => {
   const { mtnList, isFetching, modifyMtn, error, message } = useSelector(
@@ -67,7 +68,10 @@ const Mtn = () => {
     getMtnModify(dispatch, enteredType, enteredServer);
   };
 
-  console.log(modifyMtn.message);
+  const handleClose = () => {
+    dispatch(clearMessage())
+    dispatch(clearError())
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -101,13 +105,13 @@ const Mtn = () => {
           {error && (
             <MsgContainer>
               <H2>The fields cannot be empty!</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              <Close onClick={handleClose} style={{ color: "#806e6b", cursor: "pointer" }} />
             </MsgContainer>
           )}
           {message && (
             <MsgContainer type="success">
               <H2 type="success">{`MTN ${modifyMtn.message}`}</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              <Close onClick={handleClose} style={{ color: "#806e6b", cursor: "pointer" }} />
             </MsgContainer>
           )}
           <Form>

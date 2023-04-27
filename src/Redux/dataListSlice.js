@@ -244,6 +244,12 @@ const dataListSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    clearMessage: (state) => {
+      state.message = null;
+    },
+    clearError: (state) => {
+      state.error = false;
+    },
   },
 });
 
@@ -302,5 +308,7 @@ export const {
   modifyMtnStart,
   modifyMtnSucess,
   modifyMtnFailure,
+  clearMessage,
+  clearError,
 } = dataListSlice.actions;
 export default dataListSlice.reducer;
