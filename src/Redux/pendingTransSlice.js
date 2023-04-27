@@ -59,6 +59,20 @@ const pendingTransactionSlice = createSlice({
       state.isProcessing = false;
       state.error = true;
     },
+    reversalAllStart: (state) => {
+      state.isProcessing = true;
+    },
+    reversalAllSucess: (state, action) => {
+      state.isProcessing = false;
+      state.checkId = action.payload;
+      state.message = true;
+      state.error = false;
+    },
+    reversalAllFailure: (state) => {
+      state.isProcessing = false;
+      state.error = true;
+    },
+    
     reProcessOneStart: (state) => {
       state.isProcessing = true;
     },
@@ -100,6 +114,9 @@ export const {
   reProcessAllStart,
   reProcessAllSucess,
   reProcessAllFailure,
+  reversalAllStart,
+  reversalAllSucess,
+  reversalAllFailure,
   getTransHistoryStart,
   getTransHistorySucess,
   getTransHistoryFailure,
