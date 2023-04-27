@@ -1,4 +1,4 @@
-import { Search } from "@mui/icons-material";
+import { Close, NoteAdd, Search } from "@mui/icons-material";
 import {
   CircularProgress,
   MenuItem,
@@ -17,25 +17,30 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import useInput from "../../Hooks/use-form";
-import { getGloList } from "../../Redux/apiCalls";
+import { getGloList, getGloModify } from "../../Redux/apiCalls";
 import { Span } from "../transaction/general.styles";
-import { Loading } from "../transaction/pending.styles";
+import { H2, Loading, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import { BtnConatiner } from "../Users/agent.styles";
 import {
   Btn,
+  ButtonWrapper,
   Container,
   Details,
   Form,
   FormWrapper,
+  ModifyBtn,
   P,
   TableWrapper,
   Wrapper,
 } from "./airtel.styles";
 import Server from "./server";
+import { clearError, clearMessage } from "../../Redux/dataListSlice";
 
 const Glo = () => {
-  const { gloList, isFetching } = useSelector((state) => state.datalist);
+  const { gloList, isFetching, modifyGlo, error, message } = useSelector(
+    (state) => state.datalist
+  );
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -54,6 +59,19 @@ const Glo = () => {
       return getGloList(dispatch, enteredType, enteredServer);
     }
     getGloList(dispatch, enteredType, enteredServer);
+  };
+
+  const handleModify = () => {
+    if (allInputValues.trim() === "") {
+      return getGloModify(dispatch, enteredType, enteredServer);
+    }
+    getGloModify(dispatch, enteredType, enteredServer);
+    getGloList(dispatch, enteredType, enteredServer);
+  };
+
+  const handleClose = () => {
+    dispatch(clearMessage());
+    dispatch(clearError());
   };
 
   const handleChangePage = (event, newPage) => {
@@ -85,6 +103,24 @@ const Glo = () => {
         </Desc>
 
         <FormWrapper onSubmit={handleFormSubmission}>
+          {error && (
+            <MsgContainer>
+              <H2>The fields cannot be empty!</H2>
+              <Close
+                onClick={handleClose}
+                style={{ color: "#806e6b", cursor: "pointer" }}
+              />
+            </MsgContainer>
+          )}
+          {message && (
+            <MsgContainer type="success">
+              <H2 type="success">{`GLO ${enteredType} ${modifyGlo.message}`}</H2>
+              <Close
+                onClick={handleClose}
+                style={{ color: "#806e6b", cursor: "pointer" }}
+              />
+            </MsgContainer>
+          )}
           <Form>
             <TextField
               select
@@ -118,10 +154,16 @@ const Glo = () => {
               ))}
             </TextField>
           </Form>
-          <Btn type="submit">
-            <Search />
-            {isFetching ? "Searching...." : "Search"}
-          </Btn>
+          <ButtonWrapper>
+            <Btn type="submit">
+              <Search />
+              {isFetching ? "Searching...." : "Search"}
+            </Btn>
+            <ModifyBtn onClick={handleModify}>
+              <NoteAdd />
+              {isFetching ? "Modifying...." : "Modify"}
+            </ModifyBtn>
+          </ButtonWrapper>
         </FormWrapper>
 
         {gloList && (

@@ -66,6 +66,7 @@ const Mtn = () => {
       return getMtnModify(dispatch, enteredType, enteredServer);
     }
     getMtnModify(dispatch, enteredType, enteredServer);
+    getMtnList(dispatch, enteredType, enteredServer);
   };
 
   const handleClose = () => {
@@ -110,7 +111,7 @@ const Mtn = () => {
           )}
           {message && (
             <MsgContainer type="success">
-              <H2 type="success">{`MTN ${modifyMtn.message}`}</H2>
+              <H2 type="success">{`MTN ${enteredType} ${modifyMtn.message}`}</H2>
               <Close onClick={handleClose} style={{ color: "#806e6b", cursor: "pointer" }} />
             </MsgContainer>
           )}

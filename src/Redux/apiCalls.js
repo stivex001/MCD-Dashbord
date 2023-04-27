@@ -130,6 +130,15 @@ import {
   getTvFailure,
   getTvStart,
   getTvSucess,
+  modifyAirtelFailure,
+  modifyAirtelStart,
+  modifyAirtelSucess,
+  modifyGloFailure,
+  modifyGloStart,
+  modifyGloSucess,
+  modifyMobileFailure,
+  modifyMobileStart,
+  modifyMobileSucess,
   modifyMtnFailure,
   modifyMtnStart,
   modifyMtnSucess,
@@ -914,6 +923,42 @@ export const getMtnModify = async (dispatch, type, server) => {
     dispatch(modifyMtnSucess(res.data));
   } catch (error) {
     dispatch(modifyMtnFailure());
+  }
+};
+
+export const getGloModify = async (dispatch, type, server) => {
+  dispatch(modifyGloStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigModify/GLO/${type}/1/${server}`
+    );
+    dispatch(modifyGloSucess(res.data));
+  } catch (error) {
+    dispatch(modifyGloFailure());
+  }
+};
+
+export const getAirtelModify = async (dispatch, type, server) => {
+  dispatch(modifyAirtelStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigModify/AIRTEL/${type}/1/${server}`
+    );
+    dispatch(modifyAirtelSucess(res.data));
+  } catch (error) {
+    dispatch(modifyAirtelFailure());
+  }
+};
+
+export const getMobileModify = async (dispatch, type, server) => {
+  dispatch(modifyMobileStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigModify/9MOBILE/${type}/1/${server}`
+    );
+    dispatch(modifyMobileSucess(res.data));
+  } catch (error) {
+    dispatch(modifyMobileFailure());
   }
 };
 
