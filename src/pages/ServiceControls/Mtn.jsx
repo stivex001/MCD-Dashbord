@@ -58,6 +58,13 @@ const Mtn = () => {
     getMtnList(dispatch, enteredType, enteredServer);
   };
 
+  const handleModify = () => {
+    if (allInputValues.trim() === "") {
+      // return getMtnList(dispatch, enteredType, enteredServer);
+    }
+    // getMtnList(dispatch, enteredType, enteredServer);
+  }
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -125,7 +132,7 @@ const Mtn = () => {
               <Search />
               {isFetching ? "Searching...." : "Search"}
             </Btn>
-            <ModifyBtn type="submit">
+            <ModifyBtn onClick={handleModify}>
               <NoteAdd />
               {isFetching ? "Modifying...." : "Modify"}
             </ModifyBtn>

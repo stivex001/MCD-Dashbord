@@ -11,6 +11,10 @@ const dataListSlice = createSlice({
     mobileList: [],
     tvList: [],
     electricityList: [],
+    modifyMtn: null,
+    modifyGlo: null,
+    modifyAirtel: null,
+    modifyMobile: null,
     datapins: [],
     message: null,
   },
@@ -188,6 +192,54 @@ const dataListSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    modifyMtnStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    modifyMtnSucess: (state, action) => {
+      state.isFetching = false;
+      state.modifyMtn = action.payload;
+    },
+    modifyMtnFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    modifyGloStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    modifyGloSucess: (state, action) => {
+      state.isFetching = false;
+      state.modifyGlo = action.payload;
+    },
+    modifyGloFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    modifyAirtelStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    modifyAirtelSucess: (state, action) => {
+      state.isFetching = false;
+      state.modifyAirtel = action.payload;
+    },
+    modifyAirtelFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    modifyMobileStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    modifyMobileSucess: (state, action) => {
+      state.isFetching = false;
+      state.modifyMobile = action.payload;
+    },
+    modifyMobileFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -234,5 +286,17 @@ export const {
   updateDatapinsStart,
   updateDatapinsSucess,
   updateDatapinsFailure,
+  modifyAirtelStart,
+  modifyAirtelSucess,
+  modifyAirtelFailure,
+  modifyGloStart,
+  modifyGloSucess,
+  modifyGloFailure,
+  modifyMobileStart,
+  modifyMobileSucess,
+  modifyMobileFailure,
+  modifyMtnStart,
+  modifyMtnSucess,
+  modifyMtnFailure,
 } = dataListSlice.actions;
 export default dataListSlice.reducer;
