@@ -199,6 +199,7 @@ const dataListSlice = createSlice({
     modifyMtnSucess: (state, action) => {
       state.isFetching = false;
       state.modifyMtn = action.payload;
+      state.message = action.payload
     },
     modifyMtnFailure: (state) => {
       state.isFetching = false;
@@ -211,6 +212,7 @@ const dataListSlice = createSlice({
     modifyGloSucess: (state, action) => {
       state.isFetching = false;
       state.modifyGlo = action.payload;
+      state.message = action.payload
     },
     modifyGloFailure: (state) => {
       state.isFetching = false;
@@ -223,6 +225,7 @@ const dataListSlice = createSlice({
     modifyAirtelSucess: (state, action) => {
       state.isFetching = false;
       state.modifyAirtel = action.payload;
+      state.message = action.payload
     },
     modifyAirtelFailure: (state) => {
       state.isFetching = false;
@@ -235,6 +238,7 @@ const dataListSlice = createSlice({
     modifyMobileSucess: (state, action) => {
       state.isFetching = false;
       state.modifyMobile = action.payload;
+      state.message = action.payload
     },
     modifyMobileFailure: (state) => {
       state.isFetching = false;

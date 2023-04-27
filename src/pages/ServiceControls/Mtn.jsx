@@ -1,4 +1,4 @@
-import { NoteAdd, Search } from "@mui/icons-material";
+import { Close, NoteAdd, Search } from "@mui/icons-material";
 import {
   CircularProgress,
   MenuItem,
@@ -17,9 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import useInput from "../../Hooks/use-form";
-import { getMtnList } from "../../Redux/apiCalls";
+import { getMtnList, getMtnModify } from "../../Redux/apiCalls";
 import { Span } from "../transaction/general.styles";
-import { Loading } from "../transaction/pending.styles";
+import { H2, Loading, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 import { BtnConatiner } from "../Users/agent.styles";
 import {
@@ -37,7 +37,9 @@ import {
 import Server from "./server";
 
 const Mtn = () => {
-  const { mtnList, isFetching } = useSelector((state) => state.datalist);
+  const { mtnList, isFetching, modifyMtn, error, message } = useSelector(
+    (state) => state.datalist
+  );
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -60,10 +62,12 @@ const Mtn = () => {
 
   const handleModify = () => {
     if (allInputValues.trim() === "") {
-      // return getMtnList(dispatch, enteredType, enteredServer);
+      return getMtnModify(dispatch, enteredType, enteredServer);
     }
-    // getMtnList(dispatch, enteredType, enteredServer);
-  }
+    getMtnModify(dispatch, enteredType, enteredServer);
+  };
+
+  console.log(modifyMtn.message);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -94,6 +98,18 @@ const Mtn = () => {
         </Desc>
 
         <FormWrapper onSubmit={handleFormSubmission}>
+          {error && (
+            <MsgContainer>
+              <H2>The fields cannot be empty!</H2>
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+            </MsgContainer>
+          )}
+          {message && (
+            <MsgContainer type="success">
+              <H2 type="success">{`MTN ${modifyMtn.message}`}</H2>
+              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+            </MsgContainer>
+          )}
           <Form>
             <TextField
               select
@@ -206,9 +222,8 @@ const Mtn = () => {
                   ) : (
                     mtnList.data &&
                     mtnList.data.map((row) => (
-                      <TableBody>
+                      <TableBody key={row.id}>
                         <TableRow
-                          key={row.id}
                           style={{
                             backgroundColor:
                               row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",

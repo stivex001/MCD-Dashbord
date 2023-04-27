@@ -130,6 +130,9 @@ import {
   getTvFailure,
   getTvStart,
   getTvSucess,
+  modifyMtnFailure,
+  modifyMtnStart,
+  modifyMtnSucess,
   updateAirtelFailure,
   updateAirtelStart,
   updateAirtelSucess,
@@ -899,6 +902,18 @@ export const modifyDatapins = async (dispatch, id, name, price) => {
     }
   } catch (error) {
     dispatch(updateDatapinsFailure()); // set error flag to true
+  }
+};
+
+export const getMtnModify = async (dispatch, type, server) => {
+  dispatch(modifyMtnStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigModify/MTN/${type}/1/${server}`
+    );
+    dispatch(modifyMtnSucess(res.data));
+  } catch (error) {
+    dispatch(modifyMtnFailure());
   }
 };
 
