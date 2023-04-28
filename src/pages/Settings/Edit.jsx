@@ -51,43 +51,45 @@ const Edit = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Modify Setting</H3>
-          <DescP>
-            Settings / <DescSpan>Modify Setting</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper onSubmit={handleEditClick}>
-          <Form>
-            <InputContainer>
-              <InputTitle>Name</InputTitle>
-              <Input
-                type="email"
-                onChange={handleInputNameChange}
-                value={inputNameData}
-                name="name"
-                readOnly
-              />
-            </InputContainer>
-            <InputContainer>
-              <InputTitle>Value</InputTitle>
-              <Input
-                type="text"
-                onChange={handleInputValueChange}
-                value={inputValueData}
-                name="name"
-              />
-            </InputContainer>
-          </Form>
-          <Btn onClick={handleEditClick}>Update</Btn>
-          <ToastContainer />
-        </FormWrapper>
-      </Wrapper>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Modify Setting</H3>
+            <DescP>
+              Settings / <DescSpan>Modify Setting</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper onSubmit={handleEditClick}>
+            <Form>
+              <InputContainer>
+                <InputTitle>Name</InputTitle>
+                <Input
+                  type="email"
+                  onChange={handleInputNameChange}
+                  value={inputNameData}
+                  name="name"
+                  readOnly
+                />
+              </InputContainer>
+              <InputContainer>
+                <InputTitle>Value</InputTitle>
+                <Input
+                  type="text"
+                  onChange={handleInputValueChange}
+                  value={inputValueData}
+                  name="name"
+                />
+              </InputContainer>
+            </Form>
+            <Btn onClick={handleEditClick}>Update</Btn>
+            <ToastContainer />
+          </FormWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 
