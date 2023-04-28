@@ -6,7 +6,7 @@ import Footer from "../../components/footer/Footer";
 import { verifyServer1 } from "../../Redux/apiCalls";
 import { H2, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-import {ToastContainer} from 'react-toastify'
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Btn,
@@ -19,43 +19,42 @@ import {
 } from "./server.styles";
 
 const Server1b = () => {
-
-  const [refData, setRefData] = useState('')
+  const [refData, setRefData] = useState("");
   const [enterRefIsValid, setEnterRefIsValid] = useState(true);
-  const {error, isFetching, message} = useSelector(state => state.server)
-  const dispatch = useDispatch()
+  const { error, isFetching, message } = useSelector((state) => state.server);
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     setRefData(e.target.value);
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (refData.trim() === "") {
       setEnterRefIsValid(false);
       return;
-    }
-    else {
-      verifyServer1(dispatch, {ref: refData})
+    } else {
+      verifyServer1(dispatch, { ref: refData });
     }
     setEnterRefIsValid(true);
     setRefData("");
-  }
+  };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Verification &gt; Server1b</H3>
-          <DescP>
-            Transaction / <DescSpan>Verification &gt; Server1b</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper>
-        {!enterRefIsValid && (
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Verification &gt; Server1b</H3>
+            <DescP>
+              Transaction / <DescSpan>Verification &gt; Server1b</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper>
+            {!enterRefIsValid && (
               <MsgContainer>
-                <H2>Field  is required!</H2>
+                <H2>Field is required!</H2>
                 <Close style={{ color: "#806e6b", cursor: "pointer" }} />
               </MsgContainer>
             )}
@@ -66,30 +65,36 @@ const Server1b = () => {
               </MsgContainer>
             )}
             {message && (
-            <MsgContainer type="success">
-              <H2 type="success">{` successfully Verified!`}</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-            </MsgContainer>
-          )}
-          <Form onSubmit={handleSubmit}>
-          
-            <InputContainer>
-              <p style={{ padding: "5px", fontSize: "20px", color: "#495057" }}>
-                REF
-              </p>
-              <Input type="text" placeholder="Enter Server reference" onChange={handleInputChange} value={refData} />
-            </InputContainer>
-            <Btn type='submit'>
-              <Search />
-             {isFetching ? ' Verifying...' : 'Verify'}
-            </Btn>
-          </Form>
-          <ToastContainer />
-        </FormWrapper>
-      </Wrapper>
-
+              <MsgContainer type="success">
+                <H2 type="success">{` successfully Verified!`}</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
+            <Form onSubmit={handleSubmit}>
+              <InputContainer>
+                <p
+                  style={{ padding: "5px", fontSize: "20px", color: "#495057" }}
+                >
+                  REF
+                </p>
+                <Input
+                  type="text"
+                  placeholder="Enter Server reference"
+                  onChange={handleInputChange}
+                  value={refData}
+                />
+              </InputContainer>
+              <Btn type="submit">
+                <Search />
+                {isFetching ? " Verifying..." : "Verify"}
+              </Btn>
+            </Form>
+            <ToastContainer />
+          </FormWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

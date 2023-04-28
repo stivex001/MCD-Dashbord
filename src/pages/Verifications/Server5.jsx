@@ -41,57 +41,60 @@ const Server5 = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Verification &gt; Server5</H3>
-          <DescP>
-            Transaction / <DescSpan>Verification &gt; Server5</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper>
-          {!enterRefIsValid && (
-            <MsgContainer>
-              <H2>Field is required!</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-            </MsgContainer>
-          )}
-          {error && (
-            <MsgContainer>
-              <H2>Transaction reference not found</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-            </MsgContainer>
-          )}
-          {message && (
-            <MsgContainer type="success">
-              <H2 type="success">{` successfully Verified!`}</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-            </MsgContainer>
-          )}
-          <Form onSubmit={handleSubmit}>
-            <InputContainer>
-              <p style={{ padding: "5px", fontSize: "20px", color: "#495057" }}>
-                REF
-              </p>
-              <Input
-                type="text"
-                placeholder="Enter Server reference"
-                onChange={handleInputChange}
-                value={refData}
-              />
-            </InputContainer>
-            <Btn type="submit">
-              <Search />
-              {isFetching ? " Verifying..." : "Verify"}
-            </Btn>
-          </Form>
-          <ToastContainer />
-        </FormWrapper>
-      </Wrapper>
-
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Verification &gt; Server5</H3>
+            <DescP>
+              Transaction / <DescSpan>Verification &gt; Server5</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper>
+            {!enterRefIsValid && (
+              <MsgContainer>
+                <H2>Field is required!</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
+            {error && (
+              <MsgContainer>
+                <H2>Transaction reference not found</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
+            {message && (
+              <MsgContainer type="success">
+                <H2 type="success">{` successfully Verified!`}</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
+            <Form onSubmit={handleSubmit}>
+              <InputContainer>
+                <p
+                  style={{ padding: "5px", fontSize: "20px", color: "#495057" }}
+                >
+                  REF
+                </p>
+                <Input
+                  type="text"
+                  placeholder="Enter Server reference"
+                  onChange={handleInputChange}
+                  value={refData}
+                />
+              </InputContainer>
+              <Btn type="submit">
+                <Search />
+                {isFetching ? " Verifying..." : "Verify"}
+              </Btn>
+            </Form>
+            <ToastContainer />
+          </FormWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 
