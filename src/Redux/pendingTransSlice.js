@@ -8,6 +8,7 @@ const pendingTransactionSlice = createSlice({
     checkId: [],
     Id: null,
     message: false,
+    reversalMessage: null,
     transHistory: [],
     pendingTrans: [],
     generalMarket: [],
@@ -65,7 +66,7 @@ const pendingTransactionSlice = createSlice({
     reversalAllSucess: (state, action) => {
       state.isProcessing = false;
       state.checkId = action.payload;
-      state.message = true;
+      state.reversalMessage = action.payload;
       state.error = false;
     },
     reversalAllFailure: (state) => {
