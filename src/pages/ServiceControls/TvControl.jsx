@@ -74,91 +74,93 @@ const TvControl = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Modify TV Plan</H3>
-          <DescP>
-            TV / <DescSpan>Modify TV Plan</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper onSubmit={handleUpdateClick}>
-          <Form>
-            <InputContainer>
-              <InputTitle>Type</InputTitle>
-              <Input
-                type="text"
-                onChange={handleInputTypeChange}
-                value={inputType}
-                readOnly
-                style={{backgroundColor: '#e9ecef'}}
-              />
-            </InputContainer>
-            <InputContainer>
-              <InputTitle>Name</InputTitle>
-              <Input
-                type="text"
-                onChange={handleInputNameChange}
-                value={inputNameData}
-                name="name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <InputTitle>Price</InputTitle>
-              <Input
-                type="number"
-                onChange={handleInputPriceChange}
-                value={inputPrice}
-                name="name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <InputTitle>Discount</InputTitle>
-              <Input
-                type="text"
-                onChange={handleInputDiscountChange}
-                value={inputDiscount}
-              />
-            </InputContainer>
-            <InputContainer>
-              <TextField
-                select
-                label="Activate"
-                variant="outlined"
-                style={{ width: "100%" }}
-              >
-                <MenuItem key="Activate" value="Activate">
-                  Activate
-                </MenuItem>
-                <MenuItem key="Deactivate" value="Deactivate">
-                  Deactivate
-                </MenuItem>
-              </TextField>
-            </InputContainer>
-            <InputContainer>
-              <TextField
-                select
-                label="1"
-                variant="outlined"
-                style={{ width: "100%" }}
-                onChange={handleInputServerChange}
-                value={inputServer}
-              >
-                {Server.map((server) => (
-                  <MenuItem key={server.id} value={server.value}>
-                    {server.value}
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Modify TV Plan</H3>
+            <DescP>
+              TV / <DescSpan>Modify TV Plan</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper onSubmit={handleUpdateClick}>
+            <Form>
+              <InputContainer>
+                <InputTitle>Type</InputTitle>
+                <Input
+                  type="text"
+                  onChange={handleInputTypeChange}
+                  value={inputType}
+                  readOnly
+                  style={{ backgroundColor: "#e9ecef" }}
+                />
+              </InputContainer>
+              <InputContainer>
+                <InputTitle>Name</InputTitle>
+                <Input
+                  type="text"
+                  onChange={handleInputNameChange}
+                  value={inputNameData}
+                  name="name"
+                />
+              </InputContainer>
+              <InputContainer>
+                <InputTitle>Price</InputTitle>
+                <Input
+                  type="number"
+                  onChange={handleInputPriceChange}
+                  value={inputPrice}
+                  name="name"
+                />
+              </InputContainer>
+              <InputContainer>
+                <InputTitle>Discount</InputTitle>
+                <Input
+                  type="text"
+                  onChange={handleInputDiscountChange}
+                  value={inputDiscount}
+                />
+              </InputContainer>
+              <InputContainer>
+                <TextField
+                  select
+                  label="Activate"
+                  variant="outlined"
+                  style={{ width: "100%" }}
+                >
+                  <MenuItem key="Activate" value="Activate">
+                    Activate
                   </MenuItem>
-                ))}
-              </TextField>
-            </InputContainer>
-          </Form>
-          <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
-          <ToastContainer />
-        </FormWrapper>
-      </Wrapper>
+                  <MenuItem key="Deactivate" value="Deactivate">
+                    Deactivate
+                  </MenuItem>
+                </TextField>
+              </InputContainer>
+              <InputContainer>
+                <TextField
+                  select
+                  label="1"
+                  variant="outlined"
+                  style={{ width: "100%" }}
+                  onChange={handleInputServerChange}
+                  value={inputServer}
+                >
+                  {Server.map((server) => (
+                    <MenuItem key={server.id} value={server.value}>
+                      {server.value}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </InputContainer>
+            </Form>
+            <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
+            <ToastContainer />
+          </FormWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

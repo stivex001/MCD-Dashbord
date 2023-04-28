@@ -59,125 +59,148 @@ const Tv = () => {
   }
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>TV Plans</H3>
-          <DescP>
-            TV Plans / <DescSpan>TV Plans</DescSpan>
-          </DescP>
-        </Desc>
-        <TableWrapper>
-          <P>TV Plans</P>
-          <Details>
-            <TableContainer component={Paper} sx={{border: '1px solid #e0e0e0'}}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table" >
-                <TableBody>
-                  <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
-                      id
-                    </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
-                      Type
-                    </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
-                      Name
-                    </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
-                      Price
-                    </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
-                      Discount
-                    </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
-                      Server
-                    </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
-                      Status
-                    </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
-                      Date Modified
-                    </TableCell>
-                    <TableCell style={{ color: "#827fc0", fontWeight: "bold" }}>
-                      Action
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-                {currentItems &&
-                  currentItems.map((row) => (
-                    <TableBody key={row.id}>
-                      <TableRow
-                        style={{
-                          backgroundColor:
-                            row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
-                        }}
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>TV Plans</H3>
+            <DescP>
+              TV Plans / <DescSpan>TV Plans</DescSpan>
+            </DescP>
+          </Desc>
+          <TableWrapper>
+            <P>TV Plans</P>
+            <Details>
+              <TableContainer
+                component={Paper}
+                sx={{ border: "1px solid #e0e0e0" }}
+              >
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <TableBody>
+                    <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                      <TableCell
+                        style={{ color: "#827fc0", fontWeight: "bold" }}
                       >
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.id}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.type}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.name}
-                        </TableCell>
+                        id
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#827fc0", fontWeight: "bold" }}
+                      >
+                        Type
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#827fc0", fontWeight: "bold" }}
+                      >
+                        Name
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#827fc0", fontWeight: "bold" }}
+                      >
+                        Price
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#827fc0", fontWeight: "bold" }}
+                      >
+                        Discount
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#827fc0", fontWeight: "bold" }}
+                      >
+                        Server
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#827fc0", fontWeight: "bold" }}
+                      >
+                        Status
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#827fc0", fontWeight: "bold" }}
+                      >
+                        Date Modified
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#827fc0", fontWeight: "bold" }}
+                      >
+                        Action
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                  {currentItems &&
+                    currentItems.map((row) => (
+                      <TableBody key={row.id}>
+                        <TableRow
+                          style={{
+                            backgroundColor:
+                              row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+                          }}
+                        >
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.id}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.type}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.name}
+                          </TableCell>
 
-                        <TableCell style={{ color: "#8887a9" }}>
-                          &#8358;{row.price}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.discount}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.server}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          <Span
-                            style={{
-                              backgroundColor: `${
-                                row.status === 1 ? "#5dd099" : "#f8c955"
-                              }`,
-                            }}
-                          >
-                            {row.status === 1 ? "Active" : "Inactive"}
-                          </Span>
-                        </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            &#8358;{row.price}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.discount}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.server}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            <Span
+                              style={{
+                                backgroundColor: `${
+                                  row.status === 1 ? "#5dd099" : "#f8c955"
+                                }`,
+                              }}
+                            >
+                              {row.status === 1 ? "Active" : "Inactive"}
+                            </Span>
+                          </TableCell>
 
-                        <TableCell style={{ color: "#8887a9" }}>
-                          {row.updated_at}
-                        </TableCell>
-                        <TableCell style={{ color: "#8887a9" }}>
-                          <BtnConatiner to={`/tvcontrol/${row.id}`}>
-                            Modify
-                          </BtnConatiner>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  ))}
-              </Table>
-              <PaginateContainer
-                // marginPagesDisplayed={2}
-                page={currentPage}
-                breakLabel="..."
-                nextLabel=">"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={8}
-                pageCount={pageCount}
-                previousLabel="<"
-                renderOnZeroPageCount={null}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-                pageLinkClassName="pageNum"
-                previousLinkClassName="pageNum"
-                nextLinkClassName="pageNum"
-              />
-            </TableContainer>
-          </Details>
-        </TableWrapper>
-      </Wrapper>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            {row.updated_at}
+                          </TableCell>
+                          <TableCell style={{ color: "#8887a9" }}>
+                            <BtnConatiner to={`/tvcontrol/${row.id}`}>
+                              Modify
+                            </BtnConatiner>
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    ))}
+                </Table>
+                <PaginateContainer
+                  // marginPagesDisplayed={2}
+                  page={currentPage}
+                  breakLabel="..."
+                  nextLabel=">"
+                  onPageChange={handlePageClick}
+                  pageRangeDisplayed={8}
+                  pageCount={pageCount}
+                  previousLabel="<"
+                  renderOnZeroPageCount={null}
+                  containerClassName={"pagination"}
+                  activeClassName={"active"}
+                  pageLinkClassName="pageNum"
+                  previousLinkClassName="pageNum"
+                  nextLinkClassName="pageNum"
+                />
+              </TableContainer>
+            </Details>
+          </TableWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

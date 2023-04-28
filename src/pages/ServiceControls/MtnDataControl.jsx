@@ -78,90 +78,92 @@ const MtnDatacontrol = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Modify Data Plan</H3>
-          <DescP>
-            Data / <DescSpan>Modify Data Plan</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper onSubmit={handleUpdateClick}>
-          <Form>
-            <InputContainer>
-              <InputTitle>Product Name</InputTitle>
-              <Input
-                type="text"
-                onChange={handleInputNameChange}
-                value={inputNameData}
-              />
-            </InputContainer>
-            <InputContainer>
-              <InputTitle>Provider Price</InputTitle>
-              <Input
-                type="number"
-                onChange={handleInputPriceChange}
-                value={inputPrice}
-                name="name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <InputTitle>Your Price</InputTitle>
-              <Input
-                type="number"
-                onChange={handleInputAmountChange}
-                value={inputAmount}
-                name="name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <TextField
-                select
-                label="Activate"
-                variant="outlined"
-                style={{ width: "100%" }}
-              >
-                <MenuItem key="Activate" value="Activate">
-                  Activate
-                </MenuItem>
-                <MenuItem key="Deactivate" value="Deactivate">
-                  Deactivate
-                </MenuItem>
-              </TextField>
-            </InputContainer>
-            <InputContainer>
-              <TextField
-                select
-                label="1"
-                variant="outlined"
-                style={{ width: "100%" }}
-                onChange={handleInputServerChange}
-                value={inputServer}
-              >
-                {Server.map((server) => (
-                  <MenuItem key={server.id} value={server.value}>
-                    {server.value}
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Modify Data Plan</H3>
+            <DescP>
+              Data / <DescSpan>Modify Data Plan</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper onSubmit={handleUpdateClick}>
+            <Form>
+              <InputContainer>
+                <InputTitle>Product Name</InputTitle>
+                <Input
+                  type="text"
+                  onChange={handleInputNameChange}
+                  value={inputNameData}
+                />
+              </InputContainer>
+              <InputContainer>
+                <InputTitle>Provider Price</InputTitle>
+                <Input
+                  type="number"
+                  onChange={handleInputPriceChange}
+                  value={inputPrice}
+                  name="name"
+                />
+              </InputContainer>
+              <InputContainer>
+                <InputTitle>Your Price</InputTitle>
+                <Input
+                  type="number"
+                  onChange={handleInputAmountChange}
+                  value={inputAmount}
+                  name="name"
+                />
+              </InputContainer>
+              <InputContainer>
+                <TextField
+                  select
+                  label="Activate"
+                  variant="outlined"
+                  style={{ width: "100%" }}
+                >
+                  <MenuItem key="Activate" value="Activate">
+                    Activate
                   </MenuItem>
-                ))}
-              </TextField>
-            </InputContainer>
-            <InputContainer>
-              <InputTitle>Note</InputTitle>
-              <Input
-                type="text"
-                onChange={handleInputNoteChange}
-                value={inputNote}
-                placeholder="Enter Note (Optional)"
-              />
-            </InputContainer>
-          </Form>
-          <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
-          <ToastContainer />
-        </FormWrapper>
-      </Wrapper>
+                  <MenuItem key="Deactivate" value="Deactivate">
+                    Deactivate
+                  </MenuItem>
+                </TextField>
+              </InputContainer>
+              <InputContainer>
+                <TextField
+                  select
+                  label="1"
+                  variant="outlined"
+                  style={{ width: "100%" }}
+                  onChange={handleInputServerChange}
+                  value={inputServer}
+                >
+                  {Server.map((server) => (
+                    <MenuItem key={server.id} value={server.value}>
+                      {server.value}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </InputContainer>
+              <InputContainer>
+                <InputTitle>Note</InputTitle>
+                <Input
+                  type="text"
+                  onChange={handleInputNoteChange}
+                  value={inputNote}
+                  placeholder="Enter Note (Optional)"
+                />
+              </InputContainer>
+            </Form>
+            <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
+            <ToastContainer />
+          </FormWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 
