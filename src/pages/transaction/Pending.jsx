@@ -5,11 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import PendingTables from "../../components/Pendingtable/PendingTables";
-import { getPendingTransData, reProcess } from "../../Redux/apiCalls";
+import {
+  getPendingTransData,
+  reProcess,
+  reversalTrans,
+} from "../../Redux/apiCalls";
 import {
   clearError,
   clearMessage,
   emptyCheckbox,
+  toggleCheckbox,
 } from "../../Redux/pendingTransSlice";
 import {
   BtnConatiner,
@@ -38,6 +43,7 @@ const Pending = () => {
   const [pageCount, setPageCount] = useState(pendingTrans?.last_page);
   const [currentItems, setCurrentItems] = useState(pendingTrans?.data);
   const [currentPage, setCurrentPage] = useState(1);
+  const [reversalId, setReversalId] = useState(null);
 
   const itemsPerPage = pendingTrans?.per_page;
   useEffect(() => {
@@ -67,12 +73,20 @@ const Pending = () => {
     }
   };
 
-  const handleRevesal = () => {
+  const handleChange = (e) => {
+    const id = e.target.value;
+    dispatch(toggleCheckbox(id));
+    setReversalId(id);
+  };
+
+  const handleRevesal = (e) => {
     if (checkId.length === 0) {
       return dispatch(emptyCheckbox(error));
-    } 
-    console.log('selected');
-  }
+    }
+
+    reversalTrans(dispatch, reversalId);
+    console.log(reversalId);
+  };
 
   const handleClose = () => {
     dispatch(clearMessage());
@@ -143,6 +157,7 @@ const Pending = () => {
               showerr={error}
               handlePageClick={handlePageClick}
               currentPage={currentPage}
+              handleChange={handleChange}
             />
           </div>
         </TransList>

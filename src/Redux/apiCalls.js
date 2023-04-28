@@ -73,6 +73,9 @@ import {
   reProcessOneFailure,
   reProcessOneStart,
   reProcessOneSucess,
+  reversalAllFailure,
+  reversalAllStart,
+  reversalAllSucess,
 } from "./pendingTransSlice";
 import {
   getGmBlockFailure,
@@ -229,6 +232,16 @@ export const reProcessOne = async (dispatch, id) => {
     }
   } catch (error) {
     dispatch(reProcessOneFailure());
+  }
+};
+
+export const reversalTrans = async (dispatch, id) => {
+  dispatch(reversalAllStart());
+  try {
+    const res = await userRequest.get(`/transactions/reverse/${id}`);
+    dispatch(reversalAllSucess(res.data));
+  } catch (error) {
+    dispatch(reversalAllFailure());
   }
 };
 
