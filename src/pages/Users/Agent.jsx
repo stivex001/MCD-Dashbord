@@ -75,127 +75,141 @@ const Agent = () => {
   }
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Agents</H3>
-          <DescP>
-            User / <DescSpan>Agents</DescSpan>
-          </DescP>
-        </Desc>
-        <TableWrapper>
-          <P>The list of approved agents.</P>
-          <DivWrapper>
-            <Action>
-              <ActionList>Copy</ActionList>
-              <ActionList>Excel</ActionList>
-              <ActionList>PDF</ActionList>
-              <Column>
-                <ActionListCol>Column Visibility</ActionListCol>
-                <ArrowDropDown />
-              </Column>
-            </Action>
-            <SearchAgent>
-              <SearchDesc>Search: </SearchDesc>
-              <Input type="text" onChange={(e) => setQuery(e.target.value)} />
-            </SearchAgent>
-          </DivWrapper>
-          <Details>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-                    <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                      User Name
-                    </TableCell>
-                    <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                      Business Name
-                    </TableCell>
-                    <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                      DOB
-                    </TableCell>
-                    <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                      Phone Number
-                    </TableCell>
-                    <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                      Action
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {currentItems &&
-                    currentItems
-                      .filter((row) =>
-                        row.user_name.toLowerCase().includes(query)
-                      )
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Agents</H3>
+            <DescP>
+              User / <DescSpan>Agents</DescSpan>
+            </DescP>
+          </Desc>
+          <TableWrapper>
+            <P>The list of approved agents.</P>
+            <DivWrapper>
+              <Action>
+                <ActionList>Copy</ActionList>
+                <ActionList>Excel</ActionList>
+                <ActionList>PDF</ActionList>
+                <Column>
+                  <ActionListCol>Column Visibility</ActionListCol>
+                  <ArrowDropDown />
+                </Column>
+              </Action>
+              <SearchAgent>
+                <SearchDesc>Search: </SearchDesc>
+                <Input type="text" onChange={(e) => setQuery(e.target.value)} />
+              </SearchAgent>
+            </DivWrapper>
+            <Details>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <TableHead>
+                    <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "bold" }}
+                      >
+                        User Name
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "bold" }}
+                      >
+                        Business Name
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "bold" }}
+                      >
+                        DOB
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "bold" }}
+                      >
+                        Phone Number
+                      </TableCell>
+                      <TableCell
+                        style={{ color: "#8281cc", fontWeight: "bold" }}
+                      >
+                        Action
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {currentItems &&
+                      currentItems
+                        .filter((row) =>
+                          row.user_name.toLowerCase().includes(query)
+                        )
 
-                      .map((row) => (
-                        <TableRow
-                          key={row.id}
-                          style={{ backgroundColor: "#f3f2f7" }}
-                        >
-                          <TableCell style={{ color: "#8887a9" }}>
-                            <AgentDesc>
-                              <Img src={row.phone || Logo} alt="" />
-                              {row.user_name}
-                            </AgentDesc>
-                          </TableCell>
-                          <TableCell style={{ color: "#8887a9" }}>
-                            {row.company_name}
-                          </TableCell>
-                          <TableCell style={{ color: "#8887a9" }}>
-                            {row.dob}
-                          </TableCell>
-                          <TableCell style={{ color: "#8887a9" }}>
-                            {row.phoneno}
-                          </TableCell>
-                          <TableCell style={{ color: "#8887a9" }}>
-                            <Link
-                              to={
-                                "/profile-/" + encodeURIComponent(row.user_name)
-                              }
-                            >
-                              <NoteAlt
-                                style={{
-                                  backgroundColor: "5dd099",
-                                  color: "white",
-                                  padding: "4px 8px",
-                                  fontSize: "40px",
-                                  cursor: "pointer",
-                                }}
-                              />
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                </TableBody>
-              </Table>
-              <PagWrapper>
-                <PageNotification>
-                  Showing {agents?.from} to {agents?.to} of {agents?.total} entries
-                </PageNotification>
-                <PaginateContainer
-                  breakLabel="..."
-                  nextLabel="next >"
-                  onPageChange={handlePageClick}
-                  pageRangeDisplayed={5}
-                  pageCount={pageCount}
-                  previousLabel="< previous"
-                  renderOnZeroPageCount={null}
-                  containerClassName={"pagination"}
-                  activeClassName={"active"}
-                  pageLinkClassName="pageNum"
-                  previousLinkClassName="pageNum"
-                  nextLinkClassName="pageNum"
-                />
-              </PagWrapper>
-            </TableContainer>
-          </Details>
-        </TableWrapper>
-        <Footer />
-      </Wrapper>
-    </Container>
+                        .map((row) => (
+                          <TableRow
+                            key={row.id}
+                            style={{ backgroundColor: "#f3f2f7" }}
+                          >
+                            <TableCell style={{ color: "#8887a9" }}>
+                              <AgentDesc>
+                                <Img src={row.phone || Logo} alt="" />
+                                {row.user_name}
+                              </AgentDesc>
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              {row.company_name}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              {row.dob}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              {row.phoneno}
+                            </TableCell>
+                            <TableCell style={{ color: "#8887a9" }}>
+                              <Link
+                                to={
+                                  "/profile-/" +
+                                  encodeURIComponent(row.user_name)
+                                }
+                              >
+                                <NoteAlt
+                                  style={{
+                                    backgroundColor: "5dd099",
+                                    color: "white",
+                                    padding: "4px 8px",
+                                    fontSize: "40px",
+                                    cursor: "pointer",
+                                  }}
+                                />
+                              </Link>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                  </TableBody>
+                </Table>
+                <PagWrapper>
+                  <PageNotification>
+                    Showing {agents?.from} to {agents?.to} of {agents?.total}{" "}
+                    entries
+                  </PageNotification>
+                  <PaginateContainer
+                    breakLabel="..."
+                    nextLabel="next >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel="< previous"
+                    renderOnZeroPageCount={null}
+                    containerClassName={"pagination"}
+                    activeClassName={"active"}
+                    pageLinkClassName="pageNum"
+                    previousLinkClassName="pageNum"
+                    nextLinkClassName="pageNum"
+                  />
+                </PagWrapper>
+              </TableContainer>
+            </Details>
+          </TableWrapper>
+        </Wrapper>
+      </Container>
+      <Footer />
+    </>
   );
 };
 

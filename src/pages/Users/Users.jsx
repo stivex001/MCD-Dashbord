@@ -33,7 +33,9 @@ const Users = () => {
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(allUsers.data && allUsers.data.slice(itemOffset, endOffset));
+    setCurrentItems(
+      allUsers.data && allUsers.data.slice(itemOffset, endOffset)
+    );
     setPageCount(Math.ceil(allUsers.total / itemsPerPage));
   }, [itemOffset, allUsers, itemsPerPage]);
 
@@ -60,32 +62,34 @@ const Users = () => {
   }
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Users List</H3>
-          <DescP>
-            User / <DescSpan>Users List</DescSpan>
-          </DescP>
-        </Desc>
-        <CardContainer>
-          <Card type="totalUsers" userOverview={userOverview} />
-          <Card type="totalReferred" userOverview={userOverview} />
-          <Card type="totalAgent" userOverview={userOverview} />
-          <Card type="totalWallet" userOverview={userOverview} />
-        </CardContainer>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Users List</H3>
+            <DescP>
+              User / <DescSpan>Users List</DescSpan>
+            </DescP>
+          </Desc>
+          <CardContainer>
+            <Card type="totalUsers" userOverview={userOverview} />
+            <Card type="totalReferred" userOverview={userOverview} />
+            <Card type="totalAgent" userOverview={userOverview} />
+            <Card type="totalWallet" userOverview={userOverview} />
+          </CardContainer>
 
-        {/* TABLES */}
-        <UserTable
-          allUsers={allUsers}
-          pageCount={pageCount}
-          currentItems={currentItems}
-          handlePageClick={handlePageClick}
-        />
-      </Wrapper>
+          {/* TABLES */}
+          <UserTable
+            allUsers={allUsers}
+            pageCount={pageCount}
+            currentItems={currentItems}
+            handlePageClick={handlePageClick}
+          />
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

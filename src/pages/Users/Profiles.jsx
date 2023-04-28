@@ -58,87 +58,88 @@ const Profiles = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Profile</H3>
-          <DescP>
-            User / <DescSpan>Profile</DescSpan>
-          </DescP>
-        </Desc>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Profile</H3>
+            <DescP>
+              User / <DescSpan>Profile</DescSpan>
+            </DescP>
+          </Desc>
 
-        <UserProfiles users={users} />
-        <div>
-          <List>
-            <Btn
-              active={currentPage.type.name === "UserGeneral"}
-              onClick={() =>
-                handleButtonClick(
-                  <UserGeneral
-                    users={users}
-                    userPerformance={userPerformance}
-                  />
-                )
-              }
-            >
-              General
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "ProfileTransaction"}
-              onClick={() =>
-                handleButtonClick(
-                  <ProfileTransaction
-                    userTrans={userTrans}
-                    isFetching={isFetching}
-                    currentTransPage={currentTransPage}
-                    setCurrentTransPage={setCurrentTransPage}
-                  />
-                )
-              }
-            >
-              Transactions
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "ProfileWallet"}
-              onClick={() =>
-                handleButtonClick(
-                  <ProfileWallet
-                    setCurrentWalletPage={setCurrentWalletPage}
-                    userWallet={userWallet}
-                  />
-                )
-              }
-            >
-              Wallet
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "Nofication"}
-              onClick={() => handleButtonClick(<Nofication />)}
-            >
-              Push Notification
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "Information"}
-              onClick={() =>
-                handleButtonClick(
-                  <Information
-                    users={users}
-                    isFetching={isFetching}
-                    message={message}
-                  />
-                )
-              }
-            >
-              Information
-            </Btn>
-          </List>
-          {currentPage}
-        </div>
-      </Wrapper>
-
+          <UserProfiles users={users} />
+          <div>
+            <List>
+              <Btn
+                active={currentPage.type.name === "UserGeneral"}
+                onClick={() =>
+                  handleButtonClick(
+                    <UserGeneral
+                      users={users}
+                      userPerformance={userPerformance}
+                    />
+                  )
+                }
+              >
+                General
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "ProfileTransaction"}
+                onClick={() =>
+                  handleButtonClick(
+                    <ProfileTransaction
+                      userTrans={userTrans}
+                      isFetching={isFetching}
+                      currentTransPage={currentTransPage}
+                      setCurrentTransPage={setCurrentTransPage}
+                    />
+                  )
+                }
+              >
+                Transactions
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "ProfileWallet"}
+                onClick={() =>
+                  handleButtonClick(
+                    <ProfileWallet
+                      setCurrentWalletPage={setCurrentWalletPage}
+                      userWallet={userWallet}
+                    />
+                  )
+                }
+              >
+                Wallet
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "Nofication"}
+                onClick={() => handleButtonClick(<Nofication />)}
+              >
+                Push Notification
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "Information"}
+                onClick={() =>
+                  handleButtonClick(
+                    <Information
+                      users={users}
+                      isFetching={isFetching}
+                      message={message}
+                    />
+                  )
+                }
+              >
+                Information
+              </Btn>
+            </List>
+            {currentPage}
+          </div>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

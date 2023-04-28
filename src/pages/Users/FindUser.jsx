@@ -97,93 +97,94 @@ const FindUser = () => {
     );
   }
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Search User</H3>
-          <DescP>
-            Users / <DescSpan>Search User</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper onSubmit={handleFormSubmission}>
-          <Form>
-            <InputContainer>
-              <PermIdentity
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="text"
-                placeholder="Search for username"
-                onChange={usernameInputChange}
-                value={enteredUsername}
-              />
-            </InputContainer>
-            <InputContainer>
-              <SimCardDownload
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="number"
-                placeholder="Search for phone number"
-                onChange={phonenumberInputChange}
-                value={enteredPhonenumber}
-              />
-            </InputContainer>
-            <InputContainer>
-              <Group
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="text"
-                placeholder="Search User group e.g agent, client, reseller"
-                onChange={GroupInputChange}
-                value={enteredGroup}
-              />
-            </InputContainer>
-            <InputContainer>
-              <AccountBalanceWallet
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="text"
-                placeholder="Search for wallet value"
-                onChange={WalletInputChange}
-                value={enteredWallet}
-              />
-            </InputContainer>
-            <InputContainer>
-              <MailOutline
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="text"
-                placeholder="Search for email address"
-                onChange={emailInputChange}
-                value={enteredEmail}
-              />
-            </InputContainer>
-            <InputContainer>
-              <EventNote
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="date"
-                onChange={dateInputChange}
-                value={enteredDate}
-              />
-            </InputContainer>
-          </Form>
-          <Btn type="submit">
-            <Search />
-            {isFetching ? "Searching...." : "Search"}
-          </Btn>
-        </FormWrapper>
-        {fecthedUsers && <UserSearch searchUsers={searchUsers} />}
-      </Wrapper>
-
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Search User</H3>
+            <DescP>
+              Users / <DescSpan>Search User</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper onSubmit={handleFormSubmission}>
+            <Form>
+              <InputContainer>
+                <PermIdentity
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="text"
+                  placeholder="Search for username"
+                  onChange={usernameInputChange}
+                  value={enteredUsername}
+                />
+              </InputContainer>
+              <InputContainer>
+                <SimCardDownload
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="number"
+                  placeholder="Search for phone number"
+                  onChange={phonenumberInputChange}
+                  value={enteredPhonenumber}
+                />
+              </InputContainer>
+              <InputContainer>
+                <Group
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="text"
+                  placeholder="Search User group e.g agent, client, reseller"
+                  onChange={GroupInputChange}
+                  value={enteredGroup}
+                />
+              </InputContainer>
+              <InputContainer>
+                <AccountBalanceWallet
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="text"
+                  placeholder="Search for wallet value"
+                  onChange={WalletInputChange}
+                  value={enteredWallet}
+                />
+              </InputContainer>
+              <InputContainer>
+                <MailOutline
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="text"
+                  placeholder="Search for email address"
+                  onChange={emailInputChange}
+                  value={enteredEmail}
+                />
+              </InputContainer>
+              <InputContainer>
+                <EventNote
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="date"
+                  onChange={dateInputChange}
+                  value={enteredDate}
+                />
+              </InputContainer>
+            </Form>
+            <Btn type="submit">
+              <Search />
+              {isFetching ? "Searching...." : "Search"}
+            </Btn>
+          </FormWrapper>
+          {fecthedUsers && <UserSearch searchUsers={searchUsers} />}
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

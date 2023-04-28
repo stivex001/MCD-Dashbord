@@ -5,7 +5,7 @@ import Footer from "../../components/footer/Footer";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
-margin: 70px 0;
+  margin: 70px 0;
 `;
 const Wrapper = styled.div`
   padding: 20px;
@@ -54,7 +54,7 @@ const Button = styled.button`
   border: none;
   background: none;
   color: white;
-  font-weigth: 700;
+  font-weight: 700;
   font-size: 14px;
   cursor: pointer;
   &:hover {
@@ -70,42 +70,43 @@ const Option = styled.option``;
 
 const ReferalUpgrade = () => {
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Referral Upgrade</H3>
-          <DescP>
-            User / <DescSpan>Referral Upgrade</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper>
-          <Form>
-            <InputContainer>
-              <PermIdentity
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input type="text" placeholder="Enter Username" />
-            </InputContainer>
-            <InputContainer>
-              <Select name="referal" id="">
-                <Option value="larvae">Larvae - #3,000</Option>
-                <Option value="butterfly">Butterfly - #7000</Option>
-                <Option value="bronze">Bronze - #15000</Option>
-                <Option value="silver">Silver - #25000</Option>
-                <Option value="gold">Gold - #35000</Option>
-              </Select>
-            </InputContainer>
-          </Form>
-          <Btn>
-            <PersonAddAlt />
-            <Button>Upgrade User</Button>
-          </Btn>
-        </FormWrapper>
-      </Wrapper>
-
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Referral Upgrade</H3>
+            <DescP>
+              User / <DescSpan>Referral Upgrade</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper>
+            <Form>
+              <InputContainer>
+                <PermIdentity
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input type="text" placeholder="Enter Username" />
+              </InputContainer>
+              <InputContainer>
+                <Select name="referal" id="">
+                  <Option value="larvae">Larvae - #3,000</Option>
+                  <Option value="butterfly">Butterfly - #7000</Option>
+                  <Option value="bronze">Bronze - #15000</Option>
+                  <Option value="silver">Silver - #25000</Option>
+                  <Option value="gold">Gold - #35000</Option>
+                </Select>
+              </InputContainer>
+            </Form>
+            <Btn>
+              <PersonAddAlt />
+              <Button>Upgrade User</Button>
+            </Btn>
+          </FormWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

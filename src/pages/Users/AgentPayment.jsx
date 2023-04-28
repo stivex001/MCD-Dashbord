@@ -14,7 +14,7 @@ import { agentData } from "../../components/User/agent";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
-margin: 70px 0;
+  margin: 70px 0;
 `;
 const Wrapper = styled.div`
   padding: 20px;
@@ -60,7 +60,7 @@ const Button = styled.button`
   border: none;
   background: none;
   color: white;
-  font-weigth: 700;
+  font-weight: 700;
   font-size: 14px;
   cursor: pointer;
   &:hover {
@@ -86,73 +86,77 @@ const Span = styled.span`
 
 const AgentPayment = () => {
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Agent Payment</H3>
-          <DescP>
-            Agent / <DescSpan>Agent Payment</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper>
-          <Form>
-            <InputContainer>
-              <PermIdentity
-                style={{ padding: "5px", fontSize: "40px", color: "#495057" }}
-              />
-              <Input type="text" placeholder="Enter Agent Username" />
-            </InputContainer>
-            <Btn>
-              <Button>Continue</Button>
-            </Btn>
-          </Form>
-        </FormWrapper>
-      </Wrapper>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Agent Payment</H3>
+            <DescP>
+              Agent / <DescSpan>Agent Payment</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper>
+            <Form>
+              <InputContainer>
+                <PermIdentity
+                  style={{ padding: "5px", fontSize: "40px", color: "#495057" }}
+                />
+                <Input type="text" placeholder="Enter Agent Username" />
+              </InputContainer>
+              <Btn>
+                <Button>Continue</Button>
+              </Btn>
+            </Form>
+          </FormWrapper>
+        </Wrapper>
 
-      <TableWrapper>
-        <Details>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableBody>
-                <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-                  <TableCell style={{ color: "#8887a9" }}>Username</TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>Wallet</TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>
-                    Registration Date
-                  </TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>Note</TableCell>
-                  <TableCell style={{ color: "#8887a9" }}>Action</TableCell>
-                </TableRow>
-              </TableBody>
-              {agentData.map((row) => (
+        <TableWrapper>
+          <Details>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableBody>
-                  <TableRow key={row.id} style={{ backgroundColor: "#f3f2f7" }}>
+                  <TableRow style={{ backgroundColor: "#f3f2f7" }}>
+                    <TableCell style={{ color: "#8887a9" }}>Username</TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>Wallet</TableCell>
                     <TableCell style={{ color: "#8887a9" }}>
-                      {row.username}
+                      Registration Date
                     </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.wallet}
-                    </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.date}
-                    </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      {row.note}
-                    </TableCell>
-                    <TableCell style={{ color: "#8887a9" }}>
-                      <Span>{row.action}</Span>
-                    </TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>Note</TableCell>
+                    <TableCell style={{ color: "#8887a9" }}>Action</TableCell>
                   </TableRow>
                 </TableBody>
-              ))}
-            </Table>
-          </TableContainer>
-        </Details>
-      </TableWrapper>
-
+                {agentData.map((row) => (
+                  <TableBody>
+                    <TableRow
+                      key={row.id}
+                      style={{ backgroundColor: "#f3f2f7" }}
+                    >
+                      <TableCell style={{ color: "#8887a9" }}>
+                        {row.username}
+                      </TableCell>
+                      <TableCell style={{ color: "#8887a9" }}>
+                        {row.wallet}
+                      </TableCell>
+                      <TableCell style={{ color: "#8887a9" }}>
+                        {row.date}
+                      </TableCell>
+                      <TableCell style={{ color: "#8887a9" }}>
+                        {row.note}
+                      </TableCell>
+                      <TableCell style={{ color: "#8887a9" }}>
+                        <Span>{row.action}</Span>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                ))}
+              </Table>
+            </TableContainer>
+          </Details>
+        </TableWrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

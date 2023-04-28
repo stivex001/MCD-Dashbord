@@ -17,7 +17,6 @@ import {
 import AgentTransaction from "../Profile/AgentTransaction";
 import AgentWallet from "../Profile/AgentWallet";
 
-
 import {
   Container,
   Desc,
@@ -28,7 +27,6 @@ import {
 } from "../transaction/transHistory.styles";
 import AgentUserProfile from "./AgentUserProfile";
 
-
 const AgentProfile = () => {
   const location = useLocation();
   const userId = location.pathname.split("/")[2];
@@ -36,7 +34,9 @@ const AgentProfile = () => {
   const users = useSelector((state) =>
     state.user.agents.data.find((user) => user.user_name === decodedId)
   );
-  const [currentPage, setCurrentPage] = useState(<AgentGeneral searchUsers={users} />);
+  const [currentPage, setCurrentPage] = useState(
+    <AgentGeneral searchUsers={users} />
+  );
   const { userTrans, userPerformance, userWallet, isFetching, message } =
     useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -60,87 +60,88 @@ const AgentProfile = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Profile</H3>
-          <DescP>
-            User / <DescSpan>Profile</DescSpan>
-          </DescP>
-        </Desc>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Profile</H3>
+            <DescP>
+              User / <DescSpan>Profile</DescSpan>
+            </DescP>
+          </Desc>
 
-        <AgentUserProfile users={users} />
-        <div>
-          <List>
-            <Btn
-              active={currentPage.type.name === "AgentGeneral"}
-              onClick={() =>
-                handleButtonClick(
-                  <AgentGeneral
-                    searchUsers={users}
-                    userPerformance={userPerformance}
-                  />
-                )
-              }
-            >
-              General
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "AgentTransaction"}
-              onClick={() =>
-                handleButtonClick(
-                  <AgentTransaction
-                    userTrans={userTrans}
-                    isFetching={isFetching}
-                    currentTransPage={currentTransPage}
-                    setCurrentTransPage={setCurrentTransPage}
-                  />
-                )
-              }
-            >
-              Transactions
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "AgentWallet"}
-              onClick={() =>
-                handleButtonClick(
-                  <AgentWallet
-                    setCurrentWalletPage={setCurrentWalletPage}
-                    userWallet={userWallet}
-                  />
-                )
-              }
-            >
-              Wallet
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "Nofication"}
-              onClick={() => handleButtonClick(<Nofication />)}
-            >
-              Push Notification
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "Information"}
-              onClick={() =>
-                handleButtonClick(
-                  <Information
-                    users={users}
-                    isFetching={isFetching}
-                    message={message}
-                  />
-                )
-              }
-            >
-              Information
-            </Btn>
-          </List>
-          {currentPage}
-        </div>
-      </Wrapper>
-
+          <AgentUserProfile users={users} />
+          <div>
+            <List>
+              <Btn
+                active={currentPage.type.name === "AgentGeneral"}
+                onClick={() =>
+                  handleButtonClick(
+                    <AgentGeneral
+                      searchUsers={users}
+                      userPerformance={userPerformance}
+                    />
+                  )
+                }
+              >
+                General
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "AgentTransaction"}
+                onClick={() =>
+                  handleButtonClick(
+                    <AgentTransaction
+                      userTrans={userTrans}
+                      isFetching={isFetching}
+                      currentTransPage={currentTransPage}
+                      setCurrentTransPage={setCurrentTransPage}
+                    />
+                  )
+                }
+              >
+                Transactions
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "AgentWallet"}
+                onClick={() =>
+                  handleButtonClick(
+                    <AgentWallet
+                      setCurrentWalletPage={setCurrentWalletPage}
+                      userWallet={userWallet}
+                    />
+                  )
+                }
+              >
+                Wallet
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "Nofication"}
+                onClick={() => handleButtonClick(<Nofication />)}
+              >
+                Push Notification
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "Information"}
+                onClick={() =>
+                  handleButtonClick(
+                    <Information
+                      users={users}
+                      isFetching={isFetching}
+                      message={message}
+                    />
+                  )
+                }
+              >
+                Information
+              </Btn>
+            </List>
+            {currentPage}
+          </div>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

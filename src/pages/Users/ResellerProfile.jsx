@@ -60,87 +60,88 @@ const ResellerProfile = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Profile</H3>
-          <DescP>
-            User / <DescSpan>Profile</DescSpan>
-          </DescP>
-        </Desc>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Profile</H3>
+            <DescP>
+              User / <DescSpan>Profile</DescSpan>
+            </DescP>
+          </Desc>
 
-        <ResellerUserProfile searchUsers={searchUsers} />
-        <div>
-          <List>
-            <Btn
-              active={currentPage.type.name === "SearchGeneral"}
-              onClick={() =>
-                handleButtonClick(
-                  <SearchGeneral
-                    searchUsers={searchUsers}
-                    userPerformance={userPerformance}
-                  />
-                )
-              }
-            >
-              General
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "SearchTransaction"}
-              onClick={() =>
-                handleButtonClick(
-                  <SearchTransaction
-                    userTrans={userTrans}
-                    isFetching={isFetching}
-                    currentTransPage={currentTransPage}
-                    setCurrentTransPage={setCurrentTransPage}
-                  />
-                )
-              }
-            >
-              Transactions
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "SearchWallet"}
-              onClick={() =>
-                handleButtonClick(
-                  <SearchWallet
-                    setCurrentWalletPage={setCurrentWalletPage}
-                    userWallet={userWallet}
-                  />
-                )
-              }
-            >
-              Wallet
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "Nofication"}
-              onClick={() => handleButtonClick(<Nofication />)}
-            >
-              Push Notification
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "SearchInformation"}
-              onClick={() =>
-                handleButtonClick(
-                  <SearchInformation
-                    users={searchUsers}
-                    isFetching={isFetching}
-                    message={message}
-                  />
-                )
-              }
-            >
-              Information
-            </Btn>
-          </List>
-          {currentPage}
-        </div>
-      </Wrapper>
-
+          <ResellerUserProfile searchUsers={searchUsers} />
+          <div>
+            <List>
+              <Btn
+                active={currentPage.type.name === "SearchGeneral"}
+                onClick={() =>
+                  handleButtonClick(
+                    <SearchGeneral
+                      searchUsers={searchUsers}
+                      userPerformance={userPerformance}
+                    />
+                  )
+                }
+              >
+                General
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "SearchTransaction"}
+                onClick={() =>
+                  handleButtonClick(
+                    <SearchTransaction
+                      userTrans={userTrans}
+                      isFetching={isFetching}
+                      currentTransPage={currentTransPage}
+                      setCurrentTransPage={setCurrentTransPage}
+                    />
+                  )
+                }
+              >
+                Transactions
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "SearchWallet"}
+                onClick={() =>
+                  handleButtonClick(
+                    <SearchWallet
+                      setCurrentWalletPage={setCurrentWalletPage}
+                      userWallet={userWallet}
+                    />
+                  )
+                }
+              >
+                Wallet
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "Nofication"}
+                onClick={() => handleButtonClick(<Nofication />)}
+              >
+                Push Notification
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "SearchInformation"}
+                onClick={() =>
+                  handleButtonClick(
+                    <SearchInformation
+                      users={searchUsers}
+                      isFetching={isFetching}
+                      message={message}
+                    />
+                  )
+                }
+              >
+                Information
+              </Btn>
+            </List>
+            {currentPage}
+          </div>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 
