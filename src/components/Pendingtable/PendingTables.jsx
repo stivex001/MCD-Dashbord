@@ -7,7 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { emptyCheckbox, toggleCheckbox } from "../../Redux/pendingTransSlice";
+import { emptyCheckbox } from "../../Redux/pendingTransSlice";
 import {
   PageNotification,
   PaginateContainer,
@@ -56,13 +56,9 @@ const PendingTables = ({
   currentItems,
   showerr,
   handlePageClick,
+  handleChange,
 }) => {
   const dispatch = useDispatch();
-
-  const handleChange = (e) => {
-    const id = e.target.value;
-    dispatch(toggleCheckbox(id));
-  };
 
   const handleReProcess = (id) => {
     if (!id) {
@@ -71,11 +67,11 @@ const PendingTables = ({
       reProcessOne(dispatch, id);
     }
   };
- 
+
   return (
     <Container>
       <TableContainer component={Paper}>
-        <Table  aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow style={{ backgroundColor: "#f3f2f7" }}>
               <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
