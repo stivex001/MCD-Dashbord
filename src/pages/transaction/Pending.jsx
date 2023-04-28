@@ -35,9 +35,14 @@ import {
 } from "./pending.styles";
 
 const Pending = () => {
-  const { checkId, error, message, pendingTrans, isProcessing } = useSelector(
-    (state) => state.transaction
-  );
+  const {
+    checkId,
+    error,
+    message,
+    pendingTrans,
+    isProcessing,
+    reversalMessage,
+  } = useSelector((state) => state.transaction);
   const dispatch = useDispatch();
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(pendingTrans?.last_page);
@@ -130,6 +135,18 @@ const Pending = () => {
             <MsgContainer type="success">
               <H2 type="success">
                 Transactions has been process in background
+              </H2>
+              <Close
+                style={{ color: "#806e6b", cursor: "pointer" }}
+                onClick={handleClose}
+              />
+            </MsgContainer>
+          )}
+
+          {reversalMessage && (
+            <MsgContainer type="success">
+              <H2 type="success">
+                {reversalMessage.message}
               </H2>
               <Close
                 style={{ color: "#806e6b", cursor: "pointer" }}
