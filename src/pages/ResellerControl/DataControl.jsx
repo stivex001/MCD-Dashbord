@@ -32,51 +32,53 @@ const Details = styled.div`
 
 const DataControl = () => {
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Reseller Data Plans</H3>
-          <DescP>
-            Services / <DescSpan>Reseller Data Plans</DescSpan>
-          </DescP>
-        </Desc>
-        <TableWrapper>
-          <P>Data Plans</P>
-          <Details>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <Tablehead
-                  id="id"
-                  network="Type"
-                  product="Name"
-                  price="Price"
-                  yourPrice="Discount"
-                  server="Server"
-                  status="Status"
-                  date="Date Modified"
-                  action="Action"
-                />
-                {dataData.map((row) => (
-                  <Tablebody
-                    id={row.id}
-                    name={row.name}
-                    network={row.network}
-                    price={row.price}
-                    yourprice={row.discount}
-                    server={row.server}
-                    action={row.action}
-                    status={row.status}
-                    date={row.date}
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Reseller Data Plans</H3>
+            <DescP>
+              Services / <DescSpan>Reseller Data Plans</DescSpan>
+            </DescP>
+          </Desc>
+          <TableWrapper>
+            <P>Data Plans</P>
+            <Details>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <Tablehead
+                    id="id"
+                    network="Type"
+                    product="Name"
+                    price="Price"
+                    yourPrice="Discount"
+                    server="Server"
+                    status="Status"
+                    date="Date Modified"
+                    action="Action"
                   />
-                ))}
-              </Table>
-            </TableContainer>
-          </Details>
-        </TableWrapper>
-      </Wrapper>
+                  {dataData.map((row) => (
+                    <Tablebody
+                      id={row.id}
+                      name={row.name}
+                      network={row.network}
+                      price={row.price}
+                      yourprice={row.discount}
+                      server={row.server}
+                      action={row.action}
+                      status={row.status}
+                      date={row.date}
+                    />
+                  ))}
+                </Table>
+              </TableContainer>
+            </Details>
+          </TableWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

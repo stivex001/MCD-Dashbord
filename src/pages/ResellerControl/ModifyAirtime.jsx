@@ -66,82 +66,87 @@ const ModifyAirtime = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Modify Airtime Network</H3>
-          <DescP>
-            Reseller / <DescSpan>Modify Airtime Network</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper onSubmit={handleFormSubmit}>
-          <Form>
-            <InputContainer>
-              <p style={{ padding: "5px", fontSize: "16px", color: "#495057" }}>
-                Network
-              </p>
-              <Input
-                type="text"
-                onChange={handleInputNetworkChange}
-                value={inputNetworkData}
-                name="name"
-                readOnly
-              />
-            </InputContainer>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Modify Airtime Network</H3>
+            <DescP>
+              Reseller / <DescSpan>Modify Airtime Network</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper onSubmit={handleFormSubmit}>
+            <Form>
+              <InputContainer>
+                <p
+                  style={{ padding: "5px", fontSize: "16px", color: "#495057" }}
+                >
+                  Network
+                </p>
+                <Input
+                  type="text"
+                  onChange={handleInputNetworkChange}
+                  value={inputNetworkData}
+                  name="name"
+                  readOnly
+                />
+              </InputContainer>
 
-            <InputContainer>
-              <p style={{ padding: "5px", fontSize: "16px", color: "#495057" }}>
-                Discount
-              </p>
-              <Input
-                type="text"
-                onChange={handleInputDiscountChange}
-                value={inputDiscountData}
-                name="name"
-              />
-            </InputContainer>
-            <InputContainer>
-              <Select
-                name="fundType"
-                id=""
-                value={inputValueData}
-                onChange={handleInputValueChange}
-              >
-                <Option value="fund">Deactivate</Option>
-                <Option value="debit">Activate</Option>
-              </Select>
-            </InputContainer>
-            <InputContainer>
-              <Select
-                name="server"
-                id=""
-                value={inputServerData}
-                onChange={handleInputServerChange}
-              >
-                <Option value="1">1</Option>
-                <Option value="2">2</Option>
-                <Option value="3">3</Option>
-                <Option value="4">4</Option>
-                <Option value="5">5</Option>
-                <Option value="6">6</Option>
-                <Option value="7">7</Option>
-                <Option value="8">8</Option>
-              </Select>
-            </InputContainer>
-          </Form>
-          <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
-          {error && (
-            <MsgContainer>
-              <H2>opps!! something went wrong</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-            </MsgContainer>
-          )}
-        </FormWrapper>
-      </Wrapper>
-
+              <InputContainer>
+                <p
+                  style={{ padding: "5px", fontSize: "16px", color: "#495057" }}
+                >
+                  Discount
+                </p>
+                <Input
+                  type="text"
+                  onChange={handleInputDiscountChange}
+                  value={inputDiscountData}
+                  name="name"
+                />
+              </InputContainer>
+              <InputContainer>
+                <Select
+                  name="fundType"
+                  id=""
+                  value={inputValueData}
+                  onChange={handleInputValueChange}
+                >
+                  <Option value="fund">Deactivate</Option>
+                  <Option value="debit">Activate</Option>
+                </Select>
+              </InputContainer>
+              <InputContainer>
+                <Select
+                  name="server"
+                  id=""
+                  value={inputServerData}
+                  onChange={handleInputServerChange}
+                >
+                  <Option value="1">1</Option>
+                  <Option value="2">2</Option>
+                  <Option value="3">3</Option>
+                  <Option value="4">4</Option>
+                  <Option value="5">5</Option>
+                  <Option value="6">6</Option>
+                  <Option value="7">7</Option>
+                  <Option value="8">8</Option>
+                </Select>
+              </InputContainer>
+            </Form>
+            <Btn type="submit">{isFetching ? "Updating" : "Update"}</Btn>
+            {error && (
+              <MsgContainer>
+                <H2>opps!! something went wrong</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
+          </FormWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 
