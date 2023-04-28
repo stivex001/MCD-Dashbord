@@ -107,80 +107,83 @@ const Pending = () => {
   }
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Pending Transactions</H3>
-          <DescP>
-            Transactions / <DescSpan>Pending Transactions</DescSpan>
-          </DescP>
-        </Desc>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Pending Transactions</H3>
+            <DescP>
+              Transactions / <DescSpan>Pending Transactions</DescSpan>
+            </DescP>
+          </Desc>
 
-        <TransList>
-          <Title>Pending Transaction List</Title>
-          <P>
-            Click on <Span>Re-process</Span> to reprocess in background.
-          </P>
-          {error && (
-            <MsgContainer>
-              <H2>Kindly select some box!</H2>
-              <Close
-                onClick={handleClose}
-                style={{ color: "#806e6b", cursor: "pointer" }}
-              />
-            </MsgContainer>
-          )}
-          {message && (
-            <MsgContainer type="success">
-              <H2 type="success">
-                Transactions has been process in background
-              </H2>
-              <Close
-                style={{ color: "#806e6b", cursor: "pointer" }}
-                onClick={handleClose}
-              />
-            </MsgContainer>
-          )}
+          <TransList>
+            <Title>Pending Transaction List</Title>
+            <P>
+              Click on <Span>Re-process</Span> to reprocess in background.
+            </P>
+            {error && (
+              <MsgContainer>
+                <H2>Kindly select some box!</H2>
+                <Close
+                  onClick={handleClose}
+                  style={{ color: "#806e6b", cursor: "pointer" }}
+                />
+              </MsgContainer>
+            )}
+            {message && (
+              <MsgContainer type="success">
+                <H2 type="success">
+                  Transactions has been process in background
+                </H2>
+                <Close
+                  style={{ color: "#806e6b", cursor: "pointer" }}
+                  onClick={handleClose}
+                />
+              </MsgContainer>
+            )}
 
-          {reversalMessage && (
-            <MsgContainer type="success">
-              <H2 type="success">
-                {reversalMessage.message}
-              </H2>
-              <Close
-                style={{ color: "#806e6b", cursor: "pointer" }}
-                onClick={handleClose}
-              />
-            </MsgContainer>
-          )}
+            {reversalMessage && (
+              <MsgContainer type="success">
+                <H2 type="success">{reversalMessage.message}</H2>
+                <Close
+                  style={{ color: "#806e6b", cursor: "pointer" }}
+                  onClick={handleClose}
+                />
+              </MsgContainer>
+            )}
 
-          <BtnConatiner>
-            <Button type="Re-process Selected" onClick={handleReProcess}>
-              Re-process Selected
-            </Button>
-            <Button type="Mark Delivered Selected">
-              Mark Delivered Selected
-            </Button>
-            <Button type="Reverse Transaction Selected" onClick={handleRevesal}>
-              Reverse Transaction Selected
-            </Button>
-          </BtnConatiner>
-          <div style={{ marginTop: "10px" }}>
-            <PendingTables
-              pendingTrans={pendingTrans}
-              pageCount={pageCount}
-              currentItems={currentItems}
-              showerr={error}
-              handlePageClick={handlePageClick}
-              currentPage={currentPage}
-              handleChange={handleChange}
-            />
-          </div>
-        </TransList>
-      </Wrapper>
+            <BtnConatiner>
+              <Button type="Re-process Selected" onClick={handleReProcess}>
+                Re-process Selected
+              </Button>
+              <Button type="Mark Delivered Selected">
+                Mark Delivered Selected
+              </Button>
+              <Button
+                type="Reverse Transaction Selected"
+                onClick={handleRevesal}
+              >
+                Reverse Transaction Selected
+              </Button>
+            </BtnConatiner>
+            <div style={{ marginTop: "10px" }}>
+              <PendingTables
+                pendingTrans={pendingTrans}
+                pageCount={pageCount}
+                currentItems={currentItems}
+                showerr={error}
+                handlePageClick={handlePageClick}
+                currentPage={currentPage}
+                handleChange={handleChange}
+              />
+            </div>
+          </TransList>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 
