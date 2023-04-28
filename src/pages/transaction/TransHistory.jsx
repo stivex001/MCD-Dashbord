@@ -58,32 +58,34 @@ const TransHistory = () => {
   }
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Transaction List</H3>
-          <DescP>
-            Transaction / <DescSpan>Transactions List</DescSpan>
-          </DescP>
-        </Desc>
-        <CardContainer>
-          <Card type="totalTransactions" />
-          <Card type="transactionToday" />
-          <Card type="transactionYesterday" />
-          <Card type="transactionAgo" />
-        </CardContainer>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Transaction List</H3>
+            <DescP>
+              Transaction / <DescSpan>Transactions List</DescSpan>
+            </DescP>
+          </Desc>
+          <CardContainer>
+            <Card type="totalTransactions" />
+            <Card type="transactionToday" />
+            <Card type="transactionYesterday" />
+            <Card type="transactionAgo" />
+          </CardContainer>
 
-        {/* TABLES */}
-        <TransactionTables
-          transHistory={transHistory}
-          pageCount={pageCount}
-          currentItems={currentItems}
-          handlePageClick={handlePageClick}
-        />
-      </Wrapper>
+          {/* TABLES */}
+          <TransactionTables
+            transHistory={transHistory}
+            pageCount={pageCount}
+            currentItems={currentItems}
+            handlePageClick={handlePageClick}
+          />
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

@@ -37,8 +37,8 @@ const Reversal = () => {
 
   return (
     <>
+      <Navbar />
       <Container>
-        <Navbar />
         <Wrapper>
           <Desc>
             <H3>Reversal</H3>

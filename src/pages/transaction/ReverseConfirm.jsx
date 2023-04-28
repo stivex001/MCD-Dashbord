@@ -27,10 +27,8 @@ const ReverseConfirm = () => {
   } = useInput();
 
   const dispatch = useDispatch();
-  const { searchReversal, fecthedUsers, isFetching, message, error } = useSelector(
-    (state) => state.profile
-  );
-
+  const { searchReversal, fecthedUsers, isFetching, message, error } =
+    useSelector((state) => state.profile);
 
   const handleFormSubmission = (e) => {
     e.preventDefault();
@@ -42,8 +40,8 @@ const ReverseConfirm = () => {
     e.preventDefault();
     getRevesalTrans(dispatch, searchReversal.tran.id);
     setTimeout(() => {
-        window.location.reload();
-      }, 10000)
+      window.location.reload();
+    }, 10000);
   };
 
   if (isFetching) {
@@ -56,8 +54,8 @@ const ReverseConfirm = () => {
 
   return (
     <>
+      <Navbar />
       <Container>
-        <Navbar />
         <Wrapper>
           <Desc>
             <H3>Reversal</H3>
@@ -66,25 +64,19 @@ const ReverseConfirm = () => {
             </DescP>
           </Desc>
           <FormWrapper onSubmit={handleFormSubmission}>
-          {error && (
-            <MsgContainer>
-              <H2>Transactions has been reversed earlier!</H2>
-              <Close style={{ color: "#806e6b", cursor: "pointer" }} />
-            </MsgContainer>
-          )}
+            {error && (
+              <MsgContainer>
+                <H2>Transactions has been reversed earlier!</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
             {message && (
-            <MsgContainer type="success">
-              <H2 type="success">
-                Transaction reversed successfully
-              </H2>
-              <Close
-                style={{ color: "#806e6b", cursor: "pointer" }}
-                
-              />
-            </MsgContainer>
-          )}
+              <MsgContainer type="success">
+                <H2 type="success">Transaction reversed successfully</H2>
+                <Close style={{ color: "#806e6b", cursor: "pointer" }} />
+              </MsgContainer>
+            )}
             <Form>
-            
               <InputContainer>
                 <p
                   style={{ padding: "5px", fontSize: "20px", color: "#495057" }}
@@ -109,7 +101,7 @@ const ReverseConfirm = () => {
             <>
               <ReversalTrans searchReversal={searchReversal} />
               <Reverse onClick={handleReverse}>
-                <ReportProblem style={{fontSize: '15px'}} />
+                <ReportProblem style={{ fontSize: "15px" }} />
                 Reverse transaction
                 {/* {isFetching ? "Searching...." : "Search"} */}
               </Reverse>

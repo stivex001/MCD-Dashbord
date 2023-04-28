@@ -109,93 +109,94 @@ const FindTransaction = () => {
   }
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Search Transaction</H3>
-          <DescP>
-            Transactions / <DescSpan>Search Transactions</DescSpan>
-          </DescP>
-        </Desc>
-        <FormWrapper onSubmit={handleFormSubmission}>
-          <Form>
-            <InputContainer>
-              <PermIdentity
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="text"
-                placeholder="Search for username"
-                onChange={usernameInputChange}
-                value={enteredUsername}
-              />
-            </InputContainer>
-            <InputContainer>
-              <SimCardDownload
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="number"
-                placeholder="Search for phone number"
-                onChange={phonenumberInputChange}
-                value={enteredPhonenumber}
-              />
-            </InputContainer>
-            <InputContainer>
-              <BusinessCenter
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="text"
-                placeholder="Search Transaction Reference"
-                onChange={TransRefInputChange}
-                value={enteredTransRef}
-              />
-            </InputContainer>
-            <InputContainer>
-              <AccountBalanceWallet
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="text"
-                placeholder="Search for amount"
-                onChange={WalletInputChange}
-                value={enteredWallet}
-              />
-            </InputContainer>
-            <InputContainer>
-              <Class
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="text"
-                placeholder="Search for transaction type"
-                onChange={transTypenputChange}
-                value={enteredTransType}
-              />
-            </InputContainer>
-            <InputContainer>
-              <EventNote
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="date"
-                onChange={dateInputChange}
-                value={enteredDate}
-              />
-            </InputContainer>
-          </Form>
-          <Btn type="submit">
-            <Search />
-            {isFetching ? "Searching...." : "Search"}
-          </Btn>
-        </FormWrapper>
-        {fecthedUsers && <TransactionSearch searchTrans={searchTrans} />}
-      </Wrapper>
-
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Search Transaction</H3>
+            <DescP>
+              Transactions / <DescSpan>Search Transactions</DescSpan>
+            </DescP>
+          </Desc>
+          <FormWrapper onSubmit={handleFormSubmission}>
+            <Form>
+              <InputContainer>
+                <PermIdentity
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="text"
+                  placeholder="Search for username"
+                  onChange={usernameInputChange}
+                  value={enteredUsername}
+                />
+              </InputContainer>
+              <InputContainer>
+                <SimCardDownload
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="number"
+                  placeholder="Search for phone number"
+                  onChange={phonenumberInputChange}
+                  value={enteredPhonenumber}
+                />
+              </InputContainer>
+              <InputContainer>
+                <BusinessCenter
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="text"
+                  placeholder="Search Transaction Reference"
+                  onChange={TransRefInputChange}
+                  value={enteredTransRef}
+                />
+              </InputContainer>
+              <InputContainer>
+                <AccountBalanceWallet
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="text"
+                  placeholder="Search for amount"
+                  onChange={WalletInputChange}
+                  value={enteredWallet}
+                />
+              </InputContainer>
+              <InputContainer>
+                <Class
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="text"
+                  placeholder="Search for transaction type"
+                  onChange={transTypenputChange}
+                  value={enteredTransType}
+                />
+              </InputContainer>
+              <InputContainer>
+                <EventNote
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="date"
+                  onChange={dateInputChange}
+                  value={enteredDate}
+                />
+              </InputContainer>
+            </Form>
+            <Btn type="submit">
+              <Search />
+              {isFetching ? "Searching...." : "Search"}
+            </Btn>
+          </FormWrapper>
+          {fecthedUsers && <TransactionSearch searchTrans={searchTrans} />}
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

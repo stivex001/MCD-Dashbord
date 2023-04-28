@@ -1,83 +1,84 @@
 import {
-    AccountBalanceWallet,
-    AddShoppingCart,
-    DataSaverOn,
-    PermIdentity,
-    SimCardDownload,
-  } from "@mui/icons-material";
-  import styled from "styled-components";
+  AccountBalanceWallet,
+  AddShoppingCart,
+  DataSaverOn,
+  PermIdentity,
+  SimCardDownload,
+} from "@mui/icons-material";
+import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
-  import Footer from "../../components/footer/Footer";
-  import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
-  
-  const Container = styled.div`
+import Footer from "../../components/footer/Footer";
+import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
+
+const Container = styled.div`
   margin: 70px 0;
-  `;
-  const Wrapper = styled.div`
-    padding: 20px;
-  `;
-  const FormWrapper = styled.div`
-    background-color: #fff;
-    box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-    -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
-    padding: 20px 30px;
-  `;
-  const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  `;
-  const InputContainer = styled.div`
-    display: flex;
-    align-items: center;
-    background-color: #e9ecef;
-    width: 100%;
-    border-radius: 1px;
-    border: 0.2px solid #e9ecef;
-  `;
-  const Input = styled.input`
-    padding: 12px;
-    width: 100%;
-    outline-color: #605daf;
-  `;
-  const Btn = styled.div`
-    display: flex;
-    align-items: center;
-    background-color: #4e74ab;
-    padding: 10px 12px;
-    margin: 20px 0;
-    width: 160px;
-    gap: 2px;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    &:hover {
-      color: #343a40;
-    }
-  `;
-  const Button = styled.button`
-    border: none;
-    background: none;
-    color: white;
-    font-weigth: 700;
-    font-size: 14px;
-    cursor: pointer;
-    &:hover {
-      color: #343a40;
-    }
-  `;
-  const Select = styled.select`
-    padding: 12px 5px;
-    width: 100%;
-    outline-color: #605daf;
-  `;
-  const Option = styled.option``;
-  
-  const AddData = () => {
-    return (
+`;
+const Wrapper = styled.div`
+  padding: 20px;
+`;
+const FormWrapper = styled.div`
+  background-color: #fff;
+  box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
+  padding: 20px 30px;
+`;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #e9ecef;
+  width: 100%;
+  border-radius: 1px;
+  border: 0.2px solid #e9ecef;
+`;
+const Input = styled.input`
+  padding: 12px;
+  width: 100%;
+  outline-color: #605daf;
+`;
+const Btn = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #4e74ab;
+  padding: 10px 12px;
+  margin: 20px 0;
+  width: 160px;
+  gap: 2px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  &:hover {
+    color: #343a40;
+  }
+`;
+const Button = styled.button`
+  border: none;
+  background: none;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    color: #343a40;
+  }
+`;
+const Select = styled.select`
+  padding: 12px 5px;
+  width: 100%;
+  outline-color: #605daf;
+`;
+const Option = styled.option``;
+
+const AddData = () => {
+  return (
+    <>
+      <Navbar />
       <Container>
-        <Navbar />
         <Wrapper>
           <Desc>
             <H3>Add Data Transaction</H3>
@@ -126,11 +127,10 @@ import Navbar from "../../components/Bar/Navbar";
             </Btn>
           </FormWrapper>
         </Wrapper>
-  
-        <Footer />
       </Container>
-    );
-  };
-  
-  export default AddData;
-  
+      <Footer />
+    </>
+  );
+};
+
+export default AddData;
