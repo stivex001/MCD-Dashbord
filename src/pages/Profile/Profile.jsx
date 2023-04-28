@@ -27,45 +27,48 @@ const Profile = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Profile</H3>
-          <DescP>
-            User / <DescSpan>Profile</DescSpan>
-          </DescP>
-        </Desc>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Profile</H3>
+            <DescP>
+              User / <DescSpan>Profile</DescSpan>
+            </DescP>
+          </Desc>
 
-        <UserProfile />
-        <div>
-          <List>
-            <Btn
-              to="/profile/samji/#general_detail"
-              onClick={() => handleButtonClick(<General />)}
-            >
-              General
-            </Btn>
-            <Btn
-              to="/profile/samji/#activity_detail"
-              onClick={() => handleButtonClick(<SamjiTrans />)}
-            >
-              Transactions
-            </Btn>
-            <Btn onClick={() => handleButtonClick(<SamjiWallet />)}>Wallet</Btn>
-            <Btn onClick={() => handleButtonClick(<Nofication />)}>
-              Push Notification
-            </Btn>
-            <Btn onClick={() => handleButtonClick(<Information />)}>
-              Information
-            </Btn>
-          </List>
-          {currentPage}
-        </div>
-      </Wrapper>
-
+          <UserProfile />
+          <div>
+            <List>
+              <Btn
+                to="/profile/samji/#general_detail"
+                onClick={() => handleButtonClick(<General />)}
+              >
+                General
+              </Btn>
+              <Btn
+                to="/profile/samji/#activity_detail"
+                onClick={() => handleButtonClick(<SamjiTrans />)}
+              >
+                Transactions
+              </Btn>
+              <Btn onClick={() => handleButtonClick(<SamjiWallet />)}>
+                Wallet
+              </Btn>
+              <Btn onClick={() => handleButtonClick(<Nofication />)}>
+                Push Notification
+              </Btn>
+              <Btn onClick={() => handleButtonClick(<Information />)}>
+                Information
+              </Btn>
+            </List>
+            {currentPage}
+          </div>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

@@ -118,57 +118,61 @@ const Pnl = () => {
   }
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Profit And Loss</H3>
-          <DescP>
-            Reports / <DescSpan>Profit And Loss</DescSpan>
-          </DescP>
-        </Desc>
-        <ReportWrapper>
-          <Left onSubmit={handleSearch}>
-            <Title>Search</Title>
-            <InputWrapper>
-              <EventAvailable
-                style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
-              />
-              <Input
-                type="month"
-                onChange={(e) => {
-                  setCurrentMonthYear(e.target.value);
-                  dateInputChange(e);
-                }}
-                value={enteredDate || currentMonthYear}
-              />
-            </InputWrapper>
-            <Btn type="submit">
-              <Search />
-              {isFetching ? "Searching..." : "Search"}
-            </Btn>
-          </Left>
-          <Right>
-            {enteredDate ? (
-              <Title>
-                Profit & Loss Report for {formatDateString(enteredDate)}{" "}
-              </Title>
-            ) : (
-              <Title>Profit & Loss Report for {formatCurrentMonthYear()}</Title>
-            )}
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Profit And Loss</H3>
+            <DescP>
+              Reports / <DescSpan>Profit And Loss</DescSpan>
+            </DescP>
+          </Desc>
+          <ReportWrapper>
+            <Left onSubmit={handleSearch}>
+              <Title>Search</Title>
+              <InputWrapper>
+                <EventAvailable
+                  style={{ padding: "5px", fontSize: "30px", color: "#495057" }}
+                />
+                <Input
+                  type="month"
+                  onChange={(e) => {
+                    setCurrentMonthYear(e.target.value);
+                    dateInputChange(e);
+                  }}
+                  value={enteredDate || currentMonthYear}
+                />
+              </InputWrapper>
+              <Btn type="submit">
+                <Search />
+                {isFetching ? "Searching..." : "Search"}
+              </Btn>
+            </Left>
+            <Right>
+              {enteredDate ? (
+                <Title>
+                  Profit & Loss Report for {formatDateString(enteredDate)}{" "}
+                </Title>
+              ) : (
+                <Title>
+                  Profit & Loss Report for {formatCurrentMonthYear()}
+                </Title>
+              )}
 
-            <PnlTables
-              report={pnl}
-              pnlExpenses={pnlExpenses}
-              pnlGl={pnlGl}
-              combinedData={combinedData}
-              expensesCombinedData={expensesCombinedData}
-            />
-          </Right>
-        </ReportWrapper>
-      </Wrapper>
+              <PnlTables
+                report={pnl}
+                pnlExpenses={pnlExpenses}
+                pnlGl={pnlGl}
+                combinedData={combinedData}
+                expensesCombinedData={expensesCombinedData}
+              />
+            </Right>
+          </ReportWrapper>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

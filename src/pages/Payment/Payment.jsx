@@ -6,7 +6,7 @@ import PaymentLinksTable from "../../components/paymentLinksTable/PaymentLinksTa
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
 
 const Container = styled.div`
-margin: 70px 0;
+  margin: 70px 0;
 `;
 const Wrapper = styled.div`
   padding: 20px;
@@ -62,59 +62,60 @@ const Input = styled.input`
 
 const Payment = () => {
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Payment Links</H3>
-          <DescP>
-            User / <DescSpan>Payment Links</DescSpan>
-          </DescP>
-        </Desc>
-      </Wrapper>
-      <TableWrapper>
-        <P>The List of payment links.</P>
-        <BtnWrapper>
-          <BtnList>
-            <BtnItem>
-              {" "}
-              <Link style={{ textDecoration: "none", color: "inherit" }}>
-                Copy
-              </Link>
-            </BtnItem>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Payment Links</H3>
+            <DescP>
+              User / <DescSpan>Payment Links</DescSpan>
+            </DescP>
+          </Desc>
+        </Wrapper>
+        <TableWrapper>
+          <P>The List of payment links.</P>
+          <BtnWrapper>
+            <BtnList>
+              <BtnItem>
+                {" "}
+                <Link style={{ textDecoration: "none", color: "inherit" }}>
+                  Copy
+                </Link>
+              </BtnItem>
 
-            <BtnItem>
-              {" "}
-              <Link style={{ textDecoration: "none", color: "inherit" }}>
-                Excel
-              </Link>
-            </BtnItem>
-            <BtnItem>
-              {" "}
-              <Link style={{ textDecoration: "none", color: "inherit" }}>
-                PDF
-              </Link>
-            </BtnItem>
-            <Select name="" id="">
-              <Option value="">Column visibility</Option>
-              <Option value="">Reseller Reference</Option>
-              <Option value="">Amount</Option>
-              <Option value="">Customer Email</Option>
-              <Option value="">Reference</Option>
-              <Option value="">Date</Option>
-              <Option value="">Status</Option>
-            </Select>
-          </BtnList>
-          <BarSearch>
-            <Span>Search:</Span>
-            <Input type="text" />
-          </BarSearch>
-        </BtnWrapper>
-        <PaymentLinksTable />
-      </TableWrapper>
-
+              <BtnItem>
+                {" "}
+                <Link style={{ textDecoration: "none", color: "inherit" }}>
+                  Excel
+                </Link>
+              </BtnItem>
+              <BtnItem>
+                {" "}
+                <Link style={{ textDecoration: "none", color: "inherit" }}>
+                  PDF
+                </Link>
+              </BtnItem>
+              <Select name="" id="">
+                <Option value="">Column visibility</Option>
+                <Option value="">Reseller Reference</Option>
+                <Option value="">Amount</Option>
+                <Option value="">Customer Email</Option>
+                <Option value="">Reference</Option>
+                <Option value="">Date</Option>
+                <Option value="">Status</Option>
+              </Select>
+            </BtnList>
+            <BarSearch>
+              <Span>Search:</Span>
+              <Input type="text" />
+            </BarSearch>
+          </BtnWrapper>
+          <PaymentLinksTable />
+        </TableWrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 

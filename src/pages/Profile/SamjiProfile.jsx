@@ -55,85 +55,89 @@ const SamjiProfile = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <Desc>
-          <H3>Profile</H3>
-          <DescP>
-            User / <DescSpan>Profile</DescSpan>
-          </DescP>
-        </Desc>
+      <Container>
+        <Wrapper>
+          <Desc>
+            <H3>Profile</H3>
+            <DescP>
+              User / <DescSpan>Profile</DescSpan>
+            </DescP>
+          </Desc>
 
-        <SamProfile samji={samji} />
-        <div>
-          <List>
-            <Btn
-              active={currentPage.type.name === "SamGeneral"}
-              onClick={() =>
-                handleButtonClick(
-                  <SamGeneral samji={samji} userPerformance={userPerformance} />
-                )
-              }
-            >
-              General
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "SamjiTransaction"}
-              onClick={() =>
-                handleButtonClick(
-                  <SamjiTransaction
-                    userTrans={samTrans}
-                    isFetching={isFetching}
-                    currentTransPage={currentTransPage}
-                    setCurrentTransPage={setCurrentTransPage}
-                  />
-                )
-              }
-            >
-              Transactions
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "SamWallet"}
-              onClick={() =>
-                handleButtonClick(
-                  <SamWallet
-                    setCurrentWalletPage={setCurrentWalletPage}
-                    userWallet={samWallet}
-                    isFetching={isFetching}
-                  />
-                )
-              }
-            >
-              Wallet
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "Nofication"}
-              onClick={() => handleButtonClick(<Nofication />)}
-            >
-              Push Notification
-            </Btn>
-            <Btn
-              active={currentPage.type.name === "Information"}
-              onClick={() =>
-                handleButtonClick(
-                  <Information
-                    samji={samji}
-                    isFetching={isFetching}
-                    message={message}
-                  />
-                )
-              }
-            >
-              Information
-            </Btn>
-          </List>
-          {currentPage}
-        </div>
-      </Wrapper>
-
+          <SamProfile samji={samji} />
+          <div>
+            <List>
+              <Btn
+                active={currentPage.type.name === "SamGeneral"}
+                onClick={() =>
+                  handleButtonClick(
+                    <SamGeneral
+                      samji={samji}
+                      userPerformance={userPerformance}
+                    />
+                  )
+                }
+              >
+                General
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "SamjiTransaction"}
+                onClick={() =>
+                  handleButtonClick(
+                    <SamjiTransaction
+                      userTrans={samTrans}
+                      isFetching={isFetching}
+                      currentTransPage={currentTransPage}
+                      setCurrentTransPage={setCurrentTransPage}
+                    />
+                  )
+                }
+              >
+                Transactions
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "SamWallet"}
+                onClick={() =>
+                  handleButtonClick(
+                    <SamWallet
+                      setCurrentWalletPage={setCurrentWalletPage}
+                      userWallet={samWallet}
+                      isFetching={isFetching}
+                    />
+                  )
+                }
+              >
+                Wallet
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "Nofication"}
+                onClick={() => handleButtonClick(<Nofication />)}
+              >
+                Push Notification
+              </Btn>
+              <Btn
+                active={currentPage.type.name === "Information"}
+                onClick={() =>
+                  handleButtonClick(
+                    <Information
+                      samji={samji}
+                      isFetching={isFetching}
+                      message={message}
+                    />
+                  )
+                }
+              >
+                Information
+              </Btn>
+            </List>
+            {currentPage}
+          </div>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 
