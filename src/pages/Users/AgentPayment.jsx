@@ -12,9 +12,12 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { agentData } from "../../components/User/agent";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
+import { laptop } from "../../responsive";
 
 const Container = styled.div`
-  margin: 70px 0;
+ background-color: #f5f5f5;
+margin: 70px 0;
+${laptop({ marginLeft: "250px" })};
 `;
 const Wrapper = styled.div`
   padding: 20px;
