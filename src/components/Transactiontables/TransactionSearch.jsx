@@ -46,7 +46,7 @@ const TransactionSearch = ({ searchTrans }) => {
     <Container>
       <Title>Search Result(s)</Title>
       <P>
-        Total Result <Span>{searchTrans.length}</Span>
+        Total Result <Span>{searchTrans?.length}</Span>
       </P>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
