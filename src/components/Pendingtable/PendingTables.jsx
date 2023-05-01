@@ -57,6 +57,7 @@ const PendingTables = ({
   showerr,
   handlePageClick,
   handleChange,
+  handleRevesal
 }) => {
   const dispatch = useDispatch();
 
@@ -171,7 +172,7 @@ const PendingTables = ({
                       <Button type="Mark Delivered">
                         Mark Delivered Selected
                       </Button>
-                      <Button type="Reverse Transaction">
+                      <Button type="Reverse Transaction" onClick={handleRevesal}>
                         Reverse Transaction Selected
                       </Button>
                     </BtnConatiner>

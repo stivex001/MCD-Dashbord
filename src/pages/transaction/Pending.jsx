@@ -177,6 +177,7 @@ const Pending = () => {
                 handlePageClick={handlePageClick}
                 currentPage={currentPage}
                 handleChange={handleChange}
+                handleRevesal={handleRevesal}
               />
             </div>
           </TransList>

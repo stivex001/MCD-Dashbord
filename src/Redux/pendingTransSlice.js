@@ -62,6 +62,7 @@ const pendingTransactionSlice = createSlice({
     },
     reversalAllStart: (state) => {
       state.isProcessing = true;
+      state.error = false;
     },
     reversalAllSucess: (state, action) => {
       state.isProcessing = false;
@@ -104,6 +105,7 @@ const pendingTransactionSlice = createSlice({
     },
     clearMessage: (state) => {
       state.message = null;
+      state.reversalMessage = null
     },
     clearError: (state) => {
       state.error = false;
