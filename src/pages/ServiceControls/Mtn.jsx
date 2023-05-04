@@ -1,4 +1,4 @@
-import { Close, NoteAdd, Search } from "@mui/icons-material";
+import { Close, DisabledByDefault, NoteAdd, Search } from "@mui/icons-material";
 import {
   CircularProgress,
   MenuItem,
@@ -62,6 +62,14 @@ const Mtn = () => {
   };
 
   const handleModify = () => {
+    if (allInputValues.trim() === "") {
+      return getMtnModify(dispatch, enteredType, enteredServer);
+    }
+    getMtnModify(dispatch, enteredType, enteredServer);
+    getMtnList(dispatch, enteredType, enteredServer);
+  };
+
+  const handleDisable = () => {
     if (allInputValues.trim() === "") {
       return getMtnModify(dispatch, enteredType, enteredServer);
     }
@@ -162,7 +170,11 @@ const Mtn = () => {
               </Btn>
               <ModifyBtn onClick={handleModify}>
                 <NoteAdd />
-                {isFetching ? "Modifying...." : "Modify"}
+                {isFetching ? "Enabling...." : "Enable"}
+              </ModifyBtn>
+              <ModifyBtn type="disable" onClick={handleDisable}>
+                <DisabledByDefault />
+                {isFetching ? "Disabling...." : "Disable"}
               </ModifyBtn>
             </ButtonWrapper>
           </FormWrapper>

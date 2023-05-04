@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { laptop } from "../../responsive";
+import { laptop, mobile } from "../../responsive";
 
 export const Container = styled.div`
   margin: 70px 0;
@@ -77,7 +77,10 @@ export const Btn = styled.button`
 export const ModifyBtn = styled.button`
   display: flex;
   align-items: center;
-  background: linear-gradient(to right, #5dd099, #4088a9);
+  background: ${(prop) =>
+    prop.type !== "disable"
+      ? "linear-gradient(to right, #5dd099, #4088a9)"
+      : "linear-gradient(to right,#ff7f7f,#ff99aa)"};
   padding: 10px;
   margin: 20px 0;
   gap: 2px;
@@ -93,6 +96,7 @@ export const ModifyBtn = styled.button`
   }
 `;
 export const ButtonWrapper = styled.div`
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  ${mobile({ flexWrap: "wrap" })};
 `;
