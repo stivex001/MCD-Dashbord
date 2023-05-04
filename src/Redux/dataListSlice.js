@@ -15,6 +15,10 @@ const dataListSlice = createSlice({
     modifyGlo: null,
     modifyAirtel: null,
     modifyMobile: null,
+    disableMtn: null,
+    disableGlo: null,
+    disableAirtel: null,
+    disableMobile: null,
     datapins: [],
     message: null,
   },
@@ -244,6 +248,58 @@ const dataListSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    disableMtnStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    disableMtnSucess: (state, action) => {
+      state.isFetching = false;
+      state.disableMtn = action.payload;
+      state.message = action.payload
+    },
+    disableMtnFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    disableGloStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    disableGloSucess: (state, action) => {
+      state.isFetching = false;
+      state.disableGlo = action.payload;
+      state.message = action.payload
+    },
+    disableGloFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    disableAirtelStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    disableAirtelSucess: (state, action) => {
+      state.isFetching = false;
+      state.disableAirtel = action.payload;
+      state.message = action.payload
+    },
+    disableAirtelFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    disableMobileStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    disableMobileSucess: (state, action) => {
+      state.isFetching = false;
+      state.disableMobile = action.payload;
+      state.message = action.payload
+    },
+    disableMobileFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
     clearMessage: (state) => {
       state.message = null;
     },
@@ -308,6 +364,18 @@ export const {
   modifyMtnStart,
   modifyMtnSucess,
   modifyMtnFailure,
+  disableAirtelStart,
+  disableAirtelSucess,
+  disableAirtelFailure,
+  disableGloStart,
+  disableGloSucess,
+  disableGloFailure,
+  disableMobileStart,
+  disableMobileSucess,
+  disableMobileFailure,
+  disableMtnStart,
+  disableMtnSucess,
+  disableMtnFailure,
   clearMessage,
   clearError,
 } = dataListSlice.actions;

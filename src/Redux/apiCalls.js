@@ -112,6 +112,18 @@ import {
   modifyAirtimeSucess,
 } from "./airtimeConverterSlice";
 import {
+  disableAirtelFailure,
+  disableAirtelStart,
+  disableAirtelSucess,
+  disableGloFailure,
+  disableGloStart,
+  disableGloSucess,
+  disableMobileFailure,
+  disableMobileStart,
+  disableMobileSucess,
+  disableMtnFailure,
+  disableMtnStart,
+  disableMtnSucess,
   getAirtelFailure,
   getAirtelStart,
   getAirtelSucess,
@@ -939,6 +951,18 @@ export const getMtnModify = async (dispatch, type, server) => {
   }
 };
 
+export const getMtnDisable = async (dispatch, type, server) => {
+  dispatch(disableMtnStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigModify/MTN/${type}/0/${server}`
+    );
+    dispatch(disableMtnSucess(res.data));
+  } catch (error) {
+    dispatch(disableMtnFailure());
+  }
+};
+
 export const getGloModify = async (dispatch, type, server) => {
   dispatch(modifyGloStart());
   try {
@@ -950,6 +974,19 @@ export const getGloModify = async (dispatch, type, server) => {
     dispatch(modifyGloFailure());
   }
 };
+
+export const getGloDisable = async (dispatch, type, server) => {
+  dispatch(disableGloStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigModify/GLO/${type}/0/${server}`
+    );
+    dispatch(disableGloSucess(res.data));
+  } catch (error) {
+    dispatch(disableGloFailure());
+  }
+};
+
 
 export const getAirtelModify = async (dispatch, type, server) => {
   dispatch(modifyAirtelStart());
@@ -963,6 +1000,18 @@ export const getAirtelModify = async (dispatch, type, server) => {
   }
 };
 
+export const getAirtelDisable = async (dispatch, type, server) => {
+  dispatch(disableAirtelStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigModify/AIRTEL/${type}/0/${server}`
+    );
+    dispatch(disableAirtelSucess(res.data));
+  } catch (error) {
+    dispatch(disableAirtelFailure());
+  }
+};
+
 export const getMobileModify = async (dispatch, type, server) => {
   dispatch(modifyMobileStart());
   try {
@@ -972,6 +1021,18 @@ export const getMobileModify = async (dispatch, type, server) => {
     dispatch(modifyMobileSucess(res.data));
   } catch (error) {
     dispatch(modifyMobileFailure());
+  }
+};
+
+export const getMobileDisable = async (dispatch, type, server) => {
+  dispatch(disableMobileStart());
+  try {
+    const res = await userRequest.get(
+      `/appDataConfigModify/9MOBILE/${type}/1/${server}`
+    );
+    dispatch(disableMobileSucess(res.data));
+  } catch (error) {
+    dispatch(disableMobileFailure());
   }
 };
 
