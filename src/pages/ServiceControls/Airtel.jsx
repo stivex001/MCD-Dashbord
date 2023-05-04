@@ -1,4 +1,4 @@
-import { Close, NoteAdd, Search } from "@mui/icons-material";
+import { Close, DisabledByDefault, NoteAdd, Search } from "@mui/icons-material";
 import {
   CircularProgress,
   MenuItem,
@@ -17,7 +17,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import useInput from "../../Hooks/use-form";
-import { getAirtelList, getAirtelModify } from "../../Redux/apiCalls";
+import {
+  getAirtelDisable,
+  getAirtelList,
+  getAirtelModify,
+} from "../../Redux/apiCalls";
 import { Span } from "../transaction/general.styles";
 import { H2, Loading, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
@@ -38,9 +42,15 @@ import Server from "./server";
 import { clearError, clearMessage } from "../../Redux/dataListSlice";
 
 const Airtel = () => {
-  const { airtelList, isFetching, modifyAirtel, error, message } = useSelector(
-    (state) => state.datalist
-  );
+  const {
+    airtelList,
+    isFetching,
+    modifyAirtel,
+    error,
+    message,
+    disableAirtel,
+    disMessage,
+  } = useSelector((state) => state.datalist);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -67,6 +77,13 @@ const Airtel = () => {
     }
     getAirtelModify(dispatch, enteredType, enteredServer);
     getAirtelList(dispatch, enteredType, enteredServer);
+  };
+
+  const handleDisable = () => {
+    if (allInputValues.trim() === "") {
+      return getAirtelDisable(dispatch, enteredType, enteredServer);
+    }
+    getAirtelDisable(dispatch, enteredType, enteredServer);
   };
 
   const handleClose = () => {
@@ -122,6 +139,15 @@ const Airtel = () => {
                 />
               </MsgContainer>
             )}
+            {disMessage && (
+              <MsgContainer type="success">
+                <H2 type="success">{`AIRTEL  ${enteredType} ${disableAirtel?.message} (Disabled)`}</H2>
+                <Close
+                  onClick={handleClose}
+                  style={{ color: "#806e6b", cursor: "pointer" }}
+                />
+              </MsgContainer>
+            )}
             <Form>
               <TextField
                 select
@@ -163,6 +189,10 @@ const Airtel = () => {
               <ModifyBtn onClick={handleModify}>
                 <NoteAdd />
                 {isFetching ? "Modifying...." : "Modify"}
+              </ModifyBtn>
+              <ModifyBtn type="disable" onClick={handleDisable}>
+                <DisabledByDefault />
+                {isFetching ? "Disabling...." : "Disable"}
               </ModifyBtn>
             </ButtonWrapper>
           </FormWrapper>
