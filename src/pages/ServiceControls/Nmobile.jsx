@@ -1,4 +1,4 @@
-import { Close, NoteAdd, Search } from "@mui/icons-material";
+import { Close, DisabledByDefault, NoteAdd, Search } from "@mui/icons-material";
 import {
   CircularProgress,
   MenuItem,
@@ -17,7 +17,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import useInput from "../../Hooks/use-form";
-import { getMobileList, getMobileModify } from "../../Redux/apiCalls";
+import {
+  getMobileDisable,
+  getMobileList,
+  getMobileModify,
+} from "../../Redux/apiCalls";
 import { Span } from "../transaction/general.styles";
 import { H2, Loading, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
@@ -38,9 +42,15 @@ import Server from "./server";
 import { clearError, clearMessage } from "../../Redux/dataListSlice";
 
 const Nmobile = () => {
-  const { mobileList, isFetching, modifyMobile, error, message } = useSelector(
-    (state) => state.datalist
-  );
+  const {
+    mobileList,
+    isFetching,
+    modifyMobile,
+    error,
+    message,
+    disableMobile,
+    disMessage,
+  } = useSelector((state) => state.datalist);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -67,6 +77,13 @@ const Nmobile = () => {
     }
     getMobileModify(dispatch, enteredType, enteredServer);
     getMobileList(dispatch, enteredType, enteredServer);
+  };
+
+  const handleDisable = () => {
+    if (allInputValues.trim() === "") {
+      return getMobileDisable(dispatch, enteredType, enteredServer);
+    }
+    getMobileDisable(dispatch, enteredType, enteredServer);
   };
 
   const handleClose = () => {
@@ -122,6 +139,15 @@ const Nmobile = () => {
                 />
               </MsgContainer>
             )}
+            {disMessage && (
+              <MsgContainer type="success">
+                <H2 type="success">{`9MOBILE  ${enteredType} ${disableMobile?.message} (Disabled)`}</H2>
+                <Close
+                  onClick={handleClose}
+                  style={{ color: "#806e6b", cursor: "pointer" }}
+                />
+              </MsgContainer>
+            )}
             <Form>
               <TextField
                 select
@@ -162,7 +188,11 @@ const Nmobile = () => {
               </Btn>
               <ModifyBtn onClick={handleModify}>
                 <NoteAdd />
-                {isFetching ? "Modifying...." : "Modify"}
+                {isFetching ? "Enabling...." : "Enable"}
+              </ModifyBtn>
+              <ModifyBtn type="disable" onClick={handleDisable}>
+                <DisabledByDefault />
+                {isFetching ? "Disabling...." : "Disable"}
               </ModifyBtn>
             </ButtonWrapper>
           </FormWrapper>

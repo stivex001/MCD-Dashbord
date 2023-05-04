@@ -188,7 +188,7 @@ const Airtel = () => {
               </Btn>
               <ModifyBtn onClick={handleModify}>
                 <NoteAdd />
-                {isFetching ? "Modifying...." : "Modify"}
+                {isFetching ? "Enabling...." : "Enable"}
               </ModifyBtn>
               <ModifyBtn type="disable" onClick={handleDisable}>
                 <DisabledByDefault />
