@@ -21,6 +21,7 @@ const dataListSlice = createSlice({
     disableMobile: null,
     datapins: [],
     message: null,
+    disMessage: null,
   },
   reducers: {
     getAirtelStart: (state) => {
@@ -203,7 +204,7 @@ const dataListSlice = createSlice({
     modifyMtnSucess: (state, action) => {
       state.isFetching = false;
       state.modifyMtn = action.payload;
-      state.message = action.payload
+      state.message = action.payload;
     },
     modifyMtnFailure: (state) => {
       state.isFetching = false;
@@ -216,7 +217,7 @@ const dataListSlice = createSlice({
     modifyGloSucess: (state, action) => {
       state.isFetching = false;
       state.modifyGlo = action.payload;
-      state.message = action.payload
+      state.message = action.payload;
     },
     modifyGloFailure: (state) => {
       state.isFetching = false;
@@ -229,7 +230,7 @@ const dataListSlice = createSlice({
     modifyAirtelSucess: (state, action) => {
       state.isFetching = false;
       state.modifyAirtel = action.payload;
-      state.message = action.payload
+      state.message = action.payload;
     },
     modifyAirtelFailure: (state) => {
       state.isFetching = false;
@@ -242,7 +243,7 @@ const dataListSlice = createSlice({
     modifyMobileSucess: (state, action) => {
       state.isFetching = false;
       state.modifyMobile = action.payload;
-      state.message = action.payload
+      state.message = action.payload;
     },
     modifyMobileFailure: (state) => {
       state.isFetching = false;
@@ -255,7 +256,7 @@ const dataListSlice = createSlice({
     disableMtnSucess: (state, action) => {
       state.isFetching = false;
       state.disableMtn = action.payload;
-      state.message = action.payload
+      state.disMessage = action.payload;
     },
     disableMtnFailure: (state) => {
       state.isFetching = false;
@@ -268,7 +269,7 @@ const dataListSlice = createSlice({
     disableGloSucess: (state, action) => {
       state.isFetching = false;
       state.disableGlo = action.payload;
-      state.message = action.payload
+      state.disMessage = action.payload;
     },
     disableGloFailure: (state) => {
       state.isFetching = false;
@@ -281,7 +282,7 @@ const dataListSlice = createSlice({
     disableAirtelSucess: (state, action) => {
       state.isFetching = false;
       state.disableAirtel = action.payload;
-      state.message = action.payload
+      state.disMessage = action.payload;
     },
     disableAirtelFailure: (state) => {
       state.isFetching = false;
@@ -294,7 +295,7 @@ const dataListSlice = createSlice({
     disableMobileSucess: (state, action) => {
       state.isFetching = false;
       state.disableMobile = action.payload;
-      state.message = action.payload
+      state.disMessage = action.payload;
     },
     disableMobileFailure: (state) => {
       state.isFetching = false;
@@ -302,6 +303,7 @@ const dataListSlice = createSlice({
     },
     clearMessage: (state) => {
       state.message = null;
+      state.disMessage = null;
     },
     clearError: (state) => {
       state.error = false;

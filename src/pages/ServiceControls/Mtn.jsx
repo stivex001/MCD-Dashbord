@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import useInput from "../../Hooks/use-form";
-import { getMtnList, getMtnModify } from "../../Redux/apiCalls";
+import { getMtnDisable, getMtnList, getMtnModify } from "../../Redux/apiCalls";
 import { Span } from "../transaction/general.styles";
 import { H2, Loading, MsgContainer } from "../transaction/pending.styles";
 import { Desc, DescP, DescSpan, H3 } from "../transaction/transHistory.styles";
@@ -38,9 +38,15 @@ import Server from "./server";
 import { clearError, clearMessage } from "../../Redux/dataListSlice";
 
 const Mtn = () => {
-  const { mtnList, isFetching, modifyMtn, error, message } = useSelector(
-    (state) => state.datalist
-  );
+  const {
+    mtnList,
+    isFetching,
+    modifyMtn,
+    error,
+    message,
+    disableMtn,
+    disMessage,
+  } = useSelector((state) => state.datalist);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -71,10 +77,9 @@ const Mtn = () => {
 
   const handleDisable = () => {
     if (allInputValues.trim() === "") {
-      return getMtnModify(dispatch, enteredType, enteredServer);
+      return getMtnDisable(dispatch, enteredType, enteredServer);
     }
-    getMtnModify(dispatch, enteredType, enteredServer);
-    getMtnList(dispatch, enteredType, enteredServer);
+    getMtnDisable(dispatch, enteredType, enteredServer);
   };
 
   const handleClose = () => {
@@ -123,7 +128,17 @@ const Mtn = () => {
             )}
             {message && (
               <MsgContainer type="success">
-                <H2 type="success">{`MTN ${enteredType} ${modifyMtn.message}`}</H2>
+                <H2 type="success">{`MTN ${enteredType} ${modifyMtn?.message}`}</H2>
+                <Close
+                  onClick={handleClose}
+                  style={{ color: "#806e6b", cursor: "pointer" }}
+                />
+              </MsgContainer>
+            )}
+
+            {disMessage && (
+              <MsgContainer type="success">
+                <H2 type="success">{`MTN  ${enteredType} ${disableMtn?.message} (Disabled)`}</H2>
                 <Close
                   onClick={handleClose}
                   style={{ color: "#806e6b", cursor: "pointer" }}

@@ -1028,7 +1028,7 @@ export const getMobileDisable = async (dispatch, type, server) => {
   dispatch(disableMobileStart());
   try {
     const res = await userRequest.get(
-      `/appDataConfigModify/9MOBILE/${type}/1/${server}`
+      `/appDataConfigModify/9MOBILE/${type}/0/${server}`
     );
     dispatch(disableMobileSucess(res.data));
   } catch (error) {
