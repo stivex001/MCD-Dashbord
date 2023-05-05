@@ -13,7 +13,7 @@ import {
   PaginateContainer,
   PagWrapper,
 } from "../../pages/Users/agent.styles";
-import { reProcessOne } from "../../Redux/apiCalls";
+import { reProcessOne, reversalTrans } from "../../Redux/apiCalls";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -57,7 +57,6 @@ const PendingTables = ({
   showerr,
   handlePageClick,
   handleChange,
-  handleRevesal
 }) => {
   const dispatch = useDispatch();
 
@@ -66,6 +65,14 @@ const PendingTables = ({
       return dispatch(emptyCheckbox(showerr));
     } else {
       reProcessOne(dispatch, id);
+    }
+  };
+
+  const handleReversal = (id) => {
+    if (!id) {
+      return dispatch(emptyCheckbox(showerr));
+    } else {
+      reversalTrans(dispatch, id);
     }
   };
 
@@ -172,7 +179,10 @@ const PendingTables = ({
                       <Button type="Mark Delivered">
                         Mark Delivered Selected
                       </Button>
-                      <Button type="Reverse Transaction" onClick={handleRevesal}>
+                      <Button
+                        type="Reverse Transaction"
+                        onClick={() => handleReversal(row.id)}
+                      >
                         Reverse Transaction Selected
                       </Button>
                     </BtnConatiner>

@@ -90,7 +90,6 @@ const Pending = () => {
     }
 
     reversalTrans(dispatch, reversalId);
-    console.log(reversalId);
   };
 
   const handleClose = () => {
