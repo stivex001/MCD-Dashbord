@@ -175,8 +175,6 @@ const GeneralMarket = () => {
                     ))}
                 </Table>
                 <PaginateContainer
-                  // marginPagesDisplayed={2}
-                  page={currentPage}
                   breakLabel="..."
                   nextLabel=">"
                   onPageChange={handlePageClick}
@@ -189,6 +187,7 @@ const GeneralMarket = () => {
                   pageLinkClassName="pageNum"
                   previousLinkClassName="pageNum"
                   nextLinkClassName="pageNum"
+                  forcePage={currentPage - 1}
                 />
               </TableContainer>
             </Details>
