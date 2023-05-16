@@ -185,7 +185,7 @@ const TransactionTables = ({
             pageLinkClassName="pageNum"
             previousLinkClassName="pageNum"
             nextLinkClassName="pageNum"
-            forcePage={currentPage}
+            forcePage={currentPage - 1}
           />
         </PagWrapper>
       </TableContainer>
