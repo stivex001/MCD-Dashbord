@@ -177,6 +177,7 @@ const Pending = () => {
                 currentPage={currentPage}
                 handleChange={handleChange}
                 handleRevesal={handleRevesal}
+                forcePage={currentPage - 1}
               />
             </div>
           </TransList>

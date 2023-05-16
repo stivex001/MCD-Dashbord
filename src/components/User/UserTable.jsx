@@ -22,7 +22,7 @@ import {
   PagWrapper,
 } from "../../pages/Users/agent.styles";
 
-const UserTable = ({ allUsers, currentItems, handlePageClick, pageCount }) => {
+const UserTable = ({ allUsers, currentItems, handlePageClick, pageCount, currentPage }) => {
   return (
     <Container>
       <Title>Users Table</Title>
@@ -111,6 +111,7 @@ const UserTable = ({ allUsers, currentItems, handlePageClick, pageCount }) => {
             pageLinkClassName="pageNum"
             previousLinkClassName="pageNum"
             nextLinkClassName="pageNum"
+            forcePage={currentPage - 1}
           />
         </PagWrapper>
       </TableContainer>
