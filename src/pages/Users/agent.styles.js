@@ -122,7 +122,7 @@ export const PaginateContainer = styled(ReactPaginate)`
     }
   }
 
-  .active .pageNum {
+  .active > .pageNum {
     background-color: #605daf;
     color: #fff;
   }

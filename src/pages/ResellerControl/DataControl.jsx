@@ -1,7 +1,7 @@
 import { Paper, Table, TableContainer } from "@mui/material";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
-import { dataData } from "../../components/DataPlansTable/dataPlans";
+// import { dataData } from "../../components/DataPlansTable/dataPlans";
 import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
@@ -58,7 +58,7 @@ const DataControl = () => {
                     date="Date Modified"
                     action="Action"
                   />
-                  {dataData.map((row) => (
+                  {/* {dataData.map((row) => (
                     <Tablebody
                       id={row.id}
                       name={row.name}
@@ -70,7 +70,7 @@ const DataControl = () => {
                       status={row.status}
                       date={row.date}
                     />
-                  ))}
+                  ))} */}
                 </Table>
               </TableContainer>
             </Details>

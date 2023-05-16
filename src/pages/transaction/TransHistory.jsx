@@ -81,6 +81,7 @@ const TransHistory = () => {
             pageCount={pageCount}
             currentItems={currentItems}
             handlePageClick={handlePageClick}
+            currentPage={currentPage}
           />
         </Wrapper>
       </Container>
