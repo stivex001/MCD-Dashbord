@@ -202,6 +202,7 @@ const Resellers = () => {
                     pageLinkClassName="pageNum"
                     previousLinkClassName="pageNum"
                     nextLinkClassName="pageNum"
+                    forcePage={currentPage - 1}
                   />
                 </PagWrapper>
               </TableContainer>

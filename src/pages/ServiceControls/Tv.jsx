@@ -179,7 +179,6 @@ const Tv = () => {
                     ))}
                 </Table>
                 <PaginateContainer
-                  // marginPagesDisplayed={2}
                   page={currentPage}
                   breakLabel="..."
                   nextLabel=">"
@@ -193,6 +192,7 @@ const Tv = () => {
                   pageLinkClassName="pageNum"
                   previousLinkClassName="pageNum"
                   nextLinkClassName="pageNum"
+                  forcePage={currentPage - 1}
                 />
               </TableContainer>
             </Details>

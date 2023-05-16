@@ -27,8 +27,6 @@ import {
 
 const UserProfile = () => {
   const [user, setUser] = useState([]);
-  // const location = useLocation()
-  // const userId = location.pathname.split('/')[2];
 
   useEffect(() => {
     const getUser = async () => {
@@ -43,13 +41,6 @@ const UserProfile = () => {
     getUser();
   }, []);
 
-  //   if (!user) {
-  //     return <div>Loading....</div>;
-  //   }
-
-  //   const registeredUser = user.length > 0 ? user.find((reg) => reg.user_name === userId) : null;
-
-  // console.log(registeredUser);
   return (
     <Container>
       <Wrapper>

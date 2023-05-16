@@ -31,7 +31,7 @@ const Container = styled.div`
   margin: 50px 0;
 `;
 
-const SamjiTransaction = ({ userTrans, setCurrentTransPage, isFetching }) => {
+const SamjiTransaction = ({ userTrans, setCurrentTransPage, isFetching, currentTransPage }) => {
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(userTrans?.last_page);
   const [currentItems, setCurrentItems] = useState(userTrans?.data);
@@ -194,6 +194,7 @@ const SamjiTransaction = ({ userTrans, setCurrentTransPage, isFetching }) => {
               pageLinkClassName="pageNum"
               previousLinkClassName="pageNum"
               nextLinkClassName="pageNum"
+              forcePage={currentTransPage - 1}
             />
           </PagWrapper>
         </TableContainer>
