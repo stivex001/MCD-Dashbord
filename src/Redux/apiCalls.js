@@ -8,15 +8,6 @@ import {
   getResellersFailure,
   getResellersStart,
   getResellersSuccess,
-  getSamjiFailure,
-  getSamjiStart,
-  getSamjiSuccess,
-  getSamTransFailure,
-  getSamTransStart,
-  getSamTransSuccess,
-  getSamWalletFailure,
-  getSamWalletStart,
-  getSamWalletSuccess,
   getUserOverviewFailure,
   getUserOverviewStart,
   getUserOverviewSuccess,
@@ -193,6 +184,17 @@ import {
   getPnlStart,
   getPnlSuccess,
 } from "./reportSlice";
+import {
+  getSamjiFailure,
+  getSamjiStart,
+  getSamjiSuccess,
+  getSamTransFailure,
+  getSamTransStart,
+  getSamTransSuccess,
+  getSamWalletFailure,
+  getSamWalletStart,
+  getSamWalletSuccess,
+} from "./authSlice";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -986,7 +988,6 @@ export const getGloDisable = async (dispatch, type, server) => {
     dispatch(disableGloFailure());
   }
 };
-
 
 export const getAirtelModify = async (dispatch, type, server) => {
   dispatch(modifyAirtelStart());

@@ -44,26 +44,29 @@ const AgentProfile = () => {
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
   const [itemOffset, setItemOffset] = useState(0);
-    const [pageCount, setPageCount] = useState(userTrans?.last_page);
-    const [currentItems, setCurrentItems] = useState(userTrans?.data);
-  
-    const itemsPerPage = userTrans?.per_page;
-  
-    useEffect(() => {
-      const endOffset = itemOffset + itemsPerPage;
-      setCurrentItems(
-        userTrans?.data && userTrans?.data.slice(itemOffset, endOffset)
-      );
-      setPageCount(Math.ceil(userTrans?.total / itemsPerPage));
-    }, [itemOffset, userTrans, itemsPerPage]);
-  
-    const handlePageClick = (event) => {
-      const newOffset = (event.selected * itemsPerPage) % userTrans?.data.length;
-      setItemOffset(newOffset);
-      setCurrentTransPage(event.selected + 1);
-    };
+  const [pageCount, setPageCount] = useState(userTrans?.to);
+  const [currentItems, setCurrentItems] = useState(userTrans?.data);
+
+  const itemsPerPage = userTrans?.per_page;
 
   useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(
+      userTrans?.data && userTrans?.data.slice(itemOffset, endOffset)
+    );
+    setPageCount(Math.ceil(userTrans?.total / itemsPerPage));
+  }, [itemOffset, userTrans, itemsPerPage]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % userTrans?.data.length;
+    setItemOffset(newOffset);
+    setCurrentTransPage(event.selected + 1);
+  };
+  
+  console.log(userTrans);
+
+  useEffect(() => {
+    console.log(currentTransPage);
     getUserTrans(dispatch, users?.user_name, currentTransPage);
   }, [dispatch, users, currentTransPage]);
 

@@ -32,6 +32,7 @@ const persistConfig = {
     "server",
     "airtimeConverter",
     "report",
+    "authProfile"
   ],
 };
 
@@ -43,7 +44,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   server: serverReducer,
   airtimeConverter: airtimeReducer,
-  auth: authReducer,
+  authProfile: authReducer,
   datalist: dataReducer,
   report: reportReducer,
 });

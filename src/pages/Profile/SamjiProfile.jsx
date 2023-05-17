@@ -28,7 +28,7 @@ import SamWallet from "./SamWallet";
 
 const SamjiProfile = () => {
   const { userPerformance, samWallet, isFetching, message, samji, samTrans } =
-    useSelector((state) => state.user);
+    useSelector((state) => state.authProfile);
   const [currentPage, setCurrentPage] = useState(<SamGeneral samji={samji} />);
   const dispatch = useDispatch();
   const [currentTransPage, setCurrentTransPage] = useState(1);
@@ -53,6 +53,9 @@ const SamjiProfile = () => {
   const handleButtonClick = (page) => {
     setCurrentPage(page);
   };
+
+  console.log(samTrans);
+  console.log(currentTransPage);
 
   return (
     <>

@@ -14,9 +14,6 @@ const userSlice = createSlice({
     userPerformance: [],
     userTrans: [],
     userWallet: [],
-    samji: [],
-    samTrans: [],
-    samWallet: []
   },
   reducers: {
     loginStart: (state) => {
@@ -54,7 +51,7 @@ const userSlice = createSlice({
     },
     getUserPerfSuccess: (state, action) => {
       state.isFetching = false;
-      state.userPerformance = action.payload
+      state.userPerformance = action.payload;
     },
     getUserPerfFailure: (state) => {
       state.isFetching = false;
@@ -66,48 +63,26 @@ const userSlice = createSlice({
     },
     getUserTransSuccess: (state, action) => {
       state.isFetching = false;
-      state.userTrans = action.payload
+      state.userTrans = action.payload;
     },
     getUserTransFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
-    getSamTransStart: (state) => {
-      state.isFetching = true;
-      state.error = false;
-    },
-    getSamTransSuccess: (state, action) => {
-      state.isFetching = false;
-      state.samTrans = action.payload
-    },
-    getSamTransFailure: (state) => {
-      state.isFetching = false;
-      state.error = true;
-    },
+
     getUserWalletStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
     getUserWalletSuccess: (state, action) => {
       state.isFetching = false;
-      state.userWallet = action.payload
+      state.userWallet = action.payload;
     },
     getUserWalletFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
-    getSamWalletStart: (state) => {
-      state.isFetching = true;
-      state.error = false;
-    },
-    getSamWalletSuccess: (state, action) => {
-      state.isFetching = false;
-      state.samWallet = action.payload
-    },
-    getSamWalletFailure: (state) => {
-      state.isFetching = false;
-      state.error = true;
-    },
+
     getUserOverviewStart: (state) => {
       state.isFetching = true;
     },
@@ -142,18 +117,7 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    getSamjiStart: (state) => {
-      state.isFetching = true;
-      state.error = false;
-    },
-    getSamjiSuccess: (state, action) => {
-      state.isFetching = false;
-      state.samji = action.payload;
-    },
-    getSamjiFailure: (state) => {
-      state.isFetching = false;
-      state.error = true;
-    },
+
     updateUserStart: (state) => {
       state.isFetching = true;
       state.error = false;
@@ -167,7 +131,7 @@ const userSlice = createSlice({
       }
       state.message = true;
     },
-    
+
     updateUserFailure: (state) => {
       state.isFetching = false;
       state.error = true;
@@ -189,9 +153,6 @@ export const {
   getUserTransStart,
   getUserTransSuccess,
   getUserTransFailure,
-  getSamTransStart,
-  getSamTransSuccess,
-  getSamTransFailure,
   getUserWalletStart,
   getUserWalletSuccess,
   getUserWalletFailure,
@@ -204,12 +165,6 @@ export const {
   getResellersStart,
   getResellersSuccess,
   getResellersFailure,
-  getSamjiStart,
-  getSamjiSuccess,
-  getSamjiFailure,
-  getSamWalletStart,
-  getSamWalletSuccess,
-  getSamWalletFailure,
   updateUserStart,
   updateUserSucess,
   updateUserFailure,

@@ -1,39 +1,64 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
-  name: "auth",
+  name: "authProfile",
   initialState: {
-    currentUser: null,
+    samji: [],
+    samTrans: [],
+    samWallet: [],
     isFetching: false,
     error: false,
     message: false,
   },
   reducers: {
-    loginStart: (state) => {
+    getSamWalletStart: (state) => {
       state.isFetching = true;
+      state.error = false;
     },
-    loginSuccess: (state, action) => {
+    getSamWalletSuccess: (state, action) => {
       state.isFetching = false;
-      state.currentUser = action.payload;
+      state.samWallet = action.payload;
     },
-    loginfailure: (state) => {
+    getSamWalletFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
-
-    logoutSuccess: (state, action) => {
-      state.message = action.payload;
-      state.currentUser = null;
+    getSamjiStart: (state) => {
+      state.isFetching = true;
       state.error = false;
     },
-    
+    getSamjiSuccess: (state, action) => {
+      state.isFetching = false;
+      state.samji = action.payload;
+    },
+    getSamjiFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    getSamTransStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getSamTransSuccess: (state, action) => {
+      state.isFetching = false;
+      state.samTrans = action.payload;
+    },
+    getSamTransFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
 export const {
-  loginStart,
-  loginSuccess,
-  loginfailure,
-  logoutSuccess,
+  getSamTransStart,
+  getSamTransSuccess,
+  getSamTransFailure,
+  getSamjiStart,
+  getSamjiSuccess,
+  getSamjiFailure,
+  getSamWalletStart,
+  getSamWalletSuccess,
+  getSamWalletFailure,
 } = authSlice.actions;
 export default authSlice.reducer;
