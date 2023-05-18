@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,21 +35,33 @@ const SamjiProfile = () => {
   const [currentTransPage, setCurrentTransPage] = useState(1);
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
-  useEffect(() => {
+
+  const fetchData = () => {
     getSamjiProfile(dispatch);
-  }, [dispatch]);
-
-  useEffect(() => {
     getSamTrans(dispatch, currentTransPage);
-  }, [dispatch, currentTransPage]);
-
-  useEffect(() => {
     getSamWallet(dispatch, currentWalletPage);
-  }, [dispatch, samji, currentWalletPage]);
+    getUserPerformance(dispatch, samji?.user_name);
+  };
 
   useEffect(() => {
-    getUserPerformance(dispatch, samji?.user_name);
-  }, [dispatch, samji]);
+    fetchData();
+  }, []);
+
+  // useEffect(() => {
+  //   getSamjiProfile(dispatch);
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   getSamTrans(dispatch, currentTransPage);
+  // }, [dispatch, currentTransPage]);
+
+  // useEffect(() => {
+  //   getSamWallet(dispatch, currentWalletPage);
+  // }, [dispatch, samji, currentWalletPage]);
+
+  // useEffect(() => {
+  //   getUserPerformance(dispatch, samji?.user_name);
+  // }, [dispatch, samji]);
 
   const handleButtonClick = (page) => {
     setCurrentPage(page);
