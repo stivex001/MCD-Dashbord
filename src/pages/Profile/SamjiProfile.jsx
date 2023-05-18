@@ -1,13 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
-import SamGeneral from "../../components/General/SamGeneral";
-import Information from "../../components/Information/Information";
-import Nofication from "../../components/Notification/Notification";
-import { Btn, List } from "../../components/userProfile/userProfile.styles";
 import {
   getSamjiProfile,
   getSamTrans,
@@ -24,51 +21,39 @@ import {
   Wrapper,
 } from "../transaction/transHistory.styles";
 import SamProfile from "../Users/SamProfile";
-import SamjiTransaction from "./SamjiTransaction";
-import SamWallet from "./SamWallet";
+import { Loading } from "../transaction/pending.styles";
+import { CircularProgress } from "@mui/material";
 
 const SamjiProfile = () => {
   const { userPerformance, samWallet, isFetching, message, samji, samTrans } =
     useSelector((state) => state.authProfile);
-  const [currentPage, setCurrentPage] = useState(<SamGeneral samji={samji} />);
+  // const [currentPage, setCurrentPage] = useState(<SamGeneral samji={samji} />);
   const dispatch = useDispatch();
   const [currentTransPage, setCurrentTransPage] = useState(1);
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
-
-  const fetchData = () => {
-    getSamjiProfile(dispatch);
-    getSamTrans(dispatch, currentTransPage);
-    getSamWallet(dispatch, currentWalletPage);
-    getUserPerformance(dispatch, samji?.user_name);
+  const fetchData = async () => {
+    await getSamjiProfile(dispatch);
+    await getSamTrans(dispatch, currentTransPage);
+    await getSamWallet(dispatch, currentWalletPage);
+    await getUserPerformance(dispatch, samji?.user_name);
   };
 
   useEffect(() => {
+    // Fetch the data and update the currentPage state variable
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   getSamjiProfile(dispatch);
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   getSamTrans(dispatch, currentTransPage);
-  // }, [dispatch, currentTransPage]);
-
-  // useEffect(() => {
-  //   getSamWallet(dispatch, currentWalletPage);
-  // }, [dispatch, samji, currentWalletPage]);
-
-  // useEffect(() => {
-  //   getUserPerformance(dispatch, samji?.user_name);
-  // }, [dispatch, samji]);
-
-  const handleButtonClick = (page) => {
-    setCurrentPage(page);
-  };
-
   console.log(samTrans);
   console.log(currentTransPage);
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
 
   return (
     <>
@@ -82,74 +67,17 @@ const SamjiProfile = () => {
             </DescP>
           </Desc>
 
-          <SamProfile samji={samji} />
-          <div>
-            <List>
-              <Btn
-                active={currentPage.type.name === "SamGeneral"}
-                onClick={() =>
-                  handleButtonClick(
-                    <SamGeneral
-                      samji={samji}
-                      userPerformance={userPerformance}
-                    />
-                  )
-                }
-              >
-                General
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "SamjiTransaction"}
-                onClick={() =>
-                  handleButtonClick(
-                    <SamjiTransaction
-                      userTrans={samTrans}
-                      isFetching={isFetching}
-                      currentTransPage={currentTransPage}
-                      setCurrentTransPage={setCurrentTransPage}
-                    />
-                  )
-                }
-              >
-                Transactions
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "SamWallet"}
-                onClick={() =>
-                  handleButtonClick(
-                    <SamWallet
-                      setCurrentWalletPage={setCurrentWalletPage}
-                      userWallet={samWallet}
-                      isFetching={isFetching}
-                    />
-                  )
-                }
-              >
-                Wallet
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "Nofication"}
-                onClick={() => handleButtonClick(<Nofication />)}
-              >
-                Push Notification
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "Information"}
-                onClick={() =>
-                  handleButtonClick(
-                    <Information
-                      samji={samji}
-                      isFetching={isFetching}
-                      message={message}
-                    />
-                  )
-                }
-              >
-                Information
-              </Btn>
-            </List>
-            {currentPage}
-          </div>
+          <SamProfile
+            samji={samji}
+            userPerformance={userPerformance}
+            userTrans={samTrans}
+            isFetching={isFetching}
+            currentTransPage={currentTransPage}
+            setCurrentTransPage={setCurrentTransPage}
+            setCurrentWalletPage={setCurrentWalletPage}
+            userWallet={samWallet}
+            message={message}
+          />
         </Wrapper>
       </Container>
       <Footer />

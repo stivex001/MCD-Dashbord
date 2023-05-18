@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import { mobile, tablet } from "../../responsive";
 
@@ -19,21 +18,21 @@ export const Wrapper = styled.div`
   ${mobile({ flexDirection: "column", alignItems: "flex-start", gap: "40px" })};
 `;
 export const Left = styled.div`
-width: 30%;
+  width: 30%;
 `;
 export const UserImg = styled.img`
-width: 100%;
-heigth: 100%;
-background-color: white;
-padding: 4px;
-// ${mobile({ width: '245px', height: '186px' })};s
-// ${tablet({ width: '100%', height: '100%' })};s
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 4px;
+  // ${mobile({ width: "245px", height: "186px" })};s
+  // ${tablet({ width: "100%", height: "100%" })};s
 `;
 export const Username = styled.p`
   font-size: 24px;
 `;
 export const Fullname = styled.p`
-margin-top: 10px;
+  margin-top: 10px;
 `;
 export const Brandname = styled.span`
   font-size: 13px;
@@ -58,9 +57,9 @@ export const Span = styled.span`
 `;
 export const List = styled.div`
   background-color: #fff;
-  box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  /* box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-  -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47);
+  -moz-box-shadow: 2px 4px 10px 1pxrgba (235, 180, 180, 0.47); */
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
@@ -73,14 +72,15 @@ export const Btn = styled.button`
   cursor: pointer;
   border-radius: 5px;
   text-decoration: none;
-  background-color: ${({ active }) => active ? '#605daf' : '#fff'};
-  color: ${({ active }) => active ? '#fff' : '#292a2f'};
-  
+  background-color: #fff;
+  color: #292a2f;
+
   &:focus {
     outline: none;
   }
 
-
+  &.active {
+    background-color: #605daf;
+    color: #fff;
+  }
 `;
-
-
