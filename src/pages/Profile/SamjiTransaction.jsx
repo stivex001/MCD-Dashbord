@@ -11,11 +11,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Span, TableWrapper } from "../transaction/general.styles";
 import { Loading } from "../transaction/pending.styles";
-import {
-  PageNotification,
-  PaginateContainer,
-  PagWrapper,
-} from "../Users/agent.styles";
+import { PaginateContainer } from "../Users/agent.styles";
 
 const Title = styled.h3`
   font-size: 16px;
@@ -31,7 +27,12 @@ const Container = styled.div`
   margin: 50px 0;
 `;
 
-const SamjiTransaction = ({ userTrans, setCurrentTransPage, isFetching, currentTransPage }) => {
+const SamjiTransaction = ({
+  userTrans,
+  setCurrentTransPage,
+  isFetching,
+  currentTransPage,
+}) => {
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(userTrans?.last_page);
   const [currentItems, setCurrentItems] = useState(userTrans?.data);
@@ -51,6 +52,9 @@ const SamjiTransaction = ({ userTrans, setCurrentTransPage, isFetching, currentT
     setItemOffset(newOffset);
     setCurrentTransPage(event.selected + 1);
   };
+
+  console.log(currentTransPage);
+  console.log(userTrans);
 
   if (isFetching) {
     return (
@@ -176,27 +180,22 @@ const SamjiTransaction = ({ userTrans, setCurrentTransPage, isFetching, currentT
               ))
             )}
           </Table>
-          <PagWrapper>
-            <PageNotification>
-              Showing {userTrans?.from || "0"} to {userTrans?.to || "0"} of{" "}
-              {userTrans?.total} entries
-            </PageNotification>
-            <PaginateContainer
-              breakLabel="..."
-              nextLabel="next >"
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={pageCount}
-              previousLabel="< previous"
-              renderOnZeroPageCount={null}
-              containerClassName={"pagination"}
-              activeClassName={"active"}
-              pageLinkClassName="pageNum"
-              previousLinkClassName="pageNum"
-              nextLinkClassName="pageNum"
-              forcePage={currentTransPage - 1}
-            />
-          </PagWrapper>
+
+          <PaginateContainer
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+            pageLinkClassName="pageNum"
+            previousLinkClassName="pageNum"
+            nextLinkClassName="pageNum"
+            forcePage={currentTransPage - 1}
+          />
         </TableContainer>
       </TableWrapper>
     </Container>

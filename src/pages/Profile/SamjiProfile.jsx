@@ -27,7 +27,6 @@ import { CircularProgress } from "@mui/material";
 const SamjiProfile = () => {
   const { userPerformance, samWallet, isFetching, message, samji, samTrans } =
     useSelector((state) => state.authProfile);
-  // const [currentPage, setCurrentPage] = useState(<SamGeneral samji={samji} />);
   const dispatch = useDispatch();
   const [currentTransPage, setCurrentTransPage] = useState(1);
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
@@ -43,9 +42,6 @@ const SamjiProfile = () => {
     // Fetch the data and update the currentPage state variable
     fetchData();
   }, []);
-
-  console.log(samTrans);
-  console.log(currentTransPage);
 
   if (isFetching) {
     return (
