@@ -174,6 +174,7 @@ const SamProfile = ({
             isFetching={isFetching}
             currentTransPage={currentTransPage}
             setCurrentTransPage={setCurrentTransPage}
+            
           />
         ) : currentPage === "wallet" ? (
           <SamWallet
