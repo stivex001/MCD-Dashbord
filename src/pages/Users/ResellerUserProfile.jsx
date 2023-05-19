@@ -1,29 +1,55 @@
 import {
-    AccountBalanceWallet,
-    Brush,
-    CalendarToday,
-    CameraAlt,
-    LocationOn,
-    MailOutline,
-    Phone,
-    PhoneIphone,
-  } from "@mui/icons-material";
-  import {
-    Brandname,
-    Container,
-    Desc,
-    Fullname,
-    Left,
-    Right,
-    Span,
-    UserDesc,
-    UserImg,
-    Username,
-    Wrapper,
-  } from "../../components/userProfile/userProfile.styles";
-  
-  const ResellerUserProfile = ({ searchUsers }) => {
-    return (
+  AccountBalanceWallet,
+  Brush,
+  CalendarToday,
+  CameraAlt,
+  LocationOn,
+  MailOutline,
+  Phone,
+  PhoneIphone,
+} from "@mui/icons-material";
+import {
+  Brandname,
+  Btn,
+  Container,
+  Desc,
+  Fullname,
+  Left,
+  List,
+  Right,
+  Span,
+  UserDesc,
+  UserImg,
+  Username,
+  Wrapper,
+} from "../../components/userProfile/userProfile.styles";
+import { useState } from "react";
+import SearchGeneral from "../../components/General/SearchGeneral";
+import SearchTransaction from "../Profile/SearchTransaction";
+import SearchWallet from "../Profile/SearchWallet";
+import Nofication from "../../components/Notification/Notification";
+import SearchInformation from "../Profile/SearchInformation";
+
+const ResellerUserProfile = ({
+  searchUsers,
+  userPerformance,
+  userTrans,
+  isFetching,
+  currentTransPage,
+  setCurrentTransPage,
+  setCurrentWalletPage,
+  message,
+  userWallet,
+}) => {
+  const [currentPage, setCurrentPage] = useState("general");
+  const [activeButton, setActiveButton] = useState("general");
+
+  const handleClick = (page) => {
+    setCurrentPage(page);
+    setActiveButton(page);
+  };
+  return (
+    <>
       <Container>
         <Wrapper>
           <Left>
@@ -99,9 +125,73 @@ import {
             </Desc>
           </Right>
         </Wrapper>
+        <List>
+          <Btn
+            onClick={() => handleClick("general")}
+            className={activeButton === "general" ? "active" : ""}
+          >
+            General
+          </Btn>
+
+          <Btn
+            onClick={() => handleClick("transaction")}
+            className={activeButton === "transaction" ? "active" : ""}
+          >
+            Transaction
+          </Btn>
+
+          <Btn
+            onClick={() => handleClick("wallet")}
+            className={activeButton === "wallet" ? "active" : ""}
+          >
+            Wallet
+          </Btn>
+
+          <Btn
+            onClick={() => handleClick("push-notification")}
+            className={activeButton === "push-notification" ? "active" : ""}
+          >
+            Push Notification
+          </Btn>
+
+          <Btn
+            onClick={() => handleClick("information")}
+            className={activeButton === "information" ? "active" : ""}
+          >
+            Information
+          </Btn>
+        </List>
       </Container>
-    );
-  };
-  
-  export default ResellerUserProfile;
-  
+      <div>
+        {currentPage === "general" ? (
+          <SearchGeneral
+            searchUsers={searchUsers}
+            userPerformance={userPerformance}
+          />
+        ) : currentPage === "transaction" ? (
+          <SearchTransaction
+            userTrans={userTrans}
+            isFetching={isFetching}
+            currentTransPage={currentTransPage}
+            setCurrentTransPage={setCurrentTransPage}
+          />
+        ) : currentPage === "wallet" ? (
+          <SearchWallet
+            setCurrentWalletPage={setCurrentWalletPage}
+            userWallet={userWallet}
+          />
+        ) : currentPage === "push-notification" ? (
+          <Nofication />
+        ) : (
+          <SearchInformation
+            users={searchUsers}
+            isFetching={isFetching}
+            message={message}
+          />
+        )}
+      </div>
+    </>
+  );
+};
+
+export default ResellerUserProfile;
