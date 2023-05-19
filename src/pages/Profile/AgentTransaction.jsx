@@ -7,14 +7,10 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Span, TableWrapper } from "../transaction/general.styles";
-import {
-  PageNotification,
-  PaginateContainer,
-  PagWrapper,
-} from "../Users/agent.styles";
+import { PaginateContainer } from "../Users/agent.styles";
 import { Loading } from "../transaction/pending.styles";
 
 const Title = styled.h3`
@@ -38,7 +34,7 @@ const AgentTransaction = ({
   handlePageClick,
   pageCount,
   currentItems,
-  isFetching
+  isFetching,
 }) => {
   // const [itemOffset, setItemOffset] = useState(0);
   // const [pageCount, setPageCount] = useState(userTrans?.last_page);
@@ -185,27 +181,22 @@ const AgentTransaction = ({
               ))
             )}
           </Table>
-          <PagWrapper>
-            <PageNotification>
-              Showing {userTrans?.from || "0"} to {userTrans?.to || "0"} of{" "}
-              {userTrans?.total} entries
-            </PageNotification>
-            <PaginateContainer
-              breakLabel="..."
-              nextLabel="next >"
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={pageCount}
-              previousLabel="< previous"
-              renderOnZeroPageCount={null}
-              containerClassName={"pagination"}
-              activeClassName={"active"}
-              pageLinkClassName="pageNum"
-              previousLinkClassName="pageNum"
-              nextLinkClassName="pageNum"
-              // forcePage={currentTransPage - 1}
-            />
-          </PagWrapper>
+
+          <PaginateContainer
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+            pageLinkClassName="pageNum"
+            previousLinkClassName="pageNum"
+            nextLinkClassName="pageNum"
+            forcePage={currentTransPage - 1}
+          />
         </TableContainer>
       </TableWrapper>
     </Container>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -5,17 +6,12 @@ import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
-import AgentGeneral from "../../components/General/AgentGeneral";
-import Information from "../../components/Information/Information";
-import Nofication from "../../components/Notification/Notification";
-import { Btn, List } from "../../components/userProfile/userProfile.styles";
+
 import {
   getUserPerformance,
   getUserTrans,
   getUserWallet,
 } from "../../Redux/apiCalls";
-import AgentTransaction from "../Profile/AgentTransaction";
-import AgentWallet from "../Profile/AgentWallet";
 
 import {
   Container,
@@ -26,6 +22,8 @@ import {
   Wrapper,
 } from "../transaction/transHistory.styles";
 import AgentUserProfile from "./AgentUserProfile";
+import { Loading } from "../transaction/pending.styles";
+import { CircularProgress } from "@mui/material";
 
 const AgentProfile = () => {
   const location = useLocation();
@@ -34,9 +32,7 @@ const AgentProfile = () => {
   const users = useSelector((state) =>
     state.user.agents.data.find((user) => user.user_name === decodedId)
   );
-  const [currentPage, setCurrentPage] = useState(
-    <AgentGeneral searchUsers={users} />
-  );
+
   const { userTrans, userPerformance, userWallet, isFetching, message } =
     useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -62,25 +58,26 @@ const AgentProfile = () => {
     setItemOffset(newOffset);
     setCurrentTransPage(event.selected + 1);
   };
-  
-  console.log(userTrans);
 
-  useEffect(() => {
-    console.log(currentTransPage);
-    getUserTrans(dispatch, users?.user_name, currentTransPage);
-  }, [dispatch, users, currentTransPage]);
-
-  useEffect(() => {
-    getUserWallet(dispatch, users?.user_name, currentWalletPage);
-  }, [dispatch, users, currentWalletPage]);
-
-  useEffect(() => {
-    getUserPerformance(dispatch, users?.user_name);
-  }, [dispatch, users]);
-
-  const handleButtonClick = (page) => {
-    setCurrentPage(page);
+  const fetchData = async () => {
+    // await getSamjiProfile(dispatch);
+    await getUserTrans(dispatch, users?.user_name, currentTransPage);
+    await getUserWallet(dispatch, users?.user_name, currentWalletPage);
+    await getUserPerformance(dispatch, users?.user_name);
   };
+
+  useEffect(() => {
+    // Fetch the data and update the currentPage state variable
+    fetchData();
+  }, []);
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
 
   return (
     <>
@@ -94,76 +91,21 @@ const AgentProfile = () => {
             </DescP>
           </Desc>
 
-          <AgentUserProfile users={users} />
-          <div>
-            <List>
-              <Btn
-                active={currentPage.type.name === "AgentGeneral"}
-                onClick={() =>
-                  handleButtonClick(
-                    <AgentGeneral
-                      searchUsers={users}
-                      userPerformance={userPerformance}
-                    />
-                  )
-                }
-              >
-                General
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "AgentTransaction"}
-                onClick={() =>
-                  handleButtonClick(
-                    <AgentTransaction
-                      userTrans={userTrans}
-                      isFetching={isFetching}
-                      currentTransPage={currentTransPage}
-                      setCurrentTransPage={setCurrentTransPage}
-                      pageCount={pageCount}
-                      currentItems={currentItems}
-                      handlePageClick={handlePageClick}
-                    />
-                  )
-                }
-              >
-                Transactions
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "AgentWallet"}
-                onClick={() =>
-                  handleButtonClick(
-                    <AgentWallet
-                      setCurrentWalletPage={setCurrentWalletPage}
-                      userWallet={userWallet}
-                    />
-                  )
-                }
-              >
-                Wallet
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "Nofication"}
-                onClick={() => handleButtonClick(<Nofication />)}
-              >
-                Push Notification
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "Information"}
-                onClick={() =>
-                  handleButtonClick(
-                    <Information
-                      users={users}
-                      isFetching={isFetching}
-                      message={message}
-                    />
-                  )
-                }
-              >
-                Information
-              </Btn>
-            </List>
-            {currentPage}
-          </div>
+          <AgentUserProfile
+            users={users}
+            userPerformance={userPerformance}
+            userTrans={userTrans}
+            isFetching={isFetching}
+            currentTransPage={currentTransPage}
+            setCurrentTransPage={setCurrentTransPage}
+            pageCount={pageCount}
+            currentItems={currentItems}
+            handlePageClick={handlePageClick}
+            setCurrentWalletPage={setCurrentWalletPage}
+            currentWalletPage={currentWalletPage}
+            userWallet={userWallet}
+            message={message}
+          />
         </Wrapper>
       </Container>
       <Footer />
