@@ -57,6 +57,7 @@ const PendingTables = ({
   showerr,
   handlePageClick,
   handleChange,
+  currentPage
 }) => {
   const dispatch = useDispatch();
 
@@ -210,6 +211,7 @@ const PendingTables = ({
             pageLinkClassName="pageNum"
             previousLinkClassName="pageNum"
             nextLinkClassName="pageNum"
+            forcePage={currentPage - 1}
           />
         </PagWrapper>
       </TableContainer>
