@@ -33,10 +33,7 @@ import Nofication from "../../components/Notification/Notification";
 const SamProfile = ({
   samji,
   userPerformance,
-  userTrans,
   isFetching,
-  currentTransPage,
-  setCurrentTransPage,
   userWallet,
   setCurrentWalletPage,
   message,
@@ -169,13 +166,7 @@ const SamProfile = ({
         {currentPage === "general" ? (
           <SamGeneral samji={samji} userPerformance={userPerformance} />
         ) : currentPage === "transaction" ? (
-          <SamjiTransaction
-            userTrans={userTrans}
-            isFetching={isFetching}
-            currentTransPage={currentTransPage}
-            setCurrentTransPage={setCurrentTransPage}
-            
-          />
+          <SamjiTransaction />
         ) : currentPage === "wallet" ? (
           <SamWallet
             setCurrentWalletPage={setCurrentWalletPage}

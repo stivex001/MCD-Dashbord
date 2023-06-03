@@ -7,7 +7,6 @@ import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import {
   getSamjiProfile,
-  getSamTrans,
   getSamWallet,
   getUserPerformance,
 } from "../../Redux/apiCalls";
@@ -25,15 +24,16 @@ import { Loading } from "../transaction/pending.styles";
 import { CircularProgress } from "@mui/material";
 
 const SamjiProfile = () => {
-  const { userPerformance, samWallet, isFetching, message, samji, samTrans } =
+  const { userPerformance, samWallet, isFetching, message, samji } =
     useSelector((state) => state.authProfile);
+
   const dispatch = useDispatch();
-  const [currentTransPage, setCurrentTransPage] = useState(4);
+
+  // const [currentTransPage, setCurrentTransPage] = useState(1);
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
   const fetchData = async () => {
     await getSamjiProfile(dispatch);
-    await getSamTrans(dispatch, currentTransPage);
     await getSamWallet(dispatch, currentWalletPage);
     await getUserPerformance(dispatch, samji?.user_name);
   };
@@ -43,13 +43,13 @@ const SamjiProfile = () => {
     fetchData();
   }, []);
 
-  if (isFetching) {
-    return (
-      <Loading>
-        <CircularProgress style={{ color: "blue" }} />
-      </Loading>
-    );
-  }
+  // if (isFetching) {
+  //   return (
+  //     <Loading>
+  //       <CircularProgress style={{ color: "blue" }} />
+  //     </Loading>
+  //   );
+  // }
 
   return (
     <>
@@ -66,10 +66,10 @@ const SamjiProfile = () => {
           <SamProfile
             samji={samji}
             userPerformance={userPerformance}
-            userTrans={samTrans}
+            // userTrans={samTrans}
             isFetching={isFetching}
-            currentTransPage={currentTransPage}
-            setCurrentTransPage={setCurrentTransPage}
+            // currentTransPage={currentTransPage}
+            // setCurrentTransPage={setCurrentTransPage}
             setCurrentWalletPage={setCurrentWalletPage}
             userWallet={samWallet}
             message={message}

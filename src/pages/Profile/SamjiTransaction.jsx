@@ -12,6 +12,8 @@ import styled from "styled-components";
 import { Span, TableWrapper } from "../transaction/general.styles";
 import { Loading } from "../transaction/pending.styles";
 import { PaginateContainer } from "../Users/agent.styles";
+import { getSamTrans } from "../../Redux/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
 
 const Title = styled.h3`
   font-size: 16px;
@@ -27,34 +29,35 @@ const Container = styled.div`
   margin: 50px 0;
 `;
 
-const SamjiTransaction = ({
-  userTrans,
-  setCurrentTransPage,
-  isFetching,
-  currentTransPage,
-}) => {
-  const [itemOffset, setItemOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(userTrans?.last_page);
-  const [currentItems, setCurrentItems] = useState(userTrans?.data);
+const SamjiTransaction = () => {
+  const { isFetching, samTrans } = useSelector((state) => state.authProfile);
 
-  const itemsPerPage = userTrans?.per_page;
+  const [itemOffset, setItemOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(samTrans?.last_page);
+  const [currentItems, setCurrentItems] = useState(samTrans?.data);
+  const [currentTransPage, setCurrentTransPage] = useState(1);
+
+  const dispatch = useDispatch();
+
+  const itemsPerPage = samTrans?.per_page;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(
-      userTrans.data && userTrans.data.slice(itemOffset, endOffset)
+      samTrans.data && samTrans.data.slice(itemOffset, endOffset)
     );
-    setPageCount(Math.ceil(userTrans?.total / itemsPerPage));
-  }, [itemOffset, userTrans, itemsPerPage]);
+    setPageCount(Math.ceil(samTrans?.total / itemsPerPage));
+  }, [itemOffset, samTrans, itemsPerPage]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % userTrans?.data.length;
+    const newOffset = (event.selected * itemsPerPage) % samTrans?.data.length;
     setItemOffset(newOffset);
     setCurrentTransPage(event.selected + 1);
   };
 
-  console.log(typeof(currentTransPage));
-  // console.log(userTrans);
+  useEffect(() => {
+    getSamTrans(dispatch, currentTransPage);
+  }, [dispatch, currentTransPage]);
 
   if (isFetching) {
     return (
