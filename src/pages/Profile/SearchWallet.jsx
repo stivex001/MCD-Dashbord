@@ -8,6 +8,10 @@ import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import { PageNotification, PaginateContainer, PagWrapper } from "../Users/agent.styles";
 import { Span } from "../transaction/general.styles";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserWallet } from "../../Redux/apiCalls";
+import { Loading } from "../transaction/pending.styles";
+import { CircularProgress } from "@mui/material";
 
 const Containers = styled.div`
   background-color: #fff;
@@ -23,11 +27,17 @@ const Title = styled.h3`
   margin-bottom: 15px;
 `;
 
-const SearchWallet = ({userWallet, setCurrentWalletPage}) => {
+const SearchWallet = ({searchUsers}) => {
+
+  const { userWallet, isFetching } =
+  useSelector((state) => state.user);
 
     const [itemOffset, setItemOffset] = useState(0);
     const [pageCount, setPageCount] = useState(userWallet?.last_page);
     const [currentItems, setCurrentItems] = useState(userWallet?.data);
+    const [currentWalletPage, setCurrentWalletPage] = useState(1);
+
+    const dispatch = useDispatch();
   
     const itemsPerPage = userWallet?.per_page;
   
@@ -44,6 +54,18 @@ const SearchWallet = ({userWallet, setCurrentWalletPage}) => {
       setItemOffset(newOffset);
       setCurrentWalletPage(event.selected + 1);
     };
+
+    useEffect(() => {
+      getUserWallet(dispatch, searchUsers?.user_name, currentWalletPage);
+    }, [dispatch, currentWalletPage, searchUsers]);
+  
+    if (isFetching) {
+      return (
+        <Loading>
+          <CircularProgress style={{ color: "blue" }} />
+        </Loading>
+      );
+    }
 
   return (
     <Containers>
@@ -162,6 +184,7 @@ const SearchWallet = ({userWallet, setCurrentWalletPage}) => {
                   pageLinkClassName="pageNum"
                   previousLinkClassName="pageNum"
                   nextLinkClassName="pageNum"
+                  forcePage={currentWalletPage - 1}
                 />
               </PagWrapper>
             </TableContainer>

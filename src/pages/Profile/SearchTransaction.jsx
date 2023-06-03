@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -14,6 +15,9 @@ import {
   PaginateContainer,
   PagWrapper,
 } from "../Users/agent.styles";
+import { useDispatch, useSelector } from "react-redux";
+import { Loading } from "../transaction/pending.styles";
+import { getUserTrans } from "../../Redux/apiCalls";
 
 const Title = styled.h3`
   font-size: 16px;
@@ -29,10 +33,15 @@ const Container = styled.div`
   margin: 50px 0;
 `;
 
-const SearchTransaction = ({ userTrans, setCurrentTransPage }) => {
+const SearchTransaction = ({ searchUsers }) => {
+  const { userTrans, isFetching } = useSelector((state) => state.user);
+
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(userTrans?.last_page);
   const [currentItems, setCurrentItems] = useState(userTrans?.data);
+  const [currentTransPage, setCurrentTransPage] = useState(1);
+
+  const dispatch = useDispatch();
 
   const itemsPerPage = userTrans?.per_page;
 
@@ -49,6 +58,18 @@ const SearchTransaction = ({ userTrans, setCurrentTransPage }) => {
     setItemOffset(newOffset);
     setCurrentTransPage(event.selected + 1);
   };
+
+  useEffect(() => {
+    getUserTrans(dispatch, searchUsers?.user_name, currentTransPage);
+  }, [dispatch, currentTransPage, searchUsers]);
+
+  if (isFetching) {
+    return (
+      <Loading>
+        <CircularProgress style={{ color: "blue" }} />
+      </Loading>
+    );
+  }
 
   return (
     <Container>
@@ -184,6 +205,7 @@ const SearchTransaction = ({ userTrans, setCurrentTransPage }) => {
               pageLinkClassName="pageNum"
               previousLinkClassName="pageNum"
               nextLinkClassName="pageNum"
+              forcePage={currentTransPage - 1}
             />
           </PagWrapper>
         </TableContainer>

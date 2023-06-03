@@ -33,12 +33,7 @@ import SearchInformation from "../Profile/SearchInformation";
 const SearchProfile = ({
   searchUsers,
   userPerformance,
-  userTrans,
   isFetching,
-  currentTransPage,
-  setCurrentTransPage,
-  setCurrentWalletPage,
-  userWallet,
   message,
 }) => {
   const [currentPage, setCurrentPage] = useState("general");
@@ -170,17 +165,9 @@ const SearchProfile = ({
             userPerformance={userPerformance}
           />
         ) : currentPage === "transaction" ? (
-          <SearchTransaction
-            userTrans={userTrans}
-            isFetching={isFetching}
-            currentTransPage={currentTransPage}
-            setCurrentTransPage={setCurrentTransPage}
-          />
+          <SearchTransaction searchUsers={searchUsers} />
         ) : currentPage === "wallet" ? (
-          <SearchWallet
-            setCurrentWalletPage={setCurrentWalletPage}
-            userWallet={userWallet}
-          />
+          <SearchWallet searchUsers={searchUsers} />
         ) : currentPage === "push-notification" ? (
           <Nofication />
         ) : (

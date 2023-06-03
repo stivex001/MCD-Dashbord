@@ -1,15 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
-import {
-  getUserPerformance,
-  getUserTrans,
-  getUserWallet,
-} from "../../Redux/apiCalls";
+import { getUserPerformance } from "../../Redux/apiCalls";
 
 import {
   Container,
@@ -20,8 +16,6 @@ import {
   Wrapper,
 } from "../transaction/transHistory.styles";
 import SearchProfile from "./SearchProfile";
-import { Loading } from "../transaction/pending.styles";
-import { CircularProgress } from "@mui/material";
 
 const SearchUserProfile = () => {
   const location = useLocation();
@@ -31,16 +25,12 @@ const SearchUserProfile = () => {
     state.profile.searchUsers.find((user) => user.user_name === decodedId)
   );
 
-  const { userTrans, userPerformance, userWallet, isFetching, message } =
-    useSelector((state) => state.user);
+  const { userPerformance, isFetching, message } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
-  const [currentTransPage, setCurrentTransPage] = useState(1);
-  const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
   const fetchData = async () => {
-    // await getSamjiProfile(dispatch);
-    await getUserTrans(dispatch, searchUsers?.user_name, currentTransPage);
-    await getUserWallet(dispatch, searchUsers?.user_name, currentWalletPage);
     await getUserPerformance(dispatch, searchUsers?.user_name);
   };
 
@@ -48,14 +38,6 @@ const SearchUserProfile = () => {
     // Fetch the data and update the currentPage state variable
     fetchData();
   }, []);
-
-  if (isFetching) {
-    return (
-      <Loading>
-        <CircularProgress style={{ color: "blue" }} />
-      </Loading>
-    );
-  }
 
   return (
     <>
@@ -72,12 +54,7 @@ const SearchUserProfile = () => {
           <SearchProfile
             searchUsers={searchUsers}
             userPerformance={userPerformance}
-            userTrans={userTrans}
             isFetching={isFetching}
-            currentTransPage={currentTransPage}
-            setCurrentTransPage={setCurrentTransPage}
-            setCurrentWalletPage={setCurrentWalletPage}
-            userWallet={userWallet}
             message={message}
           />
         </Wrapper>
