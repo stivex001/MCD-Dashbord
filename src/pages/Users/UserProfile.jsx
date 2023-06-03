@@ -158,7 +158,7 @@ const UserProfiles = ({ users, userPerformance, isFetching, message }) => {
         ) : currentPage === "transaction" ? (
           <ProfileTransaction users={users} />
         ) : currentPage === "wallet" ? (
-          <ProfileWallet />
+          <ProfileWallet users={users} />
         ) : currentPage === "push-notification" ? (
           <Nofication />
         ) : (

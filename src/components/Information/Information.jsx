@@ -22,9 +22,7 @@ import {
 } from "./information.styles";
 import { useNavigate } from "react-router-dom";
 
-const Information = ({ samji, isFetching }) => {
-  const users = samji[0]
-  
+const Information = ({ users, isFetching }) => {
   const { value: enteredUsername, valueChangeHandler: usernameInputChange } =
     useInput();
 
@@ -44,22 +42,24 @@ const Information = ({ samji, isFetching }) => {
 
   const { value: enteredTarget, valueChangeHandler: targetInputChange } =
     useInput();
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const handleFormSubmission = (e) => {
-      e.preventDefault();
-      updateUser(dispatch, { id: users.id, full_name:enteredUsername,
-        company_name: enteredCompany,
-        bvn: enteredBvn,
-        email: enteredEmail,
-        phoneno: enteredPhone,
-        address: enteredAddress,
-        target: enteredTarget });
-      toast.success("Changes made successfully");
-      setTimeout(() => navigate(`/profile/${users.user_name}`), 1000);
-     
-    };
+  const handleFormSubmission = (e) => {
+    e.preventDefault();
+    updateUser(dispatch, {
+      id: users.id,
+      full_name: enteredUsername,
+      company_name: enteredCompany,
+      bvn: enteredBvn,
+      email: enteredEmail,
+      phoneno: enteredPhone,
+      address: enteredAddress,
+      target: enteredTarget,
+    });
+    toast.success("Changes made successfully");
+    setTimeout(() => navigate(`/profile/${users.user_name}`), 1000);
+  };
 
   return (
     <Container>
@@ -69,87 +69,86 @@ const Information = ({ samji, isFetching }) => {
       </P>
       <ToastContainer />
       <FormWrapper onSubmit={handleFormSubmission}>
-         <Form>
-        <InputContainer>
-          <InputTitle>Full Name</InputTitle>
-          <Input
-            type="text"
-            placeholder={users?.full_name || 'Enter Full Name'}
-            onChange={usernameInputChange}
-            value={enteredUsername}
-          />
-        </InputContainer>
-        <InputContainer>
-          <InputTitle>Business Name</InputTitle>
-          <Input
-            type="text"
-            placeholder={users?.company_name || 'Enter Business Name'}
-            onChange={companyInputChange}
-            value={enteredCompany}
-          />
-        </InputContainer>
-        <InputContainer>
-          <InputTitle>BVN</InputTitle>
-          <Input
-            type="text"
-            placeholder={users?.bvn || 'Enter BVN'}
-            onChange={bvnInputChange}
-            value={enteredBvn}
-          />
-        </InputContainer>
-        <InputContainer>
-          <InputTitle>Email</InputTitle>
-          <Input
-            type="email"
-            placeholder={users?.email || 'Enter Email'}
-            onChange={emailInputChange}
-            value={enteredEmail}
-          />
-        </InputContainer>
-        <InputContainer>
-          <InputTitle>Phone Number</InputTitle>
-          <Input
-            type="text"
-            placeholder={users?.phoneno || 'Enter Phone Number'}
-            onChange={phoneInputChange}
-            value={enteredPhone}
-          />
-        </InputContainer>
-        <InputContainer>
-          <InputTitle>Status</InputTitle>
-          <Select name="status" id="">
-            <Option value="superadmin">{users?.status}</Option>
-            <Option value="superadmin">Superadmin</Option>
-            <Option value="client">Client</Option>
-            <Option value="reseller">Reseller</Option>
-            <Option value="admin">admin</Option>
-          </Select>
-        </InputContainer>
-        <InputContainer>
-          <InputTitle>Address</InputTitle>
-          <Input
-            type="text"
-            placeholder={users?.address || 'Enter Address'}
-            onChange={addressInputChange}
-            value={enteredAddress}
-          />
-        </InputContainer>
-        <InputContainer>
-          <TextTitle>Target</TextTitle>
-          <TextArea
-            placeholder={users?.target || 'Enter Target'}
-            onChange={targetInputChange}
-            value={enteredTarget}
-          />
-        </InputContainer>
-      </Form>
-      <Btn type="submit">{isFetching ? 'Updating': 'Update Profile'}</Btn>
-      <ResetButton>
-        <Btn>Password Reset</Btn>
-        <Btn>Pin Reset</Btn>
-      </ResetButton>
+        <Form>
+          <InputContainer>
+            <InputTitle>Full Name</InputTitle>
+            <Input
+              type="text"
+              placeholder={users?.full_name || "Enter Full Name"}
+              onChange={usernameInputChange}
+              value={enteredUsername}
+            />
+          </InputContainer>
+          <InputContainer>
+            <InputTitle>Business Name</InputTitle>
+            <Input
+              type="text"
+              placeholder={users?.company_name || "Enter Business Name"}
+              onChange={companyInputChange}
+              value={enteredCompany}
+            />
+          </InputContainer>
+          <InputContainer>
+            <InputTitle>BVN</InputTitle>
+            <Input
+              type="text"
+              placeholder={users?.bvn || "Enter BVN"}
+              onChange={bvnInputChange}
+              value={enteredBvn}
+            />
+          </InputContainer>
+          <InputContainer>
+            <InputTitle>Email</InputTitle>
+            <Input
+              type="email"
+              placeholder={users?.email || "Enter Email"}
+              onChange={emailInputChange}
+              value={enteredEmail}
+            />
+          </InputContainer>
+          <InputContainer>
+            <InputTitle>Phone Number</InputTitle>
+            <Input
+              type="text"
+              placeholder={users?.phoneno || "Enter Phone Number"}
+              onChange={phoneInputChange}
+              value={enteredPhone}
+            />
+          </InputContainer>
+          <InputContainer>
+            <InputTitle>Status</InputTitle>
+            <Select name="status" id="">
+              <Option value="superadmin">{users?.status}</Option>
+              <Option value="superadmin">Superadmin</Option>
+              <Option value="client">Client</Option>
+              <Option value="reseller">Reseller</Option>
+              <Option value="admin">admin</Option>
+            </Select>
+          </InputContainer>
+          <InputContainer>
+            <InputTitle>Address</InputTitle>
+            <Input
+              type="text"
+              placeholder={users?.address || "Enter Address"}
+              onChange={addressInputChange}
+              value={enteredAddress}
+            />
+          </InputContainer>
+          <InputContainer>
+            <TextTitle>Target</TextTitle>
+            <TextArea
+              placeholder={users?.target || "Enter Target"}
+              onChange={targetInputChange}
+              value={enteredTarget}
+            />
+          </InputContainer>
+        </Form>
+        <Btn type="submit">{isFetching ? "Updating" : "Update Profile"}</Btn>
+        <ResetButton>
+          <Btn>Password Reset</Btn>
+          <Btn>Pin Reset</Btn>
+        </ResetButton>
       </FormWrapper>
-     
     </Container>
   );
 };
