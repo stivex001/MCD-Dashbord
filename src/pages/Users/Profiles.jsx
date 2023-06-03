@@ -6,16 +6,11 @@ import Navbar from "../../components/Bar/Navbar";
 
 import Footer from "../../components/footer/Footer";
 import UserGeneral from "../../components/General/UserGeneral";
-import Information from "../../components/Information/Information";
-import Nofication from "../../components/Notification/Notification";
-import { Btn, List } from "../../components/userProfile/userProfile.styles";
 import {
   getUserPerformance,
   getUserTrans,
   getUserWallet,
 } from "../../Redux/apiCalls";
-import ProfileTransaction from "../Profile/ProfileTransaction";
-import ProfileWallet from "../Profile/ProfileWallet";
 
 import {
   Container,
@@ -38,12 +33,9 @@ const Profiles = () => {
   const { userTrans, userPerformance, userWallet, isFetching, message } =
     useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [currentTransPage, setCurrentTransPage] = useState(1);
+  
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
-  useEffect(() => {
-    getUserTrans(dispatch, users?.user_name, currentTransPage);
-  }, [dispatch, users, currentTransPage]);
 
   useEffect(() => {
     getUserWallet(dispatch, users?.user_name, currentWalletPage);
@@ -69,73 +61,11 @@ const Profiles = () => {
             </DescP>
           </Desc>
 
-          <UserProfiles users={users} />
-          <div>
-            <List>
-              <Btn
-                active={currentPage.type.name === "UserGeneral"}
-                onClick={() =>
-                  handleButtonClick(
-                    <UserGeneral
-                      users={users}
-                      userPerformance={userPerformance}
-                    />
-                  )
-                }
-              >
-                General
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "ProfileTransaction"}
-                onClick={() =>
-                  handleButtonClick(
-                    <ProfileTransaction
-                      userTrans={userTrans}
-                      isFetching={isFetching}
-                      currentTransPage={currentTransPage}
-                      setCurrentTransPage={setCurrentTransPage}
-                    />
-                  )
-                }
-              >
-                Transactions
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "ProfileWallet"}
-                onClick={() =>
-                  handleButtonClick(
-                    <ProfileWallet
-                      setCurrentWalletPage={setCurrentWalletPage}
-                      userWallet={userWallet}
-                    />
-                  )
-                }
-              >
-                Wallet
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "Nofication"}
-                onClick={() => handleButtonClick(<Nofication />)}
-              >
-                Push Notification
-              </Btn>
-              <Btn
-                active={currentPage.type.name === "Information"}
-                onClick={() =>
-                  handleButtonClick(
-                    <Information
-                      users={users}
-                      isFetching={isFetching}
-                      message={message}
-                    />
-                  )
-                }
-              >
-                Information
-              </Btn>
-            </List>
-            {currentPage}
-          </div>
+          <UserProfiles
+            users={users}
+            userPerformance={userPerformance}
+            message={message}
+          />
         </Wrapper>
       </Container>
       <Footer />
