@@ -42,7 +42,7 @@ const SamjiTransaction = ({
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(
-      userTrans?.data && userTrans?.data.slice(itemOffset, endOffset)
+      userTrans.data && userTrans.data.slice(itemOffset, endOffset)
     );
     setPageCount(Math.ceil(userTrans?.total / itemsPerPage));
   }, [itemOffset, userTrans, itemsPerPage]);
@@ -53,8 +53,8 @@ const SamjiTransaction = ({
     setCurrentTransPage(event.selected + 1);
   };
 
-  console.log(currentTransPage);
-  console.log(userTrans);
+  console.log(typeof(currentTransPage));
+  // console.log(userTrans);
 
   if (isFetching) {
     return (

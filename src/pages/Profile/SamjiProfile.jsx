@@ -28,7 +28,7 @@ const SamjiProfile = () => {
   const { userPerformance, samWallet, isFetching, message, samji, samTrans } =
     useSelector((state) => state.authProfile);
   const dispatch = useDispatch();
-  const [currentTransPage, setCurrentTransPage] = useState(1);
+  const [currentTransPage, setCurrentTransPage] = useState(4);
   const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
   const fetchData = async () => {
