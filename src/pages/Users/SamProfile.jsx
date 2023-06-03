@@ -34,8 +34,6 @@ const SamProfile = ({
   samji,
   userPerformance,
   isFetching,
-  userWallet,
-  setCurrentWalletPage,
   message,
 }) => {
   const sam = samji[0];
@@ -168,11 +166,7 @@ const SamProfile = ({
         ) : currentPage === "transaction" ? (
           <SamjiTransaction />
         ) : currentPage === "wallet" ? (
-          <SamWallet
-            setCurrentWalletPage={setCurrentWalletPage}
-            userWallet={userWallet}
-            isFetching={isFetching}
-          />
+          <SamWallet />
         ) : currentPage === "push-notification" ? (
           <Nofication />
         ) : (

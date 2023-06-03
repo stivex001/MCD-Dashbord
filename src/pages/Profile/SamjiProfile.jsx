@@ -24,17 +24,14 @@ import { Loading } from "../transaction/pending.styles";
 import { CircularProgress } from "@mui/material";
 
 const SamjiProfile = () => {
-  const { userPerformance, samWallet, isFetching, message, samji } =
+  const { userPerformance, isFetching, message, samji } =
     useSelector((state) => state.authProfile);
 
   const dispatch = useDispatch();
 
-  // const [currentTransPage, setCurrentTransPage] = useState(1);
-  const [currentWalletPage, setCurrentWalletPage] = useState(1);
 
   const fetchData = async () => {
     await getSamjiProfile(dispatch);
-    await getSamWallet(dispatch, currentWalletPage);
     await getUserPerformance(dispatch, samji?.user_name);
   };
 
@@ -66,13 +63,8 @@ const SamjiProfile = () => {
           <SamProfile
             samji={samji}
             userPerformance={userPerformance}
-            // userTrans={samTrans}
-            isFetching={isFetching}
-            // currentTransPage={currentTransPage}
-            // setCurrentTransPage={setCurrentTransPage}
-            setCurrentWalletPage={setCurrentWalletPage}
-            userWallet={samWallet}
             message={message}
+            isFetching={isFetching}
           />
         </Wrapper>
       </Container>

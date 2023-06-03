@@ -14,6 +14,8 @@ import {
 import { Span } from "../transaction/general.styles";
 import { Loading } from "../transaction/pending.styles";
 import { CircularProgress } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getSamWallet } from "../../Redux/apiCalls";
 
 const Containers = styled.div`
   background-color: #fff;
@@ -29,26 +31,35 @@ const Title = styled.h3`
   margin-bottom: 15px;
 `;
 
-const SamWallet = ({ userWallet, setCurrentWalletPage, isFetching }) => {
-  const [itemOffset, setItemOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(userWallet?.last_page);
-  const [currentItems, setCurrentItems] = useState(userWallet?.data);
+const SamWallet = () => {
+  const { samWallet, isFetching } = useSelector((state) => state.authProfile);
 
-  const itemsPerPage = userWallet?.per_page;
+  const [itemOffset, setItemOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(samWallet?.last_page);
+  const [currentItems, setCurrentItems] = useState(samWallet?.data);
+  const [currentWalletPage, setCurrentWalletPage] = useState(1);
+
+  const dispatch = useDispatch();
+
+  const itemsPerPage = samWallet?.per_page;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(
-      userWallet?.data && userWallet?.data.slice(itemOffset, endOffset)
+      samWallet?.data && samWallet?.data.slice(itemOffset, endOffset)
     );
-    setPageCount(Math.ceil(userWallet?.total / itemsPerPage));
-  }, [itemOffset, userWallet, itemsPerPage]);
+    setPageCount(Math.ceil(samWallet?.total / itemsPerPage));
+  }, [itemOffset, samWallet, itemsPerPage]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % userWallet?.data.length;
+    const newOffset = (event.selected * itemsPerPage) % samWallet?.data.length;
     setItemOffset(newOffset);
     setCurrentWalletPage(event.selected + 1);
   };
+
+  useEffect(() => {
+    getSamWallet(dispatch, currentWalletPage);
+  }, [dispatch, currentWalletPage]);
 
   if (isFetching) {
     return (
@@ -157,8 +168,8 @@ const SamWallet = ({ userWallet, setCurrentWalletPage, isFetching }) => {
           </Table>
           <PagWrapper>
             <PageNotification>
-              Showing {userWallet?.from || "0"} to {userWallet?.to || "0"} of{" "}
-              {userWallet?.total} entries
+              Showing {samWallet?.from || "0"} to {samWallet?.to || "0"} of{" "}
+              {samWallet?.total} entries
             </PageNotification>
             <PaginateContainer
               breakLabel="..."
@@ -173,6 +184,7 @@ const SamWallet = ({ userWallet, setCurrentWalletPage, isFetching }) => {
               pageLinkClassName="pageNum"
               previousLinkClassName="pageNum"
               nextLinkClassName="pageNum"
+              forcePage={currentWalletPage - 1}
             />
           </PagWrapper>
         </TableContainer>
