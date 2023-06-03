@@ -33,13 +33,8 @@ import SearchInformation from "../Profile/SearchInformation";
 const ResellerUserProfile = ({
   searchUsers,
   userPerformance,
-  userTrans,
   isFetching,
-  currentTransPage,
-  setCurrentTransPage,
-  setCurrentWalletPage,
   message,
-  userWallet,
 }) => {
   const [currentPage, setCurrentPage] = useState("general");
   const [activeButton, setActiveButton] = useState("general");
@@ -169,17 +164,9 @@ const ResellerUserProfile = ({
             userPerformance={userPerformance}
           />
         ) : currentPage === "transaction" ? (
-          <SearchTransaction
-            userTrans={userTrans}
-            isFetching={isFetching}
-            currentTransPage={currentTransPage}
-            setCurrentTransPage={setCurrentTransPage}
-          />
+          <SearchTransaction searchUsers={searchUsers} />
         ) : currentPage === "wallet" ? (
-          <SearchWallet
-            setCurrentWalletPage={setCurrentWalletPage}
-            userWallet={userWallet}
-          />
+          <SearchWallet searchUsers={searchUsers} />
         ) : currentPage === "push-notification" ? (
           <Nofication />
         ) : (
