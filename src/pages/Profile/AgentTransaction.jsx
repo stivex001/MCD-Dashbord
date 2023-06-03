@@ -12,6 +12,9 @@ import styled from "styled-components";
 import { Span, TableWrapper } from "../transaction/general.styles";
 import { PaginateContainer } from "../Users/agent.styles";
 import { Loading } from "../transaction/pending.styles";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserTrans } from "../../Redux/apiCalls";
 
 const Title = styled.h3`
   font-size: 16px;
@@ -27,35 +30,35 @@ const Container = styled.div`
   margin: 50px 0;
 `;
 
-const AgentTransaction = ({
-  userTrans,
-  setCurrentTransPage,
-  currentTransPage,
-  handlePageClick,
-  pageCount,
-  currentItems,
-  isFetching,
-}) => {
-  // const [itemOffset, setItemOffset] = useState(0);
-  // const [pageCount, setPageCount] = useState(userTrans?.last_page);
-  // const [currentItems, setCurrentItems] = useState(userTrans?.data);
+const AgentTransaction = ({ users }) => {
+  const { userTrans, isFetching } = useSelector((state) => state.user);
 
-  // const itemsPerPage = userTrans?.per_page;
+  const [itemOffset, setItemOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(userTrans?.last_page);
+  const [currentItems, setCurrentItems] = useState(userTrans?.data);
+  const [currentTransPage, setCurrentTransPage] = useState(1);
 
-  // useEffect(() => {
-  //   const endOffset = itemOffset + itemsPerPage;
-  //   setCurrentItems(
-  //     userTrans?.data && userTrans?.data.slice(itemOffset, endOffset)
-  //   );
-  //   setPageCount(Math.ceil(userTrans?.total / itemsPerPage));
-  // }, [itemOffset, userTrans, itemsPerPage]);
+  const dispatch = useDispatch();
 
-  // const handlePageClick = (event) => {
-  //   const newOffset = (event.selected * itemsPerPage) % userTrans?.data.length;
-  //   setItemOffset(newOffset);
-  //   setCurrentTransPage(event.selected + 1);
-  // };
-  console.log(currentTransPage);
+  const itemsPerPage = userTrans?.per_page;
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(
+      userTrans?.data && userTrans?.data.slice(itemOffset, endOffset)
+    );
+    setPageCount(Math.ceil(userTrans?.total / itemsPerPage));
+  }, [itemOffset, userTrans, itemsPerPage]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % userTrans?.data.length;
+    setItemOffset(newOffset);
+    setCurrentTransPage(event.selected + 1);
+  };
+
+  useEffect(() => {
+    getUserTrans(dispatch, users?.user_name, currentTransPage);
+  }, [dispatch, currentTransPage, users]);
 
   if (isFetching) {
     return (

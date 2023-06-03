@@ -30,21 +30,7 @@ import AgentWallet from "../Profile/AgentWallet";
 import Nofication from "../../components/Notification/Notification";
 import AgentInformation from "../Profile/AgentInformation";
 
-const AgentUserProfile = ({
-  users,
-  userPerformance,
-  userTrans,
-  isFetching,
-  currentTransPage,
-  setCurrentTransPage,
-  pageCount,
-  currentItems,
-  handlePageClick,
-  setCurrentWalletPage,
-  currentWalletPage,
-  userWallet,
-  message,
-}) => {
+const AgentUserProfile = ({ users, userPerformance, isFetching, message }) => {
   const [currentPage, setCurrentPage] = useState("general");
   const [activeButton, setActiveButton] = useState("general");
 
@@ -170,21 +156,9 @@ const AgentUserProfile = ({
         {currentPage === "general" ? (
           <AgentGeneral searchUsers={users} userPerformance={userPerformance} />
         ) : currentPage === "transaction" ? (
-          <AgentTransaction
-            userTrans={userTrans}
-            isFetching={isFetching}
-            currentTransPage={currentTransPage}
-            setCurrentTransPage={setCurrentTransPage}
-            pageCount={pageCount}
-            currentItems={currentItems}
-            handlePageClick={handlePageClick}
-          />
+          <AgentTransaction users={users} />
         ) : currentPage === "wallet" ? (
-          <AgentWallet
-            setCurrentWalletPage={setCurrentWalletPage}
-            userWallet={userWallet}
-            currentWalletPage={currentWalletPage}
-          />
+          <AgentWallet users={users} />
         ) : currentPage === "push-notification" ? (
           <Nofication />
         ) : (
