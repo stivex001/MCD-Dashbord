@@ -87,11 +87,6 @@ export const LogoTitle = styled.span`
   font-size: 20px;
   cursor: pointer;
 `;
-// export const IconImg = styled.img`
-//   width: 20px;
-//   height: 20px;
-//   margin-right: 5px;
-// `;
 export const LogoImg = styled.img`
   width: 20px;
   height: 20px;
@@ -100,7 +95,7 @@ export const LogoImg = styled.img`
 export const UserContainer = styled.div`
   text-align: center;
   margin: 20px auto;
-  postion: sticky;
+  position: sticky;
   top: 0;
 `;
 export const UserDesc = styled.div`
