@@ -33,13 +33,7 @@ const Login = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    login(dispatch, { email, password });
-
-    // if (currentUser === "null") {
-    //   navigate("/login");
-    // } else {
-    //   navigate("/");
-    // }
+    login(dispatch, { email, password }, { redirectTo: window.location.href });
   };
 
   useEffect(() => {
