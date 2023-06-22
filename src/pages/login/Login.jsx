@@ -1,9 +1,9 @@
 import { CircularProgress } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/mcd_logo.png";
-import { login} from "../../Redux/apiCalls";
+import { login } from "../../Redux/apiCalls";
 import {
   Button,
   Container,
@@ -35,12 +35,22 @@ const Login = () => {
     e.preventDefault();
     login(dispatch, { email, password });
 
-    if (currentUser === "null") {
-      navigate("/login");
-    } else {
-      navigate("/");
-    }
+    // if (currentUser === "null") {
+    //   navigate("/login");
+    // } else {
+    //   navigate("/");
+    // }
   };
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      if (currentUser === "null") {
+        navigate("/login");
+      } else {
+        navigate("/");
+      }
+    }
+  }, [currentUser, navigate]);
 
   return (
     <Container>
