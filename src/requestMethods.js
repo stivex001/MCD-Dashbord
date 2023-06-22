@@ -35,7 +35,12 @@ userRequest.interceptors.response.use(
     if (error.response.status === 401) {
       localStorage.removeItem("persist:root");
       window.location.href = "/login";
+    } else if (error.response.status === 403 || error.response.status === 422) {
+      // Handle authentication failure (e.g., display error message)
+      window.location.href = "/login";
+    } else {
+      // Handle other error codes as needed
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
   }
 );
