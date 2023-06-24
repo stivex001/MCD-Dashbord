@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/mcd_logo.png";
-import { login } from "../../Redux/apiCalls";
+import { login, logout } from "../../Redux/apiCalls";
 import {
   Button,
   Container,
@@ -33,18 +33,32 @@ const Login = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    login(dispatch, { email, password }, { redirectTo: window.location.href });
+    login(dispatch, { email, password });
   };
 
   useEffect(() => {
-    if (currentUser !== null) {
-      if (currentUser === "null") {
-        navigate("/login");
-      } else {
-        navigate("/");
-      }
+    if (currentUser === "null") {
+      dispatch(logout());
+      navigate("/login");
+    } else {
+      navigate("/");
     }
-  }, [currentUser, navigate]);
+  }, [currentUser, navigate, dispatch]);
+
+  const token = localStorage.getItem("user.currentUser.token");
+
+  if (!token) {
+    console.log("The token has expired.");
+  } else {
+    const decodedToken = JSON.parse(atob(token.split(".")[1]));
+    const expirationDate = new Date(decodedToken.exp * 1000);
+
+    if (expirationDate < new Date()) {
+      console.log("The token has expired.");
+    } else {
+      console.log("The token is still valid.");
+    }
+  }
 
   return (
     <Container>

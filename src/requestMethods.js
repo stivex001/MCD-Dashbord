@@ -32,14 +32,15 @@ userRequest.interceptors.request.use(
 userRequest.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status === 401) {
-      localStorage.removeItem("persist:root");
-      window.location.href = "/login";
-    } else if (error.response.status === 403 || error.response.status === 422) {
-      // Handle authentication failure (e.g., display error message)
-      window.location.href = "/login";
-    } else {
-      // Handle other error codes as needed
+    try {
+      if (error.response.status === 401) {
+        localStorage.removeItem("persist:root");
+        window.location.href = "/login";
+      } else {
+        return Promise.reject(error);
+      }
+    } catch (e) {
+      console.log("An unexpected error occurred: ", e);
       return Promise.reject(error);
     }
   }
