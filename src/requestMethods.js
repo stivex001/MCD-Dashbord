@@ -34,8 +34,33 @@ userRequest.interceptors.response.use(
   (error) => {
     try {
       if (error.response.status === 401) {
-        localStorage.removeItem("persist:root");
-        window.location.href = "/login";
+        const token = getToken();
+
+        console.log(token);
+
+        if (token) {
+          const tokenParts = token.split("|");
+
+          if (tokenParts.length === 2) {
+            const expirationDate = new Date(parseInt(tokenParts[0]));
+
+            if (expirationDate < new Date()) {
+              console.log("token has expired");
+              localStorage.removeItem("persist:root");
+              window.location.href = "/login";
+            } else {
+              return Promise.reject(error);
+            }
+          } else {
+            // Handle the case when the token is not in the expected format
+            console.log("Invalid token format");
+            localStorage.removeItem("persist:root");
+            window.location.href = "/login";
+          }
+        } else {
+          // Handle the case when token is not found in localStorage
+          return Promise.reject(error);
+        }
       } else {
         return Promise.reject(error);
       }
@@ -45,3 +70,20 @@ userRequest.interceptors.response.use(
     }
   }
 );
+
+// userRequest.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     try {
+//       if (error.response.status === 401) {
+//         localStorage.removeItem("persist:root");
+//         window.location.href = "/login";
+//       } else {
+//         return Promise.reject(error);
+//       }
+//     } catch (e) {
+//       console.log("An unexpected error occurred: ", e);
+//       return Promise.reject(error);
+//     }
+//   }
+// );
