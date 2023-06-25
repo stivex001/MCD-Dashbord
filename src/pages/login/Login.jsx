@@ -71,7 +71,6 @@ const Login = () => {
           navigate("/");
         }
       } else {
-        console.log("Invalid token format.");
         dispatch(logout());
       }
     }
