@@ -56,6 +56,9 @@ const pendingTransactionSlice = createSlice({
       state.message = true;
       state.error = false;
     },
+    id: (state) => {
+      state.checkId = [];
+    },
     reProcessAllFailure: (state) => {
       state.isProcessing = false;
       state.error = true;
@@ -135,6 +138,7 @@ export const {
   reProcessOneSucess,
   reProcessOneFailure,
   clearError,
-  clearMessage
+  clearMessage,
+  id
 } = pendingTransactionSlice.actions;
 export default pendingTransactionSlice.reducer;

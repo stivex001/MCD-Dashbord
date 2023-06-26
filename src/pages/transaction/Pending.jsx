@@ -75,6 +75,7 @@ const Pending = () => {
       return dispatch(emptyCheckbox(error));
     } else {
       reProcess(dispatch, checkId);
+      dispatch(emptyCheckbox());
     }
   };
 

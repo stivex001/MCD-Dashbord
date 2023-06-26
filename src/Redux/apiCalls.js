@@ -58,6 +58,7 @@ import {
   getTransHistoryFailure,
   getTransHistoryStart,
   getTransHistorySucess,
+  id,
   reProcessAllFailure,
   reProcessAllStart,
   reProcessAllSucess,
@@ -225,6 +226,7 @@ export const reProcess = async (dispatch, ids) => {
     });
     if (res.data.success === 1) {
       dispatch(reProcessAllSucess(res.data));
+      dispatch(id())
     } else {
       dispatch(reProcessAllFailure());
     }
