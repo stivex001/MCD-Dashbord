@@ -8,7 +8,7 @@ import PendingTables from "../../components/Pendingtable/PendingTables";
 import {
   getPendingTransData,
   reProcess,
-  reversalTrans,
+  reversal,
 } from "../../Redux/apiCalls";
 import {
   clearError,
@@ -48,7 +48,6 @@ const Pending = () => {
   const [pageCount, setPageCount] = useState(pendingTrans?.last_page);
   const [currentItems, setCurrentItems] = useState(pendingTrans?.data);
   const [currentPage, setCurrentPage] = useState(1);
-  const [reversalId, setReversalId] = useState(null);
 
   const itemsPerPage = pendingTrans?.per_page;
   useEffect(() => {
@@ -82,15 +81,15 @@ const Pending = () => {
   const handleChange = (e) => {
     const id = e.target.value;
     dispatch(toggleCheckbox(id));
-    setReversalId(id);
   };
 
   const handleRevesal = (e) => {
     if (checkId.length === 0) {
       return dispatch(emptyCheckbox(error));
+    } else {
+      reversal(dispatch, checkId);
+      dispatch(emptyCheckbox());
     }
-
-    reversalTrans(dispatch, reversalId);
   };
 
   const handleClose = () => {
@@ -144,7 +143,7 @@ const Pending = () => {
               </MsgContainer>
             )}
 
-            {reversalMessage && (
+            {/* {reversalMessage && (
               <MsgContainer type="success">
                 <H2 type="success">{reversalMessage.message}</H2>
                 <Close
@@ -152,7 +151,7 @@ const Pending = () => {
                   onClick={handleClose}
                 />
               </MsgContainer>
-            )}
+            )} */}
 
             <BtnConatiner>
               <Button type="Re-process Selected" onClick={handleReProcess}>
