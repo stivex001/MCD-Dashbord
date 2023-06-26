@@ -6,14 +6,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { emptyCheckbox } from "../../Redux/pendingTransSlice";
 import {
   PageNotification,
   PaginateContainer,
   PagWrapper,
 } from "../../pages/Users/agent.styles";
-import { reProcessOne,reverseOne } from "../../Redux/apiCalls";
+import { reProcessOne, reverseOne } from "../../Redux/apiCalls";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -30,7 +30,6 @@ const BtnConatiner = styled.div`
 export const Button = styled.button`
   font-size: 14px;
   border: none;
-  // background: none;
   color: #fff;
   background-color: ${(prop) =>
     prop.type === "Re-process Selected"
@@ -51,13 +50,13 @@ const Input = styled.input`
 `;
 
 const PendingTables = ({
-  pendingTrans,
-  pageCount,
-  currentItems,
   showerr,
-  handlePageClick,
   handleChange,
-  currentPage
+  pendingTrans,
+  handlePageClick,
+  currentItems,
+  pageCount,
+  currentPage,
 }) => {
   const dispatch = useDispatch();
 

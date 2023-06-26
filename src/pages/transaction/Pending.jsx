@@ -1,6 +1,5 @@
 import { Close } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -29,18 +28,22 @@ import {
   TransList,
   Wrapper,
 } from "./pending.styles";
+import { useEffect, useState } from "react";
 
 const Pending = () => {
-  const { checkId, error, message, pendingTrans, isProcessing } = useSelector(
+  const { checkId, error, message, isProcessing, pendingTrans } = useSelector(
     (state) => state.transaction
   );
-  const dispatch = useDispatch();
+
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(pendingTrans?.last_page);
   const [currentItems, setCurrentItems] = useState(pendingTrans?.data);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const dispatch = useDispatch();
+
   const itemsPerPage = pendingTrans?.per_page;
+
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(
@@ -57,8 +60,8 @@ const Pending = () => {
   };
 
   useEffect(() => {
-    getPendingTransData(dispatch);
-  }, [dispatch]);
+    getPendingTransData(dispatch, currentPage);
+  }, [dispatch, currentPage]);
 
   const handleReProcess = () => {
     if (checkId.length === 0) {
@@ -150,14 +153,14 @@ const Pending = () => {
             </BtnConatiner>
             <div style={{ marginTop: "10px" }}>
               <PendingTables
-                pendingTrans={pendingTrans}
-                pageCount={pageCount}
-                currentItems={currentItems}
                 showerr={error}
-                handlePageClick={handlePageClick}
-                currentPage={currentPage}
                 handleChange={handleChange}
                 handleRevesal={handleRevesal}
+                pageCount={pageCount}
+                handlePageClick={handlePageClick}
+                currentItems={currentItems}
+                pendingTrans={pendingTrans}
+                currentPage={currentPage}
               />
             </div>
           </TransList>
