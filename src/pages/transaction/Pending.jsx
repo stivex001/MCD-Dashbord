@@ -5,11 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Bar/Navbar";
 import Footer from "../../components/footer/Footer";
 import PendingTables from "../../components/Pendingtable/PendingTables";
-import {
-  getPendingTransData,
-  reProcess,
-  reversal,
-} from "../../Redux/apiCalls";
+import { getPendingTransData, reProcess, reversal } from "../../Redux/apiCalls";
 import {
   clearError,
   clearMessage,
@@ -35,13 +31,9 @@ import {
 } from "./pending.styles";
 
 const Pending = () => {
-  const {
-    checkId,
-    error,
-    message,
-    pendingTrans,
-    isProcessing,
-  } = useSelector((state) => state.transaction);
+  const { checkId, error, message, pendingTrans, isProcessing } = useSelector(
+    (state) => state.transaction
+  );
   const dispatch = useDispatch();
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(pendingTrans?.last_page);
@@ -141,16 +133,6 @@ const Pending = () => {
                 />
               </MsgContainer>
             )}
-
-            {/* {reversalMessage && (
-              <MsgContainer type="success">
-                <H2 type="success">{reversalMessage.message}</H2>
-                <Close
-                  style={{ color: "#806e6b", cursor: "pointer" }}
-                  onClick={handleClose}
-                />
-              </MsgContainer>
-            )} */}
 
             <BtnConatiner>
               <Button type="Re-process Selected" onClick={handleReProcess}>
