@@ -68,6 +68,9 @@ import {
   reversalAllFailure,
   reversalAllStart,
   reversalAllSucess,
+  reversalOneFailure,
+  reversalOneStart,
+  reversalOneSucess,
 } from "./pendingTransSlice";
 import {
   getGmBlockFailure,
@@ -248,6 +251,40 @@ export const reProcessOne = async (dispatch, id) => {
     }
   } catch (error) {
     dispatch(reProcessOneFailure());
+  }
+};
+
+export const reversal = async (dispatch, ids) => {
+  dispatch(reversalAllStart());
+  try {
+    const res = await userRequest.post("/transactions/resubmit-multiple", {
+      ids,
+      all_type: "reverse",
+    });
+    if (res.data.success === 1) {
+      dispatch(reversalAllSucess(res.data));
+      dispatch(id())
+    } else {
+      dispatch(reversalAllFailure());
+    }
+  } catch (error) {
+    dispatch(reversalAllFailure());
+  }
+};
+
+export const reverseOne = async (dispatch, id) => {
+  dispatch(reversalOneStart());
+  try {
+    const res = await userRequest.post("/transactions/resubmit", {
+      id,
+    });
+    if (res.data.success === 1) {
+      dispatch(reversalOneSucess(res.data));
+    } else {
+      dispatch(reversalOneFailure());
+    }
+  } catch (error) {
+    dispatch(reversalOneFailure());
   }
 };
 
