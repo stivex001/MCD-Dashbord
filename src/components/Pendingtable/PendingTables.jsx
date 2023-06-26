@@ -13,7 +13,7 @@ import {
   PaginateContainer,
   PagWrapper,
 } from "../../pages/Users/agent.styles";
-import { reProcessOne, reversalTrans } from "../../Redux/apiCalls";
+import { reProcessOne,reverseOne } from "../../Redux/apiCalls";
 
 const Container = styled.div``;
 const Span = styled.span`
@@ -73,7 +73,7 @@ const PendingTables = ({
     if (!id) {
       return dispatch(emptyCheckbox(showerr));
     } else {
-      reversalTrans(dispatch, id);
+      reverseOne(dispatch, id);
     }
   };
 

@@ -70,7 +70,7 @@ const pendingTransactionSlice = createSlice({
     reversalAllSucess: (state, action) => {
       state.isProcessing = false;
       state.checkId = action.payload;
-      state.reversalMessage = action.payload;
+      state.message = true;
       state.error = false;
     },
     reversalAllFailure: (state) => {
