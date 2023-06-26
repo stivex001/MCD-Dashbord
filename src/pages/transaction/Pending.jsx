@@ -41,7 +41,6 @@ const Pending = () => {
     message,
     pendingTrans,
     isProcessing,
-    reversalMessage,
   } = useSelector((state) => state.transaction);
   const dispatch = useDispatch();
   const [itemOffset, setItemOffset] = useState(0);
