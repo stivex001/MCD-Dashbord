@@ -77,7 +77,7 @@ const pendingTransactionSlice = createSlice({
       state.isProcessing = false;
       state.error = true;
     },
-    
+
     reProcessOneStart: (state) => {
       state.isProcessing = true;
     },
@@ -91,16 +91,28 @@ const pendingTransactionSlice = createSlice({
       state.isProcessing = false;
       state.error = true;
     },
+    reversalOneStart: (state) => {
+      state.isProcessing = true;
+    },
+    reversalOneSucess: (state, action) => {
+      state.isProcessing = false;
+      state.Id = action.payload;
+      state.message = true;
+      state.error = false;
+    },
+    reversalOneFailure: (state) => {
+      state.isProcessing = false;
+      state.error = true;
+    },
     toggleCheckbox: (state, action) => {
-      const id = action.payload
-      const isChecked = state.checkId.includes(id)
+      const id = action.payload;
+      const isChecked = state.checkId.includes(id);
 
       if (isChecked) {
-        state.checkId = state.checkId.filter((checkedId) => checkedId !== id)
-      }
-      else {
-        state.checkId.push(id)
-        state.error = false
+        state.checkId = state.checkId.filter((checkedId) => checkedId !== id);
+      } else {
+        state.checkId.push(id);
+        state.error = false;
       }
     },
     emptyCheckbox: (state) => {
@@ -108,7 +120,7 @@ const pendingTransactionSlice = createSlice({
     },
     clearMessage: (state) => {
       state.message = null;
-      state.reversalMessage = null
+      state.reversalMessage = null;
     },
     clearError: (state) => {
       state.error = false;
@@ -137,8 +149,11 @@ export const {
   reProcessOneStart,
   reProcessOneSucess,
   reProcessOneFailure,
+  reversalOneStart,
+  reversalOneSucess,
+  reversalOneFailure,
   clearError,
   clearMessage,
-  id
+  id,
 } = pendingTransactionSlice.actions;
 export default pendingTransactionSlice.reducer;
