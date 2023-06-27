@@ -838,21 +838,13 @@ export const modifyMtnData = async (dispatch, data) => {
   }
 };
 
-export const modifyGloData = async (
-  dispatch,
-  id,
-  name,
-  provider_price,
-  amount,
-  status,
-  note,
-  server,
-  discount
-) => {
+export const modifyGloData = async (dispatch, data) => {
+  const { id, name, provider_price, amount, status, note, server, discount } =
+    data;
+
   dispatch(updateGloStart()); // set isProcessing flag to true
   try {
-    const res = await userRequest.post(
-      `/appDataConfigUpdate`,
+    const res = await userRequest.post(`/appDataConfigUpdate`, {
       id,
       name,
       provider_price,
@@ -860,16 +852,18 @@ export const modifyGloData = async (
       status,
       note,
       server,
-      discount
-    );
-
-    if (res.data.success === 1) {
-      dispatch(updateGloSucess(res.data));
-    } else {
+      discount,
+    });
+    if (res.data.success === 0) {
       dispatch(updateGloFailure());
+    } else {
+      dispatch(updateGloSucess(res.data));
     }
+
+    return res.data.success; // Return the success value
   } catch (error) {
     dispatch(updateGloFailure()); // set error flag to true
+    throw error;
   }
 };
 

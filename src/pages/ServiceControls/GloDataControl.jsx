@@ -26,7 +26,7 @@ const GloDatacontrol = () => {
   const gloList = useSelector((state) =>
     state.datalist.gloList.data?.find((list) => list.id === id)
   );
-  const { isFetching, error } = useSelector((state) => state.datalist);
+  const { isFetching } = useSelector((state) => state.datalist);
 
   const [inputNameData, setInputNameData] = useState(gloList?.name);
   const [inputPrice, setInputPrice] = useState(gloList?.price);
@@ -56,10 +56,10 @@ const GloDatacontrol = () => {
     setInputServer(event.target.value);
   };
 
-  const handleUpdateClick = (e) => {
+  const handleUpdateClick = async (e) => {
     e.preventDefault();
 
-    modifyGloData(dispatch, {
+    const success = await modifyGloData(dispatch, {
       id: gloList.id,
       name: inputNameData,
       provider_price: inputPrice,
@@ -69,9 +69,10 @@ const GloDatacontrol = () => {
       server: inputServer,
       discount: "0.75",
     });
-    if (!error) {
+
+    if (success === 1) {
       toast.success(`${inputNameData} has been updated successfully`);
-      setTimeout(() => navigate("/datalist/GLO"), 5000);
+      setTimeout(() => navigate("/datalist/MTN"), 5000);
     } else {
       toast.error("Kindly choose correct plan. Kindly check and try again");
     }
