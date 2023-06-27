@@ -45,37 +45,44 @@ const Login = () => {
     }
   }, [currentUser, navigate, dispatch]);
 
-
   useEffect(() => {
-    const persistedData = JSON.parse(localStorage.getItem("persist:root"));
-    const user = JSON.parse(persistedData?.user);
+    const persistedData = localStorage.getItem("persist:root");
+
+    if (!persistedData) {
+      console.log("No persisted data found in localStorage.");
+      // Handle the case when no persisted data is found
+      return;
+    }
+
+    const user = JSON.parse(persistedData)?.user;
     const token = user?.currentUser?.token;
 
     console.log(token);
-  
+
     if (!token) {
       console.log("The token is not found in localStorage.");
-    } else {
-      const tokenParts = token.split("|");
+      // Handle the case when the token is not found
+      return;
+    }
 
-      if (tokenParts.length === 2) {
-        const expirationTimestamp = parseInt(tokenParts[0]);
-        const expirationDate = new Date(expirationTimestamp * 1000);
+    const tokenParts = token.split("|");
 
-        if (expirationDate < new Date()) {
-          console.log("The token has expired.");
-          dispatch(logout());
-          navigate('/login')
-        } else {
-          console.log("The token is still valid.");
-          navigate("/");
-        }
-      } else {
+    if (tokenParts.length === 2) {
+      const expirationTimestamp = parseInt(tokenParts[0]);
+      const expirationDate = new Date(expirationTimestamp * 1000);
+
+      if (expirationDate < new Date()) {
+        console.log("The token has expired.");
         dispatch(logout());
+        navigate("/login");
+      } else {
+        console.log("The token is still valid.");
+        navigate("/");
       }
+    } else {
+      dispatch(logout());
     }
   }, [dispatch, navigate]);
-  
 
   return (
     <Container>
