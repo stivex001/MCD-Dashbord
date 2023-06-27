@@ -66,7 +66,7 @@ const Login = () => {
 
     const tokenParts = token?.split("|");
 
-    if (tokenParts.length === 2) {
+    if (tokenParts?.length === 2) {
       const expirationTimestamp = parseInt(tokenParts[0]);
       const expirationDate = new Date(expirationTimestamp * 1000);
 
