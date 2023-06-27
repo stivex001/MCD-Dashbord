@@ -26,7 +26,7 @@ const MtnDatacontrol = () => {
   const mtnList = useSelector((state) =>
     state.datalist.mtnList.data?.find((list) => list.id === id)
   );
-  const { isFetching, error } = useSelector((state) => state.datalist);
+  const { isFetching} = useSelector((state) => state.datalist);
 
   const [inputNameData, setInputNameData] = useState(mtnList?.name);
   const [inputPrice, setInputPrice] = useState(mtnList?.price);
