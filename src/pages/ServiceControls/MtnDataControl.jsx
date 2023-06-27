@@ -56,10 +56,10 @@ const MtnDatacontrol = () => {
     setInputServer(event.target.value);
   };
 
-  const handleUpdateClick = (e) => {
+  const handleUpdateClick = async (e) => {
     e.preventDefault();
 
-    modifyMtnData(dispatch, {
+    const success = await modifyMtnData(dispatch, {
       id: mtnList.id,
       name: inputNameData,
       provider_price: inputPrice,
@@ -69,7 +69,8 @@ const MtnDatacontrol = () => {
       server: inputServer,
       discount: "0.75",
     });
-    if (!error) {
+
+    if (success === 1) {
       toast.success(`${inputNameData} has been updated successfully`);
       setTimeout(() => navigate("/datalist/MTN"), 5000);
     } else {
