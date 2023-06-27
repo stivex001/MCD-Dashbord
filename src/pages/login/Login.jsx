@@ -51,7 +51,6 @@ const Login = () => {
     if (!persistedData) {
       console.log("No persisted data found in localStorage.");
       // Handle the case when no persisted data is found
-      return;
     }
 
     const user = JSON.parse(persistedData)?.user;
@@ -61,11 +60,11 @@ const Login = () => {
 
     if (!token) {
       console.log("The token is not found in localStorage.");
-      // Handle the case when the token is not found
-      return;
+      dispatch(logout());
+      navigate("/login");
     }
 
-    const tokenParts = token.split("|");
+    const tokenParts = token?.split("|");
 
     if (tokenParts.length === 2) {
       const expirationTimestamp = parseInt(tokenParts[0]);
