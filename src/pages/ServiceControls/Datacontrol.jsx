@@ -26,7 +26,7 @@ const Datacontrol = () => {
   const airtelList = useSelector((state) =>
     state.datalist.airtelList.data?.find((list) => list.id === id)
   );
-  const { isFetching, error } = useSelector((state) => state.datalist);
+  const { isFetching } = useSelector((state) => state.datalist);
 
   const [inputNameData, setInputNameData] = useState(airtelList?.name);
   const [inputPrice, setInputPrice] = useState(airtelList?.price);
@@ -56,10 +56,10 @@ const Datacontrol = () => {
     setInputServer(event.target.value);
   };
 
-  const handleUpdateClick = (e) => {
+  const handleUpdateClick = async (e) => {
     e.preventDefault();
 
-    modifyAirtelData(dispatch, {
+    const success = await modifyAirtelData(dispatch, {
       id: airtelList.id,
       name: inputNameData,
       provider_price: inputPrice,
@@ -69,9 +69,10 @@ const Datacontrol = () => {
       server: inputServer,
       discount: "0.75",
     });
-    if (!error) {
+
+    if (success === 1) {
       toast.success(`${inputNameData} has been updated successfully`);
-      setTimeout(() => navigate("/datalist/AIRTEL"), 5000);
+      setTimeout(() => navigate("/datalist/MTN"), 5000);
     } else {
       toast.error("Kindly choose correct plan. Kindly check and try again");
     }

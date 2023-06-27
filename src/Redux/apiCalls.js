@@ -780,21 +780,13 @@ export const getDatapinsList = async (dispatch) => {
   }
 };
 
-export const modifyAirtelData = async (
-  dispatch,
-  id,
-  name,
-  provider_price,
-  amount,
-  status,
-  note,
-  server,
-  discount
-) => {
-  dispatch(updateAirtelStart());
+export const modifyAirtelData = async (dispatch, data) => {
+  const { id, name, provider_price, amount, status, note, server, discount } =
+    data;
+
+  dispatch(updateAirtelStart()); // set isProcessing flag to true
   try {
-    const res = await userRequest.post(
-      `/appDataConfigUpdate`,
+    const res = await userRequest.post(`/appDataConfigUpdate`, {
       id,
       name,
       provider_price,
@@ -802,46 +794,37 @@ export const modifyAirtelData = async (
       status,
       note,
       server,
-      discount
-    );
-    console.log(res.data);
-    if (res.data.success === 1) {
-      dispatch(updateAirtelSucess(res.data));
-    } else {
+      discount,
+    });
+    if (res.data.success === 0) {
       dispatch(updateAirtelFailure());
+    } else {
+      dispatch(updateAirtelSucess(res.data));
     }
+
+    return res.data.success; // Return the success value
   } catch (error) {
     dispatch(updateAirtelFailure()); // set error flag to true
+    throw error;
   }
 };
 
 export const modifyMtnData = async (dispatch, data) => {
-  const {
-    id,
-    name,
-    provider_price,
-    amount,
-    status,
-    note,
-    server,
-    discount
-  } = data;
+  const { id, name, provider_price, amount, status, note, server, discount } =
+    data;
 
   dispatch(updateMtnStart()); // set isProcessing flag to true
   try {
-    const res = await userRequest.post(
-      `/appDataConfigUpdate`,
-      {
-        id,
-        name,
-        provider_price,
-        amount,
-        status,
-        note,
-        server,
-        discount
-      }
-    );
+    const res = await userRequest.post(`/appDataConfigUpdate`, {
+      id,
+      name,
+      provider_price,
+      amount,
+      status,
+      note,
+      server,
+      discount,
+    });
     if (res.data.success === 0) {
       dispatch(updateMtnFailure());
     } else {
@@ -854,7 +837,6 @@ export const modifyMtnData = async (dispatch, data) => {
     throw error;
   }
 };
-
 
 export const modifyGloData = async (
   dispatch,
