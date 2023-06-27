@@ -867,21 +867,13 @@ export const modifyGloData = async (dispatch, data) => {
   }
 };
 
-export const modifyMobileData = async (
-  dispatch,
-  id,
-  name,
-  provider_price,
-  amount,
-  status,
-  note,
-  server,
-  discount
-) => {
+export const modifyMobileData = async (dispatch, data) => {
+  const { id, name, provider_price, amount, status, note, server, discount } =
+    data;
+
   dispatch(updateMobileStart()); // set isProcessing flag to true
   try {
-    const res = await userRequest.post(
-      `/appDataConfigUpdate`,
+    const res = await userRequest.post(`/appDataConfigUpdate`, {
       id,
       name,
       provider_price,
@@ -889,19 +881,20 @@ export const modifyMobileData = async (
       status,
       note,
       server,
-      discount
-    );
-
-    if (res.data.success === 1) {
-      dispatch(updateMobileSucess(res.data));
-    } else {
+      discount,
+    });
+    if (res.data.success === 0) {
       dispatch(updateMobileFailure());
+    } else {
+      dispatch(updateMobileSucess(res.data));
     }
+
+    return res.data.success; // Return the success value
   } catch (error) {
     dispatch(updateMobileFailure()); // set error flag to true
+    throw error;
   }
 };
-
 export const modifyTvData = async (dispatch, id, name, price, discount) => {
   dispatch(updateTvStart()); // set isProcessing flag to true
   try {

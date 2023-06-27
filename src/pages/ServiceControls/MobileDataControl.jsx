@@ -26,7 +26,7 @@ const MobileDatacontrol = () => {
   const mobileList = useSelector((state) =>
     state.datalist.mobileList.data?.find((list) => list.id === id)
   );
-  const { isFetching, error } = useSelector((state) => state.datalist);
+  const { isFetching} = useSelector((state) => state.datalist);
 
   const [inputNameData, setInputNameData] = useState(mobileList?.name);
   const [inputPrice, setInputPrice] = useState(mobileList?.price);
@@ -56,10 +56,10 @@ const MobileDatacontrol = () => {
     setInputServer(event.target.value);
   };
 
-  const handleUpdateClick = (e) => {
+  const handleUpdateClick = async (e) => {
     e.preventDefault();
 
-    modifyMobileData(dispatch, {
+    const success = await modifyMobileData(dispatch, {
       id: mobileList.id,
       name: inputNameData,
       provider_price: inputPrice,
@@ -69,9 +69,10 @@ const MobileDatacontrol = () => {
       server: inputServer,
       discount: "0.75",
     });
-    if (!error) {
+
+    if (success === 1) {
       toast.success(`${inputNameData} has been updated successfully`);
-      setTimeout(() => navigate("/datalist/9MOBILE"), 5000);
+      setTimeout(() => navigate("/datalist/MTN"), 5000);
     } else {
       toast.error("Kindly choose correct plan. Kindly check and try again");
     }
