@@ -2,7 +2,7 @@ import { Paper, Table, TableContainer } from "@mui/material";
 import styled from "styled-components";
 import Navbar from "../../components/Bar/Navbar";
 // import { dataData } from "../../components/DataPlansTable/dataPlans";
-import Tablebody from "../../components/DataPlansTable/Tablebody";
+// import Tablebody from "../../components/DataPlansTable/Tablebody";
 import Tablehead from "../../components/DataPlansTable/Tablehead";
 import Footer from "../../components/footer/Footer";
 import { laptop } from "../../responsive";

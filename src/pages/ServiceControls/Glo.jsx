@@ -161,6 +161,12 @@ const Glo = () => {
                 <MenuItem key="DG" value="DG">
                   DG
                 </MenuItem>
+                <MenuItem key="SME2" value="SME2">
+                  SME2
+                </MenuItem>
+                <MenuItem key="COOL" value="COOL">
+                  COOL
+                </MenuItem>
               </TextField>
 
               <TextField
